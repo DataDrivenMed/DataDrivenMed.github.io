@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ram | Data-Driven Health Strategy & Analytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* ====== Base layout ====== */
+    :root {
+      --bg: #f5f7fb;
+      --card-bg: #ffffff;
+      --accent: #154360;
+      --accent-soft: #e1e8f5;
+      --accent2: #1f4e79;
+      --text-main: #212121;
+      --text-muted: #555;
+      --border-soft: #dde3f0;
+      --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0 16px 40px 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    a {
+      color: #1f5b8a;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====== Hero / header ====== */
+    header.hero {
+      margin-top: 32px;
+      margin-bottom: 24px;
+      padding: 20px 22px 22px 22px;
+      background: linear-gradient(120deg, #fdfefe, #e9f1ff);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.1fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    @media (max-width: 780px) {
+      header.hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-title {
+      font-size: 1.9rem;
+      margin: 0 0 4px 0;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin: 0 0 10px 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 560px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 6px 0 14px 0;
+    }
+
+    .tag-chip {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      color: var(--accent2);
+      border: 1px solid rgba(21, 67, 96, 0.12);
+      white-space: nowrap;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(13, 52, 87, 0.35);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--accent2);
+      border: 1px solid var(--border-soft);
+    }
+
+    .btn:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-right {
+      justify-self: end;
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 780px) {
+      .hero-right {
+        justify-self: start;
+        text-align: left;
+      }
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(21, 67, 96, 0.06);
+      color: var(--accent2);
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+    }
+
+    /* ====== Sections ====== */
+    section {
+      margin-bottom: 26px;
+    }
+
+    h2.section-title {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: var(--accent2);
+    }
+
+    p.section-subtitle {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ====== Project grid ====== */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 12px 12px 12px 12px;
+      border: 1px solid rgba(204, 213, 231, 0.6);
+      display: flex;
+      flex-direction: column;
+      min-height: 170px;
+    }
+
+    .project-pill {
+      font-size: 0.75rem;
+      display: inline-flex;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      background: #f1f5ff;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      margin: 0 0 4px 0;
+      color: var(--accent);
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      margin: 0 0 10px 0;
+      flex: 1;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+      font-size: 0.8rem;
+    }
+
+    .pill-link {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-soft);
+      background: #fdfdff;
+      text-decoration: none;
+      color: var(--accent2);
+    }
+
+    .pill-link:hover {
+      background: var(--accent-soft);
+    }
+
+    /* ====== About & skills ====== */
+    .about-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 12px 14px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(204, 213, 231, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 780px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .skill-chip {
+      font-size: 0.8rem;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      background: #f2f3f7;
+      color: var(--text-muted);
+    }
+
+    /* ====== Footer ====== */
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #777;
+      text-align: right;
+    }
+
+    @media (max-width: 780px) {
+      footer {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+      <div>
+        <h1 class="hero-title">Ram – Data-Driven Health Strategy & Analytics</h1>
+        <p class="hero-sub">
+          I build lightweight, AI-informed tools for rural health policy, medical education,
+          GME workforce planning, and research strategy – using open data, automation, and clear metrics.
+        </p>
+        <div class="hero-tags">
+          <span class="tag-chip">Rural health & workforce</span>
+          <span class="tag-chip">GME & LCME accreditation</span>
+          <span class="tag-chip">AI & decision support</span>
+          <span class="tag-chip">Dashboards & GitHub Actions</span>
+        </div>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener noreferrer">
+            View GitHub profile
+          </a>
+          <!-- TODO: replace with your real LinkedIn URL -->
+          <a class="btn btn-secondary" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+            LinkedIn (coming soon)
+          </a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-pill">Academic medicine · Strategy · Analytics</div>
+        <div>Portfolio of GitHub projects and live GitHub Pages sites.</div>
+      </div>
+    </header>
+
+    <!-- ===== PROJECTS: RURAL HEALTH & WORKFORCE ===== -->
+    <section>
+      <h2 class="section-title">Rural Health & Workforce</h2>
+      <p class="section-subtitle">
+        Automated monitors and tools focused on rural hospitals, provider pipelines, and health policy signals.
+      </p>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="project-pill">Live dashboard</div>
+          <h3 class="project-title">Rural Health Signal Monitor</h3>
+          <div class="project-meta">RSS · GitHub Actions · Rule-based “AI” · Policy monitoring</div>
+          <p class="project-desc">
+            A fully automated daily monitor that ingests rural health policy news from multiple RSS feeds
+            and produces a structured digest with risk, opportunity, GME, and Deep South (LA, MS, AR, AL) signals.
+            Runs entirely on GitHub Actions with no paid APIs.
+          </p>
+          <div class="project-links">
+            <a class="pill-link" href="https://datadrivenmed.github.io/rural-health-signal-monitor/" target="_blank">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/rural-health-signal-monitor" target="_blank">Code</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-pill">Policy analytics</div>
+          <h3 class="project-title">Rural Health Bill Tracker</h3>
+          <div class="project-meta">Congress · Rural hospitals · Telehealth · Critical access</div>
+          <p class="project-desc">
+            A bill-tracking pipeline exploring how to scrape, filter, and summarize U.S. federal legislation
+            related to rural health, critical access hospitals, telehealth, and workforce incentives.
+            Focused on transparent, reproducible policy analytics.
+          </p>
+          <div class="project-links">
+            <a class="pill-link" href="https://github.com/DataDrivenMed/rural-health-bill-tracker" target="_blank">Code</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS: AI & TOOL GOVERNANCE ===== -->
+    <section>
+      <h2 class="section-title">AI, Clinical Tools & Governance</h2>
+      <p class="section-subtitle">
+        Curated frameworks to safely vet AI tools for clinical, educational, and research settings.
+      </p>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="project-pill">AI governance</div>
+          <h3 class="project-title">Vetting AI Tools in Healthcare & Education</h3>
+          <div class="project-meta">Risk assessment · Bias · Governance · Policy</div>
+          <p class="project-desc">
+            A structured framework and checklist to assess AI tools used in clinical care, education,
+            and administration, with emphasis on bias, transparency, data use, and alignment with
+            institutional policies and accreditation requirements.
+          </p>
+          <div class="project-links">
+            <a class="pill-link" href="https://datadrivenmed.github.io/Vetting-AI-Tools/" target="_blank">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/Vetting-AI-Tools" target="_blank">Code</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-pill">Medical AI</div>
+          <h3 class="project-title">MedAI Lexicon</h3>
+          <div class="project-meta">Health AI · Definitions · Educational resource</div>
+          <p class="project-desc">
+            A living lexicon of AI concepts translated for clinicians, educators, and administrators –
+            designed to support curriculum development, grant writing, and informed decision-making
+            around AI adoption in academic medicine.
+          </p>
+          <div class="project-links">
+            <a class="pill-link" href="https://datadrivenmed.github.io/MedAI--Lexicon/" target="_blank">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/MedAI--Lexicon" target="_blank">Code</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS: EDUCATION, GME & ANALYTICS ===== -->
+    <section>
+      <h2 class="section-title">Medical Education, GME & Analytics</h2>
+      <p class="section-subtitle">
+        Tools and experiments that link admissions, match outcomes, and training programs to workforce needs.
+      </p>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="project-pill">Predictive modeling</div>
+          <h3 class="project-title">Predictive Model – Match Success</h3>
+          <div class="project-meta">Mock data · GME · Analytics</div>
+          <p class="project-desc">
+            A sandbox predictive model using mock data to explore how student metrics, application patterns,
+            and institutional factors may relate to residency Match outcomes — designed as a teaching and
+            strategy tool, not as a production admissions model.
+          </p>
+          <div class="project-links">
+            <a class="pill-link" href="https://github.com/DataDrivenMed/predictive-model-match-success" target="_blank">Code</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-pill">Health systems</div>
+          <h3 class="project-title">Healthcare Analytics Experiments</h3>
+          <div class="project-meta">Public datasets · Policy · Delivery systems</div>
+          <p class="project-desc">
+            A collection of healthcare analytics experiments, focused on provider supply, access,
+            and outcomes. Serves as a sandbox for prototyping visualizations and models before
+            integration into institutional dashboards.
+          </p>
+          <div class="project-links">
+            <a class="pill-link" href="https://github.com/DataDrivenMed/healthcare" target="_blank">Code</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-pill">Sports science</div>
+          <h3 class="project-title">SwimTech – Elite Swimming Analytics</h3>
+          <div class="project-meta">Wearables · Biomechanics · Performance</div>
+          <p class="project-desc">
+            A side project exploring how AI, wearables, and biomechanics concepts can be used to
+            understand elite swimming performance — combining data storytelling with health and
+            human performance analytics.
+          </p>
+          <div class="project-links">
+            <a class="pill-link" href="https://datadrivenmed.github.io/swimtech/" target="_blank">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/swimtech" target="_blank">Code</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== ABOUT & SKILLS ===== -->
+    <section>
+      <h2 class="section-title">About & Skills</h2>
+      <div class="about-card">
+        <div class="about-grid">
+          <div>
+            <p>
+              I work at the intersection of <strong>academic medicine, policy, and analytics</strong> —
+              building practical tools that help leaders see what’s coming in rural health, GME, and
+              research strategy. Most of these projects start as small, opinionated prototypes on GitHub
+              and grow into dashboards, briefings, or decision-support tools.
+            </p>
+            <p>
+              My focus areas include <strong>rural workforce and training expansions</strong>,
+              <strong>LCME/ACGME-linked CQI</strong>, and <strong>AI literacy and governance</strong> for
+              medical schools and health systems.
+            </p>
+          </div>
+          <div>
+            <p><strong>Skills & tools</strong></p>
+            <div class="skills-list">
+              <span class="skill-chip">Python & GitHub Actions</span>
+              <span class="skill-chip">RSS / web data pipelines</span>
+              <span class="skill-chip">Health workforce policy</span>
+              <span class="skill-chip">Rural health & GME</span>
+              <span class="skill-chip">LCME / ACGME CQI</span>
+              <span class="skill-chip">Tableau & dashboards</span>
+              <span class="skill-chip">AI tool vetting & governance</span>
+              <span class="skill-chip">Strategic planning & metrics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Ram · DataDrivenMed · Built on GitHub Pages
+    </footer>
+  </div>
+</body>
+</html>
