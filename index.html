@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ram | Data-Driven Health Strategy & Analytics</title>
+  <title>Ramnarayan Paragi | Data-Driven Health Strategy & Analytics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     /* ====== Base layout ====== */
@@ -134,6 +134,52 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
 
+    /* Icon styling */
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+    }
+
+    .icon svg {
+      display: block;
+    }
+
+    /* ====== Footer social style ====== */
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 780px) {
+      .social-links {
+        justify-content: flex-start;
+      }
+    }
+
+    .social-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      font-size: 0.8rem;
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    .social-link-pill:hover {
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
     .hero-right {
       justify-self: end;
       text-align: right;
@@ -188,7 +234,7 @@
       background: var(--card-bg);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-soft);
-      padding: 12px 12px 12px 12px;
+      padding: 12px;
       border: 1px solid rgba(204, 213, 231, 0.6);
       display: flex;
       flex-direction: column;
@@ -248,7 +294,7 @@
     .about-card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 14px 14px 12px 14px;
+      padding: 14px;
       box-shadow: var(--shadow-soft);
       border: 1px solid rgba(204, 213, 231, 0.6);
       font-size: 0.9rem;
@@ -301,7 +347,7 @@
     <!-- ===== HERO ===== -->
     <header class="hero">
       <div>
-        <h1 class="hero-title">Ram – Data-Driven Health Strategy & Analytics</h1>
+        <h1 class="hero-title">Ramnarayan Paragi – Data-Driven Health Strategy & Analytics</h1>
         <p class="hero-sub">
           I build lightweight, AI-informed tools for rural health policy, medical education,
           GME workforce planning, and research strategy – using open data, automation, and clear metrics.
@@ -312,16 +358,34 @@
           <span class="tag-chip">AI & decision support</span>
           <span class="tag-chip">Dashboards & GitHub Actions</span>
         </div>
+
         <div class="hero-buttons">
-          <a class="btn btn-primary" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener noreferrer">
-            View GitHub profile
-          </a>
-          <!-- TODO: replace with your real LinkedIn URL -->
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-primary" href="https://github.com/DataDrivenMed" target="_blank">View GitHub profile</a>
+
+          <!-- LinkedIn -->
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/ramnarayan/" target="_blank">
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/>
+              </svg>
+            </span>
             LinkedIn
+          </a>
+
+          <!-- Substack -->
+          <a class="btn btn-secondary" href="https://swimed.substack.com/" target="_blank">
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="3" fill="#FF6719"></rect>
+                <rect x="3" y="9" width="18" height="3" fill="#FF6719"></rect>
+                <path d="M3 14h18v7l-9-3-9 3v-7z" fill="#FF6719"></path>
+              </svg>
+            </span>
+            Substack
           </a>
         </div>
       </div>
+
       <div class="hero-right">
         <div class="hero-pill">Academic medicine · Strategy · Analytics</div>
         <div>Portfolio of GitHub projects and live GitHub Pages sites.</div>
@@ -357,9 +421,8 @@
           <h3 class="project-title">Rural Health Bill Tracker</h3>
           <div class="project-meta">Congress · Rural hospitals · Telehealth · Critical access</div>
           <p class="project-desc">
-            A bill-tracking pipeline exploring how to scrape, filter, and summarize U.S. federal legislation
-            related to rural health, critical access hospitals, telehealth, and workforce incentives.
-            Focused on transparent, reproducible policy analytics.
+            A bill-tracking pipeline exploring how to scrape, filter, and summarize federal legislation
+            related to rural health, CAHs, telehealth, and workforce incentives.
           </p>
           <div class="project-links">
             <a class="pill-link" href="https://github.com/DataDrivenMed/rural-health-bill-tracker" target="_blank">Code</a>
@@ -385,7 +448,7 @@
           <p class="project-desc">
             A structured framework and checklist to assess AI tools used in clinical care, education,
             and administration, with emphasis on bias, transparency, data use, and alignment with
-            institutional policies and accreditation requirements.
+            institutional policies.
           </p>
           <div class="project-links">
             <a class="pill-link" href="https://datadrivenmed.github.io/Vetting-AI-Tools/" target="_blank">Live site</a>
@@ -399,8 +462,7 @@
           <div class="project-meta">Health AI · Definitions · Educational resource</div>
           <p class="project-desc">
             A living lexicon of AI concepts translated for clinicians, educators, and administrators –
-            designed to support curriculum development, grant writing, and informed decision-making
-            around AI adoption in academic medicine.
+            designed to support curriculum development, grant writing, and informed decision-making.
           </p>
           <div class="project-links">
             <a class="pill-link" href="https://datadrivenmed.github.io/MedAI--Lexicon/" target="_blank">Live site</a>
@@ -425,9 +487,8 @@
           <h3 class="project-title">Predictive Model – Match Success</h3>
           <div class="project-meta">Mock data · GME · Analytics</div>
           <p class="project-desc">
-            A sandbox predictive model using mock data to explore how student metrics, application patterns,
-            and institutional factors may relate to residency Match outcomes — designed as a teaching and
-            strategy tool, not as a production admissions model.
+            A sandbox predictive model using mock data to explore how student metrics,
+            application patterns, and institutional factors relate to residency Match outcomes.
           </p>
           <div class="project-links">
             <a class="pill-link" href="https://github.com/DataDrivenMed/predictive-model-match-success" target="_blank">Code</a>
@@ -439,9 +500,8 @@
           <h3 class="project-title">Healthcare Analytics Experiments</h3>
           <div class="project-meta">Public datasets · Policy · Delivery systems</div>
           <p class="project-desc">
-            A collection of healthcare analytics experiments, focused on provider supply, access,
-            and outcomes. Serves as a sandbox for prototyping visualizations and models before
-            integration into institutional dashboards.
+            A collection of experiments analyzing provider supply, access, and outcomes.
+            Serves as a sandbox for prototyping visualizations and metrics.
           </p>
           <div class="project-links">
             <a class="pill-link" href="https://github.com/DataDrivenMed/healthcare" target="_blank">Code</a>
@@ -453,9 +513,8 @@
           <h3 class="project-title">SwimTech – Elite Swimming Analytics</h3>
           <div class="project-meta">Wearables · Biomechanics · Performance</div>
           <p class="project-desc">
-            A side project exploring how AI, wearables, and biomechanics concepts can be used to
-            understand elite swimming performance — combining data storytelling with health and
-            human performance analytics.
+            A side project combining AI, wearables, and biomechanics to understand elite
+            swimming performance through human performance analytics.
           </p>
           <div class="project-links">
             <a class="pill-link" href="https://datadrivenmed.github.io/swimtech/" target="_blank">Live site</a>
@@ -474,14 +533,14 @@
           <div>
             <p>
               I work at the intersection of <strong>academic medicine, policy, and analytics</strong> —
-              building practical tools that help leaders see what’s coming in rural health, GME, and
-              research strategy. Most of these projects start as small, opinionated prototypes on GitHub
-              and grow into dashboards, briefings, or decision-support tools.
+              building practical tools that help leaders see what’s coming in rural health,
+              GME workforce strategy, and research planning. Most of these projects begin
+              as small prototypes and evolve into briefings or decision-support tools.
             </p>
             <p>
               My focus areas include <strong>rural workforce and training expansions</strong>,
-              <strong>LCME/ACGME-linked CQI</strong>, and <strong>AI literacy and governance</strong> for
-              medical schools and health systems.
+              <strong>LCME/ACGME-linked CQI</strong>, and <strong>AI literacy & governance</strong>
+              for medical schools and health systems.
             </p>
           </div>
           <div>
@@ -501,9 +560,35 @@
       </div>
     </section>
 
+    <!-- ===== FOOTER ===== -->
     <footer>
-      © 2025 Ram · DataDrivenMed · Built on GitHub Pages
+      <div>© 2025 Ramnarayan Paragi · DataDrivenMed · Built on GitHub Pages</div>
+
+      <div class="social-links">
+
+        <a class="social-link-pill" href="https://www.linkedin.com/in/ramnarayan/" target="_blank">
+          <span class="icon">
+            <svg width="14" height="14" viewBox="0 0 24 24">
+              <path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/>
+            </svg>
+          </span>
+          Connect on LinkedIn
+        </a>
+
+        <a class="social-link-pill" href="https://swimed.substack.com/" target="_blank">
+          <span class="icon">
+            <svg width="14" height="14" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="3" fill="#FF6719"></rect>
+              <rect x="3" y="9" width="18" height="3" fill="#FF6719"></rect>
+              <path d="M3 14h18v7l-9-3-9 3v-7z" fill="#FF6719"></path>
+            </svg>
+          </span>
+          Read my Substack
+        </a>
+
+      </div>
     </footer>
+
   </div>
 </body>
 </html>
