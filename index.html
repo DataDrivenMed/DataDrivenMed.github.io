@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +19,13 @@
       --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.06);
       --radius-lg: 18px;
       --radius-pill: 999px;
+
+      /* Added for featured project */
+      --feature-bg: linear-gradient(120deg, #ffffff, #eef6ff);
+      --feature-border: rgba(21, 67, 96, 0.18);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -32,19 +35,10 @@
       color: var(--text-main);
     }
 
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    .page { max-width: 1100px; margin: 0 auto; }
 
-    a {
-      color: #1f5b8a;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: #1f5b8a; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     /* ====== Hero / header ====== */
     header.hero {
@@ -61,9 +55,7 @@
     }
 
     @media (max-width: 780px) {
-      header.hero {
-        grid-template-columns: 1fr;
-      }
+      header.hero { grid-template-columns: 1fr; }
     }
 
     .hero-title {
@@ -141,10 +133,7 @@
       justify-content: center;
       margin-right: 6px;
     }
-
-    .icon svg {
-      display: block;
-    }
+    .icon svg { display: block; }
 
     /* ====== Footer social style ====== */
     .social-links {
@@ -157,9 +146,7 @@
     }
 
     @media (max-width: 780px) {
-      .social-links {
-        justify-content: flex-start;
-      }
+      .social-links { justify-content: flex-start; }
     }
 
     .social-link-pill {
@@ -188,10 +175,7 @@
     }
 
     @media (max-width: 780px) {
-      .hero-right {
-        justify-self: start;
-        text-align: left;
-      }
+      .hero-right { justify-self: start; text-align: left; }
     }
 
     .hero-pill {
@@ -206,9 +190,7 @@
     }
 
     /* ====== Sections ====== */
-    section {
-      margin-bottom: 26px;
-    }
+    section { margin-bottom: 26px; }
 
     h2.section-title {
       font-size: 1.25rem;
@@ -286,8 +268,68 @@
       color: var(--accent2);
     }
 
-    .pill-link:hover {
-      background: var(--accent-soft);
+    .pill-link:hover { background: var(--accent-soft); }
+
+    /* ====== Featured card (NaHCO3) ====== */
+    .feature-card {
+      background: var(--feature-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--feature-border);
+      padding: 16px 16px 14px 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    @media (max-width: 780px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+
+    .feature-title {
+      font-size: 1.08rem;
+      margin: 0 0 6px 0;
+      color: var(--accent);
+    }
+
+    .feature-desc {
+      margin: 0 0 10px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      max-width: 750px;
+    }
+
+    .feature-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(21, 67, 96, 0.14);
+      background: rgba(21, 67, 96, 0.06);
+      color: var(--accent2);
+      white-space: nowrap;
+    }
+
+    .feature-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 780px) {
+      .feature-actions { justify-content: flex-start; }
     }
 
     /* ====== About & skills ====== */
@@ -307,9 +349,7 @@
     }
 
     @media (max-width: 780px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
+      .about-grid { grid-template-columns: 1fr; }
     }
 
     .skills-list {
@@ -336,9 +376,7 @@
     }
 
     @media (max-width: 780px) {
-      footer {
-        text-align: left;
-      }
+      footer { text-align: left; }
     }
   </style>
 </head>
@@ -361,10 +399,10 @@
         </div>
 
         <div class="hero-buttons">
-          <a class="btn btn-primary" href="https://github.com/DataDrivenMed" target="_blank">View GitHub profile</a>
+          <a class="btn btn-primary" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener noreferrer">View GitHub profile</a>
 
           <!-- LinkedIn -->
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/ramnarayan/" target="_blank">
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener noreferrer">
             <span class="icon">
               <svg width="14" height="14" viewBox="0 0 24 24">
                 <path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/>
@@ -374,7 +412,7 @@
           </a>
 
           <!-- Substack -->
-          <a class="btn btn-secondary" href="https://swimed.substack.com/" target="_blank">
+          <a class="btn btn-secondary" href="https://swimed.substack.com/" target="_blank" rel="noopener noreferrer">
             <span class="icon">
               <svg width="14" height="14" viewBox="0 0 24 24">
                 <rect x="3" y="4" width="18" height="3" fill="#FF6719"></rect>
@@ -392,6 +430,38 @@
         <div>Portfolio of GitHub projects and live GitHub Pages sites.</div>
       </div>
     </header>
+
+    <!-- ===== FEATURED: SWIM PERFORMANCE INTEL (NaHCO3) ===== -->
+    <section>
+      <h2 class="section-title">Featured Deep Dive</h2>
+      <p class="section-subtitle">
+        High-signal, coach-facing analysis built as interactive GitHub Pages briefs.
+      </p>
+
+      <div class="feature-card">
+        <div class="feature-grid">
+          <div>
+            <div class="project-pill">Interactive brief</div>
+            <h3 class="feature-title">NaHCO₃ Intel: Sodium Bicarbonate in Elite Swimming</h3>
+            <p class="feature-desc">
+              Mechanism, evidence strength by event, GI-risk mitigation, individualized timing logic, key debates
+              (including Bob Bowman’s critique), and a practical decision framework for coaches.
+            </p>
+            <div class="feature-badges">
+              <span class="badge">Evidence matrix</span>
+              <span class="badge">Dose calculator</span>
+              <span class="badge">GI risk meter</span>
+              <span class="badge">Coach decision tool</span>
+            </div>
+          </div>
+
+          <div class="feature-actions">
+            <a class="btn btn-primary" href="https://datadrivenmed.github.io/nahco3-intel/" target="_blank" rel="noopener noreferrer">Open the deep dive</a>
+            <a class="btn btn-secondary" href="https://github.com/DataDrivenMed/nahco3-intel" target="_blank" rel="noopener noreferrer">View code</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ===== PROJECTS: RURAL HEALTH & WORKFORCE ===== -->
     <section>
@@ -412,8 +482,8 @@
             Runs entirely on GitHub Actions with no paid APIs.
           </p>
           <div class="project-links">
-            <a class="pill-link" href="https://datadrivenmed.github.io/rural-health-signal-monitor/" target="_blank">Live site</a>
-            <a class="pill-link" href="https://github.com/DataDrivenMed/rural-health-signal-monitor" target="_blank">Code</a>
+            <a class="pill-link" href="https://datadrivenmed.github.io/rural-health-signal-monitor/" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/rural-health-signal-monitor" target="_blank" rel="noopener noreferrer">Code</a>
           </div>
         </article>
 
@@ -426,7 +496,7 @@
             related to rural health, CAHs, telehealth, and workforce incentives.
           </p>
           <div class="project-links">
-            <a class="pill-link" href="https://github.com/DataDrivenMed/rural-health-bill-tracker" target="_blank">Code</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/rural-health-bill-tracker" target="_blank" rel="noopener noreferrer">Code</a>
           </div>
         </article>
 
@@ -452,8 +522,8 @@
             institutional policies.
           </p>
           <div class="project-links">
-            <a class="pill-link" href="https://datadrivenmed.github.io/Vetting-AI-Tools/" target="_blank">Live site</a>
-            <a class="pill-link" href="https://github.com/DataDrivenMed/Vetting-AI-Tools" target="_blank">Code</a>
+            <a class="pill-link" href="https://datadrivenmed.github.io/Vetting-AI-Tools/" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/Vetting-AI-Tools" target="_blank" rel="noopener noreferrer">Code</a>
           </div>
         </article>
 
@@ -466,8 +536,8 @@
             designed to support curriculum development, grant writing, and informed decision-making.
           </p>
           <div class="project-links">
-            <a class="pill-link" href="https://datadrivenmed.github.io/MedAI--Lexicon/" target="_blank">Live site</a>
-            <a class="pill-link" href="https://github.com/DataDrivenMed/MedAI--Lexicon" target="_blank">Code</a>
+            <a class="pill-link" href="https://datadrivenmed.github.io/MedAI--Lexicon/" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/MedAI--Lexicon" target="_blank" rel="noopener noreferrer">Code</a>
           </div>
         </article>
 
@@ -492,7 +562,7 @@
             application patterns, and institutional factors relate to residency Match outcomes.
           </p>
           <div class="project-links">
-            <a class="pill-link" href="https://github.com/DataDrivenMed/predictive-model-match-success" target="_blank">Code</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/predictive-model-match-success" target="_blank" rel="noopener noreferrer">Code</a>
           </div>
         </article>
 
@@ -505,7 +575,7 @@
             Serves as a sandbox for prototyping visualizations and metrics.
           </p>
           <div class="project-links">
-            <a class="pill-link" href="https://github.com/DataDrivenMed/healthcare" target="_blank">Code</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/healthcare" target="_blank" rel="noopener noreferrer">Code</a>
           </div>
         </article>
 
@@ -518,8 +588,8 @@
             swimming performance through human performance analytics.
           </p>
           <div class="project-links">
-            <a class="pill-link" href="https://datadrivenmed.github.io/swimtech/" target="_blank">Live site</a>
-            <a class="pill-link" href="https://github.com/DataDrivenMed/swimtech" target="_blank">Code</a>
+            <a class="pill-link" href="https://datadrivenmed.github.io/swimtech/" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a class="pill-link" href="https://github.com/DataDrivenMed/swimtech" target="_blank" rel="noopener noreferrer">Code</a>
           </div>
         </article>
 
@@ -548,19 +618,14 @@
           <div>
             <p><strong>Skills & tools</strong></p>
             <div class="skills-list">
-              <!-- Technical / analytics -->
               <span class="skill-chip">Python & GitHub Actions</span>
               <span class="skill-chip">RSS / web data pipelines</span>
               <span class="skill-chip">Data visualization & dashboards</span>
               <span class="skill-chip">Health workforce analytics</span>
               <span class="skill-chip">Rural health & GME strategy</span>
-
-              <!-- Accreditation / governance -->
               <span class="skill-chip">LCME / ACGME CQI</span>
               <span class="skill-chip">AI tool vetting & governance</span>
               <span class="skill-chip">Policy & regulatory scanning</span>
-
-              <!-- Strategy / leadership -->
               <span class="skill-chip">Strategic planning & roadmapping</span>
               <span class="skill-chip">Executive-ready briefing & storytelling</span>
               <span class="skill-chip">Change management & stakeholder alignment</span>
@@ -578,8 +643,7 @@
       <div>© 2025 Ramnarayan Paragi · DataDrivenMed · Built on GitHub Pages</div>
 
       <div class="social-links">
-
-        <a class="social-link-pill" href="https://www.linkedin.com/in/ramnarayan/" target="_blank">
+        <a class="social-link-pill" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener noreferrer">
           <span class="icon">
             <svg width="14" height="14" viewBox="0 0 24 24">
               <path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/>
@@ -588,7 +652,7 @@
           Connect on LinkedIn
         </a>
 
-        <a class="social-link-pill" href="https://swimed.substack.com/" target="_blank">
+        <a class="social-link-pill" href="https://swimed.substack.com/" target="_blank" rel="noopener noreferrer">
           <span class="icon">
             <svg width="14" height="14" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="3" fill="#FF6719"></rect>
@@ -598,10 +662,10 @@
           </span>
           Read my Substack
         </a>
-
       </div>
     </footer>
 
   </div>
 </body>
 </html>
+```
