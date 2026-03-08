@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ramnarayan Paragi | Data-Driven Health Strategy & Analytics</title>
+  <title>Ramnarayan Paragi | VP Strategy · Academic Medicine · Health Analytics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -682,6 +682,112 @@
     /* SVG icon helper */
     .ico { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
+    /* ─── Open-to banner ─────────────────────────────────────── */
+    .open-to-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, #eaf4f1 0%, #eef3fb 100%);
+      border: 1px solid rgba(10, 123, 108, 0.2);
+      border-radius: var(--r-md);
+      padding: 10px 16px;
+      margin: 18px 0 0;
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      flex-wrap: wrap;
+    }
+
+    .open-to-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--teal-mid);
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+
+    .open-to-label {
+      font-weight: 600;
+      color: var(--teal);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      flex-shrink: 0;
+    }
+
+    .open-to-text { color: var(--ink-mid); }
+
+    /* ─── Credentials strip ──────────────────────────────────── */
+    .credentials-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .cred-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--ink-mid);
+      font-weight: 400;
+    }
+
+    .cred-item::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--ink-soft);
+      flex-shrink: 0;
+    }
+
+    .cred-item:first-child::before { display: none; }
+
+    .cred-divider {
+      color: var(--border);
+      margin: 0 2px;
+    }
+
+    /* ─── Impact numbers in hero ─────────────────────────────── */
+    .hero-impact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 20px 0 24px;
+      padding: 16px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .impact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .impact-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--navy-deep);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .impact-label {
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .impact-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+      margin: 0 4px;
+    }
+
     /* ─── Subtle entrance animation ─────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
@@ -722,36 +828,71 @@
     <div>
       <div class="hero-eyebrow">
         <span class="hero-eyebrow-dot"></span>
-        Academic Medicine · Strategy · Analytics
+        Director · Accreditation &amp; Strategic Planning · LSU Health Sciences Center New Orleans
       </div>
+
       <h1 class="hero-title">
-        Data-Driven Tools for<br>
-        <em>Health Strategy & Academic Medicine</em>
+        Ramnarayan Paragi —<br>
+        <em>Strategy, Analytics &amp; Academic Medicine</em>
       </h1>
-      <p class="hero-lead">
-        I build lightweight, AI-informed tools for rural health policy, medical education,
-        GME workforce planning, and research strategy — using open data, automation, and
-        clear metrics to support senior leadership decisions across health systems.
-      </p>
-      <div class="hero-chips">
-        <span class="chip">Rural health &amp; workforce</span>
-        <span class="chip">GME &amp; LCME accreditation</span>
-        <span class="chip">AI decision support</span>
-        <span class="chip">NIH funding intelligence</span>
-        <span class="chip">GitHub Actions pipelines</span>
+
+      <div class="credentials-strip">
+        <span class="cred-item">18 years in academic medicine</span>
+        <span class="cred-item">LCME Accreditation &amp; Strategic Planning</span>
+        <span class="cred-item">GME Finance &amp; Workforce Strategy</span>
+        <span class="cred-item">AI Literacy &amp; Governance</span>
+        <span class="cred-item">LSUHSC New Orleans, School of Medicine</span>
       </div>
+
+      <p class="hero-lead">
+        Senior strategy and analytics leader with 18 years spanning LCME accreditation, GME finance,
+        institutional research, and AI adoption across academic medicine. I translate complex data into
+        executive-ready decision tools — enabling deans, VPs, and health system leaders to act with
+        clarity on workforce, policy, and institutional positioning.
+      </p>
+
+      <!-- Impact proof points -->
+      <div class="hero-impact">
+        <div class="impact-item">
+          <span class="impact-num">155+</span>
+          <span class="impact-label">Medical schools reached<br>via MedAI Lexicon</span>
+        </div>
+        <div class="impact-divider"></div>
+        <div class="impact-item">
+          <span class="impact-num">$7.5M</span>
+          <span class="impact-label">NSF EPSCoR CREST<br>grant analytics support</span>
+        </div>
+        <div class="impact-divider"></div>
+        <div class="impact-item">
+          <span class="impact-num">18 yrs</span>
+          <span class="impact-label">Academic medicine<br>strategy &amp; analytics</span>
+        </div>
+        <div class="impact-divider"></div>
+        <div class="impact-item">
+          <span class="impact-num">FY25</span>
+          <span class="impact-label">NIH funding<br>intelligence coverage</span>
+        </div>
+      </div>
+
+      <div class="hero-chips">
+        <span class="chip">VP Strategy / Chief Strategy Officer</span>
+        <span class="chip">Assistant / Associate Dean</span>
+        <span class="chip">Health System Executive</span>
+        <span class="chip">Academic Medicine Leadership</span>
+      </div>
+
       <div class="hero-actions">
-        <a class="btn btn-primary" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener">
+          <ico class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#fff" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/></svg>
+          </ico>
+          Connect on LinkedIn
+        </a>
+        <a class="btn btn-outline" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
           <ico class="ico">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
           </ico>
-          View GitHub Profile
-        </a>
-        <a class="btn btn-outline" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener">
-          <ico class="ico">
-            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/></svg>
-          </ico>
-          LinkedIn
+          GitHub Portfolio
         </a>
         <a class="btn btn-outline" href="https://swimed.substack.com/" target="_blank" rel="noopener">
           <ico class="ico">
@@ -760,19 +901,31 @@
           Substack
         </a>
       </div>
+
+      <!-- Open to opportunities signal -->
+      <div class="open-to-banner">
+        <span class="open-to-dot"></span>
+        <span class="open-to-label">Open to</span>
+        <span class="open-to-text">VP Strategy · Chief Strategy Officer · Assistant/Associate Dean · Health System Executive roles in academic medicine or integrated health systems</span>
+      </div>
     </div>
+
     <div class="hero-aside">
-      <a class="social-btn" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
-        DataDrivenMed
-      </a>
       <a class="social-btn" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/></svg>
-        Ramnarayan on LinkedIn
+        LinkedIn
+      </a>
+      <a class="social-btn" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a class="social-btn" href="https://x.com/DatadrivenMed" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        @DatadrivenMed
       </a>
       <a class="social-btn" href="https://swimed.substack.com/" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="3" fill="#FF6719"/><rect x="3" y="9" width="18" height="3" fill="#FF6719"/><path d="M3 14h18v7l-9-3-9 3v-7z" fill="#FF6719"/></svg>
-        Chlorinated Chronicles
+        Substack
       </a>
     </div>
   </header>
@@ -1033,15 +1186,15 @@
 
     <div class="about-grid">
       <div class="about-card">
-        <h3 class="about-title">Approach &amp; Focus</h3>
+        <h3 class="about-title">Leadership Profile</h3>
         <p>
-          I work at the intersection of <strong>academic medicine, strategy, and analytics</strong> — turning messy, fragmented data into clear narratives, scenario options, and decision tools for deans, department chairs, and health system leaders.
+          Senior strategy and analytics leader with <strong>18 years in academic medicine</strong>, currently serving as Director of Accreditation &amp; Strategic Planning at LSU Health Sciences Center New Orleans School of Medicine. I work directly with the Dean and senior leadership on institutional positioning, competitive intelligence, LCME compliance, and GME workforce strategy.
         </p>
         <p>
-          My work connects rural health and workforce policy with the realities of GME expansion, LCME/ACGME standards, research funding intelligence, and financial constraints. A recurring theme is building <strong>governance-minded, future-oriented frameworks</strong> for AI adoption, workforce planning, and research growth.
+          I led development of the <strong>MedAI Lexicon</strong> — an AI literacy platform now adopted by 155+ medical schools — and provided analytics support for a <strong>$7.5M NSF EPSCoR CREST Center grant</strong>. I monitor competitive and policy developments affecting LSUHSC-NO's positioning in Louisiana, and build data-informed decision tools for dean-level review.
         </p>
         <p>
-          I enjoy designing <strong>strategy-ready prototypes</strong> — small, opinionated tools that make it easier for leadership to see trade-offs, align stakeholders, and move from discussion to execution.
+          I bring a rare combination of <strong>accreditation rigor, strategic finance literacy, and hands-on data capability</strong> — and a track record of building frameworks that help leadership move from discussion to execution.
         </p>
       </div>
 
@@ -1069,8 +1222,12 @@
 
   <!-- ─── FOOTER ───────────────────────────────────────────── -->
   <footer>
-    <div class="footer-copy">© 2025 Ramnarayan Paragi · DataDrivenMed · Built on GitHub Pages</div>
+    <div class="footer-copy">© 2025 Ramnarayan Paragi · Director, Accreditation &amp; Strategic Planning · LSUHSC New Orleans · <a href="https://datadrivenmed.github.io/" style="color:var(--ink-soft);">DataDrivenMed</a></div>
     <div class="footer-links">
+      <a class="social-btn" href="https://x.com/DatadrivenMed" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        @DatadrivenMed
+      </a>
       <a class="social-btn" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
         GitHub
