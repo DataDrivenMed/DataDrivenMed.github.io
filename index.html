@@ -1,45 +1,1237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DataDrivenMed — AI Safety in Medical Education</title>
-<meta name="description" content="Translating emerging AI safety research into institutional guidance for medical education leaders.">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <title>Ramnarayan Paragi | Data-Driven Health Strategy & Analytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design tokens ─────────────────────────────────────── */
+    :root {
+      --ink:       #0d1b2a;
+      --ink-mid:   #3a4f63;
+      --ink-soft:  #6b7f93;
+      --paper:     #f6f7f9;
+      --white:     #ffffff;
+      --navy:      #0f3460;
+      --navy-deep: #081e38;
+      --teal:      #0a7b6c;
+      --teal-soft: #e3f4f1;
+      --teal-mid:  #0d9e8a;
+      --gold:      #c8882a;
+      --gold-soft: #fdf3e3;
+      --blue:      #1a5fa8;
+      --blue-soft: #e8f1fb;
+      --border:    rgba(15, 52, 96, 0.12);
+      --shadow-sm: 0 2px 8px rgba(13, 27, 42, 0.06);
+      --shadow-md: 0 6px 24px rgba(13, 27, 42, 0.10);
+      --shadow-lg: 0 16px 48px rgba(13, 27, 42, 0.13);
+      --r-sm:  8px;
+      --r-md:  14px;
+      --r-lg:  20px;
+      --r-xl:  28px;
+      --r-pill:999px;
+    }
+
+    /* ─── Reset & base ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── Page shell ─────────────────────────────────────────── */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ─── Topbar ─────────────────────────────────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0 14px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 36px; height: 36px;
+      background: var(--navy);
+      border-radius: var(--r-sm);
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-mark svg { display: block; }
+
+    .brand-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy-deep);
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-pill {
+      padding: 5px 13px;
+      border-radius: var(--r-pill);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .nav-pill:hover {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+      text-decoration: none;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    .hero {
+      margin: 32px 0 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      background: var(--teal-soft);
+      border: 1px solid rgba(10, 123, 108, 0.18);
+      padding: 4px 11px;
+      border-radius: var(--r-pill);
+      margin-bottom: 16px;
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal-mid);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--navy-deep);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--navy);
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      padding: 4px 11px;
+      border-radius: var(--r-pill);
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid rgba(26, 95, 168, 0.15);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* ─── Buttons ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      border-radius: var(--r-pill);
+      font-size: 0.88rem;
+      font-weight: 500;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(15, 52, 96, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-deep);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(15, 52, 96, 0.38);
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--ink-mid);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-outline:hover {
+      background: var(--paper);
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .btn-teal {
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(10, 123, 108, 0.3);
+    }
+
+    .btn-teal:hover {
+      background: #085f53;
+      transform: translateY(-1px);
+      text-decoration: none;
+      color: #fff;
+    }
+
+    /* ─── Hero right: social/contact ────────────────────────── */
+    .hero-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+      padding-top: 4px;
+    }
+
+    @media (max-width: 700px) {
+      .hero-aside { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border-radius: var(--r-md);
+      background: var(--white);
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--ink-mid);
+      font-weight: 500;
+      transition: all 0.15s;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+    }
+
+    .social-btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+      box-shadow: var(--shadow-md);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    /* ─── Divider ────────────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 8px 0 36px;
+    }
+
+    /* ─── Section headers ────────────────────────────────────── */
+    .section-header {
+      margin-bottom: 20px;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      margin-bottom: 5px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.45rem;
+      color: var(--navy-deep);
+      letter-spacing: -0.01em;
+    }
+
+    .section-sub {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    /* ─── Featured card (full-width) ────────────────────────── */
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      padding: 28px 30px;
+      margin-bottom: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 700px) {
+      .feature-card { grid-template-columns: 1fr; padding: 20px; }
+    }
+
+    .feature-card.teal-accent {
+      background: linear-gradient(135deg, #ffffff 60%, #f0faf8 100%);
+      border-color: rgba(10, 123, 108, 0.2);
+    }
+
+    .feature-card.navy-accent {
+      background: linear-gradient(135deg, #ffffff 60%, #eef3fb 100%);
+      border-color: rgba(15, 52, 96, 0.18);
+    }
+
+    .feature-card.gold-accent {
+      background: linear-gradient(135deg, #ffffff 60%, #fdf6ec 100%);
+      border-color: rgba(200, 136, 42, 0.2);
+    }
+
+    .feature-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 9px;
+    }
+
+    .feature-eyebrow.teal { color: var(--teal); }
+    .feature-eyebrow.navy { color: var(--navy); }
+    .feature-eyebrow.gold { color: var(--gold); }
+
+    .feature-tag {
+      padding: 2px 8px;
+      border-radius: var(--r-pill);
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .feature-tag.teal { background: var(--teal-soft); color: var(--teal); }
+    .feature-tag.navy { background: var(--blue-soft); color: var(--navy); }
+    .feature-tag.gold { background: var(--gold-soft); color: var(--gold); }
+
+    .feature-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--navy-deep);
+      margin-bottom: 8px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 16px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat-box {
+      background: rgba(10, 123, 108, 0.06);
+      border: 1px solid rgba(10, 123, 108, 0.14);
+      border-radius: var(--r-sm);
+      padding: 7px 16px;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .stat-box.navy-stat {
+      background: rgba(15, 52, 96, 0.05);
+      border-color: rgba(15, 52, 96, 0.12);
+    }
+
+    .stat-box.gold-stat {
+      background: rgba(200, 136, 42, 0.06);
+      border-color: rgba(200, 136, 42, 0.14);
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      line-height: 1.1;
+      color: var(--teal);
+    }
+
+    .stat-num.navy-num { color: var(--navy); }
+    .stat-num.gold-num { color: var(--gold); }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    /* Badges */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      padding: 3px 9px;
+      border-radius: var(--r-pill);
+      font-weight: 500;
+    }
+
+    .badge.teal { background: var(--teal-soft); color: var(--teal); border: 1px solid rgba(10,123,108,0.18); }
+    .badge.navy { background: var(--blue-soft); color: var(--blue); border: 1px solid rgba(26,95,168,0.15); }
+    .badge.gold { background: var(--gold-soft); color: var(--gold); border: 1px solid rgba(200,136,42,0.18); }
+    .badge.neutral { background: #f1f3f7; color: var(--ink-mid); border: 1px solid var(--border); }
+
+    .feature-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 700px) {
+      .feature-actions { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+    }
+
+    /* ─── Project grid ───────────────────────────────────────── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--navy);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .project-card.teal-line::before { background: var(--teal); }
+    .project-card.gold-line::before { background: var(--gold); }
+
+    .project-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-eyebrow {
+      font-size: 0.71rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy-deep);
+      margin-bottom: 6px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .project-meta {
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      font-size: 0.86rem;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+    }
+
+    .link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: var(--r-pill);
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      color: var(--ink-mid);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .link-pill:hover {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+      text-decoration: none;
+    }
+
+    .link-pill.teal:hover { background: var(--teal); border-color: var(--teal); }
+
+    /* ─── Section spacing ────────────────────────────────────── */
+    section { margin-bottom: 48px; }
+
+    /* ─── About section ──────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 22px;
+    }
+
+    .about-card p {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .about-card p:last-child { margin-bottom: 0; }
+
+    .about-card strong { color: var(--ink); }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .skill-pill {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: var(--r-pill);
+      background: #f1f3f7;
+      color: var(--ink-mid);
+      border: 1px solid var(--border);
+    }
+
+    .about-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy-deep);
+      margin-bottom: 12px;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* SVG icon helper */
+    .ico { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ─── Open-to banner ─────────────────────────────────────── */
+    .open-to-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, #eaf4f1 0%, #eef3fb 100%);
+      border: 1px solid rgba(10, 123, 108, 0.2);
+      border-radius: var(--r-md);
+      padding: 10px 16px;
+      margin: 18px 0 0;
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      flex-wrap: wrap;
+    }
+
+    .open-to-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--teal-mid);
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+
+    .open-to-label {
+      font-weight: 600;
+      color: var(--teal);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      flex-shrink: 0;
+    }
+
+    .open-to-text { color: var(--ink-mid); }
+
+    /* ─── Credentials strip ──────────────────────────────────── */
+    .credentials-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .cred-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--ink-mid);
+      font-weight: 400;
+    }
+
+    .cred-item::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--ink-soft);
+      flex-shrink: 0;
+    }
+
+    .cred-item:first-child::before { display: none; }
+
+    .cred-divider {
+      color: var(--border);
+      margin: 0 2px;
+    }
+
+    /* ─── Impact numbers in hero ─────────────────────────────── */
+    .hero-impact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 20px 0 24px;
+      padding: 16px 18px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .impact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .impact-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--navy-deep);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .impact-label {
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .impact-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+      margin: 0 4px;
+    }
+
+    /* ─── Subtle entrance animation ─────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero        { animation: fadeUp 0.45s ease both; }
+    .topbar      { animation: fadeUp 0.3s ease both; }
+    section      { animation: fadeUp 0.5s ease both; }
+  </style>
 </head>
 <body>
+<div class="page">
 
-<header class="masthead">
-  <div class="masthead-inner">
-    <a href="index.html" class="masthead-title">DataDrivenMed</a>
-    <div class="masthead-tagline">AI Safety &middot; Medical Education &middot; Institutional Leadership</div>
-    <hr class="masthead-rule">
-  </div>
-</header>
+  <!-- ─── TOPBAR ──────────────────────────────────────────── -->
+  <nav class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M3 17l5-8 4 5 3-4 6 7H3z" fill="rgba(255,255,255,0.9)"/>
+          <circle cx="18" cy="6" r="2.5" fill="#4db6ac"/>
+        </svg>
+      </div>
+      <span class="brand-name">DataDrivenMed</span>
+    </div>
+    <div class="topbar-nav">
+      <a class="nav-pill" href="#population-health">Population Health</a>
+      <a class="nav-pill" href="#research-funding">Research Funding</a>
+      <a class="nav-pill" href="#rural-health">Rural Health</a>
+      <a class="nav-pill" href="#ai-governance">AI & Governance</a>
+      <a class="nav-pill" href="#published-briefs">Published Briefs</a>
+      <a class="nav-pill" href="#education-gme">Education & GME</a>
+      <a class="nav-pill" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </nav>
 
-<main class="index-body">
+  <!-- ─── HERO ────────────────────────────────────────────── -->
+  <header class="hero">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Academic Medicine · Strategy · Analytics
+      </div>
 
-  <div class="index-section-label">Published Briefs</div>
+      <h1 class="hero-title">
+        Ramnarayan Paragi —<br>
+        <em>Data-Driven Health Strategy &amp; Analytics</em>
+      </h1>
 
-  <div class="article-entry">
-    <div class="article-entry-date">March 23, 2026</div>
-    <h2 class="article-entry-title"><a href="articles/ai-triage-safety.html">Peer-Reviewed Safety Failures in AI Clinical Triage</a></h2>
-    <p class="article-entry-desc">What a <em>Nature Medicine</em> study of ChatGPT Health means for our students, faculty, and affiliate training sites. A synthesis of the Mount&nbsp;Sinai evaluation and implications for clinical AI use across LSU&nbsp;Health New&nbsp;Orleans.</p>
-  </div>
+      <p class="hero-lead">
+        I build lightweight, AI-informed tools for rural health policy, medical education,
+        GME workforce planning, and research strategy — using open data, automation, and
+        clear metrics to support senior leadership decisions in academic medicine and health systems.
+      </p>
 
-  <!-- To add a new article, copy the block below, fill in the details, and place it above this comment:
-  <div class="article-entry">
-    <div class="article-entry-date">Month Day, Year</div>
-    <h2 class="article-entry-title"><a href="articles/your-file-name.html">Article Title</a></h2>
-    <p class="article-entry-desc">Brief description of the article.</p>
-  </div>
-  -->
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
+          <ico class="ico">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+          </ico>
+          View GitHub Profile
+        </a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener">
+          <ico class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/></svg>
+          </ico>
+          LinkedIn
+        </a>
+        <a class="btn btn-outline" href="https://swimed.substack.com/" target="_blank" rel="noopener">
+          <ico class="ico">
+            <svg width="14" height="14" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="3" fill="#FF6719"/><rect x="3" y="9" width="18" height="3" fill="#FF6719"/><path d="M3 14h18v7l-9-3-9 3v-7z" fill="#FF6719"/></svg>
+          </ico>
+          Substack
+        </a>
+      </div>
+    </div>
 
-</main>
+    <div class="hero-aside">
+      <a class="social-btn" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/></svg>
+        LinkedIn
+      </a>
+      <a class="social-btn" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a class="social-btn" href="https://x.com/DatadrivenMed" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        @DatadrivenMed
+      </a>
+      <a class="social-btn" href="https://swimed.substack.com/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="3" fill="#FF6719"/><rect x="3" y="9" width="18" height="3" fill="#FF6719"/><path d="M3 14h18v7l-9-3-9 3v-7z" fill="#FF6719"/></svg>
+        Substack
+      </a>
+    </div>
+  </header>
 
-<footer class="site-footer">
-  LSU Health New Orleans School of Medicine &middot; Strategic Outcomes and Accreditation
-</footer>
+  <hr class="divider" />
 
+  <!-- ─── SECTION: Population Health ─────────────────────── -->
+  <section id="population-health">
+    <div class="section-header">
+      <div class="section-label">Featured · Population Health</div>
+      <h2 class="section-title">Interactive Analytics Dashboards</h2>
+      <p class="section-sub">Enterprise-grade tools built on open public health data — designed for policymakers, health system leaders, and researchers.</p>
+    </div>
+
+    <div class="feature-card teal-accent">
+      <div>
+        <div class="feature-eyebrow teal">
+          <span class="feature-tag teal">Interactive Dashboard</span>
+          <span>2025</span>
+        </div>
+        <h3 class="feature-name">Women &amp; Children Health Analytics — All 50 States</h3>
+        <p class="feature-desc">
+          A fully interactive enterprise analytics dashboard built from the 2025 America's Health Rankings report. Covers national benchmarking, state rankings, racial equity analysis, and a Louisiana strategic spotlight — with a four-quadrant priority matrix for health system leaders and policymakers.
+        </p>
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-num">86,216</div><div class="stat-label">Data points</div></div>
+          <div class="stat-box"><div class="stat-num">1,650</div><div class="stat-label">Health measures</div></div>
+          <div class="stat-box"><div class="stat-num">50</div><div class="stat-label">States</div></div>
+          <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Modules</div></div>
+        </div>
+        <div class="badges">
+          <span class="badge teal">National state rankings</span>
+          <span class="badge teal">17 key indicators</span>
+          <span class="badge teal">Racial equity analysis</span>
+          <span class="badge teal">Louisiana spotlight</span>
+          <span class="badge teal">Priority matrix</span>
+          <span class="badge neutral">Chart.js · GitHub Pages</span>
+        </div>
+      </div>
+      <div class="feature-actions">
+        <a class="btn btn-teal" href="https://datadrivenmed.github.io/hwc-analytics/" target="_blank" rel="noopener">Open Dashboard →</a>
+        <a class="btn btn-outline" href="https://github.com/DataDrivenMed/hwc-analytics" target="_blank" rel="noopener">View Code</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION: Research Funding ──────────────────────── -->
+  <section id="research-funding">
+    <div class="section-header">
+      <div class="section-label">Featured · Research Funding Intelligence</div>
+      <h2 class="section-title">NIH Funding Explorer</h2>
+      <p class="section-sub">Strategic analytics for understanding federal research funding patterns across institutions, states, and mechanisms.</p>
+    </div>
+
+    <div class="feature-card gold-accent">
+      <div>
+        <div class="feature-eyebrow gold">
+          <span class="feature-tag gold">Interactive Explorer</span>
+          <span>FY 2014–2025</span>
+        </div>
+        <h3 class="feature-name">NIH Funding Intelligence Explorer</h3>
+        <p class="feature-desc">
+          A strategic intelligence tool for analyzing NIH funding patterns across fiscal years 2014–2025. Explore award trends by institution, state, mechanism, and activity code — designed to support research strategy, grant planning, and competitive positioning for academic medical centers and health systems.
+        </p>
+        <div class="stats-row">
+          <div class="stat-box gold-stat"><div class="stat-num gold-num">12</div><div class="stat-label">Fiscal years</div></div>
+          <div class="stat-box gold-stat"><div class="stat-num gold-num">FY25</div><div class="stat-label">Latest data</div></div>
+          <div class="stat-box gold-stat"><div class="stat-num gold-num">R01–R35</div><div class="stat-label">Mechanisms</div></div>
+        </div>
+        <div class="badges">
+          <span class="badge gold">Institutional trends</span>
+          <span class="badge gold">State-level analysis</span>
+          <span class="badge gold">Award mechanisms</span>
+          <span class="badge gold">Activity codes</span>
+          <span class="badge gold">Competitive benchmarking</span>
+          <span class="badge neutral">NIH Reporter · GitHub Pages</span>
+        </div>
+      </div>
+      <div class="feature-actions">
+        <a class="btn" style="background:var(--gold);color:#fff;box-shadow:0 4px 14px rgba(200,136,42,0.3);" href="https://datadrivenmed.github.io/nih-funding-intelligence-explorer/" target="_blank" rel="noopener">Open Explorer →</a>
+        <a class="btn btn-outline" href="https://github.com/DataDrivenMed/nih-funding-intelligence-explorer" target="_blank" rel="noopener">View Code</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION: Featured Deep Dive ────────────────────── -->
+  <section>
+    <div class="section-header">
+      <div class="section-label">Featured Deep Dive · Sports Science</div>
+      <h2 class="section-title">Evidence-Based Performance Intelligence</h2>
+      <p class="section-sub">High-signal, coach-facing analysis built as interactive GitHub Pages briefs.</p>
+    </div>
+
+    <div class="feature-card navy-accent">
+      <div>
+        <div class="feature-eyebrow navy">
+          <span class="feature-tag navy">Interactive Brief</span>
+        </div>
+        <h3 class="feature-name">NaHCO₃ Intel: Sodium Bicarbonate in Elite Swimming</h3>
+        <p class="feature-desc">
+          Mechanism, evidence strength by event, GI-risk mitigation, individualized timing logic, key debates — including Bob Bowman's critique — and a practical decision framework for coaches working with elite swimmers.
+        </p>
+        <div class="badges">
+          <span class="badge navy">Evidence matrix</span>
+          <span class="badge navy">Dose calculator</span>
+          <span class="badge navy">GI risk meter</span>
+          <span class="badge navy">Coach decision tool</span>
+        </div>
+      </div>
+      <div class="feature-actions">
+        <a class="btn btn-primary" href="https://datadrivenmed.github.io/nahco3-intel/" target="_blank" rel="noopener">Open Deep Dive →</a>
+        <a class="btn btn-outline" href="https://github.com/DataDrivenMed/nahco3-intel" target="_blank" rel="noopener">View Code</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION: Rural Health ───────────────────────────── -->
+  <section id="rural-health">
+    <div class="section-header">
+      <div class="section-label">Project Series</div>
+      <h2 class="section-title">Rural Health &amp; Workforce</h2>
+      <p class="section-sub">Automated monitors and tools focused on rural hospitals, provider pipelines, and health policy signals.</p>
+    </div>
+
+    <div class="project-grid">
+      <article class="project-card teal-line">
+        <div class="project-eyebrow">
+          <span class="badge teal" style="text-transform:none;">Live Dashboard</span>
+        </div>
+        <h3 class="project-name">Rural Health Signal Monitor</h3>
+        <div class="project-meta">RSS · GitHub Actions · Rule-based AI · Policy monitoring</div>
+        <p class="project-desc">
+          A fully automated daily monitor that ingests rural health policy news from multiple RSS feeds and produces a structured digest with risk, opportunity, GME, and Deep South (LA, MS, AR, AL) signals. Runs entirely on GitHub Actions with no paid APIs.
+        </p>
+        <div class="project-links">
+          <a class="link-pill teal" href="https://datadrivenmed.github.io/rural-health-signal-monitor/" target="_blank" rel="noopener">↗ Live Site</a>
+          <a class="link-pill" href="https://github.com/DataDrivenMed/rural-health-signal-monitor" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-eyebrow">
+          <span class="badge neutral" style="text-transform:none;">Policy Analytics</span>
+        </div>
+        <h3 class="project-name">Rural Health Bill Tracker</h3>
+        <div class="project-meta">Congress · Rural hospitals · Telehealth · Critical access</div>
+        <p class="project-desc">
+          A bill-tracking pipeline exploring how to scrape, filter, and summarize federal legislation related to rural health, critical access hospitals, telehealth, and workforce incentives.
+        </p>
+        <div class="project-links">
+          <a class="link-pill" href="https://github.com/DataDrivenMed/rural-health-bill-tracker" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─── SECTION: AI & Governance ────────────────────────── -->
+  <section id="ai-governance">
+    <div class="section-header">
+      <div class="section-label">Project Series</div>
+      <h2 class="section-title">AI, Clinical Tools &amp; Governance</h2>
+      <p class="section-sub">Curated frameworks to safely vet AI tools for clinical, educational, and research settings.</p>
+    </div>
+
+    <div class="project-grid">
+      <article class="project-card gold-line">
+        <div class="project-eyebrow">
+          <span class="badge gold" style="text-transform:none;">AI Governance</span>
+        </div>
+        <h3 class="project-name">Vetting AI Tools in Healthcare &amp; Education</h3>
+        <div class="project-meta">Risk assessment · Bias · Governance · Policy</div>
+        <p class="project-desc">
+          A structured framework and checklist to assess AI tools used in clinical care, education, and administration — with emphasis on bias, transparency, data use, and alignment with institutional policies.
+        </p>
+        <div class="project-links">
+          <a class="link-pill" href="https://datadrivenmed.github.io/Vetting-AI-Tools/" target="_blank" rel="noopener">↗ Live Site</a>
+          <a class="link-pill" href="https://github.com/DataDrivenMed/Vetting-AI-Tools" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="project-card gold-line">
+        <div class="project-eyebrow">
+          <span class="badge gold" style="text-transform:none;">Medical AI</span>
+        </div>
+        <h3 class="project-name">MedAI Lexicon</h3>
+        <div class="project-meta">Health AI · Definitions · Educational resource</div>
+        <p class="project-desc">
+          A living lexicon of AI concepts translated for clinicians, educators, and administrators — designed to support curriculum development, grant writing, and informed decision-making.
+        </p>
+        <div class="project-links">
+          <a class="link-pill" href="https://datadrivenmed.github.io/MedAI--Lexicon/" target="_blank" rel="noopener">↗ Live Site</a>
+          <a class="link-pill" href="https://github.com/DataDrivenMed/MedAI--Lexicon" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─── SECTION: Published Briefs ────────────────────────── -->
+  <section id="published-briefs">
+    <div class="section-header">
+      <div class="section-label">Published Briefs · AI Safety &amp; Medical Education</div>
+      <h2 class="section-title">Leadership Briefs &amp; Analysis</h2>
+      <p class="section-sub">Translating emerging AI safety research into institutional guidance for medical education leaders, faculty, and trainees.</p>
+    </div>
+
+    <div class="feature-card" style="background: linear-gradient(135deg, #ffffff 60%, #f8f7f4 100%); border-color: rgba(26,79,110,0.2);">
+      <div>
+        <div class="feature-eyebrow" style="color: var(--navy);">
+          <span class="feature-tag navy">Leadership Brief</span>
+          <span>March 23, 2026</span>
+        </div>
+        <h3 class="feature-name">Peer-Reviewed Safety Failures in AI Clinical Triage</h3>
+        <p class="feature-desc">
+          What a <em>Nature Medicine</em> study of ChatGPT Health means for our students, faculty, and affiliate training sites. Covers the four structural failure modes — the Inverted U, chain-of-thought disconnect, anchoring bias, and crisis guardrail inversion — with specific implications for LCMC, OLOL, and Ochsner training environments and recommended actions for leadership, faculty, and trainees.
+        </p>
+        <div class="badges">
+          <span class="badge navy">Nature Medicine (2026)</span>
+          <span class="badge navy">AI triage safety</span>
+          <span class="badge navy">ChatGPT Health</span>
+          <span class="badge navy">4 failure modes</span>
+          <span class="badge neutral">Mount Sinai · 960 scenarios</span>
+        </div>
+      </div>
+      <div class="feature-actions">
+        <a class="btn btn-primary" href="articles/ai-triage-safety.html">Read Brief →</a>
+      </div>
+    </div>
+
+    <!-- To add a new brief, copy the feature-card block above, update the date, title, description, badges, and href. -->
+  </section>
+
+  <!-- ─── SECTION: Education & GME ────────────────────────── -->
+  <section id="education-gme">
+    <div class="section-header">
+      <div class="section-label">Project Series</div>
+      <h2 class="section-title">Medical Education, GME &amp; Analytics</h2>
+      <p class="section-sub">Tools linking admissions, match outcomes, and training programs to workforce needs.</p>
+    </div>
+
+    <div class="project-grid">
+      <article class="project-card">
+        <div class="project-eyebrow">
+          <span class="badge navy" style="text-transform:none;">Predictive Modeling</span>
+        </div>
+        <h3 class="project-name">Predictive Model – Match Success</h3>
+        <div class="project-meta">Mock data · GME · Analytics</div>
+        <p class="project-desc">
+          A sandbox predictive model using mock data to explore how student metrics, application patterns, and institutional factors relate to residency Match outcomes.
+        </p>
+        <div class="project-links">
+          <a class="link-pill" href="https://github.com/DataDrivenMed/predictive-model-match-success" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-eyebrow">
+          <span class="badge neutral" style="text-transform:none;">Health Systems</span>
+        </div>
+        <h3 class="project-name">Healthcare Analytics Experiments</h3>
+        <div class="project-meta">Public datasets · Policy · Delivery systems</div>
+        <p class="project-desc">
+          A collection of experiments analyzing provider supply, access, and outcomes. Serves as a sandbox for prototyping visualizations and metrics across health system domains.
+        </p>
+        <div class="project-links">
+          <a class="link-pill" href="https://github.com/DataDrivenMed/healthcare" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="project-card teal-line">
+        <div class="project-eyebrow">
+          <span class="badge teal" style="text-transform:none;">Sports Science</span>
+        </div>
+        <h3 class="project-name">SwimTech – Elite Swimming Analytics</h3>
+        <div class="project-meta">Wearables · Biomechanics · Performance</div>
+        <p class="project-desc">
+          Combining AI, wearables, and biomechanics to understand elite swimming performance through human performance analytics and data-driven coaching insights.
+        </p>
+        <div class="project-links">
+          <a class="link-pill teal" href="https://datadrivenmed.github.io/swimtech/" target="_blank" rel="noopener">↗ Live Site</a>
+          <a class="link-pill" href="https://github.com/DataDrivenMed/swimtech" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT & SKILLS ───────────────────────────────────── -->
+  <section id="about">
+    <div class="section-header">
+      <div class="section-label">Background</div>
+      <h2 class="section-title">About &amp; Skills</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3 class="about-title">Approach &amp; Focus</h3>
+        <p>
+          I work at the intersection of <strong>academic medicine, strategy, and analytics</strong> — turning messy, fragmented data into clear narratives, scenario options, and decision tools for deans, department chairs, and health system leaders.
+        </p>
+        <p>
+          My work connects rural health and workforce policy with the realities of GME expansion, LCME/ACGME standards, research funding intelligence, and financial constraints. A recurring theme is building <strong>governance-minded, future-oriented frameworks</strong> for AI adoption, workforce planning, and research growth.
+        </p>
+        <p>
+          I enjoy designing <strong>strategy-ready prototypes</strong> — small, opinionated tools that make it easier for leadership to see trade-offs, align stakeholders, and move from discussion to execution.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3 class="about-title">Skills &amp; Tools</h3>
+        <div class="skills-grid">
+          <span class="skill-pill">Python &amp; GitHub Actions</span>
+          <span class="skill-pill">RSS / web data pipelines</span>
+          <span class="skill-pill">Data visualization &amp; dashboards</span>
+          <span class="skill-pill">Health workforce analytics</span>
+          <span class="skill-pill">Rural health &amp; GME strategy</span>
+          <span class="skill-pill">NIH funding analysis</span>
+          <span class="skill-pill">LCME / ACGME CQI</span>
+          <span class="skill-pill">AI tool vetting &amp; governance</span>
+          <span class="skill-pill">Policy &amp; regulatory scanning</span>
+          <span class="skill-pill">Strategic planning &amp; roadmapping</span>
+          <span class="skill-pill">Executive briefing &amp; storytelling</span>
+          <span class="skill-pill">Stakeholder alignment</span>
+          <span class="skill-pill">Health system finance (DGME/IME)</span>
+          <span class="skill-pill">Metrics design &amp; performance frameworks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-copy">© 2025 Ramnarayan Paragi · DataDrivenMed · Built on GitHub Pages</div>
+    <div class="footer-links">
+      <a class="social-btn" href="https://x.com/DatadrivenMed" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        @DatadrivenMed
+      </a>
+      <a class="social-btn" href="https://github.com/DataDrivenMed" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        GitHub
+      </a>
+      <a class="social-btn" href="https://www.linkedin.com/in/ramnarayan/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#0A66C2" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6A2.49 2.49 0 0 1 0 3.5 2.5 2.5 0 0 1 2.5 1C3.87 1 4.98 2.12 4.98 3.5zM.23 8.25H4.8V23H.23V8.25zM8.58 8.25h4.37v2.01h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7V23h-4.57v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.68-2.49 3.43V23H8.58V8.25z"/></svg>
+        LinkedIn
+      </a>
+      <a class="social-btn" href="https://swimed.substack.com/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="3" fill="#FF6719"/><rect x="3" y="9" width="18" height="3" fill="#FF6719"/><path d="M3 14h18v7l-9-3-9 3v-7z" fill="#FF6719"/></svg>
+        Substack
+      </a>
+    </div>
+  </footer>
+
+</div>
 </body>
 </html>
