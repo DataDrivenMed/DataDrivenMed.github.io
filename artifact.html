@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Artifact Detail | Ram Paragi Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%); color: var(--ink); }
+    .artifact-shell { min-height: 100vh; }
+    .artifact-topbar {
+      position: sticky; top: 0; z-index: 30;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(251,249,241,.88);
+      border-bottom: 1px solid var(--line);
+    }
+    .artifact-topbar-inner {
+      max-width: 1240px; margin: 0 auto; padding: 14px 24px;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .artifact-topbar .back-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--ink-2); font-weight: 600; font-size: 14px;
+    }
+    .artifact-topbar .back-link:hover { color: var(--accent); }
+    .artifact-top-meta {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      color: var(--muted); font-size: 13px;
+    }
+    .artifact-wrap {
+      width: 100%; max-width: 1240px; margin: 0 auto;
+      padding: 34px 24px 88px;
+    }
+    .artifact-hero {
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(31,58,50,.12);
+      border-radius: 30px;
+      padding: 34px 34px 30px;
+      box-shadow: 0 24px 70px rgba(20, 23, 28, 0.06);
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .artifact-hero:before {
+      content: "";
+      position: absolute; inset: 0 auto auto 0; height: 5px; width: 100%;
+      background: linear-gradient(90deg, var(--accent), rgba(31,58,50,.15));
+    }
+    .artifact-category { display: inline-flex; margin-bottom: 16px; }
+    .artifact-category span {
+      background: rgba(31,58,50,.08); color: var(--accent); border: 1px solid rgba(31,58,50,.14);
+      padding: 8px 12px; border-radius: 999px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 650;
+    }
+    .artifact-title {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: .94;
+      letter-spacing: -0.05em;
+      margin: 0 0 16px;
+      max-width: 15ch;
+    }
+    .artifact-lead {
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.55;
+      color: var(--ink-2);
+      max-width: 52ch;
+      margin-bottom: 24px;
+    }
+    .artifact-hero-grid {
+      display: grid; grid-template-columns: 1.55fr .95fr; gap: 28px; align-items: start;
+    }
+    .artifact-kv-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px;
+    }
+    .artifact-kv {
+      border: 1px solid var(--line-2); background: rgba(248,247,243,.8);
+      border-radius: 18px; padding: 16px 16px 14px;
+    }
+    .artifact-kv .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 650; }
+    .artifact-kv .v { color: var(--ink-2); font-size: 14.5px; line-height: 1.5; }
+    .artifact-chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .artifact-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; padding: 8px 11px; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(248,247,243,.9); color: var(--ink-2);
+    }
+    .artifact-chip.alert { border-color: rgba(166,77,46,.22); background: rgba(166,77,46,.07); color: #7d3820; }
+    .artifact-chip.ok { border-color: rgba(31,58,50,.18); background: rgba(31,58,50,.06); color: var(--accent); }
+
+    .artifact-layout {
+      display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 30px; align-items: start;
+    }
+    .artifact-sidebar {
+      position: sticky; top: 92px;
+      display: grid; gap: 18px;
+    }
+    .artifact-side-card {
+      background: rgba(255,255,255,.78); border: 1px solid var(--line); border-radius: 24px; padding: 20px;
+      box-shadow: 0 10px 30px rgba(20,23,28,.04);
+    }
+    .artifact-side-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-bottom: 12px; }
+    .artifact-nav { display: grid; gap: 8px; }
+    .artifact-nav a {
+      display: block; padding: 10px 12px; border-radius: 12px; color: var(--ink-2); font-size: 14px;
+      background: transparent; border: 1px solid transparent;
+    }
+    .artifact-nav a:hover { background: rgba(31,58,50,.05); border-color: rgba(31,58,50,.1); color: var(--accent); }
+    .artifact-mini-list { display: grid; gap: 8px; }
+    .artifact-mini-item { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .artifact-mini-item strong { color: var(--ink-2); display: block; margin-bottom: 2px; }
+
+    .artifact-main { display: grid; gap: 24px; }
+    .artifact-panel {
+      background: rgba(255,255,255,.82); border: 1px solid var(--line); border-radius: 28px;
+      padding: 30px 30px 28px; box-shadow: 0 16px 44px rgba(20,23,28,.05);
+    }
+    .artifact-panel h2 {
+      font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--muted);
+      margin: 0 0 16px;
+    }
+    .artifact-panel h3 {
+      font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); line-height: .98; letter-spacing: -0.04em;
+      margin: 0 0 18px;
+    }
+    .artifact-panel p, .artifact-panel li { color: var(--muted); line-height: 1.76; font-size: 16px; }
+    .artifact-panel ul { margin: 0; padding-left: 18px; }
+    .artifact-panel strong { color: var(--ink-2); }
+    .artifact-callout {
+      background: linear-gradient(180deg, rgba(31,58,50,.06), rgba(31,58,50,.03));
+      border: 1px solid rgba(31,58,50,.12); border-radius: 22px; padding: 18px 18px 16px;
+      margin-top: 14px;
+    }
+    .artifact-callout-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+    .artifact-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .artifact-tags span {
+      background: var(--tag-bg); color: var(--tag-fg); border-radius: 999px; padding: 8px 12px;
+      font-size: 12px; border: 1px solid rgba(0,0,0,.05);
+    }
+    .artifact-source-shell {
+      background: #fff; border: 1px solid var(--line-soft); border-radius: 22px; padding: 20px 22px;
+    }
+    .artifact-source-shell h1 { font-family: var(--serif); font-size: 38px; line-height: .98; letter-spacing: -0.04em; margin: 0 0 18px; }
+    .artifact-source-shell h2 { font-family: var(--sans); font-size: 22px; letter-spacing: -0.02em; color: var(--ink); margin: 26px 0 12px; }
+    .artifact-source-shell h3 { font-family: var(--sans); font-size: 17px; color: var(--ink-2); margin: 20px 0 10px; }
+    .artifact-source-shell p, .artifact-source-shell li { color: var(--muted); line-height: 1.76; font-size: 15.75px; }
+    .artifact-source-shell ul { padding-left: 20px; margin: 0; }
+    .artifact-source-shell pre {
+      overflow-x: auto; background: #101826; color: #f9fafb; padding: 18px; border-radius: 16px;
+      font-family: var(--mono); font-size: 13px; line-height: 1.6;
+    }
+    .artifact-source-shell code { font-family: var(--mono); background: rgba(20,23,28,.06); padding: 2px 6px; border-radius: 6px; }
+    .artifact-frontmatter {
+      background: rgba(31,58,50,.05); border: 1px solid rgba(31,58,50,.12); border-radius: 18px;
+      padding: 14px; margin-bottom: 18px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); white-space: pre-wrap;
+    }
+    .artifact-notice { color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+    @media (max-width: 1100px) {
+      .artifact-hero-grid, .artifact-layout { grid-template-columns: 1fr; }
+      .artifact-sidebar { position: static; order: 2; }
+      .artifact-main { order: 1; }
+    }
+    @media (max-width: 720px) {
+      .artifact-wrap { padding: 24px 16px 60px; }
+      .artifact-topbar-inner { padding: 12px 16px; }
+      .artifact-hero, .artifact-panel { padding: 22px 20px; border-radius: 24px; }
+      .artifact-kv-grid { grid-template-columns: 1fr; }
+      .artifact-source-shell { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="artifact-shell">
+    <div class="artifact-topbar">
+      <div class="artifact-topbar-inner">
+        <a class="back-link" href="index.html#/library">← Back to portfolio library</a>
+        <div class="artifact-top-meta">
+          <span class="brand-name"><span>Ram Paragi</span><small>Executive artifact review</small></span>
+        </div>
+      </div>
+    </div>
+
+    <main class="artifact-wrap" id="artifactRoot">
+      <section class="artifact-hero">
+        <div class="artifact-category"><span>Loading artifact</span></div>
+        <h1 class="artifact-title">Preparing executive artifact page…</h1>
+        <p class="artifact-lead">This page presents the artifact as an executive evidence page while preserving the source content.</p>
+      </section>
+    </main>
+  </div>
+
+<script>
+  function escapeHtml(str) {
+    return (str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  }
+  function inlineMd(str) {
+    let s = escapeHtml(str || '');
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    return s;
+  }
+  function renderMarkdown(md) {
+    const parts = (md || '').split(/\n/);
+    let html = '';
+    let inList = false, inCode = false, code = [];
+    let front = '';
+    if (parts[0] && parts[0].trim() === '---') {
+      let j = 1;
+      while (j < parts.length && parts[j].trim() !== '---') { front += parts[j] + '\n'; j++; }
+      parts.splice(0, j + 1);
+      if (front.trim()) html += '<div class="artifact-frontmatter">' + escapeHtml(front.trim()) + '</div>';
+    }
+    function closeList(){ if(inList){ html += '</ul>'; inList=false; } }
+    for (const line of parts) {
+      if (line.trim().startsWith('```')) {
+        if (!inCode) { closeList(); inCode = true; code=[]; }
+        else { html += '<pre><code>' + escapeHtml(code.join('\n')) + '</code></pre>'; inCode=false; }
+        continue;
+      }
+      if (inCode) { code.push(line); continue; }
+      if (/^#\s+/.test(line)) { closeList(); html += '<h1>' + inlineMd(line.replace(/^#\s+/, '')) + '</h1>'; continue; }
+      if (/^##\s+/.test(line)) { closeList(); html += '<h2>' + inlineMd(line.replace(/^##\s+/, '')) + '</h2>'; continue; }
+      if (/^###\s+/.test(line)) { closeList(); html += '<h3>' + inlineMd(line.replace(/^###\s+/, '')) + '</h3>'; continue; }
+      if (/^[-*]\s+/.test(line)) { if(!inList){ html += '<ul>'; inList=true; } html += '<li>' + inlineMd(line.replace(/^[-*]\s+/, '')) + '</li>'; continue; }
+      if (/^\d+\.\s+/.test(line)) { if(!inList){ html += '<ul>'; inList=true; } html += '<li>' + inlineMd(line.replace(/^\d+\.\s+/, '')) + '</li>'; continue; }
+      if (line.trim() === '') { closeList(); continue; }
+      closeList(); html += '<p>' + inlineMd(line) + '</p>';
+    }
+    closeList();
+    return html;
+  }
+
+  function parseFrontmatter(md) {
+    const match = md.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    if (!match) return { data: {}, body: md };
+    const yaml = match[1];
+    const body = match[2];
+    const data = {};
+    let currentListKey = null;
+    yaml.split(/\n/).forEach(line => {
+      if (/^\s*-\s+/.test(line) && currentListKey) {
+        data[currentListKey].push(line.replace(/^\s*-\s+/, '').replace(/^"|"$/g, ''));
+        return;
+      }
+      const m = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
+      if (!m) return;
+      const key = m[1];
+      let value = m[2].trim();
+      if (value === '') {
+        data[key] = [];
+        currentListKey = key;
+      } else {
+        currentListKey = null;
+        value = value.replace(/^"|"$/g, '');
+        data[key] = value;
+      }
+    });
+    return { data, body };
+  }
+
+  function extractLabeledFields(body) {
+    const titleMatch = body.match(/^#\s+(.+)$/m);
+    const get = (label) => {
+      const re = new RegExp('\\*\\*' + label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ':\\*\\*\\s*([\\s\\S]*?)(?=\\n\\n|\\n##\\s|$)');
+      const m = body.match(re);
+      return m ? m[1].trim() : '';
+    };
+    const split = body.split(/\n##\s+Original Source Content\s*\n/);
+    const preface = split[0] || '';
+    const source = split[1] || '';
+    const cleanedPreface = preface
+      .replace(/^#\s+.+$/m, '')
+      .replace(/\*\*Portfolio category:\*\*[\s\S]*?(?=\n\n|$)/, '')
+      .replace(/\*\*Portfolio role:\*\*[\s\S]*?(?=\n\n|$)/, '')
+      .replace(/\*\*Tags:\*\*[\s\S]*?(?=\n\n|$)/, '')
+      .replace(/\*\*Source evidence excerpt:\*\*[\s\S]*?(?=\n\n|$)/, '')
+      .trim();
+
+    return {
+      title: titleMatch ? titleMatch[1].trim() : '',
+      portfolioCategory: get('Portfolio category'),
+      portfolioRole: get('Portfolio role'),
+      tagsText: get('Tags'),
+      excerpt: get('Source evidence excerpt'),
+      preface: cleanedPreface,
+      source
+    };
+  }
+
+  function chipsFromFrontmatter(meta) {
+    const chips = [];
+    if (meta.confidentiality_review) {
+      const alert = /needs human review/i.test(meta.confidentiality_review) || /confidential/i.test(meta.confidentiality_review);
+      chips.push(`<span class="artifact-chip ${alert ? 'alert' : 'ok'}">${escapeHtml(meta.confidentiality_review)}</span>`);
+    }
+    if (meta.publication_status) {
+      chips.push(`<span class="artifact-chip">${escapeHtml(meta.publication_status)}</span>`);
+    }
+    return chips.join('');
+  }
+
+  function buildPage(meta, fields, file) {
+    const title = meta.title || fields.title || 'Untitled artifact';
+    const category = meta.category || fields.portfolioCategory || 'Portfolio artifact';
+    const role = meta.portfolio_role || fields.portfolioRole || 'Evidence artifact';
+    const originalFile = meta.original_file || file;
+    const tags = Array.isArray(meta.tags) ? meta.tags : (fields.tagsText ? fields.tagsText.split(/,\s*/) : []);
+    const sourceLength = meta.source_length_chars ? meta.source_length_chars + ' characters' : 'Source-preserving artifact';
+    const lead = fields.excerpt || 'This artifact documents a substantive body of institutional work and is presented here in a more polished executive review format.';
+
+    return `
+      <section class="artifact-hero">
+        <div class="artifact-category"><span>${escapeHtml(category)}</span></div>
+        <div class="artifact-hero-grid">
+          <div>
+            <h1 class="artifact-title">${escapeHtml(title)}</h1>
+            <p class="artifact-lead">${inlineMd(lead)}</p>
+            <div class="artifact-chip-row">
+              ${chipsFromFrontmatter(meta)}
+            </div>
+          </div>
+          <div class="artifact-kv-grid">
+            <div class="artifact-kv"><div class="k">Portfolio role</div><div class="v">${escapeHtml(role)}</div></div>
+            <div class="artifact-kv"><div class="k">Original source file</div><div class="v mono">${escapeHtml(originalFile)}</div></div>
+            <div class="artifact-kv"><div class="k">Artifact format</div><div class="v">Evidence-backed executive review page</div></div>
+            <div class="artifact-kv"><div class="k">Source length</div><div class="v">${escapeHtml(sourceLength)}</div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="artifact-layout">
+        <aside class="artifact-sidebar">
+          <div class="artifact-side-card">
+            <div class="artifact-side-label">On this page</div>
+            <nav class="artifact-nav">
+              <a href="#overview">Executive overview</a>
+              <a href="#positioning">Portfolio positioning</a>
+              <a href="#source">Source-preserving content</a>
+            </nav>
+          </div>
+          <div class="artifact-side-card">
+            <div class="artifact-side-label">Quick reference</div>
+            <div class="artifact-mini-list">
+              <div class="artifact-mini-item"><strong>Category</strong>${escapeHtml(category)}</div>
+              <div class="artifact-mini-item"><strong>Role in portfolio</strong>${escapeHtml(role)}</div>
+              <div class="artifact-mini-item"><strong>Source file</strong><span class="mono">${escapeHtml(originalFile)}</span></div>
+              <div class="artifact-mini-item"><strong>Review posture</strong>${escapeHtml(meta.confidentiality_review || 'General review')}</div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="artifact-main">
+          <section class="artifact-panel" id="overview">
+            <h2>Executive overview</h2>
+            <h3>Why this artifact matters</h3>
+            <p>${inlineMd(lead)}</p>
+            ${fields.preface ? `<div class="artifact-callout"><div class="artifact-callout-label">Additional portfolio framing</div>${renderMarkdown(fields.preface)}</div>` : ''}
+          </section>
+
+          <section class="artifact-panel" id="positioning">
+            <h2>Portfolio positioning</h2>
+            <h3>How this work is being presented</h3>
+            <div class="artifact-kv-grid">
+              <div class="artifact-kv"><div class="k">Portfolio category</div><div class="v">${escapeHtml(category)}</div></div>
+              <div class="artifact-kv"><div class="k">Portfolio role</div><div class="v">${escapeHtml(role)}</div></div>
+              <div class="artifact-kv"><div class="k">Publication status</div><div class="v">${escapeHtml(meta.publication_status || 'Draft for portfolio use')}</div></div>
+              <div class="artifact-kv"><div class="k">Public review note</div><div class="v">${escapeHtml(meta.confidentiality_review || 'Review before external publication as needed')}</div></div>
+            </div>
+            ${tags.length ? `<div style="margin-top: 20px"><div class="artifact-side-label" style="margin-bottom:10px">Key themes</div><div class="artifact-tags">${tags.map(t => `<span>${escapeHtml(t)}</span>`).join('')}</div></div>` : ''}
+          </section>
+
+          <section class="artifact-panel" id="source">
+            <h2>Source-preserving content</h2>
+            <h3>Artifact evidence text</h3>
+            <div class="artifact-source-shell">
+              ${renderMarkdown(fields.source || '')}
+            </div>
+          </section>
+        </div>
+      </div>`;
+  }
+
+  const params = new URLSearchParams(location.search);
+  const file = params.get('file');
+  const root = document.getElementById('artifactRoot');
+
+  if (!file || file.includes('..') || file.includes('/') || file.includes('\\')) {
+    root.innerHTML = `<section class="artifact-hero"><div class="artifact-category"><span>Artifact error</span></div><h1 class="artifact-title">Artifact not found</h1><p class="artifact-lead">The artifact file parameter is missing or invalid.</p></section>`;
+  } else {
+    fetch('content/artifacts_cleaned_82/' + encodeURIComponent(file))
+      .then(r => { if (!r.ok) throw new Error('Could not load file'); return r.text(); })
+      .then(md => {
+        const parsed = parseFrontmatter(md);
+        const fields = extractLabeledFields(parsed.body);
+        root.innerHTML = buildPage(parsed.data, fields, file);
+      })
+      .catch(err => {
+        root.innerHTML = `<section class="artifact-hero"><div class="artifact-category"><span>Artifact error</span></div><h1 class="artifact-title">Artifact not found</h1><p class="artifact-lead">${escapeHtml(err.message)}</p></section>`;
+      });
+  }
+</script>
+</body>
+</html>
