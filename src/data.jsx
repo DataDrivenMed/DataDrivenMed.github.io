@@ -64,7 +64,7 @@ const CAPABILITIES = [
     id: "faculty-affairs",
     num: "09",
     title: "Faculty Affairs & Institutional Culture",
-    short: "Evaluation infrastructure for 900+ faculty, 15 departments, and a $2M+ development portfolio.",
+    short: "Evaluation infrastructure for 500+ faculty, 25+ departments, and a $2M+ development portfolio.",
     skills: ["Logic Model", "CIPP", "Kirkpatrick", "Climate analytics", "Mentoring evaluation"],
   },
   {
@@ -622,12 +622,12 @@ const ARTIFACTS = [
   // ---------- 09 Faculty Affairs ----------
   ART("fac-01", "Faculty Development & Mentoring Evaluation Infrastructure",
     "faculty-affairs", "Flagship case study",
-    "Built foundational evaluation infrastructure for a new institutional office: 900+ faculty, 15 departments, $2M+ budget. Hybrid Logic Model + CIPP + Kirkpatrick architecture across 90+ data sources.",
+    "Built foundational evaluation infrastructure for a new institutional office: 9500+ faculty, 25+ departments, $2M+ budget. Hybrid Logic Model + CIPP + Kirkpatrick architecture across 90+ data sources.",
     ["Logic Model", "CIPP", "Kirkpatrick", "Evaluation infrastructure"],
     ["Faculty Affairs leadership", "Dean"],
     "Anchor faculty-affairs flagship - defensible scale and methodological seriousness.",
     "Office of Faculty Affairs-Faculty Development and Mentoring.md",
-    ["900+ faculty", "$2M+", "Logic Model", "CIPP", "Kirkpatrick"],
+    ["500+ faculty", "$2M+", "Logic Model", "CIPP", "Kirkpatrick"],
     true),
 
   ART("fac-02", "Faculty & Institutional Affairs Data Strategy",
