@@ -298,7 +298,7 @@ function AboutPage() {
             ["Quantitative leadership", "Predictive models, executive dashboards, K-means / PCA / Bayesian / regression frameworks, and longitudinal analytics built for decision support."],
             ["AI governance", "SOM AI governance suite spanning a pre-final policy draft, compliance audit, tool vetting, faculty fluency, teaching guides, clinical AI evaluation, and leadership briefings."],
             ["Workforce finance", "70+ residency and fellowship programs with more than 1000 FTEs · Medicare/Medicaid GME policy and regulations · three major healthcare systems across the state."],
-            ["Institutional culture", "Faculty Affairs evaluation infrastructure across 900+ faculty and 15 departments, including mentoring, climate, and development portfolio evaluation."],
+            ["Institutional culture", "Faculty Affairs evaluation infrastructure across 500+ faculty and 15 departments, including mentoring, climate, and development portfolio evaluation."],
             ["Public-sector positioning", "FDA RFI-grade clinical trials response · NCI AI Innovation Program contribution · multiple federal and state policy scopes analyzed for strategic alignment."],
             ["Research and scholarship", "NIH portfolio clustering, NSF EPSCoR analytics, scholarly productivity, and translation of research intelligence into institutional growth strategy."],
           ].map(([h, d]) => (
