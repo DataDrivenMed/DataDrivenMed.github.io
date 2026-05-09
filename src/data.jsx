@@ -1009,7 +1009,7 @@ ARTIFACTS.forEach(a => {
 const HERO_STATS = [
   { num: "70+",  lbl: "Residency & fellowship programs with more than 1000 FTEs (Medicare/ Medicaid GME policy & regulations, three major healthcare systems across the state)" },
   { num: "90+",  lbl: "Integrated institutional data sources" },
-  { num: "900+", lbl: "Faculty under evaluation infrastructure" },
+  { num: "500+", lbl: "Faculty under evaluation infrastructure" },
   { num: "Multiple federal and state", lbl: "Federal and state policy scopes analyzed for strategic alignment" },
   { num: "21",   lbl: "Pilots in NCI AI Innovation Program contribution" },
   { num: "82",   lbl: "Artifacts in capability portfolio" },
