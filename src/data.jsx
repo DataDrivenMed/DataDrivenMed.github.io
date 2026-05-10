@@ -138,7 +138,7 @@ const ARTIFACTS = [
     ["Pre-final AI policy draft", "Regulatory synthesis", "Compliance audit", "Stakeholder communication", "Multi-institutional coordination"],
     ["Dean", "Program directors", "Department chairs", "Search committees"],
     "Positions the work as a leadership-ready draft policy architecture rather than a finalized institutional policy. Translates institutional AI committee structures, federal and state AI policy movement, AAMC-facing educational concerns, and clinical training realities into a usable School of Medicine governance starting point.",
-    "AI Policy.md",
+    "school-of-medicine-ai-governance-and-policy-framework.md",
     ["AI policy draft", "Governance", "Multi-hospital", "Leadership briefing"],
     true),
 
