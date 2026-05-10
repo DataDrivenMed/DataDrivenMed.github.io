@@ -48,7 +48,7 @@ const CASE_DETAILS = {
     related: ["gme-03", "gme-05", "gme-04", "execstrat-01"],
   },
   "fac-01": {
-    problem: "Faculty Affairs at scale - 900+ faculty, 15 departments, multiple tracks, and a $2M+ annual development portfolio - is a measurement problem first and a culture problem second. Without a shared evaluation infrastructure, every department generates its own metrics, leadership cannot compare across units, and faculty development spend cannot be evaluated.",
+    problem: "Faculty Affairs and institutional culture work across 25+ departments and centers is a measurement problem first and a culture problem second. Without a shared evaluation infrastructure, every department and center generates its own metrics, leadership cannot compare across units, and faculty development work cannot be evaluated consistently.",
     role: "Architect of the institutional faculty-evaluation infrastructure: the data model, the evaluation frameworks (Logic Model, CIPP, Kirkpatrick), the climate analytics, and the longitudinal dashboards.",
     approach: [
       "Standardize evaluation language across departments using Logic Model + CIPP + Kirkpatrick - three frameworks chosen specifically because each handles a different evaluation question.",
@@ -93,6 +93,35 @@ function fallbackCaseDetail(a) {
       .slice(0, 4)
       .map(x => x.id),
   };
+}
+
+function LegislativeBillsTable({ artifact, compact = false }) {
+  if (!artifact.billTable) return null;
+  return (
+    <div className={compact ? "leg-bill-block compact" : "leg-bill-block"} id="sec-bills">
+      <div className="leg-bill-kicker">Legislative bill evidence</div>
+      <h3>Louisiana legislative bills supported</h3>
+      {artifact.billTableIntro && <p>{artifact.billTableIntro}</p>}
+      <div className="leg-bill-table-wrap">
+        <table className="leg-bill-table">
+          <thead>
+            <tr>
+              <th>Louisiana Legislative Bill</th>
+              <th>Bill Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {artifact.billTable.map((row) => (
+              <tr key={row.bill}>
+                <td>{row.bill}</td>
+                <td>{row.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 // ---------- Detail overlay ----------
@@ -173,6 +202,7 @@ function ArtifactDetail({ artifact, onClose }) {
               <a href="#sec-approach">Strategic approach</a>
               <a href="#sec-execution">Execution</a>
               <a href="#sec-tools">Tools &amp; frameworks</a>
+              {artifact.billTable && <a href="#sec-bills">Legislative bills</a>}
               <a href="#sec-value">Institutional value</a>
               <a href="#sec-comp">Competencies</a>
               {related.length > 0 && <a href="#sec-related">Related artifacts</a>}
@@ -186,6 +216,7 @@ function ArtifactDetail({ artifact, onClose }) {
                   <b style={{ color: "var(--ink-2)" }}>Strategic value · </b>
                   {artifact.strategic}
                 </p>
+                {artifact.billTable && <LegislativeBillsTable artifact={artifact} compact={true} />}
               </section>
 
               <section className="cs-section" id="sec-problem">

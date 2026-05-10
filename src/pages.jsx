@@ -1,18 +1,18 @@
 /* global window, React */
 // =============================================================
-// pages.jsx - Home, About, Capabilities, Library, CaseStudies, Ask
+// pages.jsx v23 — Dark Academic Executive · McKinsey Briefing
+// All content preserved. Structure completely redesigned.
 // =============================================================
 const { useState, useMemo, useEffect } = React;
 
-// Live Hugging Face Space embed for the portfolio assistant.
-// If your Space URL is different, change only this one line.
 const PORTFOLIO_ASSISTANT_URL = "https://ramparagi-ask-ram-portfolio-streamlit.hf.space";
 
 // ---------- Eyebrow ----------
-function Eyebrow({ children }) {
+function Eyebrow({ children, light }) {
   return (
-    <div className="eyebrow">
-      <span className="dot"></span>{children}
+    <div className="eyebrow" style={light ? { color: "var(--gold)" } : {}}>
+      <span className="dot" style={light ? { background: "var(--gold)" } : {}}></span>
+      {children}
     </div>
   );
 }
@@ -24,84 +24,99 @@ function HomePage({ openArtifact }) {
   const flagship = window.FLAGSHIP_IDS
     .map(id => window.ARTIFACTS.find(a => a.id === id))
     .filter(Boolean);
-
   const featured3 = flagship.slice(0, 3);
-  const heroStats = window.HERO_STATS.slice(0, 4);
+
+  const heroStats = [
+    { num: "70+",                      lbl: "Residency & fellowship programs with more than 1,000 FTEs" },
+    { num: "90+",                      lbl: "Integrated institutional data sources" },
+    { num: "25+",                      lbl: "Departments and centers" },
+    { num: "Multiple federal & state", lbl: "Policy scopes analyzed for strategic alignment" },
+  ];
 
   return (
     <main className="page-enter">
-      {/* HERO */}
-      <section className="hero hero-xl">
-        <div className="container hero-primary-grid">
-          <div className="hero-copy">
-            <div className="hero-eyebrow">
-              <Eyebrow>Institutional Strategy & Leadership Evidence Base</Eyebrow>
-            </div>
-            <h1>
-              Enterprise strategy<br />
-              for academic medical<br />
-              <em>center transformation.</em>
-            </h1>
-            <p className="hero-lead">
-              I build the institutional systems that help academic medical centers move from
-              fragmented activity to governed execution: accreditation infrastructure,
-              executive analytics, AI governance, research strategy, workforce finance, and
-              cross-system accountability.
-            </p>
-            <div className="hero-actions">
-              <window.Link to="/library" className="btn">Open the evidence library <window.ArrowRight size={14} /></window.Link>
-              <window.Link to="/case-studies" className="btn outline">Read a case study</window.Link>
-            </div>
-          </div>
-          <window.ConnectCard compact />
-        </div>
-        <div className="container hero-footer">
-          <div className="hf-cell">
-            <span className="lbl">Position</span>
-            <span className="val">Enterprise-facing institutional strategy, accreditation, analytics, and governance portfolio</span>
-          </div>
-          <div className="hf-cell">
-            <span className="lbl">Institution</span>
-            <span className="val">LSU Health New Orleans · School of Medicine</span>
-          </div>
-          <div className="hf-cell">
-            <span className="lbl">Reach</span>
-            <span className="val">School · HSC · university · state · health-system · accreditation · external partner leadership</span>
-          </div>
-          <div className="hf-cell">
-            <span className="lbl">Index</span>
-            <span className="val">82 artifacts · 12 capability areas</span>
-          </div>
-        </div>
-      </section>
 
-      {/* PROOF AT SCALE */}
-      <section className="container" style={{ marginTop: 24 }}>
-        <div className="proof-strip">
-          {heroStats.map((s, i) => (
-            <div className="proof-cell" key={i}>
-              <span className="proof-num">{s.num}</span>
-              <span className="proof-lbl">{s.lbl}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* EXECUTIVE VALUE PROPOSITION */}
-      <section className="section no-border tight-section">
+      {/* ── DARK HERO ── */}
+      <section className="hero-dark">
         <div className="container">
-          <div className="exec-value-card">
-            <div>
-              <span className="num">§ EXECUTIVE VALUE PROPOSITION</span>
-              <h2>Not a document archive. A mapped evidence base for enterprise-level institutional work.</h2>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <div className="hero-rule"></div>
+              <Eyebrow light>Institutional Strategy &amp; Leadership Evidence Base</Eyebrow>
+              <h1 style={{ marginTop: 20 }}>
+                Enterprise strategy<br />
+                for academic medical<br />
+                <em>center transformation.</em>
+              </h1>
+              <p className="hero-lead-dark">
+                I build the institutional systems that help academic medical centers move from
+                fragmented activity to governed execution: accreditation infrastructure,
+                executive analytics, AI governance, research strategy, workforce finance, and
+                cross-system accountability.
+              </p>
+              <div className="hero-actions" style={{ marginTop: 36 }}>
+                <window.Link to="/library" className="btn gold">
+                  Evidence library <window.ArrowRight size={13} />
+                </window.Link>
+                <window.Link to="/case-studies" className="btn outline">
+                  Case studies
+                </window.Link>
+              </div>
             </div>
-            <div className="exec-value-copy">
+            <window.ConnectCard compact />
+          </div>
+
+          {/* Dark metadata bar */}
+          <div className="hero-meta-bar">
+            <div className="hero-meta-cell">
+              <span className="lbl">Position</span>
+              <span className="val">Enterprise-facing institutional strategy, accreditation, analytics, and governance portfolio</span>
+            </div>
+            <div className="hero-meta-cell">
+              <span className="lbl">Institution</span>
+              <span className="val">LSU Health New Orleans · School of Medicine</span>
+            </div>
+            <div className="hero-meta-cell">
+              <span className="lbl">Reach</span>
+              <span className="val">School · HSC · university · state · health-system · accreditation · external partner leadership</span>
+            </div>
+            <div className="hero-meta-cell">
+              <span className="lbl">Index</span>
+              <span className="val">82 artifacts · 12 capability areas</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS BAND ── */}
+      <div className="proof-band">
+        <div className="container">
+          <div className="proof-strip">
+            {heroStats.map((s, i) => (
+              <div className="proof-cell" key={i}>
+                <span className="proof-num">{s.num}</span>
+                <span className="proof-lbl">{s.lbl}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── EXEC VALUE PROPOSITION — DARK ── */}
+      <div className="exec-band">
+        <div className="container">
+          <div className="exec-band-inner">
+            <div>
+              <div className="exec-band-label">§ Executive Value Proposition</div>
+              <h2>Not a document archive.<br />A mapped evidence base for<br />enterprise-level institutional work.</h2>
+            </div>
+            <div className="exec-band-copy">
               <p>
                 This portfolio organizes 82 artifacts into a leadership evidence base: work that
                 reduces institutional risk, preserves organizational memory, clarifies priorities,
                 connects stakeholders, and turns complex strategic priorities into governed execution.
               </p>
-              <div className="value-pills">
+              <div className="exec-pills">
                 <span>Risk reduction</span>
                 <span>Executive decision support</span>
                 <span>Cross-functional governance</span>
@@ -111,14 +126,14 @@ function HomePage({ openArtifact }) {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* SENIOR LEADERSHIP READOUT */}
-      <section className="section no-border tight-section">
+      {/* ── LEADERSHIP READOUT — LIGHT ── */}
+      <div className="readout-section">
         <div className="container">
-          <div className="leadership-readout">
-            <div className="readout-head">
-              <span className="num">§ SENIOR LEADERSHIP READOUT</span>
+          <div className="readout-header">
+            <div className="readout-h-label">§ Senior Leadership Readout</div>
+            <div className="readout-h-content">
               <h2>Why the portfolio matters to institutional leadership.</h2>
               <p>
                 The signal is not only the volume of work. It is the pattern: cross-boundary
@@ -126,107 +141,126 @@ function HomePage({ openArtifact }) {
                 durable systems that remain useful beyond a single project cycle.
               </p>
             </div>
-            <div className="readout-grid">
-              <div>
-                <strong>Hard-to-replace institutional memory</strong>
-                <span>Accreditation, GME finance, analytics, research strategy, AI governance, and policy context connected in one operating view.</span>
-              </div>
-              <div>
-                <strong>Cross-system execution capacity</strong>
-                <span>Work across school, HSC, university, state, health-system, accreditation, and external partner leadership.</span>
-              </div>
-              <div>
-                <strong>Executive decision infrastructure</strong>
-                <span>Dashboards, frameworks, briefs, models, and governance routines that convert ambiguity into leadership action.</span>
-              </div>
-              <div>
-                <strong>Future-ready transformation</strong>
-                <span>AI governance, clinical AI evaluation, research intelligence, and portfolio-wide data strategy positioned for the next operating model of academic medicine.</span>
-              </div>
+          </div>
+          <div className="readout-cells">
+            <div className="readout-cell">
+              <strong>Hard-to-replace institutional memory</strong>
+              <span>Accreditation, GME finance, analytics, research strategy, AI governance, and policy context connected in one operating view.</span>
+            </div>
+            <div className="readout-cell">
+              <strong>Cross-system execution capacity</strong>
+              <span>Work across school, HSC, university, state, health-system, accreditation, and external partner leadership.</span>
+            </div>
+            <div className="readout-cell">
+              <strong>Executive decision infrastructure</strong>
+              <span>Dashboards, frameworks, briefs, models, and governance routines that convert ambiguity into leadership action.</span>
+            </div>
+            <div className="readout-cell">
+              <strong>Future-ready transformation</strong>
+              <span>AI governance, clinical AI evaluation, research intelligence, and portfolio-wide data strategy positioned for the next operating model of academic medicine.</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* CAPABILITY ARCHITECTURE */}
-      <section className="section">
+      {/* ── CAPABILITY ARCHITECTURE — LIGHT ── */}
+      <div className="cap-arch-section">
         <div className="container">
-          <div className="cap-visual-card centered-architecture">
-            <div className="cap-visual-copy compact-copy">
-              <span className="num">§ CAPABILITY ARCHITECTURE</span>
+          <div className="cap-arch-inner">
+            <div>
+              <div className="cap-arch-label">§ Capability Architecture</div>
             </div>
-            <div className="cap-visual-figure centered-only">
-              <img src="capability-map-home.png" alt="Twelve domains of enterprise capability." />
-            </div>
-            <div className="cap-visual-action">
-              <window.Link to="/capabilities" className="btn outline">Open full capability map <window.ArrowRight size={14} /></window.Link>
+            <div className="cap-arch-content">
+              <h2>Twelve domains of enterprise capability.</h2>
+              <p>
+                Each domain is a documented body of work across the School of Medicine's
+                operational scope — accreditation, analytics, AI governance, workforce finance,
+                faculty affairs, research strategy, simulation, policy, and beyond.
+              </p>
+              <window.Link to="/capabilities" className="btn outline-dark">
+                Open full capability map <window.ArrowRight size={13} />
+              </window.Link>
+              <img
+                src="capability-map-home.png"
+                alt="Twelve domains of enterprise capability."
+                className="cap-arch-img"
+              />
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-
-      {/* FLAGSHIP CASES */}
-      <section className="section section-xl">
+      {/* ── FLAGSHIP CASES — LIGHT ALT ── */}
+      <div className="cases-section">
         <div className="container">
-          <div className="big-head">
-            <h2>Selected work that shows enterprise operating capacity.</h2>
-            <p className="lead">
-              These examples anchor the broader evidence library: institutional AI governance,
-              multi-system GME policy and workforce finance, accreditation and CQI architecture,
-              research strategy, faculty evaluation infrastructure, and cross-institutional policy leadership.
-            </p>
+          <div className="cases-header">
+            <div className="cases-h-label">§ Selected Case Evidence</div>
+            <div className="cases-h-content">
+              <h2>Selected work that shows enterprise operating capacity.</h2>
+              <p>
+                These examples anchor the broader evidence library: institutional AI governance,
+                multi-system GME policy and workforce finance, accreditation and CQI architecture,
+                research strategy, faculty evaluation infrastructure, and cross-institutional policy leadership.
+              </p>
+            </div>
           </div>
 
-          <div className="featured-grid" style={{ marginTop: 56 }}>
+          <div className="featured-grid">
             {featured3.map((a, i) => (
               <window.FeaturedCard key={a.id} a={a} index={i} onOpen={openArtifact} />
             ))}
           </div>
 
-          <div style={{ marginTop: 32, textAlign: "right" }}>
+          <div style={{ marginTop: 20, textAlign: "right" }}>
             <window.Link to="/case-studies" className="quiet-link">
               All twelve flagship case studies <window.ArrowRight size={12} />
             </window.Link>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* EVIDENCE LIBRARY + ASK - single CTA band */}
-      <section className="section section-xl">
-        <div className="container">
-          <div className="dual-cta triple-cta">
-            <div className="dual-cell">
-              <span className="num">§ 03 · FEATURED</span>
+      {/* ── TRIPLE CTA BAND — DARK ── */}
+      <div className="cta-band">
+        <div className="container" style={{ padding: 0 }}>
+          <div className="triple-cta">
+            <div className="cta-cell">
+              <span className="num">§ 03 · Featured</span>
               <h3>Start with the flagship work.</h3>
               <p>
                 A curated entry point for busy executives: the clearest examples of
                 strategy, governance, analytics, policy, and institutional execution.
               </p>
-              <window.Link to="/case-studies" className="btn">View case studies <window.ArrowRight size={14} /></window.Link>
+              <window.Link to="/case-studies" className="btn gold">
+                View case studies <window.ArrowRight size={13} />
+              </window.Link>
             </div>
-            <div className="dual-cell">
-              <span className="num">§ 04 · FULL LIBRARY</span>
+            <div className="cta-cell">
+              <span className="num">§ 04 · Full Library</span>
               <h3>Then review the complete record.</h3>
               <p>
                 Eighty-two artifacts indexed by capability, skill, audience, confidentiality,
                 and strategic value so the full breadth is visible without becoming clutter.
               </p>
-              <window.Link to="/library" className="btn outline">Open library <window.ArrowRight size={14} /></window.Link>
+              <window.Link to="/library" className="btn outline">
+                Open library <window.ArrowRight size={13} />
+              </window.Link>
             </div>
-            <div className="dual-cell warm">
-              <span className="num">§ 05 · ASK</span>
+            <div className="cta-cell">
+              <span className="num">§ 05 · Ask</span>
               <h3>Ask the portfolio directly.</h3>
               <p>
                 Use the evidence-based portfolio assistant to ask about leadership scope,
                 accreditation, AI governance, analytics, GME finance, research strategy,
                 and institutional impact.
               </p>
-              <window.Link to="/ask" className="btn warm">Open assistant <window.ArrowRight size={14} /></window.Link>
+              <window.Link to="/ask" className="btn warm">
+                Open assistant <window.ArrowRight size={13} />
+              </window.Link>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+
     </main>
   );
 }
@@ -237,79 +271,83 @@ function HomePage({ openArtifact }) {
 function AboutPage() {
   return (
     <main className="page-enter">
-      <section className="container">
-        <div className="about-hero">
-          <div className="about-portrait">
-            <span className="initials">R P</span>
-          </div>
-          <div>
-            <Eyebrow>Executive Profile</Eyebrow>
-            <h1>
-              Ram Paragi: academic medical center <em>enterprise strategist</em>.
-            </h1>
-            <div className="meta">
-              <span>LSU HEALTH NEW ORLEANS</span>
-              <span>SCHOOL OF MEDICINE</span>
-              <span>NEW ORLEANS · LA</span>
+
+      {/* Dark header */}
+      <div className="about-dark-header">
+        <div className="container">
+          <div className="about-header-inner">
+            <div className="about-portrait">
+              <span className="initials">R P</span>
             </div>
-            <p className="bio">
-              Ram operates at the intersection of institutional strategy, accreditation,
-              analytics, AI governance, research growth, medical education, and workforce
-              finance. His portfolio connects work that is often separated across offices:
-              LCME and ACGME readiness, multi-system GME policy and financing, faculty
-              evaluation infrastructure, executive dashboards, research intelligence,
-              AI governance and policy drafting, and state and health-system strategy. The through-line is a
-              systems-first leadership model: define the institutional problem, map the
-              stakeholders and risks, build the analytical infrastructure, and create a
-              durable operating system for execution.
-            </p>
-            <div className="role-strip">
-              <span className="pill">Strategic planning</span>
-              <span className="pill">LCME &amp; ACGME</span>
-              <span className="pill">AI governance</span>
-              <span className="pill">CMS DGME / IME</span>
-              <span className="pill">Predictive analytics</span>
-              <span className="pill">Tableau &amp; Python</span>
-              <span className="pill">Faculty Affairs</span>
-              <span className="pill">Research strategy</span>
-              <span className="pill">Legislative consulting</span>
-              <span className="pill">Patient-safety simulation</span>
+            <div className="about-hero-copy">
+              <Eyebrow light>Executive Profile</Eyebrow>
+              <h1>
+                Ram Paragi: academic medical center <em>enterprise strategist</em>.
+              </h1>
+              <div className="about-meta">
+                <span>LSU Health New Orleans</span>
+                <span>School of Medicine</span>
+                <span>New Orleans · LA</span>
+              </div>
+              <p className="about-bio">
+                Ram operates at the intersection of institutional strategy, accreditation,
+                analytics, AI governance, research growth, medical education, and workforce
+                finance. His portfolio connects work that is often separated across offices:
+                LCME and ACGME readiness, multi-system GME policy and financing, faculty
+                evaluation infrastructure, executive dashboards, research intelligence,
+                AI governance and policy drafting, and state and health-system strategy. The through-line is a
+                systems-first leadership model: define the institutional problem, map the
+                stakeholders and risks, build the analytical infrastructure, and create a
+                durable operating system for execution.
+              </p>
+              <div className="role-strip">
+                <span className="pill">Strategic planning</span>
+                <span className="pill">LCME &amp; ACGME</span>
+                <span className="pill">AI governance</span>
+                <span className="pill">CMS DGME / IME</span>
+                <span className="pill">Predictive analytics</span>
+                <span className="pill">Tableau &amp; Python</span>
+                <span className="pill">Faculty Affairs</span>
+                <span className="pill">Research strategy</span>
+                <span className="pill">Legislative consulting</span>
+                <span className="pill">Patient-safety simulation</span>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="container" style={{ marginTop: 32 }}>
-        <div className="section-head">
-          <div>
-            <span className="num">§ COMPETENCIES</span>
-            <h2>Leadership competencies</h2>
-          </div>
-          <p className="lead">
-            Eight senior leadership competencies, each anchored in artifacts inside this
-            portfolio and expressed as institutional operating capacity, not aspirational language.
-          </p>
-        </div>
-
-        <div className="competencies" style={{ marginTop: 40 }}>
-          {[
-            ["Strategic planning at scale", "Executive briefings, institutional planning architecture, and matrixed alignment across the School of Medicine, health systems, and LSU Health Sciences Center."],
-            ["Regulatory and policy synthesis", "Working fluency in LCME, ACGME, AAMC, NIH, FDA, AHRQ, CMS, AAU, Medicare/Medicaid GME policy, and Louisiana legislative context."],
-            ["Quantitative leadership", "Predictive models, executive dashboards, K-means / PCA / Bayesian / regression frameworks, and longitudinal analytics built for decision support."],
-            ["AI governance", "SOM AI governance suite spanning a pre-final policy draft, compliance audit, tool vetting, faculty fluency, teaching guides, clinical AI evaluation, and leadership briefings."],
-            ["Workforce finance", "70+ residency and fellowship programs with more than 1000 FTEs · Medicare/Medicaid GME policy and regulations · three major healthcare systems across the state."],
-            ["Institutional culture", "Faculty Affairs evaluation infrastructure across 900+ faculty and 15 departments, including mentoring, climate, and development portfolio evaluation."],
-            ["Public-sector positioning", "FDA RFI-grade clinical trials response · NCI AI Innovation Program contribution · multiple federal and state policy scopes analyzed for strategic alignment."],
-            ["Research and scholarship", "NIH portfolio clustering, NSF EPSCoR analytics, scholarly productivity, and translation of research intelligence into institutional growth strategy."],
-          ].map(([h, d]) => (
-            <div className="item" key={h}>
-              <div className="h">{h}</div>
-              <div className="d">{d}</div>
+      {/* Competencies — light zone with McKinsey column layout */}
+      <div className="competencies-section">
+        <div className="container">
+          <div className="competencies-inner">
+            <div className="comp-label">§ Leadership<br/>Competencies</div>
+            <div>
+              <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.66, marginBottom: 32, maxWidth: "58ch" }}>
+                Eight senior leadership competencies, each anchored in artifacts inside this
+                portfolio and expressed as institutional operating capacity, not aspirational language.
+              </p>
+              <div className="competencies">
+                {[
+                  ["Strategic planning at scale", "Executive briefings, institutional planning architecture, and matrixed alignment across the School of Medicine, health systems, and LSU Health Sciences Center."],
+                  ["Regulatory and policy synthesis", "Working fluency in LCME, ACGME, AAMC, NIH, FDA, AHRQ, CMS, AAU, Medicare/Medicaid GME policy, and Louisiana legislative context."],
+                  ["Quantitative leadership", "Predictive models, executive dashboards, K-means / PCA / Bayesian / regression frameworks, and longitudinal analytics built for decision support."],
+                  ["AI governance", "SOM AI governance suite spanning a pre-final policy draft, compliance audit, tool vetting, faculty fluency, teaching guides, clinical AI evaluation, and leadership briefings."],
+                  ["Workforce finance", "70+ residency and fellowship programs with more than 1000 FTEs · Medicare/Medicaid GME policy and regulations · three major healthcare systems across the state."],
+                  ["Institutional culture", "Faculty Affairs evaluation infrastructure across 25+ departments and centers, including mentoring, climate, and development portfolio evaluation."],
+                  ["Public-sector positioning", "FDA RFI-grade clinical trials response · NCI AI Innovation Program contribution · multiple federal and state policy scopes analyzed for strategic alignment."],
+                  ["Research and scholarship", "NIH portfolio clustering, NSF EPSCoR analytics, scholarly productivity, and translation of research intelligence into institutional growth strategy."],
+                ].map(([h, d]) => (
+                  <div className="item" key={h}>
+                    <div className="h">{h}</div>
+                    <div className="d">{d}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-      </section>
-
+      </div>
 
     </main>
   );
@@ -336,7 +374,6 @@ function skillTone(skill) {
 }
 
 function CapabilitiesPage() {
-  // Honor #anchor scroll to in-section
   useEffect(() => {
     const id = window.location.hash.split("#")[2];
     if (id) {
@@ -347,18 +384,23 @@ function CapabilitiesPage() {
 
   return (
     <main className="page-enter">
-      <section className="container cap-page-hero">
-        <Eyebrow>Capability map</Eyebrow>
-        <h1>Twelve domains of<br/>enterprise capability.</h1>
-        <p className="lead">
-          Each domain is a documented body of work - accreditation, analytics, AI
-          governance, workforce finance, faculty affairs, research strategy, simulation,
-          policy, and beyond. Click any row to filter the library to that domain.
-        </p>
-      </section>
 
-      <section className="container">
-        <div className="cap-list">
+      {/* Dark header */}
+      <div className="cap-dark-header">
+        <div className="container">
+          <Eyebrow light>Capability Map</Eyebrow>
+          <h1>Twelve domains of<br/>enterprise capability.</h1>
+          <p>
+            Each domain is a documented body of work — accreditation, analytics, AI
+            governance, workforce finance, faculty affairs, research strategy, simulation,
+            policy, and beyond. Click any row to filter the library to that domain.
+          </p>
+        </div>
+      </div>
+
+      {/* Capability list — light zone */}
+      <div className="cap-list">
+        <div className="container">
           {window.CAPABILITIES.map(c => {
             const skills = c.skills.slice(0, 5);
             return (
@@ -377,14 +419,15 @@ function CapabilitiesPage() {
                 </div>
                 <div className="desc">{c.short}</div>
                 <div className="right">
-                  <span className="go-label">Open capability</span>
-                  <window.ArrowRight size={16} />
+                  <span className="go-label">View artifacts</span>
+                  <window.ArrowRight size={15} />
                 </div>
               </a>
             );
           })}
         </div>
-      </section>
+      </div>
+
     </main>
   );
 }
@@ -408,9 +451,8 @@ function LibraryPage({ openArtifact }) {
   const [featuredOnly, setFeaturedOnly] = useState(initial.featured);
   const [confidOnly, setConfidOnly] = useState(false);
   const [q, setQ] = useState("");
-  const [view, setView] = useState("index"); // 'index' | 'cards'
+  const [view, setView] = useState("index");
 
-  // Evidence code: cap.num + "." + zero-padded index in cap
   const codeMap = useMemo(() => {
     const m = new Map();
     window.CAPABILITIES.forEach(c => {
@@ -437,7 +479,6 @@ function LibraryPage({ openArtifact }) {
     });
   }, [cat, aud, featuredOnly, confidOnly, q]);
 
-  // Group filtered by capability for index view
   const grouped = useMemo(() => {
     const g = new Map();
     filtered.forEach(a => {
@@ -452,127 +493,125 @@ function LibraryPage({ openArtifact }) {
 
   return (
     <main className="page-enter">
-      <section className="container ev-hero">
-        <Eyebrow>Evidence library · {window.ARTIFACTS.length} artifacts indexed</Eyebrow>
-        <h1>The evidence library.</h1>
-        <p className="lead">
-          A searchable institutional record. Eighty-two artifacts across twelve capability
-          areas - indexed by domain, audience, and confidentiality status. Every entry
-          links to a structured executive read.
-        </p>
-      </section>
 
-      <section className="container">
-        <div className="ev-search">
-          <window.SearchIcon size={18} />
-          <input
-            placeholder="Search the corpus - CMS DGME, AI policy, faculty evaluation, NIH clustering, COVID Rt…"
-            value={q}
-            onChange={e => setQ(e.target.value)}
-          />
-          {q && <button className="ev-clear" onClick={() => setQ("")}>×</button>}
+      {/* Dark header */}
+      <div className="lib-dark-header">
+        <div className="container">
+          <Eyebrow light>Evidence Library · {window.ARTIFACTS.length} artifacts indexed</Eyebrow>
+          <h1>The evidence<br/>library.</h1>
+          <p>
+            A searchable institutional record. Eighty-two artifacts across twelve capability
+            areas — indexed by domain, audience, and confidentiality status. Every entry
+            links to a structured executive read.
+          </p>
         </div>
+      </div>
 
-        <div className="ev-toolbar">
-          <div className="ev-tools-left">
-            <select className="ev-select" value={cat} onChange={e => setCat(e.target.value)}>
-              <option value="all">All capabilities · {window.ARTIFACTS.length}</option>
+      {/* Light body */}
+      <div className="lib-body">
+        <div className="container">
+          <div className="ev-search">
+            <window.SearchIcon size={17} />
+            <input
+              placeholder="Search — CMS DGME, AI policy, faculty evaluation, NIH clustering, COVID Rt…"
+              value={q}
+              onChange={e => setQ(e.target.value)}
+            />
+            {q && <button className="ev-clear" onClick={() => setQ("")}>×</button>}
+          </div>
+
+          <div className="ev-toolbar">
+            <div className="ev-tools-left">
+              <select className="ev-select" value={cat} onChange={e => setCat(e.target.value)}>
+                <option value="all">All capabilities · {window.ARTIFACTS.length}</option>
+                {window.CAPABILITIES.map(c => {
+                  const n = window.ARTIFACTS.filter(a => a.category === c.id).length;
+                  return <option key={c.id} value={c.id}>{c.num} · {c.title} · {n}</option>;
+                })}
+              </select>
+              <select className="ev-select" value={aud} onChange={e => setAud(e.target.value)}>
+                <option value="all">All audiences</option>
+                {window.AUDIENCES.map(a => {
+                  const n = window.ARTIFACTS.filter(x => x.audience.includes(a)).length;
+                  if (!n) return null;
+                  return <option key={a} value={a}>{a} · {n}</option>;
+                })}
+              </select>
+              <button className={"ev-flag " + (featuredOnly ? "active" : "")} onClick={() => setFeaturedOnly(!featuredOnly)}>
+                <span className="dot featured"></span> Featured
+              </button>
+              <button className={"ev-flag " + (confidOnly ? "active" : "")} onClick={() => setConfidOnly(!confidOnly)}>
+                <span className="dot confid"></span> Confidential
+              </button>
+              {(cat !== "all" || aud !== "all" || featuredOnly || confidOnly || q) && (
+                <button className="ev-reset" onClick={reset}>Reset</button>
+              )}
+            </div>
+            <div className="ev-tools-right">
+              <span className="ev-count">{filtered.length} / {window.ARTIFACTS.length}</span>
+              <div className="ev-view">
+                <button className={view === "index" ? "active" : ""} onClick={() => setView("index")}>Index</button>
+                <button className={view === "cards" ? "active" : ""} onClick={() => setView("cards")}>Cards</button>
+              </div>
+            </div>
+          </div>
+
+          {filtered.length === 0 ? (
+            <div className="empty" style={{ marginTop: 48 }}>
+              No artifacts match these filters. Try resetting or broadening the search.
+            </div>
+          ) : view === "cards" ? (
+            <div className="lib-grid">
+              {filtered.map(a => (
+                <window.ArtifactCard key={a.id} a={a} onOpen={openArtifact} />
+              ))}
+            </div>
+          ) : (
+            <div className="ev-index">
+              <div className="ev-row ev-head">
+                <div className="ev-c-code">Code</div>
+                <div className="ev-c-title">Title</div>
+                <div className="ev-c-skills">Skills Demonstrated</div>
+                <div className="ev-c-aud">Audience</div>
+                <div className="ev-c-flags">Status</div>
+              </div>
               {window.CAPABILITIES.map(c => {
-                const n = window.ARTIFACTS.filter(a => a.category === c.id).length;
-                return <option key={c.id} value={c.id}>{c.num} · {c.title} · {n}</option>;
+                const arts = grouped.get(c.id);
+                if (!arts || arts.length === 0) return null;
+                return (
+                  <React.Fragment key={c.id}>
+                    <div className="ev-group">
+                      <span className="ev-g-num">{c.num}</span>
+                      <span className="ev-g-title">{c.title}</span>
+                      <span className="ev-g-count">{arts.length}</span>
+                    </div>
+                    {arts.map(a => (
+                      <button key={a.id} className="ev-row ev-item" onClick={() => openArtifact(a)}>
+                        <div className="ev-c-code">{codeMap.get(a.id)}</div>
+                        <div className="ev-c-title">
+                          <span className="t">{a.title}</span>
+                          <span className="s">{a.summary}</span>
+                        </div>
+                        <div className="ev-c-skills">
+                          {a.skills.slice(0, 3).map(s => <span key={s} className="tag">{s}</span>)}
+                          {a.skills.length > 3 && <span className="tag-more">+{a.skills.length - 3}</span>}
+                        </div>
+                        <div className="ev-c-aud">{a.audience.slice(0, 2).join(" · ")}</div>
+                        <div className="ev-c-flags">
+                          {a.featured && <span className="dot featured" title="Featured"></span>}
+                          {a.confidential && <span className="dot confid" title="Confidential"></span>}
+                          <window.ArrowRight size={12} />
+                        </div>
+                      </button>
+                    ))}
+                  </React.Fragment>
+                );
               })}
-            </select>
-            <select className="ev-select" value={aud} onChange={e => setAud(e.target.value)}>
-              <option value="all">All audiences</option>
-              {window.AUDIENCES.map(a => {
-                const n = window.ARTIFACTS.filter(x => x.audience.includes(a)).length;
-                if (!n) return null;
-                return <option key={a} value={a}>{a} · {n}</option>;
-              })}
-            </select>
-            <button
-              className={"ev-flag " + (featuredOnly ? "active" : "")}
-              onClick={() => setFeaturedOnly(!featuredOnly)}
-            >
-              <span className="dot featured"></span> Featured
-            </button>
-            <button
-              className={"ev-flag " + (confidOnly ? "active" : "")}
-              onClick={() => setConfidOnly(!confidOnly)}
-            >
-              <span className="dot confid"></span> Confidential
-            </button>
-            {(cat !== "all" || aud !== "all" || featuredOnly || confidOnly || q) && (
-              <button className="ev-reset" onClick={reset}>Reset</button>
-            )}
-          </div>
-          <div className="ev-tools-right">
-            <span className="ev-count">{filtered.length} / {window.ARTIFACTS.length}</span>
-            <div className="ev-view">
-              <button className={view === "index" ? "active" : ""} onClick={() => setView("index")}>Index</button>
-              <button className={view === "cards" ? "active" : ""} onClick={() => setView("cards")}>Cards</button>
             </div>
-          </div>
+          )}
         </div>
+      </div>
 
-        {filtered.length === 0 ? (
-          <div className="empty" style={{ marginTop: 48 }}>
-            No artifacts match these filters. Try resetting or broadening the search.
-          </div>
-        ) : view === "cards" ? (
-          <div className="lib-grid" style={{ marginTop: 32 }}>
-            {filtered.map(a => (
-              <window.ArtifactCard key={a.id} a={a} onOpen={openArtifact} />
-            ))}
-          </div>
-        ) : (
-          <div className="ev-index">
-            <div className="ev-row ev-head">
-              <div className="ev-c-code">CODE</div>
-              <div className="ev-c-title">TITLE</div>
-              <div className="ev-c-skills">SKILLS DEMONSTRATED</div>
-              <div className="ev-c-aud">AUDIENCE</div>
-              <div className="ev-c-flags">STATUS</div>
-            </div>
-            {window.CAPABILITIES.map(c => {
-              const arts = grouped.get(c.id);
-              if (!arts || arts.length === 0) return null;
-              return (
-                <React.Fragment key={c.id}>
-                  <div className="ev-group">
-                    <span className="ev-g-num">{c.num}</span>
-                    <span className="ev-g-title">{c.title}</span>
-                    <span className="ev-g-count">{arts.length}</span>
-                  </div>
-                  {arts.map(a => (
-                    <button
-                      key={a.id}
-                      className="ev-row ev-item"
-                      onClick={() => openArtifact(a)}
-                    >
-                      <div className="ev-c-code">{codeMap.get(a.id)}</div>
-                      <div className="ev-c-title">
-                        <span className="t">{a.title}</span>
-                        <span className="s">{a.summary}</span>
-                      </div>
-                      <div className="ev-c-skills">
-                        {a.skills.slice(0, 3).map(s => <span key={s} className="tag">{s}</span>)}
-                        {a.skills.length > 3 && <span className="tag-more">+{a.skills.length - 3}</span>}
-                      </div>
-                      <div className="ev-c-aud">{a.audience.slice(0, 2).join(" · ")}</div>
-                      <div className="ev-c-flags">
-                        {a.featured && <span className="dot featured" title="Featured"></span>}
-                        {a.confidential && <span className="dot confid" title="Confidential"></span>}
-                        <window.ArrowRight size={12} />
-                      </div>
-                    </button>
-                  ))}
-                </React.Fragment>
-              );
-            })}
-          </div>
-        )}
-      </section>
     </main>
   );
 }
@@ -584,25 +623,32 @@ function CaseStudiesPage({ openArtifact }) {
   const flagship = window.FLAGSHIP_IDS
     .map(id => window.ARTIFACTS.find(a => a.id === id))
     .filter(Boolean);
+
   return (
     <main className="page-enter">
-      <section className="container cap-page-hero">
-        <Eyebrow>Flagship evidence set · {flagship.length}</Eyebrow>
-        <h1>Flagship work that<br/>shows enterprise scope.</h1>
-        <p className="lead">
-          These 12 artifacts are the best first read for a senior leader: strategy, governance,
-          accreditation, AI, workforce finance, analytics, policy, faculty infrastructure,
-          research intelligence, and institutional execution.
-        </p>
-      </section>
 
-      <section className="container">
-        <div className="featured-grid">
-          {flagship.map((a, i) => (
-            <window.FeaturedCard key={a.id} a={a} index={i} onOpen={openArtifact} />
-          ))}
+      <div className="casestudies-dark">
+        <div className="container">
+          <Eyebrow light>Flagship evidence set · {flagship.length}</Eyebrow>
+          <h1>Flagship work that<br/>shows enterprise scope.</h1>
+          <p>
+            These 12 artifacts are the best first read for a senior leader: strategy, governance,
+            accreditation, AI, workforce finance, analytics, policy, faculty infrastructure,
+            research intelligence, and institutional execution.
+          </p>
         </div>
-      </section>
+      </div>
+
+      <div className="casestudies-body">
+        <div className="container">
+          <div className="featured-grid">
+            {flagship.map((a, i) => (
+              <window.FeaturedCard key={a.id} a={a} index={i} onOpen={openArtifact} />
+            ))}
+          </div>
+        </div>
+      </div>
+
     </main>
   );
 }
@@ -621,74 +667,85 @@ function AskPage() {
   ];
 
   return (
-    <main className="page-enter ask-page-clean">
-      <section className="container ask-hero-clean">
-        <div className="badge live">
-          <span className="ledd"></span>
-          Live evidence-based assistant
-        </div>
-        <h1>Ask the <em>portfolio.</em></h1>
-        <p className="lead">
-          Explore evidence from Ram Paragi's documented portfolio across strategy,
-          accreditation, AI governance, analytics, research, GME finance, policy,
-          and institutional leadership. The assistant answers from the portfolio
-          evidence base and avoids unsupported claims.
-        </p>
-      </section>
+    <main className="page-enter">
 
-      <section className="container ask-panel-clean">
-        <div className="ask-intro-clean">
-          <div>
-            <span className="num">§ ASK THE PORTFOLIO</span>
-            <h2>Evidence-based answers from documented artifacts.</h2>
-            <p>
-              Use the assistant to connect patterns across the portfolio. For source-level
-              review, open the evidence library after asking a question.
-            </p>
+      {/* Dark header */}
+      <div className="ask-dark-header">
+        <div className="container">
+          <div className="ask-live-badge">
+            <span className="ledd"></span>
+            Live evidence-based assistant
           </div>
-          <a
-            className="quiet-link ask-open-link"
-            href={PORTFOLIO_ASSISTANT_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open assistant in a new tab <window.ArrowRight size={12} />
-          </a>
+          <h1>Ask the <em>portfolio.</em></h1>
+          <p className="lead">
+            Evidence-based answers from Ram Paragi's documented portfolio artifacts.
+            The assistant answers from the portfolio evidence base and avoids unsupported claims.
+          </p>
         </div>
+      </div>
 
-        <div className="ask-prompt-grid-clean">
-          {prompts.map(q => (
-            <span className="ask-prompt-chip-clean" key={q}>{q}</span>
-          ))}
-        </div>
+      {/* Light body — two-column layout */}
+      <div className="ask-body">
+        <div className="container">
+          <div className="ask-layout">
 
-        <div className="ask-embed-card-clean">
-          <div className="ask-embed-bar-clean">
-            <div className="dots"><span></span><span></span><span></span></div>
-            <div className="ttl">ask-the-portfolio · live assistant</div>
-            <div className="right">evidence-based</div>
+            {/* Left: context + prompts */}
+            <div className="ask-sidebar">
+              <div className="ask-sidebar-label">§ Ask the Portfolio</div>
+              <h2>Evidence-based answers from documented artifacts.</h2>
+              <p>
+                Use the assistant to connect patterns across the portfolio. For source-level
+                review, open the evidence library after asking a question.
+              </p>
+              <a
+                className="ask-open-link"
+                href={PORTFOLIO_ASSISTANT_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open assistant in a new tab <window.ArrowRight size={11} />
+              </a>
+
+              <div className="ask-prompts-label">Suggested questions</div>
+              <div className="ask-prompts">
+                {prompts.map(q => (
+                  <div className="ask-prompt-item" key={q}>{q}</div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: iframe */}
+            <div className="ask-embed-wrap">
+              <div className="ask-embed-label">
+                <span className="ask-embed-label-left">Portfolio assistant · live</span>
+                <span className="ask-embed-label-right">evidence-based · RAG</span>
+              </div>
+              <iframe
+                title="Ask the Portfolio — evidence-based assistant"
+                src={PORTFOLIO_ASSISTANT_URL}
+                className="ask-iframe"
+                loading="lazy"
+                allow="clipboard-read; clipboard-write"
+              />
+
+              <div className="ask-cta">
+                <div className="ask-cta-text">
+                  <h3>Prefer source-level review?</h3>
+                  <p>
+                    The complete evidence library is available for direct search, filtering,
+                    and artifact-level review.
+                  </p>
+                </div>
+                <window.Link to="/library" className="btn outline-dark">
+                  Open library <window.ArrowRight size={13} />
+                </window.Link>
+              </div>
+            </div>
+
           </div>
-          <iframe
-            title="Ask the Portfolio assistant"
-            src={PORTFOLIO_ASSISTANT_URL}
-            className="ask-iframe-clean"
-            loading="lazy"
-            allow="clipboard-read; clipboard-write"
-            style={{ width: "100%", height: "820px", border: 0, display: "block" }}
-          />
         </div>
+      </div>
 
-        <div className="cta-bar ask-fallback-clean">
-          <div>
-            <h3>Prefer source-level review?</h3>
-            <p>
-              The complete portfolio evidence library remains available for direct search,
-              filtering, and artifact-level review.
-            </p>
-          </div>
-          <window.Link to="/library" className="btn">Open library</window.Link>
-        </div>
-      </section>
     </main>
   );
 }

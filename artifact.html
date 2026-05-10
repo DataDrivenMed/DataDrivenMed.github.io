@@ -159,6 +159,25 @@
     }
     .artifact-notice { color: var(--muted); font-size: 14px; line-height: 1.65; }
 
+
+    .artifact-bill-evidence {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .artifact-bill-evidence .bill-label {
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px;
+    }
+    .artifact-bill-table-wrap {
+      width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: rgba(248,247,243,.75);
+    }
+    .artifact-bill-table { width: 100%; min-width: 720px; border-collapse: collapse; }
+    .artifact-bill-table th, .artifact-bill-table td { padding: 13px 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .artifact-bill-table th { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: rgba(31,58,50,.05); }
+    .artifact-bill-table td:first-child { width: 220px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+    .artifact-bill-table td:last-child { color: var(--muted); line-height: 1.62; font-size: 14.5px; }
+    .artifact-bill-table tr:last-child td { border-bottom: 0; }
+
     @media (max-width: 1100px) {
       .artifact-hero-grid, .artifact-layout { grid-template-columns: 1fr; }
       .artifact-sidebar { position: static; order: 2; }
@@ -217,13 +236,39 @@
       if (front.trim()) html += '<div class="artifact-frontmatter">' + escapeHtml(front.trim()) + '</div>';
     }
     function closeList(){ if(inList){ html += '</ul>'; inList=false; } }
-    for (const line of parts) {
+    function isTableSeparator(row) { return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(row); }
+    function parseTableRow(row) {
+      return row.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim().replace(/<br\s*\/?\s*>/gi, ' '));
+    }
+    function renderTable(tableLines) {
+      const rows = tableLines.filter(line => !isTableSeparator(line)).map(parseTableRow);
+      if (!rows.length) return '';
+      const headers = rows[0];
+      const bodyRows = rows.slice(1);
+      return '<div class="artifact-bill-table-wrap"><table class="artifact-bill-table"><thead><tr>' +
+        headers.map(h => '<th>' + inlineMd(h) + '</th>').join('') +
+        '</tr></thead><tbody>' +
+        bodyRows.map(r => '<tr>' + headers.map((_, i) => '<td>' + inlineMd(r[i] || '') + '</td>').join('') + '</tr>').join('') +
+        '</tbody></table></div>';
+    }
+    for (let idx = 0; idx < parts.length; idx++) {
+      const line = parts[idx];
       if (line.trim().startsWith('```')) {
         if (!inCode) { closeList(); inCode = true; code=[]; }
         else { html += '<pre><code>' + escapeHtml(code.join('\n')) + '</code></pre>'; inCode=false; }
         continue;
       }
       if (inCode) { code.push(line); continue; }
+      if (/^\s*\|/.test(line)) {
+        closeList();
+        const tableLines = [line];
+        while (idx + 1 < parts.length && /^\s*\|/.test(parts[idx + 1])) {
+          idx++;
+          tableLines.push(parts[idx]);
+        }
+        html += renderTable(tableLines);
+        continue;
+      }
       if (/^#\s+/.test(line)) { closeList(); html += '<h1>' + inlineMd(line.replace(/^#\s+/, '')) + '</h1>'; continue; }
       if (/^##\s+/.test(line)) { closeList(); html += '<h2>' + inlineMd(line.replace(/^##\s+/, '')) + '</h2>'; continue; }
       if (/^###\s+/.test(line)) { closeList(); html += '<h3>' + inlineMd(line.replace(/^###\s+/, '')) + '</h3>'; continue; }
@@ -305,6 +350,46 @@
     return chips.join('');
   }
 
+
+  const LEGISLATIVE_BILLS_TABLE = [
+    { bill: 'HCR241', description: 'Urges and requests the Dept. of Health and Hospitals and LSU Board of Supervisors to conduct a study assessing the current and future delivery of health care and medical education in La. and to make recommendations' },
+    { bill: 'SB428', description: 'Authorizes the LSU Health Sciences Center to maximize the use of affiliation agreements with other hospitals in order to maximize the use of Medicare graduate medical education monies.' },
+    { bill: 'HCR116', description: 'Urges and requests the Dept. of Health and Hospitals and LSU Board of Supervisors to conduct a study assessing the current and future delivery of health care and medical education in La. and to make recommendations' },
+    { bill: 'SB98', description: 'Provides for the definition of major teaching hospital for the purposes of hospital prospective reimbursement methodology.' },
+    { bill: 'SB178', description: 'Creates a fund for the purpose of funding the out-of-state tuition of certain students enrolled in certain medical education programs when such medical education programs are not offered in Louisiana.' },
+    { bill: 'SR191', description: 'Requests the Senate Committee on Health and Welfare to study the governance, efficiencies, and service delivery of the Louisiana State University Health Care Services Division and the Louisiana State University Health Sciences Center.' },
+    { bill: 'HR42', description: 'Requires submission for approval by the House Committee on Appropriations of any cooperative endeavor agreements between the LSU Board of Supervisors and a private entity involving the change in management of a public hospital' },
+    { bill: 'HOUSE CONCURRENT RESOLUTION NO. 83', description: 'Task force to study, identify, and make recommendations to address the shortage of specialist physicians in this state.' },
+    { bill: 'HCR134', description: "Creates the Medical Education & Research Finance Work Group to provide findings and recommendations to the legislature relative to a formula-based financing model for the funding of Louisiana's public institutions for graduate and professional medical education and biomedical and health-related research" },
+    { bill: 'HB885', description: 'Enacts the Safety Net Hospital Preservation Act' },
+    { bill: 'HCR17', description: "Creates a study committee to evaluate and make recommendations concerning Louisiana's system of healthcare delivery" },
+    { bill: 'HR230', description: 'Requests a study of means by which to enhance access to health services in health professional shortage areas' },
+    { bill: 'SB408', description: 'Provides for the definition of major teaching hospital for the purposes of hospital prospective reimbursement methodology.' },
+    { bill: 'HR205', description: 'Urges and requests the Louisiana Department of Health and the Louisiana Workforce Commission to organize a special committee to develop strategies for addressing the direct support professional workforce shortage' },
+    { bill: 'HB1033', description: 'Provides for enactment of the Workforce and Innovation for a Stronger Economy (WISE) Fund' },
+    { bill: 'SB 337', description: 'Provides for the development of an outcomes-based funding formula for postsecondary education.' }
+  ];
+
+  function isLegislativeBillsArtifact(file, title) {
+    return file === 'data-driven-consultations-for-louisiana-legislative-bills.md' || /Data-Driven Consultations for Louisiana Legislative Bills/i.test(title || '');
+  }
+
+  function renderLegislativeBillsEvidence(file, title) {
+    if (!isLegislativeBillsArtifact(file, title)) return '';
+    return `
+      <div class="artifact-bill-evidence" id="legislative-bills">
+        <div class="bill-label">Legislative bill evidence table</div>
+        <div class="artifact-bill-table-wrap">
+          <table class="artifact-bill-table">
+            <thead><tr><th>Louisiana Legislative Bill</th><th>Bill Description</th></tr></thead>
+            <tbody>
+              ${LEGISLATIVE_BILLS_TABLE.map(row => `<tr><td>${escapeHtml(row.bill)}</td><td>${escapeHtml(row.description)}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+  }
+
   function buildPage(meta, fields, file) {
     const title = meta.title || fields.title || 'Untitled artifact';
     const category = meta.category || fields.portfolioCategory || 'Portfolio artifact';
@@ -340,6 +425,7 @@
             <div class="artifact-side-label">On this page</div>
             <nav class="artifact-nav">
               <a href="#overview">Executive overview</a>
+              ${isLegislativeBillsArtifact(file, title) ? '<a href="#legislative-bills">Legislative bills table</a>' : ''}
               <a href="#positioning">Portfolio positioning</a>
               <a href="#source">Source-preserving content</a>
             </nav>
@@ -360,6 +446,7 @@
             <h2>Executive overview</h2>
             <h3>Why this artifact matters</h3>
             <p>${inlineMd(lead)}</p>
+            ${renderLegislativeBillsEvidence(file, title)}
             ${fields.preface ? `<div class="artifact-callout"><div class="artifact-callout-label">Additional portfolio framing</div>${renderMarkdown(fields.preface)}</div>` : ''}
           </section>
 

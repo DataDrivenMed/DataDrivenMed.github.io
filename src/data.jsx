@@ -64,7 +64,7 @@ const CAPABILITIES = [
     id: "faculty-affairs",
     num: "09",
     title: "Faculty Affairs & Institutional Culture",
-    short: "Evaluation infrastructure for 900+ faculty, 15 departments, and a $2M+ development portfolio.",
+    short: "Evaluation infrastructure across 25+ departments and centers, faculty development, mentoring, climate, and institutional culture work.",
     skills: ["Logic Model", "CIPP", "Kirkpatrick", "Climate analytics", "Mentoring evaluation"],
   },
   {
@@ -275,7 +275,7 @@ const ARTIFACTS = [
   // ---------- 05 GME ----------
   ART("gme-01", "Comprehensive GME Policy, Financing & Workforce Strategy Statement",
     "gme-finance", "Flagship case study",
-    "Manages graduate medical education strategy across LSU Health New Orleans - 70+ residency and fellowship programs with more than 1000 FTEs across three major healthcare systems across the state. Operates at the intersection of Medicare/Medicaid GME policy and regulations, regional workforce math, and inter-system political dynamics.",
+    "Drives GME strategy and cross-system alignment across LSU Health New Orleans — 70+ residency and fellowship programs, 1,000+ FTEs, three major health systems — working at the intersection of Medicare/Medicaid policy, physician workforce planning, and institutional governance.",
     ["CMS DGME / IME", "Workforce math", "Multi-system politics", "Strategic forecasting"],
     ["Dean", "Senior leadership", "Search committees"],
     "Single most defensible GME-finance positioning artifact in the portfolio.",
@@ -315,7 +315,7 @@ const ARTIFACTS = [
 
   ART("gme-05", "GME Contracts and Negotiations",
     "gme-finance", "Supporting case study",
-    "Primary staff resource for multi-million-dollar LSU-LCMC partnership agreement documentation and negotiation. Drafted strategic contract language and helped negotiate anti-ratchet provisions and a portfolio-level planning framework in place of rigid program caps.",
+    "Served as primary staff resource for a multi-million-dollar LSU–LCMC partnership agreement, drafting strategic contract language and contributing to negotiation of provisions and a portfolio-level planning framework.",
     ["Contract negotiation", "Strategic language", "Portfolio framing"],
     ["Senior leadership", "Legal"],
     "Direct line-of-sight to dollars-on-the-table outcomes for clinical service lines.",
@@ -342,7 +342,7 @@ const ARTIFACTS = [
 
   ART("gme-08", "NIH-Funded Intern Health Study: GME Wellness Analytics",
     "gme-finance", "Supporting case study",
-    "Data Analyst & Institutional Liaison on the University of Michigan Intern Health Study, handling resident depression risk data with strict confidentiality protocols.",
+    "Analyzed LSU Health resident data from the University of Michigan Intern Health Study, coordinating directly with the Michigan team for data access and managing depression risk data under strict confidentiality protocols.",
     ["Wellness analytics", "Confidential data handling", "Multi-institutional research"],
     ["GME leadership", "Research"],
     "Demonstrates capacity to handle high-sensitivity trainee data on a multi-institutional NIH study.",
@@ -511,13 +511,14 @@ const ARTIFACTS = [
 
   ART("pol-02", "Data-Driven Consultations for Louisiana Legislative Bills",
     "policy-rural", "Flagship case study",
-    "Supplied data-driven insights for legislative bills covering workforce needs, medical education, and funding mechanisms - including HBs 17, 116, 134, 178, 191, 205, 230, 241, 337, 408, and 1033.",
+    "Supplied data-driven insights for Louisiana legislative bills covering workforce needs, medical education, health system delivery, teaching hospital reimbursement, safety-net hospital preservation, and postsecondary funding mechanisms.",
     ["Legislative analysis", "Workforce needs", "Funding mechanisms"],
     ["State legislature", "External consulting"],
     "Direct contribution to state policy with documented bill-level engagement.",
     "Data Driven Consultations for Legislative Bills.md",
     ["Louisiana", "Legislative", "Bills"],
     true),
+
 
   ART("pol-03", "Federal and State Rural Health Transformation Strategic Response",
     "policy-rural", "Flagship case study",
@@ -622,12 +623,12 @@ const ARTIFACTS = [
   // ---------- 09 Faculty Affairs ----------
   ART("fac-01", "Faculty Development & Mentoring Evaluation Infrastructure",
     "faculty-affairs", "Flagship case study",
-    "Built foundational evaluation infrastructure for a new institutional office: 900+ faculty, 15 departments, $2M+ budget. Hybrid Logic Model + CIPP + Kirkpatrick architecture across 90+ data sources.",
+    "Built foundational evaluation infrastructure for a new institutional office across 25+ departments and centers, using a hybrid Logic Model + CIPP + Kirkpatrick architecture across 90+ data sources.",
     ["Logic Model", "CIPP", "Kirkpatrick", "Evaluation infrastructure"],
     ["Faculty Affairs leadership", "Dean"],
     "Anchor faculty-affairs flagship - defensible scale and methodological seriousness.",
     "Office of Faculty Affairs-Faculty Development and Mentoring.md",
-    ["900+ faculty", "$2M+", "Logic Model", "CIPP", "Kirkpatrick"],
+    ["25+ departments and centers", "Logic Model", "CIPP", "Kirkpatrick"],
     true),
 
   ART("fac-02", "Faculty & Institutional Affairs Data Strategy",
@@ -731,7 +732,7 @@ const ARTIFACTS = [
   // ---------- Workforce ----------
   ART("an-07", "Healthcare Workforce Strategy Portfolio",
     "analytics", "Flagship capability artifact",
-    "Healthcare workforce projections, strategic planning, and clinical training site analysis from 1997 onward.",
+    "Healthcare workforce projections, strategic planning, and clinical training site analysis.",
     ["Workforce projections", "Strategic planning"],
     ["State", "Senior leadership"],
     "Long-arc workforce-strategy track record.",
@@ -879,6 +880,32 @@ const ARTIFACTS = [
     ["Tech", "Resources", "Compliance"]),
 ];
 
+// Detailed bill table displayed inside the pol-02 library popup.
+const LEGISLATIVE_BILLS_TABLE = [
+  { bill: "HCR241", description: "Urges and requests the Dept. of Health and Hospitals and LSU Board of Supervisors to conduct a study assessing the current and future delivery of health care and medical education in La. and to make recommendations" },
+  { bill: "SB428", description: "Authorizes the LSU Health Sciences Center to maximize the use of affiliation agreements with other hospitals in order to maximize the use of Medicare graduate medical education monies." },
+  { bill: "HCR116", description: "Urges and requests the Dept. of Health and Hospitals and LSU Board of Supervisors to conduct a study assessing the current and future delivery of health care and medical education in La. and to make recommendations" },
+  { bill: "SB98", description: "Provides for the definition of major teaching hospital for the purposes of hospital prospective reimbursement methodology." },
+  { bill: "SB178", description: "Creates a fund for the purpose of funding the out-of-state tuition of certain students enrolled in certain medical education programs when such medical education programs are not offered in Louisiana." },
+  { bill: "SR191", description: "Requests the Senate Committee on Health and Welfare to study the governance, efficiencies, and service delivery of the Louisiana State University Health Care Services Division and the Louisiana State University Health Sciences Center." },
+  { bill: "HR42", description: "Requires submission for approval by the House Committee on Appropriations of any cooperative endeavor agreements between the LSU Board of Supervisors and a private entity involving the change in management of a public hospital" },
+  { bill: "HOUSE CONCURRENT RESOLUTION NO. 83", description: "Task force to study, identify, and make recommendations to address the shortage of specialist physicians in this state." },
+  { bill: "HCR134", description: "Creates the Medical Education & Research Finance Work Group to provide findings and recommendations to the legislature relative to a formula-based financing model for the funding of Louisiana's public institutions for graduate and professional medical education and biomedical and health-related research" },
+  { bill: "HB885", description: "Enacts the Safety Net Hospital Preservation Act" },
+  { bill: "HCR17", description: "Creates a study committee to evaluate and make recommendations concerning Louisiana's system of healthcare delivery" },
+  { bill: "HR230", description: "Requests a study of means by which to enhance access to health services in health professional shortage areas" },
+  { bill: "SB408", description: "Provides for the definition of major teaching hospital for the purposes of hospital prospective reimbursement methodology." },
+  { bill: "HR205", description: "Urges and requests the Louisiana Department of Health and the Louisiana Workforce Commission to organize a special committee to develop strategies for addressing the direct support professional workforce shortage" },
+  { bill: "HB1033", description: "Provides for enactment of the Workforce and Innovation for a Stronger Economy (WISE) Fund" },
+  { bill: "SB 337", description: "Provides for the development of an outcomes-based funding formula for postsecondary education." },
+];
+
+const legislativeBillsArtifact = ARTIFACTS.find(a => a.id === "pol-02");
+if (legislativeBillsArtifact) {
+  legislativeBillsArtifact.billTableIntro = "Responsible for supplying data-driven insights to support legislative bills. The legislative bills vary in their focus, ranging from workforce needs to medical education and funding mechanisms.";
+  legislativeBillsArtifact.billTable = LEGISLATIVE_BILLS_TABLE;
+}
+
 // Map flagship case studies for the home + featured-cases pages.
 const FLAGSHIP_IDS = [
   "execstrat-01", // Executive strategic planning
@@ -1009,7 +1036,7 @@ ARTIFACTS.forEach(a => {
 const HERO_STATS = [
   { num: "70+",  lbl: "Residency & fellowship programs with more than 1000 FTEs (Medicare/ Medicaid GME policy & regulations, three major healthcare systems across the state)" },
   { num: "90+",  lbl: "Integrated institutional data sources" },
-  { num: "900+", lbl: "Faculty under evaluation infrastructure" },
+  { num: "25+", lbl: "Departments and centers in institutional analytics scope" },
   { num: "Multiple federal and state", lbl: "Federal and state policy scopes analyzed for strategic alignment" },
   { num: "21",   lbl: "Pilots in NCI AI Innovation Program contribution" },
   { num: "82",   lbl: "Artifacts in capability portfolio" },
