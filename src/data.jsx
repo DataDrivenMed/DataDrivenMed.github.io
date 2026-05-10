@@ -1015,6 +1015,7 @@ const LIVE_ARTIFACT_LINKS = {
   "ai-03": { url: "https://datadrivenmed.github.io/Thalamus/", label: "View live project" },
   "ai-04": { url: "https://datadrivenmed.github.io/UpToDateAI/", label: "View live project" },
   "ai-05": { url: "https://medai-lexicon.vercel.app/", label: "View live project" },
+  "ai-06": { url: "https://medai-lexicon.vercel.app/teaching-guide", label: "View live project" },
   "ai-08": { url: "https://datadrivenmed.github.io/ChatGPT-for-Clinicians/", label: "View live project" },
   "ai-10": { url: "https://datadrivenmed.github.io/OpenEvidence/", label: "View live project" },
   "ai-11": { url: "https://datadrivenmed.github.io/Vetting-AI-Tools/", label: "View live project" },
