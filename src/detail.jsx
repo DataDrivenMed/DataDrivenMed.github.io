@@ -48,11 +48,7 @@ const CASE_DETAILS = {
     related: ["gme-03", "gme-05", "gme-04", "execstrat-01"],
   },
   "fac-01": {
-<<<<<<< HEAD
     problem: "Faculty Affairs and institutional culture work across 25+ departments and centers is a measurement problem first and a culture problem second. Without a shared evaluation infrastructure, every department and center generates its own metrics, leadership cannot compare across units, and faculty development work cannot be evaluated consistently.",
-=======
-    problem: "Faculty Affairs at scale - 500+ faculty, 15 departments, multiple tracks, and a $2M+ annual development portfolio - is a measurement problem first and a culture problem second. Without a shared evaluation infrastructure, every department generates its own metrics, leadership cannot compare across units, and faculty development spend cannot be evaluated.",
->>>>>>> 37d58f06659ce71fa6f8bde375da5fdd3665c90e
     role: "Architect of the institutional faculty-evaluation infrastructure: the data model, the evaluation frameworks (Logic Model, CIPP, Kirkpatrick), the climate analytics, and the longitudinal dashboards.",
     approach: [
       "Standardize evaluation language across departments using Logic Model + CIPP + Kirkpatrick - three frameworks chosen specifically because each handles a different evaluation question.",

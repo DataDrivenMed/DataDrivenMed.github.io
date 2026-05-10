@@ -317,7 +317,6 @@ function AboutPage() {
         </div>
       </div>
 
-<<<<<<< HEAD
       {/* Competencies — light zone with McKinsey column layout */}
       <div className="competencies-section">
         <div className="container">
@@ -345,34 +344,6 @@ function AboutPage() {
                   </div>
                 ))}
               </div>
-=======
-      <section className="container" style={{ marginTop: 32 }}>
-        <div className="section-head">
-          <div>
-            <span className="num">§ COMPETENCIES</span>
-            <h2>Leadership competencies</h2>
-          </div>
-          <p className="lead">
-            Eight senior leadership competencies, each anchored in artifacts inside this
-            portfolio and expressed as institutional operating capacity, not aspirational language.
-          </p>
-        </div>
-
-        <div className="competencies" style={{ marginTop: 40 }}>
-          {[
-            ["Strategic planning at scale", "Executive briefings, institutional planning architecture, and matrixed alignment across the School of Medicine, health systems, and LSU Health Sciences Center."],
-            ["Regulatory and policy synthesis", "Working fluency in LCME, ACGME, AAMC, NIH, FDA, AHRQ, CMS, AAU, Medicare/Medicaid GME policy, and Louisiana legislative context."],
-            ["Quantitative leadership", "Predictive models, executive dashboards, K-means / PCA / Bayesian / regression frameworks, and longitudinal analytics built for decision support."],
-            ["AI governance", "SOM AI governance suite spanning a pre-final policy draft, compliance audit, tool vetting, faculty fluency, teaching guides, clinical AI evaluation, and leadership briefings."],
-            ["Workforce finance", "70+ residency and fellowship programs with more than 1000 FTEs · Medicare/Medicaid GME policy and regulations · three major healthcare systems across the state."],
-            ["Institutional culture", "Faculty Affairs evaluation infrastructure across 500+ faculty and 15 departments, including mentoring, climate, and development portfolio evaluation."],
-            ["Public-sector positioning", "FDA RFI-grade clinical trials response · NCI AI Innovation Program contribution · multiple federal and state policy scopes analyzed for strategic alignment."],
-            ["Research and scholarship", "NIH portfolio clustering, NSF EPSCoR analytics, scholarly productivity, and translation of research intelligence into institutional growth strategy."],
-          ].map(([h, d]) => (
-            <div className="item" key={h}>
-              <div className="h">{h}</div>
-              <div className="d">{d}</div>
->>>>>>> 37d58f06659ce71fa6f8bde375da5fdd3665c90e
             </div>
           </div>
         </div>
