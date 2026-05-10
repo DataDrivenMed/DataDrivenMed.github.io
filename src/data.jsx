@@ -64,7 +64,11 @@ const CAPABILITIES = [
     id: "faculty-affairs",
     num: "09",
     title: "Faculty Affairs & Institutional Culture",
+<<<<<<< HEAD
     short: "Evaluation infrastructure across 25+ departments and centers, faculty development, mentoring, climate, and institutional culture work.",
+=======
+    short: "Evaluation infrastructure for 500+ faculty, 25+ departments, and a $2M+ development portfolio.",
+>>>>>>> 37d58f06659ce71fa6f8bde375da5fdd3665c90e
     skills: ["Logic Model", "CIPP", "Kirkpatrick", "Climate analytics", "Mentoring evaluation"],
   },
   {
@@ -623,12 +627,20 @@ const ARTIFACTS = [
   // ---------- 09 Faculty Affairs ----------
   ART("fac-01", "Faculty Development & Mentoring Evaluation Infrastructure",
     "faculty-affairs", "Flagship case study",
+<<<<<<< HEAD
     "Built foundational evaluation infrastructure for a new institutional office across 25+ departments and centers, using a hybrid Logic Model + CIPP + Kirkpatrick architecture across 90+ data sources.",
+=======
+    "Built foundational evaluation infrastructure for a new institutional office: 9500+ faculty, 25+ departments, $2M+ budget. Hybrid Logic Model + CIPP + Kirkpatrick architecture across 90+ data sources.",
+>>>>>>> 37d58f06659ce71fa6f8bde375da5fdd3665c90e
     ["Logic Model", "CIPP", "Kirkpatrick", "Evaluation infrastructure"],
     ["Faculty Affairs leadership", "Dean"],
     "Anchor faculty-affairs flagship - defensible scale and methodological seriousness.",
     "Office of Faculty Affairs-Faculty Development and Mentoring.md",
+<<<<<<< HEAD
     ["25+ departments and centers", "Logic Model", "CIPP", "Kirkpatrick"],
+=======
+    ["500+ faculty", "$2M+", "Logic Model", "CIPP", "Kirkpatrick"],
+>>>>>>> 37d58f06659ce71fa6f8bde375da5fdd3665c90e
     true),
 
   ART("fac-02", "Faculty & Institutional Affairs Data Strategy",
@@ -1036,7 +1048,11 @@ ARTIFACTS.forEach(a => {
 const HERO_STATS = [
   { num: "70+",  lbl: "Residency & fellowship programs with more than 1000 FTEs (Medicare/ Medicaid GME policy & regulations, three major healthcare systems across the state)" },
   { num: "90+",  lbl: "Integrated institutional data sources" },
+<<<<<<< HEAD
   { num: "25+", lbl: "Departments and centers in institutional analytics scope" },
+=======
+  { num: "500+", lbl: "Faculty under evaluation infrastructure" },
+>>>>>>> 37d58f06659ce71fa6f8bde375da5fdd3665c90e
   { num: "Multiple federal and state", lbl: "Federal and state policy scopes analyzed for strategic alignment" },
   { num: "21",   lbl: "Pilots in NCI AI Innovation Program contribution" },
   { num: "82",   lbl: "Artifacts in capability portfolio" },
