@@ -1693,3 +1693,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   margin-bottom: 16px;
   color: var(--muted);
 }
+.hero-lead-secondary {
+  margin-top: 18px;
+  opacity: 0.88;
+  max-width: 760px;
+}
