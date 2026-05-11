@@ -413,7 +413,7 @@ const ARTIFACTS = [
     ["Vendor scoping", "Requirements analysis", "Risk surfacing"],
     ["Senior leadership", "Admissions"],
     "Anchors enterprise-systems credibility - the kind of work that lives or dies on documented requirements rigor.",
-    "AMR Project.md",
+    "AMP Project.md",
     ["AMP", "ZAP", "Vendor scoping"],
     true),
 
@@ -929,7 +929,6 @@ const CLEANED_ARTIFACT_FILES_BY_SOURCE = {
   "AHRQ first in the world.md": "world-first-ahrq-teamstepps-point-of-care-simulation-initiative.md",
   "AI Policy.md": "school-of-medicine-ai-governance-and-policy-framework.md",
   "AMP Project.md": "admissions-management-platform-transformation-and-vendor-scoping.md",
-  "AMR Project.md": "admissions-management-platform-transformation-and-vendor-scoping.md",
   "AWARDS.md": "awards-and-honors-structured-portfolio-version.md",
   "Awards and Honors.md": "awards-and-honors-original-cv-source.md",
   "BAC CSSP.md": "centre-for-swimming-science-and-performance-collaboration.md",
@@ -1015,10 +1014,12 @@ const LIVE_ARTIFACT_LINKS = {
   "ai-03": { url: "https://datadrivenmed.github.io/Thalamus/", label: "View live project" },
   "ai-04": { url: "https://datadrivenmed.github.io/UpToDateAI/", label: "View live project" },
   "ai-05": { url: "https://medai-lexicon.vercel.app/", label: "View live project" },
-  "ai-06": { url: "https://medai-lexicon.vercel.app/teaching-guide", label: "View live project" },
   "ai-08": { url: "https://datadrivenmed.github.io/ChatGPT-for-Clinicians/", label: "View live project" },
   "ai-10": { url: "https://datadrivenmed.github.io/OpenEvidence/", label: "View live project" },
   "ai-11": { url: "https://datadrivenmed.github.io/Vetting-AI-Tools/", label: "View live project" },
+  "sim-04": { url: "https://www.lsuhsc.edu/admin/vcaf/mcip.aspx", label: "View live project" },
+  "an-04": { url: "https://public.tableau.com/app/profile/ramparagi/vizzes", label: "View live project" },
+  "an-05": { url: "https://datadrivenmed.github.io/hwc-analytics/", label: "View live project" },
   "res-04": { url: "https://datadrivenmed.github.io/nih-funding-intelligence-explorer/", label: "View live project" },
   "pol-10": { url: "https://datadrivenmed.github.io/Rural-Health-Strategic-Intelligence/", label: "View live project" },
   "pol-11": { url: "https://datadrivenmed.github.io/rural-health-signal-monitor/", label: "View live project" },
@@ -1026,116 +1027,12 @@ const LIVE_ARTIFACT_LINKS = {
   "swim-03": { url: "https://datadrivenmed.github.io/nahco3-intel/", label: "View live project" },
 };
 
-// Available cleaned artifact files currently stored in /content/artifacts_cleaned_82/.
-// This list makes the evidence-page link robust whether an artifact record uses
-// the original source filename (for example, "AI Policy.md") or the cleaned
-// public filename (for example, "school-of-medicine-ai-governance-and-policy-framework.md").
-const AVAILABLE_CLEANED_ARTIFACT_FILES = new Set([
-  "academic-and-community-health-center-curriculum-model-development.md",
-  "admissions-management-platform-transformation-and-vendor-scoping.md",
-  "awards-and-honors-original-cv-source.md",
-  "awards-and-honors-structured-portfolio-version.md",
-  "books-and-book-chapters.md",
-  "centers-for-advanced-learning-and-simulation-evaluation-portfolio.md",
-  "centre-for-swimming-science-and-performance-collaboration.md",
-  "community-and-rural-health-data-strategy-projects.md",
-  "community-service-and-external-strategic-collaborations.md",
-  "comprehensive-gme-policy-financing-and-workforce-strategy-expertise-statement.md",
-  "comprehensive-scholarly-portfolio-source.md",
-  "core-cqi-and-accreditation-leadership-statement.md",
-  "covid-19-epidemiological-tracking-tableau-dashboard.md",
-  "covid-19-rt-and-infection-burden-strategic-analysis.md",
-  "cross-institutional-consulting-and-health-policy-analytics.md",
-  "data-analysis-predictive-modeling-and-institutional-research-portfolio.md",
-  "data-driven-consultations-for-louisiana-legislative-bills.md",
-  "executive-leadership-in-strategic-planning.md",
-  "explanation-artifact-ai-policy-framework.md",
-  "explanation-artifact-ai-tool-vetting-framework.md",
-  "explanation-artifact-ai-triage-safety-brief.md",
-  "explanation-artifact-interactive-medai-lexicon.md",
-  "explanation-artifact-louisiana-women-and-children-health-analytics-dashboard.md",
-  "explanation-artifact-medai-fluency-studio-duplicate-or-companion.md",
-  "explanation-artifact-medai-fluency-studio.md",
-  "explanation-artifact-nih-funding-intelligence-explorer.md",
-  "explanation-artifact-openevidence-clinical-briefing.md",
-  "explanation-artifact-rural-health-bill-tracker.md",
-  "explanation-artifact-rural-health-signal-monitor-daily-digest.md",
-  "explanation-artifact-rural-health-signal-monitor.md",
-  "explanation-artifact-rural-hospital-closure-strategic-intelligence.md",
-  "explanation-artifact-thalamus-cortex-ai-transcript-model-review.md",
-  "explanation-artifact-uptodate-expert-ai-vs-openevidence-analysis.md",
-  "external-gme-finance-consultation-for-olol-and-reimbursement-solutions.md",
-  "faculty-and-institutional-affairs-data-strategy.md",
-  "faculty-development-and-mentoring-evaluation-infrastructure.md",
-  "fda-rfi-response-on-ai-enabled-real-time-clinical-trials.md",
-  "financial-and-resource-management-data-strategy-projects.md",
-  "gme-contracts-and-negotiations.md",
-  "governmental-and-technical-reports.md",
-  "graduate-medical-education-projects.md",
-  "grants-and-contracts-original-detailed-source.md",
-  "grants-and-contracts-structured-portfolio-version.md",
-  "h-r-1-rural-health-transformation-program-strategic-response.md",
-  "healthcare-workforce-projects.md",
-  "healthcare-workforce-strategy-portfolio.md",
-  "iit-madras-international-partnership-for-cancer-ai-and-genomics.md",
-  "institutional-leadership-and-committee-memberships.md",
-  "interdisciplinary-projects.md",
-  "journal-publications.md",
-  "lake-charles-family-medicine-lppf-and-gme-financing-analysis.md",
-  "legislative-bills-portfolio.md",
-  "legislative-policy-initiatives.md",
-  "lsu-health-school-of-medicine-analytics-data-sources.md",
-  "lsu-lcmc-nci-ai-innovation-program-contribution.md",
-  "mcip-educational-platform-for-louisiana-quality-network.md",
-  "medai-teaching-guide-explanation-artifact.md",
-  "nih-funded-intern-health-study-gme-wellness-analytics.md",
-  "nih-research-portfolio-clustering-and-growth-strategy.md",
-  "nsf-epscor-crest-institutional-analytics-support.md",
-  "office-of-admissions-data-strategy-and-accreditation-compliance.md",
-  "office-of-community-engagement-and-health-programs-analytics.md",
-  "office-of-graduate-medical-education-data-strategy.md",
-  "office-of-medical-education-data-strategy-and-policy.md",
-  "office-of-medical-education-research-and-development-role.md",
-  "office-of-medical-student-research-strategic-support.md",
-  "office-of-research-strategy-and-analytics.md",
-  "office-of-student-affairs-data-analytics-and-academic-support.md",
-  "office-of-undergraduate-medical-education-data-strategy.md",
-  "oral-presentations.md",
-  "patient-care-and-clinical-practice-initiatives.md",
-  "peer-review-and-academic-evaluation.md",
-  "poster-presentations.md",
-  "program-development-and-healthcare-initiatives.md",
-  "research-associate-role-medical-education-data-strategy.md",
-  "resident-and-fellow-quality-and-patient-safety-report-cards.md",
-  "resources-technology-and-innovation-initiatives.md",
-  "school-of-medicine-ai-governance-and-policy-framework.md",
-  "statewide-public-private-partnership-gme-transformation.md",
-  "the-chlorinated-chronicles-duplicate-copy.md",
-  "the-chlorinated-chronicles-swimming-science-thought-leadership.md",
-  "world-first-ahrq-teamstepps-point-of-care-simulation-initiative.md",
-]);
-
-function resolveCleanArtifactFile(sourceFile) {
-  if (!sourceFile) return null;
-
-  // Normal case: sourceFile is the original filename and maps to a cleaned public file.
-  const mapped = CLEANED_ARTIFACT_FILES_BY_SOURCE[sourceFile];
-  if (mapped && AVAILABLE_CLEANED_ARTIFACT_FILES.has(mapped)) return mapped;
-
-  // Safety case: sourceFile was already manually changed to the cleaned filename.
-  if (AVAILABLE_CLEANED_ARTIFACT_FILES.has(sourceFile)) return sourceFile;
-
-  // Final fallback: tolerate minor whitespace inconsistencies.
-  const trimmed = String(sourceFile).trim();
-  if (AVAILABLE_CLEANED_ARTIFACT_FILES.has(trimmed)) return trimmed;
-  const mappedTrimmed = CLEANED_ARTIFACT_FILES_BY_SOURCE[trimmed];
-  if (mappedTrimmed && AVAILABLE_CLEANED_ARTIFACT_FILES.has(mappedTrimmed)) return mappedTrimmed;
-
-  return null;
-}
+const CLEANED_ARTIFACT_FILE_SET = new Set(Object.values(CLEANED_ARTIFACT_FILES_BY_SOURCE));
 
 ARTIFACTS.forEach(a => {
-  a.cleanFile = resolveCleanArtifactFile(a.sourceFile);
+  const mappedCleanFile = CLEANED_ARTIFACT_FILES_BY_SOURCE[a.sourceFile];
+  const alreadyCleanFile = CLEANED_ARTIFACT_FILE_SET.has(a.sourceFile) ? a.sourceFile : null;
+  a.cleanFile = mappedCleanFile || alreadyCleanFile || null;
   a.fullArtifactUrl = a.cleanFile ? `artifact.html?file=${encodeURIComponent(a.cleanFile)}&id=${encodeURIComponent(a.id)}` : null;
   const live = LIVE_ARTIFACT_LINKS[a.id];
   a.liveUrl = live ? live.url : null;
