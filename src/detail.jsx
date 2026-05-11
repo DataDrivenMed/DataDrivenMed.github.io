@@ -2,7 +2,7 @@
 // =============================================================
 // detail.jsx - Artifact / Case Study detail overlay
 // =============================================================
-const { useEffect: useEffectD, useState: useStateD, useMemo: useMemoD } = React;
+const { useEffect: useEffectD } = React;
 
 // Hand-authored rich case-study sections for a few flagships.
 // Other artifacts auto-render a structured but lighter detail page from data.
@@ -70,11 +70,6 @@ const CASE_DETAILS = {
 
 function fallbackCaseDetail(a) {
   return {
-    problem:
-      "This artifact addresses a specific institutional problem in the " +
-      (window.CAPABILITIES.find(c => c.id === a.category)?.title.toLowerCase() || "portfolio") +
-      " domain. The problem statement is captured in the source artifact and summarized here for executive review.",
-    role: a.role + " - owning artifact authorship, stakeholder coordination, and institutional positioning.",
     approach: [
       "Anchor the work in evidence - regulatory text, data, or peer benchmarks - before writing any institutional posture.",
       "Build the artifact for the actual decision-maker (Dean, HSC leader, university leader, state leader, health-system partner, search committee, external agency), not for the analyst.",
@@ -171,7 +166,7 @@ function ArtifactDetail({ artifact, onClose }) {
 
           <div className="cs-meta-strip">
             <div className="item">
-              <div className="lbl">My role</div>
+              <div className="lbl">Artifact role</div>
               <div className="v">{artifact.role}</div>
             </div>
             <div className="item">
@@ -197,8 +192,6 @@ function ArtifactDetail({ artifact, onClose }) {
             <div className="cs-toc">
               <span className="tlbl">On this page</span>
               <a href="#sec-summary">Executive summary</a>
-              <a href="#sec-problem">Problem &amp; opportunity</a>
-              <a href="#sec-role">My role</a>
               <a href="#sec-approach">Strategic approach</a>
               <a href="#sec-execution">Execution</a>
               <a href="#sec-tools">Tools &amp; frameworks</a>
@@ -217,16 +210,6 @@ function ArtifactDetail({ artifact, onClose }) {
                   {artifact.strategic}
                 </p>
                 {artifact.billTable && <LegislativeBillsTable artifact={artifact} compact={true} />}
-              </section>
-
-              <section className="cs-section" id="sec-problem">
-                <h2>Problem &amp; opportunity</h2>
-                <p>{detail.problem}</p>
-              </section>
-
-              <section className="cs-section" id="sec-role">
-                <h2>My role</h2>
-                <p>{detail.role}</p>
               </section>
 
               <section className="cs-section" id="sec-approach">
