@@ -9,41 +9,41 @@
 
   function ConsultationFootprintSection() {
     const consultationTiers = [
-      [
-        "School of Medicine",
-        "Dean's Office, LCME/CQI, Admissions, UME, GME, Student Affairs, Faculty and Institutional Affairs, Research Services, CALS, and AI governance.",
-        "Trusted across core school missions: education, accreditation, student success, faculty affairs, research, GME, AI, and strategy."
-      ],
-      [
-        "Health Sciences Center",
-        "Chancellor's Office research data infrastructure, research portfolio intelligence, Sponsored Projects, Contracts, Accounting, Clinical Trials Office, Cancer Center, Huron / LSU A&M research growth support, and NSF facilities reporting.",
-        "Translates school-level analytics into HSC-level institutional decision support."
-      ],
-      [
-        "Health-system partners",
-        "LCMC Health GME partnership and contract support, LSU Healthcare Network work, Interim LSU Public Hospital / Medicaid waiver dashboard work, Louisiana Hospital Enterprise CMS cost report and GME funding analysis, and partner hospital DGME / IME interpretation.",
-        "Connects medical school strategy to clinical training sites, partner hospitals, contracts, and workforce finance."
-      ],
-      [
-        "State and legislative",
-        "Louisiana Medical Education Commission, Louisiana Healthworks Commission, Louisiana legislative bill support, specialty physician shortage task-force support, LDH / DHH Bureau of Primary Care and Rural Health consultation, HPSA and MUA/P validation, and rural workforce analysis.",
-        "Operates beyond campus in state policy, workforce planning, rural health, and public-sector decision support."
-      ],
-      [
-        "Federal and national",
-        "CDC-funded WISEWOMAN and ADAPT-POL work, NIH/AHRQ STEPS patient-safety work, AHRQ reviewer role, NCI Cancer Education Grant evaluator role, CMS GME cost-report interpretation, FDA RFI response on AI-enabled clinical trials, AAMC communities, ACGME underserved areas/GME interest group, and ACS Education Institutes work.",
-        "Interprets national funding, regulatory, accreditation, quality, research, and healthcare-financing frameworks."
-      ],
-      [
-        "International and external academic",
-        "Imperial College London patient-safety/simulation collaboration, Monash / Gippsland Medical School collaboration, Tulane, UT Health San Antonio, UIC-linked WISEWOMAN collaborators, IIT Madras / UCSD / LSU cancer and AI partnership framing, and former International Doping Tests & Management service.",
-        "Works across institutions, countries, academic cultures, public health systems, sport science, and technical domains."
-      ],
-      [
-        "Public digital and professional thought leadership",
-        "AI governance artifacts, MedAI Lexicon, MedAI Teaching Guide, AI Tool Vetting Framework, OpenEvidence and UpToDate AI evaluations, Rural Health Strategic Intelligence, Rural Health Signal Monitor, NIH Funding Intelligence Explorer, swimming science analysis, and Nutrition for Swimmers.",
-        "Converts complex institutional, clinical, policy, research, and performance-science knowledge into public-facing tools and education assets."
-      ]
+      {
+        tier: "School of Medicine",
+        chips: ["Dean's Office", "LCME / CQI", "Admissions", "UME", "GME", "Student Affairs", "Faculty Affairs", "Research Services", "CALS", "AI Governance"],
+        signal: "Trusted across core school missions: education, accreditation, student success, faculty affairs, research, GME, AI, and strategy."
+      },
+      {
+        tier: "Health Sciences Center",
+        chips: ["Chancellor's Office", "Research Data Infrastructure", "Sponsored Projects", "Contracts", "Accounting", "Clinical Trials", "Cancer Center", "Huron / LSU A&M", "NSF Facilities Reporting"],
+        signal: "Translates school-level analytics into HSC-level institutional decision support."
+      },
+      {
+        tier: "Health-system partners",
+        chips: ["LCMC Health", "GME Partnerships", "LSU Healthcare Network", "Interim LSU Public Hospital", "Louisiana Hospital Enterprise", "CMS Cost Reports", "DGME / IME", "Training Sites"],
+        signal: "Connects medical school strategy to clinical training sites, partner hospitals, contracts, and workforce finance."
+      },
+      {
+        tier: "State and legislative",
+        chips: ["Medical Education Commission", "Healthworks Commission", "Legislative Bill Support", "Specialty Shortage Task Force", "LDH / DHH", "HPSA", "MUA / P", "Rural Workforce"],
+        signal: "Operates beyond campus in state policy, workforce planning, rural health, and public-sector decision support."
+      },
+      {
+        tier: "Federal and national",
+        chips: ["CDC WISEWOMAN", "CDC ADAPT-POL", "NIH / AHRQ STEPS", "AHRQ Reviewer", "NCI Grant Evaluation", "CMS GME", "FDA RFI", "AAMC Communities", "ACGME", "ACS Education Institutes"],
+        signal: "Interprets national funding, regulatory, accreditation, quality, research, and healthcare-financing frameworks."
+      },
+      {
+        tier: "International and external academic",
+        chips: ["Imperial College London", "Monash / Gippsland", "Tulane", "UT Health San Antonio", "UIC-linked WISEWOMAN", "IIT Madras", "UCSD", "International Doping Tests & Management"],
+        signal: "Works across institutions, countries, academic cultures, public health systems, sport science, and technical domains."
+      },
+      {
+        tier: "Public digital and professional thought leadership",
+        chips: ["AI Governance", "MedAI Lexicon", "MedAI Teaching Guide", "AI Tool Vetting", "OpenEvidence", "UpToDate AI", "Rural Health Intelligence", "NIH Funding Explorer", "Swimming Science", "Nutrition for Swimmers"],
+        signal: "Converts complex institutional, clinical, policy, research, and performance-science knowledge into public-facing tools and education assets."
+      }
     ];
 
     return (
@@ -58,11 +58,16 @@
               national, international, and public-facing domains.
             </p>
             <div className="consultation-grid">
-              {consultationTiers.map(([tier, examples, signal]) => (
+              {consultationTiers.map(({ tier, chips, signal }) => (
                 <article className="consultation-card" key={tier}>
                   <h3>{tier}</h3>
-                  <p>{examples}</p>
-                  <div className="consultation-signal">{signal}</div>
+                  <div className="consultation-chip-row">
+                    {chips.map((chip) => <span key={chip}>{chip}</span>)}
+                  </div>
+                  <div className="consultation-signal">
+                    <strong>Leadership signal</strong>
+                    <p>{signal}</p>
+                  </div>
                 </article>
               ))}
             </div>
