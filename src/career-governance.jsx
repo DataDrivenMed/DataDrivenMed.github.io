@@ -7,7 +7,7 @@ function CareerGovernancePage() {
   const careerTimeline = [
     ["2000-2001", "Medicine Intern", "Victoria Hospital and Bowring and Lady Curzon Hospital, Bangalore, India", "Clinical foundation across hospital service settings."],
     ["2001-2002", "Physician", "Sham Singh Medical Center, Bangalore, India", "Responsibility for ICU, casualty, and emergency units."],
-    ["2003-2005", "Public health and WISEWOMAN program support", "Illinois Department of Public Health, Office of Women's Health and Illinois WISEWOMAN Program", "Worked with Katie Zinn's Illinois WISEWOMAN team and Pamela Balmer's Office of Women's Health portfolio on state women's health program, data, prevention, and policy support."],
+    ["2003-2005", "Public health and WISEWOMAN program support", "Illinois Department of Public Health, Office of Women's Health and Illinois WISEWOMAN Program", "Part of Illinois WISEWOMAN team and Office of Women's Health portfolio on state women's health program, data, prevention, and policy support."],
     ["2004-2005", "Research Analyst", "SIU School of Medicine", "Supported faculty research studies, clinical research protocols, statistical reports, and narrative reports."],
     ["2006-2007", "Data Manager", "NO/AIDS Task Force, New Orleans", "Oversaw data collection systems and supported CDC project reporting, analysis, and program coordinator needs."],
     ["2007-2010", "Research Associate", "OMERAD, LSU School of Medicine", "Medical education research, faculty development, learner assessment, simulation, and scholarship support."],
@@ -29,7 +29,7 @@ function CareerGovernancePage() {
     ["UME and Medical Education", "Curriculum support, educational outcomes, NBME and USMLE analytics, AAMC GQ monitoring, longitudinal education data, and program evaluation."],
     ["GME", "ACGME improvement support, annual program reviews, resident surveys, workforce studies, CMS cost reports, GME funding, and LSU System reporting."],
     ["Student Affairs", "Residency match outcomes, academic support, career advising analytics, educational records, medical student research reporting, and student success indicators."],
-    ["Diversity and Community Engagement", "Student, admissions, GME, faculty, leadership, feeder school, and community engagement analytics."],
+    ["Community Engagement and Health Programs", "Student, admissions, GME, faculty, leadership, feeder school, and community engagement analytics."],
     ["Research Services and Research Strategy", "Research grant analytics, scholarly activity analytics, SWOT analysis, Huron data support, NSF facilities reporting, and research growth strategy."],
     ["Faculty and Institutional Affairs", "Faculty rank, time in rank, tenure, term appointment, salary equity, climate, retention, benchmarking, and data governance."],
     ["CALS and Simulation", "Simulation evaluation frameworks, standardized patient infrastructure, clinical performance metrics, patient outcomes, utilization, and longitudinal training impact."],
@@ -49,8 +49,7 @@ function CareerGovernancePage() {
 
   const policyService = [
     ["Illinois Department of Public Health Office of Women's Health", "Supported state women's health program and policy work, including Medical Advisory Board materials, demographic and risk data, WISEWOMAN program research, program development, CPT coding, IRB inputs, curriculum support, and bill-drafting support for the Office during major women's cancer prevention, screening, and funding initiatives."],
-    ["Illinois WISEWOMAN Program", "Worked with Katie Zinn's team through 2005 on a CDC cardiovascular prevention program linked to breast and cervical cancer screening infrastructure, including coordination with chronic disease, aging, health statistics, health promotion, county partners, and UIC-linked collaborators."],
-    ["NO/AIDS Task Force and ADAPT-POL", "Managed and supported data systems for CDC-funded community-based HIV prevention work, including evidence-based intervention adaptation for internet-based venues, focus groups, and online counseling."],
+    ["Illinois WISEWOMAN Program", "Team member through 2005 on a CDC cardiovascular prevention program linked to breast and cervical cancer screening infrastructure, including coordination with chronic disease, aging, health statistics, health promotion, county partners, and UIC-linked collaborators."],
     ["Louisiana State Medical Education Commission", "Member, 2010-2019. Supported medical education and GME data translation, annual reports, public reporting, and funding-related recommendations."],
     ["Louisiana Healthworks Commission", "Was a member of the state workforce commission, showing participation in statewide healthcare workforce coordination and policy infrastructure."],
     ["DHH / LDH and rural health work", "Supported HPSA and MUA/P validation, physician supply infrastructure, rural workforce analysis, and policy-relevant healthcare workforce reporting."]
