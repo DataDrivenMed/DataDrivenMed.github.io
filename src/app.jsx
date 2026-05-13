@@ -19,6 +19,7 @@ function App() {
   let page;
   if (base === "/" || base === "") page = <window.HomePage openArtifact={setActiveArt} />;
   else if (base.startsWith("/about")) page = <window.AboutPage />;
+  else if (base.startsWith("/career-governance")) page = <window.CareerGovernancePage />;
   else if (base.startsWith("/capabilities")) page = <window.CapabilitiesPage />;
   else if (base.startsWith("/library")) page = <window.LibraryPage openArtifact={setActiveArt} />;
   else if (base.startsWith("/case-studies")) page = <window.CaseStudiesPage openArtifact={setActiveArt} />;
