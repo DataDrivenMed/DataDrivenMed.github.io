@@ -206,11 +206,11 @@ function CareerGovernancePage() {
             <div className="career-card-grid three">
               <article>
                 <h3>IDPH Office of Women's Health</h3>
-                <p>Supported Pamela Balmer's Office of Women's Health portfolio through Medical Advisory Board materials, demographic and health-risk data, program development, medical updates, CPT coding, IRB inputs, curriculum support, training materials, and bill-drafting support for the Office during major women's health prevention and funding initiatives.</p>
+                <p>Supported Office of Women's Health portfolio through Medical Advisory Board materials, demographic and health-risk data, program development, medical updates, CPT coding, IRB inputs, curriculum support, training materials, and bill-drafting support for the Office during major women's health prevention and funding initiatives.</p>
               </article>
               <article>
                 <h3>Illinois WISEWOMAN Program</h3>
-                <p>Worked with Katie Zinn's team through 2005 on CDC cardiovascular prevention work linked to breast and cervical cancer screening infrastructure, including coordination across IDPH offices, county-level public health partners, and UIC-linked collaborators.</p>
+                <p>Team member through 2005 on CDC cardiovascular prevention work linked to breast and cervical cancer screening infrastructure, including coordination across IDPH offices, county-level public health partners, and UIC-linked collaborators.</p>
               </article>
               <article>
                 <h3>NO/AIDS and ADAPT-POL</h3>
