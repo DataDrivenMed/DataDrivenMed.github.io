@@ -1,23 +1,56 @@
 /* global window, React */
 // =============================================================
-// Career & Governance page - search committee briefing page
+// Career & Governance page - internal leadership record
 // =============================================================
 
 function CareerGovernancePage() {
-  const careerTimeline = [
-    ["2000-2001", "Medicine Intern", "Victoria Hospital and Bowring and Lady Curzon Hospital, Bangalore, India", "Clinical foundation across hospital service settings."],
-    ["2001-2002", "Physician", "Sham Singh Medical Center, Bangalore, India", "Responsibility for ICU, casualty, and emergency units."],
-    ["2003-2005", "Public health and WISEWOMAN program support", "Illinois Department of Public Health, Office of Women's Health and Illinois WISEWOMAN Program", "Part of Illinois WISEWOMAN team and Office of Women's Health portfolio on state women's health program, data, prevention, and policy support."],
-    ["2004-2005", "Research Analyst", "SIU School of Medicine", "Supported faculty research studies, clinical research protocols, statistical reports, and narrative reports."],
-    ["2006-2007", "Data Manager", "NO/AIDS Task Force, New Orleans", "Oversaw data collection systems and supported CDC project reporting, analysis, and program coordinator needs."],
-    ["2007-2010", "Research Associate", "OMERAD, LSU School of Medicine", "Medical education research, faculty development, learner assessment, simulation, and scholarship support."],
-    ["2010-2013", "Research Associate", "Office of Medical Education, LSU School of Medicine", "Accreditation support, workforce studies, longitudinal education data, predictive modeling, dashboards, simulation consultation, and policy-relevant reporting."],
-    ["2013-present", "Assistant Professor - Research", "LSU School of Medicine", "Academic appointment spanning medical education analytics, GME improvement, workforce studies, simulation research, grants, and scholarly consultation."],
-    ["2017-present", "Director of Accreditation & Strategic Planning Compliance", "Dean's Office and Office of Faculty and Institutional Affairs, LSU School of Medicine", "Enterprise-facing role across accreditation, strategic planning, analytics, GME, faculty affairs, research, workforce, CALS, and legislative data support."]
+  const careerArc = [
+    [
+      "01",
+      "Clinical foundation",
+      "Physician training and hospital care",
+      "Early medicine, ICU, casualty, and emergency-unit experience created a grounded view of clinical operations, patient needs, and frontline care delivery.",
+      "Built clinical credibility and an operator's understanding of healthcare systems."
+    ],
+    [
+      "02",
+      "Public health and prevention systems",
+      "IDPH, WISEWOMAN, women's health, NO/AIDS, ADAPT-POL",
+      "State public health, CDC-funded prevention work, women's health policy support, county implementation, HIV prevention data systems, and community-based intervention adaptation.",
+      "Built public-sector fluency, population-health perspective, program implementation experience, and cross-office coordination."
+    ],
+    [
+      "03",
+      "Medical education, research, and patient safety",
+      "OMERAD, medical education research, simulation, AHRQ / NIH work",
+      "Medical education scholarship, learner assessment, faculty development, patient-safety simulation, evaluation design, and academic-community partnership work.",
+      "Built the evaluation and CQI foundation behind later accreditation, student success, and institutional learning systems."
+    ],
+    [
+      "04",
+      "Accreditation, analytics, and institutional infrastructure",
+      "LCME, ACGME, CME, admissions, UME, GME, student affairs, faculty affairs",
+      "Longitudinal education data, predictive analytics, dashboards, accreditation readiness, student outcomes, faculty analytics, and governance documentation across core academic offices.",
+      "Built institutional operating systems, not just reports."
+    ],
+    [
+      "05",
+      "Workforce finance, policy, and cross-system strategy",
+      "GME finance, CMS, Medicaid, workforce, commissions, legislative support",
+      "Medical Education Commission work, Healthworks Commission participation, legislative data support, specialty shortage task-force support, GME contracts, cost reports, and workforce analysis.",
+      "Built cross-system capacity across the school, health systems, state policy, and public-sector workforce planning."
+    ],
+    [
+      "06",
+      "Executive strategy, AI governance, and swim science leadership",
+      "AI policy, research strategy, executive decision support, international swimming and swim science",
+      "AI governance, clinical AI evaluation, research intelligence, NCI and FDA-facing strategy, executive analytics, public digital scholarship, international swimming experience, anti-doping service, and swim science thought leadership.",
+      "Shows a varied leadership profile: institutional strategist, systems thinker, policy translator, analytics builder, and high-performance sport/science communicator."
+    ]
   ];
 
   const summaryCards = [
-    ["Career progression", "Clinical medicine, state public health, CDC-funded research, medical education, Assistant Professor, and Director of Accreditation & Strategic Planning Compliance."],
+    ["Career arc", "Clinical medicine, state public health, CDC-funded prevention, medical education, accreditation, workforce policy, AI governance, and swim science leadership."],
     ["Governance trust", "LCME, CQI, CME, strategic planning, MCIP informatics, Medical Education Commission, Louisiana Healthworks Commission, and state policy support."],
     ["Cross-system scope", "School of Medicine, HSC, LSU System, health systems, state agencies, federal agencies, FQHC partners, and international collaborators."],
     ["Evidence base", "Administrative responsibilities, strategic consultations, funded projects, legislative support, scholarship, public digital artifacts, and sports governance."]
@@ -82,7 +115,7 @@ function CareerGovernancePage() {
     ["Federal and national bodies", "CDC, NIH/AHRQ, CMS, NSF, ACGME, LCME, AAMC, ACS, FDA-facing policy response work."],
     ["Community and FQHC partners", "Excelth, Jefferson Parish Community Health Center, Louisiana Primary Care Association, Southeast Louisiana AHEC, LA-SEARCH."],
     ["External academic and international partners", "Imperial College London, Monash / Gippsland Medical School, Tulane, UT Health San Antonio, UIC-linked collaborators, IIT Madras, UCSD."],
-    ["International service and sports governance", "Integrated Council of Noble Swimmers, swimming and water polo leadership, and former Doping Control Officer with International Doping Tests & Management, Sweden."]
+    ["International service and sports governance", "Integrated Council of Noble Swimmers, international swimmer background, swim science writing, and former Doping Control Officer with International Doping Tests & Management, Sweden."]
   ];
 
   const strategicWork = [
@@ -153,15 +186,14 @@ function CareerGovernancePage() {
       <section className="career-hero">
         <div className="container">
           <Eyebrow light>Career &amp; Governance</Eyebrow>
-          <h1>Search committee briefing page for Ram Paragi's <em>leadership record.</em></h1>
+          <h1>Career arc and governance footprint for <em>institutional leadership.</em></h1>
           <p>
-            A comprehensive but organized view of career progression, governance service, public policy work,
-            cross-system leadership, funded projects, scholarly credibility, and institutional operating scope.
+            A comprehensive but organized view of the operating range behind the portfolio: clinical care,
+            state public health, CDC-funded prevention work, medical education systems, accreditation,
+            workforce policy, GME finance, AI governance, research strategy, and international swim science.
           </p>
           <div className="career-hero-note">
-            Clinical medicine to state public health, CDC-funded prevention research, medical education analytics,
-            simulation and patient safety, workforce policy, accreditation, GME finance, research strategy,
-            AI governance, and executive decision infrastructure.
+            Built for institutional leaders reviewing scope, trust, judgment, execution capacity, and cross-system reach.
           </div>
         </div>
       </section>
@@ -179,20 +211,33 @@ function CareerGovernancePage() {
 
       <section className="career-light">
         <div className="container career-two-col">
-          <div className="career-label">§ Career progression</div>
+          <div className="career-label">§ Career arc</div>
           <div>
-            <h2>Formal progression and expanding scope.</h2>
-            <div className="career-timeline">
-              {careerTimeline.map(([year, role, org, value]) => (
-                <div className="career-time-row" key={year + role}>
-                  <div className="career-year">{year}</div>
-                  <div>
-                    <h3>{role}</h3>
-                    <strong>{org}</strong>
-                    <p>{value}</p>
-                  </div>
-                </div>
+            <h2>An expanding operating radius, not a narrow analytics track.</h2>
+            <p className="career-intro">
+              The pattern is cumulative: clinical and public-health experience became medical education evaluation,
+              then institutional analytics and accreditation infrastructure, then workforce finance, state policy,
+              executive strategy, AI governance, and swim science communication.
+            </p>
+            <div className="career-arc-flow">
+              {careerArc.map(([num, h, sub, body, signal], index) => (
+                <article className="career-arc-node" key={num}>
+                  <div className="career-arc-num">{num}</div>
+                  <h3>{h}</h3>
+                  <strong>{sub}</strong>
+                  <p>{body}</p>
+                  <div className="career-arc-signal">{signal}</div>
+                  {index < careerArc.length - 1 && <span className="career-arc-arrow">→</span>}
+                </article>
               ))}
+            </div>
+            <div className="career-conclusion-box">
+              <strong>What institutional leaders should see</strong>
+              <p>
+                This record shows a systems-oriented institutional leader who uses data as one tool within a broader
+                leadership toolkit: clinical context, public health implementation, program evaluation, accreditation,
+                finance, workforce strategy, policy translation, governance design, and executive decision support.
+              </p>
             </div>
           </div>
         </div>
@@ -238,11 +283,14 @@ function CareerGovernancePage() {
           <div className="career-label">§ Governance and committees</div>
           <div>
             <h2>Institutional trust signals.</h2>
-            <div className="career-table-wrap">
-              <table className="career-table">
-                <thead><tr><th>Committee / group</th><th>Years</th><th>Leadership signal</th></tr></thead>
-                <tbody>{internalGovernance.map(r => <tr key={r[0]}>{r.map(c => <td key={c}>{c}</td>)}</tr>)}</tbody>
-              </table>
+            <div className="governance-card-grid">
+              {internalGovernance.map(([group, years, signal]) => (
+                <article className="governance-card" key={group}>
+                  <span>{years}</span>
+                  <h3>{group}</h3>
+                  <p>{signal}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
@@ -342,7 +390,7 @@ function CareerGovernancePage() {
                 <ul className="career-list gold-list">{recognitions.map(x => <li key={x}>{x}</li>)}</ul>
                 <div className="mini-block gold-block">
                   <strong>International Service &amp; Sports Governance</strong>
-                  <p>Vice President, Integrated Council of Noble Swimmers, and former Doping Control Officer, International Doping Tests &amp; Management, Sweden.</p>
+                  <p>Vice President, Integrated Council of Noble Swimmers, former Doping Control Officer, International Doping Tests &amp; Management, Sweden, and public swim science contributor.</p>
                 </div>
               </div>
             </div>
