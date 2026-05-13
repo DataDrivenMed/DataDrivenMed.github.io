@@ -348,7 +348,7 @@ function CareerGovernancePage() {
             <h2>Current initiatives and applied analytics record.</h2>
             <div className="career-columns">
               <div>
-                <h3>Active strategic initiatives</h3>
+                <h3> Representative Strategic Initiatives</h3>
                 <ul className="career-list">{activeInitiatives.map(x => <li key={x}>{x}</li>)}</ul>
               </div>
               <div>
