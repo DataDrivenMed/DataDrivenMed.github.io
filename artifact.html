@@ -3,218 +3,85 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Artifact Detail | Ram Paragi Portfolio</title>
+  <title>Evidence Record | Ram Paragi Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
     body { background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%); color: var(--ink); }
-    .artifact-shell { min-height: 100vh; }
-    .artifact-topbar {
-      position: sticky; top: 0; z-index: 30;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      background: rgba(251,249,241,.88);
-      border-bottom: 1px solid var(--line);
-    }
-    .artifact-topbar-inner {
-      max-width: 1240px; margin: 0 auto; padding: 14px 24px;
-      display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    }
-    .artifact-topbar .back-link {
-      display: inline-flex; align-items: center; gap: 10px;
-      color: var(--ink-2); font-weight: 600; font-size: 14px;
-    }
-    .artifact-topbar .back-link:hover { color: var(--accent); }
-    .artifact-top-meta {
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-      color: var(--muted); font-size: 13px;
-    }
-    .artifact-wrap {
-      width: 100%; max-width: 1240px; margin: 0 auto;
-      padding: 34px 24px 88px;
-    }
-    .artifact-hero {
-      background: rgba(255,255,255,.82);
-      border: 1px solid rgba(31,58,50,.12);
-      border-radius: 30px;
-      padding: 34px 34px 30px;
-      box-shadow: 0 24px 70px rgba(20, 23, 28, 0.06);
-      margin-bottom: 28px;
-      position: relative;
-      overflow: hidden;
-    }
-    .artifact-hero:before {
-      content: "";
-      position: absolute; inset: 0 auto auto 0; height: 5px; width: 100%;
-      background: linear-gradient(90deg, var(--accent), rgba(31,58,50,.15));
-    }
-    .artifact-category { display: inline-flex; margin-bottom: 16px; }
-    .artifact-category span {
-      background: rgba(31,58,50,.08); color: var(--accent); border: 1px solid rgba(31,58,50,.14);
-      padding: 8px 12px; border-radius: 999px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 650;
-    }
-    .artifact-title {
-      font-family: var(--serif);
-      font-size: clamp(40px, 6vw, 72px);
-      line-height: .94;
-      letter-spacing: -0.05em;
-      margin: 0 0 16px;
-      max-width: 15ch;
-    }
-    .artifact-lead {
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.55;
-      color: var(--ink-2);
-      max-width: 52ch;
-      margin-bottom: 24px;
-    }
-    .artifact-hero-grid {
-      display: grid; grid-template-columns: 1.55fr .95fr; gap: 28px; align-items: start;
-    }
-    .artifact-kv-grid {
-      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px;
-    }
-    .artifact-kv {
-      border: 1px solid var(--line-2); background: rgba(248,247,243,.8);
-      border-radius: 18px; padding: 16px 16px 14px;
-    }
-    .artifact-kv .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 650; }
-    .artifact-kv .v { color: var(--ink-2); font-size: 14.5px; line-height: 1.5; }
-    .artifact-chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-    .artifact-chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; padding: 8px 11px; border-radius: 999px;
-      border: 1px solid var(--line); background: rgba(248,247,243,.9); color: var(--ink-2);
-    }
-    .artifact-chip.alert { border-color: rgba(166,77,46,.22); background: rgba(166,77,46,.07); color: #7d3820; }
-    .artifact-chip.ok { border-color: rgba(31,58,50,.18); background: rgba(31,58,50,.06); color: var(--accent); }
-
-    .artifact-layout {
-      display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 30px; align-items: start;
-    }
-    .artifact-sidebar {
-      position: sticky; top: 92px;
-      display: grid; gap: 18px;
-    }
-    .artifact-side-card {
-      background: rgba(255,255,255,.78); border: 1px solid var(--line); border-radius: 24px; padding: 20px;
-      box-shadow: 0 10px 30px rgba(20,23,28,.04);
-    }
-    .artifact-side-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 650; margin-bottom: 12px; }
-    .artifact-nav { display: grid; gap: 8px; }
-    .artifact-nav a {
-      display: block; padding: 10px 12px; border-radius: 12px; color: var(--ink-2); font-size: 14px;
-      background: transparent; border: 1px solid transparent;
-    }
-    .artifact-nav a:hover { background: rgba(31,58,50,.05); border-color: rgba(31,58,50,.1); color: var(--accent); }
-    .artifact-mini-list { display: grid; gap: 8px; }
-    .artifact-mini-item { font-size: 13px; color: var(--muted); line-height: 1.55; }
-    .artifact-mini-item strong { color: var(--ink-2); display: block; margin-bottom: 2px; }
-
-    .artifact-main { display: grid; gap: 24px; }
-    .artifact-panel {
-      background: rgba(255,255,255,.82); border: 1px solid var(--line); border-radius: 28px;
-      padding: 30px 30px 28px; box-shadow: 0 16px 44px rgba(20,23,28,.05);
-    }
-    .artifact-panel h2 {
-      font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--muted);
-      margin: 0 0 16px;
-    }
-    .artifact-panel h3 {
-      font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); line-height: .98; letter-spacing: -0.04em;
-      margin: 0 0 18px;
-    }
-    .artifact-panel p, .artifact-panel li { color: var(--muted); line-height: 1.76; font-size: 16px; }
-    .artifact-panel ul { margin: 0; padding-left: 18px; }
-    .artifact-panel strong { color: var(--ink-2); }
-    .artifact-callout {
-      background: linear-gradient(180deg, rgba(31,58,50,.06), rgba(31,58,50,.03));
-      border: 1px solid rgba(31,58,50,.12); border-radius: 22px; padding: 18px 18px 16px;
-      margin-top: 14px;
-    }
-    .artifact-callout-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
-    .artifact-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-    .artifact-tags span {
-      background: var(--tag-bg); color: var(--tag-fg); border-radius: 999px; padding: 8px 12px;
-      font-size: 12px; border: 1px solid rgba(0,0,0,.05);
-    }
-    .artifact-source-shell {
-      background: #fff; border: 1px solid var(--line-soft); border-radius: 22px; padding: 20px 22px;
-    }
-    .artifact-source-shell h1 { font-family: var(--serif); font-size: 38px; line-height: .98; letter-spacing: -0.04em; margin: 0 0 18px; }
-    .artifact-source-shell h2 { font-family: var(--sans); font-size: 22px; letter-spacing: -0.02em; color: var(--ink); margin: 26px 0 12px; }
-    .artifact-source-shell h3 { font-family: var(--sans); font-size: 17px; color: var(--ink-2); margin: 20px 0 10px; }
-    .artifact-source-shell p, .artifact-source-shell li { color: var(--muted); line-height: 1.76; font-size: 15.75px; }
-    .artifact-source-shell ul { padding-left: 20px; margin: 0; }
-    .artifact-source-shell pre {
-      overflow-x: auto; background: #101826; color: #f9fafb; padding: 18px; border-radius: 16px;
-      font-family: var(--mono); font-size: 13px; line-height: 1.6;
-    }
-    .artifact-source-shell code { font-family: var(--mono); background: rgba(20,23,28,.06); padding: 2px 6px; border-radius: 6px; }
-    .artifact-frontmatter {
-      background: rgba(31,58,50,.05); border: 1px solid rgba(31,58,50,.12); border-radius: 18px;
-      padding: 14px; margin-bottom: 18px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); white-space: pre-wrap;
-    }
-    .artifact-notice { color: var(--muted); font-size: 14px; line-height: 1.65; }
-
-
-    .artifact-bill-evidence {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-    }
-    .artifact-bill-evidence .bill-label {
-      font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px;
-    }
-    .artifact-bill-table-wrap {
-      width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: rgba(248,247,243,.75);
-    }
-    .artifact-bill-table { width: 100%; min-width: 720px; border-collapse: collapse; }
-    .artifact-bill-table th, .artifact-bill-table td { padding: 13px 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-    .artifact-bill-table th { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: rgba(31,58,50,.05); }
-    .artifact-bill-table td:first-child { width: 220px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
-    .artifact-bill-table td:last-child { color: var(--muted); line-height: 1.62; font-size: 14.5px; }
-    .artifact-bill-table tr:last-child td { border-bottom: 0; }
-
-    @media (max-width: 1100px) {
-      .artifact-hero-grid, .artifact-layout { grid-template-columns: 1fr; }
-      .artifact-sidebar { position: static; order: 2; }
-      .artifact-main { order: 1; }
-    }
-    @media (max-width: 720px) {
-      .artifact-wrap { padding: 24px 16px 60px; }
-      .artifact-topbar-inner { padding: 12px 16px; }
-      .artifact-hero, .artifact-panel { padding: 22px 20px; border-radius: 24px; }
-      .artifact-kv-grid { grid-template-columns: 1fr; }
-      .artifact-source-shell { padding: 16px; }
-    }
+    .record-shell { min-height: 100vh; }
+    .record-topbar { position: sticky; top: 0; z-index: 30; background: rgba(251,249,241,.92); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+    .record-topbar-inner { max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .back-link { display: inline-flex; align-items: center; gap: 10px; color: var(--ink-2); font-weight: 650; font-size: 14px; }
+    .back-link:hover { color: var(--teal); }
+    .record-meta { display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 13px; }
+    .record-wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 36px 24px 88px; }
+    .record-hero { background: rgba(255,255,255,.86); border: 1px solid var(--line); padding: 34px; margin-bottom: 28px; box-shadow: 0 20px 60px rgba(20,23,28,.06); position: relative; }
+    .record-hero:before { content: ""; position: absolute; inset: 0 auto auto 0; height: 4px; width: 100%; background: linear-gradient(90deg, var(--gold), rgba(184,152,90,.15)); }
+    .record-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .record-title { font-family: var(--serif); font-size: clamp(38px, 5.4vw, 68px); font-weight: 300; line-height: .98; letter-spacing: -.045em; max-width: 15ch; margin: 0 0 18px; }
+    .record-lead { font-size: clamp(17px, 2vw, 21px); line-height: 1.58; color: var(--ink-2); max-width: 62ch; }
+    .record-grid { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 28px; align-items: start; }
+    .record-sidebar { position: sticky; top: 92px; display: grid; gap: 18px; }
+    .side-card { background: rgba(255,255,255,.82); border: 1px solid var(--line); padding: 20px; }
+    .side-label { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted-2); margin-bottom: 12px; }
+    .side-list { display: grid; gap: 8px; }
+    .side-list a, .side-list span { color: var(--ink-2); font-size: 14px; line-height: 1.5; }
+    .side-list a:hover { color: var(--teal); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag-row span { background: var(--tag-bg); color: var(--tag-fg); border: 1px solid rgba(0,0,0,.05); padding: 7px 10px; font-size: 12px; }
+    .record-main { display: grid; gap: 24px; }
+    .record-panel { background: rgba(255,255,255,.86); border: 1px solid var(--line); padding: 30px; box-shadow: 0 14px 42px rgba(20,23,28,.045); }
+    .record-panel h2 { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin: 0 0 16px; }
+    .record-panel h3 { font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); line-height: 1.02; letter-spacing: -.04em; font-weight: 300; margin: 0 0 18px; }
+    .record-content h1 { display: none; }
+    .record-content h2 { font-family: var(--sans); font-size: 22px; letter-spacing: -.02em; color: var(--ink); margin: 28px 0 12px; text-transform: none; }
+    .record-content h3 { font-family: var(--sans); font-size: 17px; color: var(--ink-2); margin: 20px 0 10px; letter-spacing: 0; }
+    .record-content p, .record-content li, .record-panel p, .record-panel li { color: var(--muted); line-height: 1.78; font-size: 15.9px; }
+    .record-content ul { padding-left: 20px; }
+    .record-content strong { color: var(--ink-2); }
+    .record-content pre { overflow-x: auto; background: #101826; color: #f9fafb; padding: 18px; font-family: var(--mono); font-size: 13px; line-height: 1.6; }
+    .record-content code { font-family: var(--mono); background: rgba(20,23,28,.06); padding: 2px 6px; }
+    .notice { color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .bill-table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--line); background: rgba(248,247,243,.75); margin-top: 18px; }
+    .bill-table { width: 100%; min-width: 720px; border-collapse: collapse; }
+    .bill-table th, .bill-table td { padding: 13px 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .bill-table th { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: rgba(31,58,50,.05); }
+    .bill-table td:first-child { width: 220px; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+    .bill-table tr:last-child td { border-bottom: 0; }
+    @media (max-width: 960px) { .record-grid { grid-template-columns: 1fr; } .record-sidebar { position: static; order: 2; } .record-main { order: 1; } }
+    @media (max-width: 680px) { .record-wrap { padding: 24px 16px 60px; } .record-hero, .record-panel { padding: 22px 20px; } .record-topbar-inner { padding: 12px 16px; } }
   </style>
 </head>
 <body>
-  <div class="artifact-shell">
-    <div class="artifact-topbar">
-      <div class="artifact-topbar-inner">
+  <div class="record-shell">
+    <div class="record-topbar">
+      <div class="record-topbar-inner">
         <a class="back-link" href="index.html#/library">← Back to portfolio library</a>
-        <div class="artifact-top-meta">
-          <span class="brand-name"><span>Ram Paragi</span><small>Executive artifact review</small></span>
-        </div>
+        <div class="record-meta"><span class="brand-name"><span>Ram Paragi</span><small>Evidence record</small></span></div>
       </div>
     </div>
-
-    <main class="artifact-wrap" id="artifactRoot">
-      <section class="artifact-hero">
-        <div class="artifact-category"><span>Loading artifact</span></div>
-        <h1 class="artifact-title">Preparing executive artifact page…</h1>
-        <p class="artifact-lead">This page presents the artifact as an executive evidence page while preserving the source content.</p>
+    <main class="record-wrap" id="artifactRoot">
+      <section class="record-hero">
+        <div class="record-kicker">Loading evidence record</div>
+        <h1 class="record-title">Preparing artifact evidence…</h1>
+        <p class="record-lead">This page presents the evidence record in a cleaner public-facing format.</p>
       </section>
     </main>
   </div>
 
 <script>
+  function neutralizePublicText(text) {
+    return String(text || '')
+      .replace(/my vision as\s+(?:an?\s+)?(?:Assistant\s*\/\s*Associate|Associate\s*\/\s*Assistant|Assistant|Associate)\s+Dean(?:\s+of\s+[^,.]+)?\s+is/gi, 'my vision is')
+      .replace(/as\s+(?:an?\s+)?(?:Assistant\s*\/\s*Associate|Associate\s*\/\s*Assistant|Assistant|Associate)\s+Dean(?:\s+of\s+[^,.]+)?/gi, 'as an institutional leader')
+      .replace(/(?:Assistant\s*\/\s*Associate|Associate\s*\/\s*Assistant|Assistant|Associate)\s+Dean(?:\s+of\s+[^,.]+)?/gi, 'institutional leadership role')
+      .replace(/\bpromotion\s+goal\b/gi, 'leadership goal')
+      .replace(/\bpromotion-ready\b/gi, 'leadership-ready');
+  }
   function escapeHtml(str) {
-    return (str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+    return neutralizePublicText(str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
   }
   function inlineMd(str) {
     let s = escapeHtml(str || '');
@@ -224,32 +91,30 @@
     s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
     return s;
   }
+  function stripTechnicalPreface(md) {
+    let body = md || '';
+    body = body.replace(/^---[\s\S]*?---\s*/, '');
+    body = body.replace(/^#\s+.+\n+/, '');
+    body = body.replace(/^\*\*Portfolio category:\*\*[\s\S]*?(?=\n\n|$)/m, '');
+    body = body.replace(/^\*\*Portfolio role:\*\*[\s\S]*?(?=\n\n|$)/m, '');
+    body = body.replace(/^\*\*Tags:\*\*[\s\S]*?(?=\n\n|$)/m, '');
+    body = body.replace(/^\*\*Source evidence excerpt:\*\*[\s\S]*?(?=\n\n|\n##\s+Original Source Content|$)/m, '');
+    body = body.replace(/\n##\s+Original Source Content\s*\n/i, '\n');
+    return neutralizePublicText(body.trim());
+  }
   function renderMarkdown(md) {
-    const parts = (md || '').split(/\n/);
+    const parts = stripTechnicalPreface(md).split(/\n/);
     let html = '';
     let inList = false, inCode = false, code = [];
-    let front = '';
-    if (parts[0] && parts[0].trim() === '---') {
-      let j = 1;
-      while (j < parts.length && parts[j].trim() !== '---') { front += parts[j] + '\n'; j++; }
-      parts.splice(0, j + 1);
-      if (front.trim()) html += '<div class="artifact-frontmatter">' + escapeHtml(front.trim()) + '</div>';
-    }
     function closeList(){ if(inList){ html += '</ul>'; inList=false; } }
     function isTableSeparator(row) { return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(row); }
-    function parseTableRow(row) {
-      return row.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim().replace(/<br\s*\/?\s*>/gi, ' '));
-    }
+    function parseTableRow(row) { return row.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim().replace(/<br\s*\/?\s*>/gi, ' ')); }
     function renderTable(tableLines) {
       const rows = tableLines.filter(line => !isTableSeparator(line)).map(parseTableRow);
       if (!rows.length) return '';
       const headers = rows[0];
       const bodyRows = rows.slice(1);
-      return '<div class="artifact-bill-table-wrap"><table class="artifact-bill-table"><thead><tr>' +
-        headers.map(h => '<th>' + inlineMd(h) + '</th>').join('') +
-        '</tr></thead><tbody>' +
-        bodyRows.map(r => '<tr>' + headers.map((_, i) => '<td>' + inlineMd(r[i] || '') + '</td>').join('') + '</tr>').join('') +
-        '</tbody></table></div>';
+      return '<div class="bill-table-wrap"><table class="bill-table"><thead><tr>' + headers.map(h => '<th>' + inlineMd(h) + '</th>').join('') + '</tr></thead><tbody>' + bodyRows.map(r => '<tr>' + headers.map((_, i) => '<td>' + inlineMd(r[i] || '') + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
     }
     for (let idx = 0; idx < parts.length; idx++) {
       const line = parts[idx];
@@ -262,12 +127,8 @@
       if (/^\s*\|/.test(line)) {
         closeList();
         const tableLines = [line];
-        while (idx + 1 < parts.length && /^\s*\|/.test(parts[idx + 1])) {
-          idx++;
-          tableLines.push(parts[idx]);
-        }
-        html += renderTable(tableLines);
-        continue;
+        while (idx + 1 < parts.length && /^\s*\|/.test(parts[idx + 1])) { idx++; tableLines.push(parts[idx]); }
+        html += renderTable(tableLines); continue;
       }
       if (/^#\s+/.test(line)) { closeList(); html += '<h1>' + inlineMd(line.replace(/^#\s+/, '')) + '</h1>'; continue; }
       if (/^##\s+/.test(line)) { closeList(); html += '<h2>' + inlineMd(line.replace(/^##\s+/, '')) + '</h2>'; continue; }
@@ -278,9 +139,8 @@
       closeList(); html += '<p>' + inlineMd(line) + '</p>';
     }
     closeList();
-    return html;
+    return html || '<p class="notice">No evidence text was available for this artifact.</p>';
   }
-
   function parseFrontmatter(md) {
     const match = md.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
     if (!match) return { data: {}, body: md };
@@ -289,206 +149,97 @@
     const data = {};
     let currentListKey = null;
     yaml.split(/\n/).forEach(line => {
-      if (/^\s*-\s+/.test(line) && currentListKey) {
-        data[currentListKey].push(line.replace(/^\s*-\s+/, '').replace(/^"|"$/g, ''));
-        return;
-      }
+      if (/^\s*-\s+/.test(line) && currentListKey) { data[currentListKey].push(line.replace(/^\s*-\s+/, '').replace(/^"|"$/g, '')); return; }
       const m = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
       if (!m) return;
       const key = m[1];
       let value = m[2].trim();
-      if (value === '') {
-        data[key] = [];
-        currentListKey = key;
-      } else {
-        currentListKey = null;
-        value = value.replace(/^"|"$/g, '');
-        data[key] = value;
-      }
+      if (value === '') { data[key] = []; currentListKey = key; }
+      else { currentListKey = null; value = value.replace(/^"|"$/g, ''); data[key] = value; }
     });
     return { data, body };
   }
-
   function extractLabeledFields(body) {
     const titleMatch = body.match(/^#\s+(.+)$/m);
     const get = (label) => {
       const re = new RegExp('\\*\\*' + label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ':\\*\\*\\s*([\\s\\S]*?)(?=\\n\\n|\\n##\\s|$)');
       const m = body.match(re);
-      return m ? m[1].trim() : '';
+      return m ? neutralizePublicText(m[1].trim()) : '';
     };
-    const split = body.split(/\n##\s+Original Source Content\s*\n/);
-    const preface = split[0] || '';
-    const source = split[1] || '';
-    const cleanedPreface = preface
-      .replace(/^#\s+.+$/m, '')
-      .replace(/\*\*Portfolio category:\*\*[\s\S]*?(?=\n\n|$)/, '')
-      .replace(/\*\*Portfolio role:\*\*[\s\S]*?(?=\n\n|$)/, '')
-      .replace(/\*\*Tags:\*\*[\s\S]*?(?=\n\n|$)/, '')
-      .replace(/\*\*Source evidence excerpt:\*\*[\s\S]*?(?=\n\n|$)/, '')
-      .trim();
-
     return {
-      title: titleMatch ? titleMatch[1].trim() : '',
+      title: titleMatch ? neutralizePublicText(titleMatch[1].trim()) : '',
       portfolioCategory: get('Portfolio category'),
       portfolioRole: get('Portfolio role'),
       tagsText: get('Tags'),
-      excerpt: get('Source evidence excerpt'),
-      preface: cleanedPreface,
-      source
+      excerpt: get('Source evidence excerpt')
     };
   }
-
-  function chipsFromFrontmatter(meta) {
+  function chipsFromMeta(meta) {
     const chips = [];
-    if (meta.confidentiality_review) {
-      const alert = /needs human review/i.test(meta.confidentiality_review) || /confidential/i.test(meta.confidentiality_review);
-      chips.push(`<span class="artifact-chip ${alert ? 'alert' : 'ok'}">${escapeHtml(meta.confidentiality_review)}</span>`);
-    }
-    if (meta.publication_status) {
-      chips.push(`<span class="artifact-chip">${escapeHtml(meta.publication_status)}</span>`);
-    }
+    if (meta.publication_status) chips.push(`<span>${escapeHtml(meta.publication_status)}</span>`);
+    if (meta.confidentiality_review) chips.push(`<span>${escapeHtml(meta.confidentiality_review)}</span>`);
     return chips.join('');
   }
-
-
-  const LEGISLATIVE_BILLS_TABLE = [
-    { bill: 'HCR241', description: 'Urges and requests the Dept. of Health and Hospitals and LSU Board of Supervisors to conduct a study assessing the current and future delivery of health care and medical education in La. and to make recommendations' },
-    { bill: 'SB428', description: 'Authorizes the LSU Health Sciences Center to maximize the use of affiliation agreements with other hospitals in order to maximize the use of Medicare graduate medical education monies.' },
-    { bill: 'HCR116', description: 'Urges and requests the Dept. of Health and Hospitals and LSU Board of Supervisors to conduct a study assessing the current and future delivery of health care and medical education in La. and to make recommendations' },
-    { bill: 'SB98', description: 'Provides for the definition of major teaching hospital for the purposes of hospital prospective reimbursement methodology.' },
-    { bill: 'SB178', description: 'Creates a fund for the purpose of funding the out-of-state tuition of certain students enrolled in certain medical education programs when such medical education programs are not offered in Louisiana.' },
-    { bill: 'SR191', description: 'Requests the Senate Committee on Health and Welfare to study the governance, efficiencies, and service delivery of the Louisiana State University Health Care Services Division and the Louisiana State University Health Sciences Center.' },
-    { bill: 'HR42', description: 'Requires submission for approval by the House Committee on Appropriations of any cooperative endeavor agreements between the LSU Board of Supervisors and a private entity involving the change in management of a public hospital' },
-    { bill: 'HOUSE CONCURRENT RESOLUTION NO. 83', description: 'Task force to study, identify, and make recommendations to address the shortage of specialist physicians in this state.' },
-    { bill: 'HCR134', description: "Creates the Medical Education & Research Finance Work Group to provide findings and recommendations to the legislature relative to a formula-based financing model for the funding of Louisiana's public institutions for graduate and professional medical education and biomedical and health-related research" },
-    { bill: 'HB885', description: 'Enacts the Safety Net Hospital Preservation Act' },
-    { bill: 'HCR17', description: "Creates a study committee to evaluate and make recommendations concerning Louisiana's system of healthcare delivery" },
-    { bill: 'HR230', description: 'Requests a study of means by which to enhance access to health services in health professional shortage areas' },
-    { bill: 'SB408', description: 'Provides for the definition of major teaching hospital for the purposes of hospital prospective reimbursement methodology.' },
-    { bill: 'HR205', description: 'Urges and requests the Louisiana Department of Health and the Louisiana Workforce Commission to organize a special committee to develop strategies for addressing the direct support professional workforce shortage' },
-    { bill: 'HB1033', description: 'Provides for enactment of the Workforce and Innovation for a Stronger Economy (WISE) Fund' },
-    { bill: 'SB 337', description: 'Provides for the development of an outcomes-based funding formula for postsecondary education.' }
-  ];
-
-  function isLegislativeBillsArtifact(file, title) {
-    return file === 'data-driven-consultations-for-louisiana-legislative-bills.md' || /Data-Driven Consultations for Louisiana Legislative Bills/i.test(title || '');
-  }
-
-  function renderLegislativeBillsEvidence(file, title) {
-    if (!isLegislativeBillsArtifact(file, title)) return '';
-    return `
-      <div class="artifact-bill-evidence" id="legislative-bills">
-        <div class="bill-label">Legislative bill evidence table</div>
-        <div class="artifact-bill-table-wrap">
-          <table class="artifact-bill-table">
-            <thead><tr><th>Louisiana Legislative Bill</th><th>Bill Description</th></tr></thead>
-            <tbody>
-              ${LEGISLATIVE_BILLS_TABLE.map(row => `<tr><td>${escapeHtml(row.bill)}</td><td>${escapeHtml(row.description)}</td></tr>`).join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>`;
-  }
-
-  function buildPage(meta, fields, file) {
-    const title = meta.title || fields.title || 'Untitled artifact';
+  function buildPage(meta, fields, file, md) {
+    const title = neutralizePublicText(meta.title || fields.title || 'Untitled artifact');
     const category = meta.category || fields.portfolioCategory || 'Portfolio artifact';
     const role = meta.portfolio_role || fields.portfolioRole || 'Evidence artifact';
-    const originalFile = meta.original_file || file;
     const tags = Array.isArray(meta.tags) ? meta.tags : (fields.tagsText ? fields.tagsText.split(/,\s*/) : []);
-    const sourceLength = meta.source_length_chars ? meta.source_length_chars + ' characters' : 'Source-preserving artifact';
-    const lead = fields.excerpt || 'This artifact documents a substantive body of institutional work and is presented here in a more polished executive review format.';
-
+    const lead = fields.excerpt || 'This artifact documents a substantive body of institutional work and is presented here as a public-facing evidence record.';
     return `
-      <section class="artifact-hero">
-        <div class="artifact-category"><span>${escapeHtml(category)}</span></div>
-        <div class="artifact-hero-grid">
-          <div>
-            <h1 class="artifact-title">${escapeHtml(title)}</h1>
-            <p class="artifact-lead">${inlineMd(lead)}</p>
-            <div class="artifact-chip-row">
-              ${chipsFromFrontmatter(meta)}
-            </div>
-          </div>
-          <div class="artifact-kv-grid">
-            <div class="artifact-kv"><div class="k">Portfolio role</div><div class="v">${escapeHtml(role)}</div></div>
-            <div class="artifact-kv"><div class="k">Original source file</div><div class="v mono">${escapeHtml(originalFile)}</div></div>
-            <div class="artifact-kv"><div class="k">Artifact format</div><div class="v">Evidence-backed executive review page</div></div>
-            <div class="artifact-kv"><div class="k">Source length</div><div class="v">${escapeHtml(sourceLength)}</div></div>
-          </div>
-        </div>
+      <section class="record-hero">
+        <div class="record-kicker">Evidence record</div>
+        <h1 class="record-title">${escapeHtml(title)}</h1>
+        <p class="record-lead">${inlineMd(lead)}</p>
       </section>
-
-      <div class="artifact-layout">
-        <aside class="artifact-sidebar">
-          <div class="artifact-side-card">
-            <div class="artifact-side-label">On this page</div>
-            <nav class="artifact-nav">
+      <div class="record-grid">
+        <aside class="record-sidebar">
+          <div class="side-card">
+            <div class="side-label">On this page</div>
+            <div class="side-list">
               <a href="#overview">Executive overview</a>
-              ${isLegislativeBillsArtifact(file, title) ? '<a href="#legislative-bills">Legislative bills table</a>' : ''}
-              <a href="#positioning">Portfolio positioning</a>
-              <a href="#source">Source-preserving content</a>
-            </nav>
-          </div>
-          <div class="artifact-side-card">
-            <div class="artifact-side-label">Quick reference</div>
-            <div class="artifact-mini-list">
-              <div class="artifact-mini-item"><strong>Category</strong>${escapeHtml(category)}</div>
-              <div class="artifact-mini-item"><strong>Role in portfolio</strong>${escapeHtml(role)}</div>
-              <div class="artifact-mini-item"><strong>Source file</strong><span class="mono">${escapeHtml(originalFile)}</span></div>
-              <div class="artifact-mini-item"><strong>Review posture</strong>${escapeHtml(meta.confidentiality_review || 'General review')}</div>
+              <a href="#evidence">Evidence record</a>
             </div>
           </div>
+          <div class="side-card">
+            <div class="side-label">Positioning</div>
+            <div class="side-list">
+              <span><strong>Category</strong><br>${escapeHtml(category)}</span>
+              <span><strong>Portfolio role</strong><br>${escapeHtml(role)}</span>
+            </div>
+          </div>
+          ${tags.length ? `<div class="side-card"><div class="side-label">Key themes</div><div class="tag-row">${tags.map(t => `<span>${escapeHtml(t)}</span>`).join('')}</div></div>` : ''}
         </aside>
-
-        <div class="artifact-main">
-          <section class="artifact-panel" id="overview">
+        <div class="record-main">
+          <section class="record-panel" id="overview">
             <h2>Executive overview</h2>
             <h3>Why this artifact matters</h3>
             <p>${inlineMd(lead)}</p>
-            ${renderLegislativeBillsEvidence(file, title)}
-            ${fields.preface ? `<div class="artifact-callout"><div class="artifact-callout-label">Additional portfolio framing</div>${renderMarkdown(fields.preface)}</div>` : ''}
+            <div class="tag-row" style="margin-top:18px">${chipsFromMeta(meta)}</div>
           </section>
-
-          <section class="artifact-panel" id="positioning">
-            <h2>Portfolio positioning</h2>
-            <h3>How this work is being presented</h3>
-            <div class="artifact-kv-grid">
-              <div class="artifact-kv"><div class="k">Portfolio category</div><div class="v">${escapeHtml(category)}</div></div>
-              <div class="artifact-kv"><div class="k">Portfolio role</div><div class="v">${escapeHtml(role)}</div></div>
-              <div class="artifact-kv"><div class="k">Publication status</div><div class="v">${escapeHtml(meta.publication_status || 'Draft for portfolio use')}</div></div>
-              <div class="artifact-kv"><div class="k">Public review note</div><div class="v">${escapeHtml(meta.confidentiality_review || 'Review before external publication as needed')}</div></div>
-            </div>
-            ${tags.length ? `<div style="margin-top: 20px"><div class="artifact-side-label" style="margin-bottom:10px">Key themes</div><div class="artifact-tags">${tags.map(t => `<span>${escapeHtml(t)}</span>`).join('')}</div></div>` : ''}
-          </section>
-
-          <section class="artifact-panel" id="source">
-            <h2>Source-preserving content</h2>
-            <h3>Artifact evidence text</h3>
-            <div class="artifact-source-shell">
-              ${renderMarkdown(fields.source || '')}
-            </div>
+          <section class="record-panel" id="evidence">
+            <h2>Evidence record</h2>
+            <h3>Supporting evidence text</h3>
+            <div class="record-content">${renderMarkdown(md)}</div>
           </section>
         </div>
       </div>`;
   }
-
   const params = new URLSearchParams(location.search);
   const file = params.get('file');
   const root = document.getElementById('artifactRoot');
-
   if (!file || file.includes('..') || file.includes('/') || file.includes('\\')) {
-    root.innerHTML = `<section class="artifact-hero"><div class="artifact-category"><span>Artifact error</span></div><h1 class="artifact-title">Artifact not found</h1><p class="artifact-lead">The artifact file parameter is missing or invalid.</p></section>`;
+    root.innerHTML = `<section class="record-hero"><div class="record-kicker">Artifact error</div><h1 class="record-title">Artifact not found</h1><p class="record-lead">The artifact file parameter is missing or invalid.</p></section>`;
   } else {
     fetch('content/artifacts_cleaned_82/' + encodeURIComponent(file))
       .then(r => { if (!r.ok) throw new Error('Could not load file'); return r.text(); })
       .then(md => {
         const parsed = parseFrontmatter(md);
         const fields = extractLabeledFields(parsed.body);
-        root.innerHTML = buildPage(parsed.data, fields, file);
+        root.innerHTML = buildPage(parsed.data, fields, file, md);
       })
       .catch(err => {
-        root.innerHTML = `<section class="artifact-hero"><div class="artifact-category"><span>Artifact error</span></div><h1 class="artifact-title">Artifact not found</h1><p class="artifact-lead">${escapeHtml(err.message)}</p></section>`;
+        root.innerHTML = `<section class="record-hero"><div class="record-kicker">Artifact error</div><h1 class="record-title">Artifact not found</h1><p class="record-lead">${escapeHtml(err.message)}</p></section>`;
       });
   }
 </script>
