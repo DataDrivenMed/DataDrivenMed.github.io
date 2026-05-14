@@ -2,7 +2,7 @@
 // =============================================================
 // detail.jsx - Artifact / Case Study detail overlay
 // =============================================================
-const { useEffect: useEffectD } = React;
+const { useEffect: useEffectD, useState: useStateD } = React;
 
 // Hand-authored rich case-study sections for a few flagships.
 // Other artifacts auto-render a structured but lighter detail page from data.
@@ -90,6 +90,76 @@ function fallbackCaseDetail(a) {
   };
 }
 
+function cleanEvidenceLine(line) {
+  return String(line || "")
+    .replace(/^[-*•]\s+/, "")
+    .replace(/^o\s+/, "")
+    .replace(/^#+\s*/, "")
+    .replace(/\*\*/g, "")
+    .replace(/__+/g, "")
+    .replace(/`/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function stripFrontMatter(text) {
+  return String(text || "").replace(/^---[\s\S]*?---\s*/, "");
+}
+
+function sourceUrlForArtifact(artifact) {
+  const file = artifact.cleanFile || artifact.sourceFile;
+  if (!file) return null;
+  return "content/artifacts_cleaned_82/" + encodeURIComponent(file);
+}
+
+function extractSection(text, headingRegex) {
+  const match = text.match(headingRegex);
+  if (!match) return "";
+  const start = match.index + match[0].length;
+  const rest = text.slice(start);
+  const next = rest.search(/^##\s+/m);
+  return next >= 0 ? rest.slice(0, next) : rest;
+}
+
+function extractSourceEvidence(raw, artifact) {
+  const withoutYaml = stripFrontMatter(raw);
+  const sourceTitle = cleanEvidenceLine((withoutYaml.match(/^#\s+(.+)$/m) || [null, artifact.title])[1]);
+  const sourceRole = cleanEvidenceLine((withoutYaml.match(/\*\*Portfolio role:\*\*\s*(.+)$/m) || [null, artifact.role])[1]);
+  const body = withoutYaml.split(/## Original Source Content/i)[1] || withoutYaml;
+
+  const priorityBlocks = [
+    extractSection(body, /^##\s+Professional summary\s*$/im),
+    extractSection(body, /^##\s+Role description\s*$/im),
+    extractSection(body, /^##\s+Accomplishments\s*$/im),
+    extractSection(body, /^##\s+Primary Responsibility\s*$/im),
+    extractSection(body, /^##\s+Key Functions\s*$/im),
+    extractSection(body, /^##\s+Skills\s*$/im),
+    body,
+  ].filter(Boolean).join("\n");
+
+  const lines = priorityBlocks.split("\n").map(l => l.trim()).filter(Boolean);
+  const bullets = [];
+  const seen = new Set();
+
+  lines.forEach((line) => {
+    const isBullet = /^[-*•]\s+/.test(line) || /^o\s+/.test(line);
+    const isUsefulParagraph = !isBullet && line.length > 85 && !line.startsWith("#") && !line.startsWith("---") && !/^\*\*Portfolio/.test(line) && !/^\*\*Tags/.test(line);
+    if (!isBullet && !isUsefulParagraph) return;
+    const cleaned = cleanEvidenceLine(line);
+    if (cleaned.length < 45) return;
+    const key = cleaned.toLowerCase().slice(0, 120);
+    if (seen.has(key)) return;
+    seen.add(key);
+    bullets.push(cleaned.length > 340 ? cleaned.slice(0, 337).trim() + "..." : cleaned);
+  });
+
+  return {
+    sourceTitle,
+    sourceRole,
+    bullets: bullets.slice(0, 7),
+  };
+}
+
 function LegislativeBillsTable({ artifact, compact = false }) {
   if (!artifact.billTable) return null;
   return (
@@ -119,6 +189,68 @@ function LegislativeBillsTable({ artifact, compact = false }) {
   );
 }
 
+function SourceEvidenceSnapshot({ artifact }) {
+  const [state, setState] = useStateD({ status: "idle", evidence: null });
+
+  useEffectD(() => {
+    const url = sourceUrlForArtifact(artifact);
+    if (!url) {
+      setState({ status: "missing", evidence: null });
+      return;
+    }
+    let cancelled = false;
+    setState({ status: "loading", evidence: null });
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("Could not load source evidence");
+        return res.text();
+      })
+      .then((raw) => {
+        if (cancelled) return;
+        setState({ status: "ready", evidence: extractSourceEvidence(raw, artifact) });
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setState({ status: "error", evidence: null });
+      });
+    return () => { cancelled = true; };
+  }, [artifact.id, artifact.sourceFile, artifact.cleanFile]);
+
+  if (state.status === "loading") {
+    return <p style={{ color: "var(--muted)" }}>Loading source evidence from the artifact record...</p>;
+  }
+
+  if (state.status === "error" || state.status === "missing") {
+    return (
+      <div>
+        <p style={{ color: "var(--muted)" }}>
+          The detailed source artifact could not be displayed inline. Use the source link above to open the full evidence record.
+        </p>
+      </div>
+    );
+  }
+
+  const evidence = state.evidence;
+  if (!evidence || !evidence.bullets || evidence.bullets.length === 0) {
+    return <p style={{ color: "var(--muted)" }}>No structured source excerpt was available for this artifact.</p>;
+  }
+
+  return (
+    <div>
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--muted-2)", marginBottom: 6 }}>
+          Source artifact
+        </div>
+        <p style={{ color: "var(--ink-2)", fontWeight: 600 }}>{evidence.sourceTitle}</p>
+        <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>{evidence.sourceRole}</p>
+      </div>
+      <ul>
+        {evidence.bullets.map((b, i) => <li key={i}>{b}</li>)}
+      </ul>
+    </div>
+  );
+}
+
 // ---------- Detail overlay ----------
 function ArtifactDetail({ artifact, onClose }) {
   useEffectD(() => {
@@ -137,6 +269,34 @@ function ArtifactDetail({ artifact, onClose }) {
     .map(id => window.ARTIFACTS.find(a => a.id === id))
     .filter(Boolean);
 
+  const liveButtonStyle = {
+    background: "linear-gradient(135deg, #d8b76a, #b8985a)",
+    color: "#0d1117",
+    borderColor: "rgba(216,183,106,0.72)",
+    boxShadow: "0 14px 32px rgba(184,152,90,0.22)",
+    fontWeight: 700,
+  };
+
+  const liveBadgeStyle = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 6,
+    marginRight: 8,
+    fontFamily: "var(--mono)",
+    fontSize: 9,
+    letterSpacing: "0.14em",
+    textTransform: "uppercase",
+    color: "#0d1117",
+  };
+
+  const liveDotStyle = {
+    width: 7,
+    height: 7,
+    borderRadius: 999,
+    background: "#155e3b",
+    boxShadow: "0 0 0 4px rgba(21,94,59,0.13)",
+  };
+
   return (
     <div className="cs-overlay">
       <div className="cs-overlay-bg" onClick={onClose}></div>
@@ -151,16 +311,17 @@ function ArtifactDetail({ artifact, onClose }) {
           {(artifact.liveUrl || artifact.fullArtifactUrl) && (
             <div className="detail-actions">
               {artifact.liveUrl && (
-                <a className="btn" href={artifact.liveUrl} target="_blank" rel="noopener noreferrer">
+                <a className="btn" style={liveButtonStyle} href={artifact.liveUrl} target="_blank" rel="noopener noreferrer">
+                  <span style={liveBadgeStyle}><span style={liveDotStyle}></span>Live</span>
                   {artifact.liveLabel || "View live project"} <window.ArrowRight size={14} />
                 </a>
               )}
               {artifact.fullArtifactUrl && (
                 <a className="btn secondary" href={artifact.fullArtifactUrl} target="_blank" rel="noopener noreferrer">
-                  Evidence page <window.ArrowRight size={14} />
+                  Open full source evidence <window.ArrowRight size={14} />
                 </a>
               )}
-              <span className="detail-note">Live links are prioritized when a public artifact exists. Evidence pages preserve the source artifact for review and future RAG preparation.</span>
+              <span className="detail-note">This view now includes the source evidence snapshot directly. Use the source link only if you want the full underlying record.</span>
             </div>
           )}
 
@@ -192,6 +353,7 @@ function ArtifactDetail({ artifact, onClose }) {
             <div className="cs-toc">
               <span className="tlbl">On this page</span>
               <a href="#sec-summary">Executive summary</a>
+              <a href="#sec-evidence">Evidence snapshot</a>
               <a href="#sec-approach">Strategic approach</a>
               <a href="#sec-execution">Execution</a>
               <a href="#sec-tools">Tools &amp; frameworks</a>
@@ -210,6 +372,14 @@ function ArtifactDetail({ artifact, onClose }) {
                   {artifact.strategic}
                 </p>
                 {artifact.billTable && <LegislativeBillsTable artifact={artifact} compact={true} />}
+              </section>
+
+              <section className="cs-section" id="sec-evidence">
+                <h2>Evidence snapshot</h2>
+                <p style={{ color: "var(--muted)", marginBottom: 16 }}>
+                  Selected source details from the underlying artifact record, shown here so reviewers can understand the evidence without opening another page.
+                </p>
+                <SourceEvidenceSnapshot artifact={artifact} />
               </section>
 
               <section className="cs-section" id="sec-approach">
