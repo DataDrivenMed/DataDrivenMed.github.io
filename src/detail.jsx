@@ -90,8 +90,15 @@ function fallbackCaseDetail(a) {
   };
 }
 
+function neutralizePositionTitleLanguage(text) {
+  return String(text || "")
+    .replace(/my vision as\s+(?:an?\s+)?(?:Assistant\s*\/\s*Associate|Associate\s*\/\s*Assistant|Assistant|Associate)\s+Dean(?:\s+of\s+[^,.]+)?\s+is/gi, "my vision is")
+    .replace(/as\s+(?:an?\s+)?(?:Assistant\s*\/\s*Associate|Associate\s*\/\s*Assistant|Assistant|Associate)\s+Dean(?:\s+of\s+[^,.]+)?/gi, "as an institutional leader")
+    .replace(/(?:Assistant\s*\/\s*Associate|Associate\s*\/\s*Assistant|Assistant|Associate)\s+Dean(?:\s+of\s+[^,.]+)?/gi, "institutional leadership role");
+}
+
 function cleanEvidenceLine(line) {
-  return String(line || "")
+  return neutralizePositionTitleLanguage(String(line || "")
     .replace(/^[-*•]\s+/, "")
     .replace(/^o\s+/, "")
     .replace(/^#+\s*/, "")
@@ -99,7 +106,7 @@ function cleanEvidenceLine(line) {
     .replace(/__+/g, "")
     .replace(/`/g, "")
     .replace(/\s+/g, " ")
-    .trim();
+    .trim());
 }
 
 function stripFrontMatter(text) {
