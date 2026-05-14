@@ -1,0 +1,323 @@
+/* =========================================================
+   Premium executive mobile drawer navigation
+   Applies after styles.css without changing the main design system.
+   ========================================================= */
+
+body.nav-lock {
+  overflow: hidden;
+}
+
+.nav-menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 94px;
+  height: 38px;
+  padding: 0 13px;
+  border: 1px solid rgba(184,152,90,0.42);
+  background: rgba(255,255,255,0.035);
+  color: var(--paper-2);
+  font-family: var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 1;
+  transition: background 150ms, border-color 150ms, color 150ms;
+}
+
+.nav-menu-button:hover,
+.nav-menu-button:focus-visible {
+  background: rgba(184,152,90,0.12);
+  border-color: rgba(184,152,90,0.72);
+  color: var(--gold);
+  outline: none;
+}
+
+.nav-menu-label {
+  display: block;
+  white-space: nowrap;
+}
+
+.nav-menu-icon {
+  width: 18px;
+  height: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.nav-menu-icon span {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transition: transform 190ms ease, opacity 150ms ease;
+}
+
+.nav-menu-button.open .nav-menu-icon span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.nav-menu-button.open .nav-menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-menu-button.open .nav-menu-icon span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.nav-drawer-backdrop {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 180;
+  border: 0;
+  padding: 0;
+  background: rgba(4,7,12,0.68);
+  backdrop-filter: blur(3px);
+}
+
+.nav-drawer-backdrop.open {
+  display: block;
+}
+
+.executive-drawer.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 190;
+  padding: 0;
+  background:
+    radial-gradient(circle at top left, rgba(184,152,90,0.13), transparent 34%),
+    linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 58%, #111827 100%);
+  border-top: 1px solid var(--dark-line);
+  overflow-y: auto;
+}
+
+.executive-drawer.nav-drawer.open {
+  display: block;
+}
+
+.drawer-shell {
+  width: min(100%, 760px);
+  min-height: 100%;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 46px) var(--gutter) 42px;
+}
+
+.drawer-head {
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--dark-line);
+  margin-bottom: 22px;
+}
+
+.drawer-kicker,
+.drawer-section-label,
+.drawer-connect-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.drawer-title {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(30px, 7vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--paper-2);
+}
+
+.drawer-subtitle {
+  max-width: 44ch;
+  margin-top: 12px;
+  color: var(--dark-muted);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.drawer-links {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--dark-line2);
+}
+
+.executive-drawer .drawer-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--dark-line2);
+  color: var(--paper-2);
+  transition: color 130ms, padding-left 130ms;
+}
+
+.executive-drawer .drawer-link:hover,
+.executive-drawer .drawer-link.active {
+  color: var(--gold);
+  padding-left: 8px;
+}
+
+.drawer-link-copy {
+  display: grid;
+  gap: 3px;
+}
+
+.drawer-link-title {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(20px, 4.8vw, 28px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+}
+
+.drawer-link-desc {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--dark-muted);
+}
+
+.drawer-arrow {
+  color: rgba(250,249,244,0.42);
+  font-family: var(--mono);
+  font-size: 16px;
+  transition: transform 130ms, color 130ms;
+}
+
+.executive-drawer .drawer-link:hover .drawer-arrow,
+.executive-drawer .drawer-link.active .drawer-arrow {
+  color: var(--gold);
+  transform: translateX(3px);
+}
+
+.drawer-primary {
+  margin-top: 26px;
+}
+
+.executive-drawer .drawer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 17px 18px;
+  background: var(--gold);
+  color: var(--dark);
+  border: 1px solid var(--gold);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition: background 130ms, border-color 130ms, transform 130ms;
+}
+
+.executive-drawer .drawer-cta:hover,
+.executive-drawer .drawer-cta:focus-visible {
+  background: var(--gold-h);
+  border-color: var(--gold-h);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.drawer-connect {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--dark-line);
+}
+
+.drawer-connect-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.executive-drawer .drawer-connect-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--dark-line);
+  color: var(--dark-muted);
+  font-size: 12px;
+  line-height: 1;
+  transition: color 130ms, border-color 130ms, background 130ms;
+}
+
+.executive-drawer .drawer-connect-row a:hover,
+.executive-drawer .drawer-connect-row a:focus-visible {
+  color: var(--gold);
+  border-color: rgba(184,152,90,0.5);
+  background: rgba(184,152,90,0.08);
+  outline: none;
+}
+
+@media (max-width: 1120px) {
+  .nav {
+    display: none;
+  }
+
+  .nav-menu-button {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1121px) {
+  .nav-menu-button,
+  .nav-drawer-backdrop,
+  .executive-drawer.nav-drawer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar-inner {
+    height: 60px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand-name small {
+    display: none;
+  }
+
+  .nav-menu-button {
+    min-width: 84px;
+    height: 36px;
+    padding: 0 10px;
+    gap: 8px;
+    letter-spacing: 0.13em;
+  }
+
+  .drawer-shell {
+    padding-top: 26px;
+    padding-bottom: 34px;
+  }
+
+  .drawer-link-desc {
+    display: none;
+  }
+
+  .executive-drawer .drawer-link {
+    padding: 15px 0;
+  }
+}
