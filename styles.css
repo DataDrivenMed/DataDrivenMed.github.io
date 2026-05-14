@@ -172,52 +172,53 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   margin-top: 3px;
 }
 
-/* Desktop nav */
+/* Desktop nav — Option 2: “Gold rail” active indicator (no borders, no pills) */
 .nav {
   display: flex;
   align-items: center;
-  gap: 6px;                 /* clearer separation so items read as discrete tabs */
+  gap: 16px;
 }
 
 .nav a {
   display: block;
-  padding: 8px 14px;
+  padding: 18px 4px;               /* taller click target */
   font-family: var(--sans);
   font-size: 12.5px;
-  color: rgba(250,249,244,0.82);   /* stronger default contrast than dark-muted */
   letter-spacing: 0.02em;
+  color: rgba(250,249,244,0.76);   /* clearer than --dark-muted */
+  position: relative;
+  transition: color 120ms;
+}
 
-  border: 1px solid var(--dark-line);
-  border-radius: 999px;            /* “tab/pill” affordance */
+.nav a:hover { color: var(--paper-2); }
+
+/* Rail indicator under each nav item */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 10px;                    /* sits above topbar bottom border */
+  height: 2px;
   background: transparent;
-  opacity: 0.92;
-
-  transition: color 120ms, background 120ms, border-color 120ms, opacity 120ms, transform 120ms;
+  transition: background 120ms, height 120ms;
 }
 
-.nav a:hover {
-  color: var(--paper-2);
-  opacity: 1;
-  background: rgba(255,255,255,0.06);
-  text-decoration: underline;       /* explicit “this is clickable” cue */
-  text-underline-offset: 4px;
+.nav a:hover::after { background: rgba(250,249,244,0.35); }
+
+.nav a.active { color: var(--paper-2); }
+
+.nav a.active::after {
+  background: var(--gold);
+  height: 3px;
 }
 
-.nav a.active {
-  opacity: 1;
-  color: var(--gold);
-  border-color: rgba(184,152,90,0.55);
-  background: rgba(184,152,90,0.14); /* subtle bronze tint so it looks selected */
-  text-decoration: none;
-}
-
-/* Keyboard accessibility: visible focus ring */
+/* Keyboard accessibility */
 .nav a:focus-visible {
   outline: 2px solid rgba(184,152,90,0.75);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
-/* CTA button in nav (overrides the “tab” styles above) */
+/* CTA button in nav (keep as a true button; remove rail) */
 .nav .cta {
   margin-left: 16px;
   background: var(--gold);
@@ -227,24 +228,31 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  transition: background 130ms;
+}
+.nav .cta:hover { background: var(--gold-h); }
+.nav .cta::after { display: none; }
 
-  border: 1px solid var(--gold);
-  border-radius: 999px;
-  opacity: 1;
-  text-decoration: none;
+/* Tiny hint for leaders who don’t realize these are tabs */
+.nav-hint-topbar{
+  margin-left: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(136,152,176,0.60);
+  white-space: nowrap;
+}
+.nav-hint-topbar b{
+  color: var(--gold);
+  font-weight: 500;
+}
 
-  transition: background 130ms, border-color 130ms, transform 130ms;
+/* Hide hint on mobile (hamburger already signals navigation) */
+@media (max-width: 860px){
+  .nav-hint-topbar{ display:none; }
 }
-.nav .cta:hover {
-  background: var(--gold-h);
-  border-color: var(--gold-h);
-  transform: translateY(-1px);
-  text-decoration: none;
-}
-.nav .cta:focus-visible {
-  outline: 2px solid rgba(250,249,244,0.75);
-  outline-offset: 2px;
-}
+
 
 /* Mobile hamburger */
 .nav-hamburger {
