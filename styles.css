@@ -1739,27 +1739,27 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 /* =========================================================
    NAVIGATION DISCOVERY EXPERIMENT
-   styles_option_C_floating_badge
+   styles_option_A_topbar_guide
    ========================================================= */
-/* Option C: Floating “Use tabs” badge in the top-right (desktop only)
+/* Option A: Guidance strip under the sticky topbar (desktop only)
    No HTML changes required (uses a pseudo-element). */
-.topbar{
-  position: sticky; /* keep existing */
-}
-
-.topbar::before{
-  content: "Use tabs ↑";
-  position: absolute;
-  right: var(--gutter);
-  top: 18px;
-  color: rgba(136,152,176,0.75);
+.topbar::after{
+  content: "Explore: Use the tabs above to navigate the portfolio.";
+  display: block;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 var(--gutter);
+  border-top: 1px solid var(--dark-line2);
+  color: rgba(250,249,244,0.70);
   font-family: var(--mono);
   font-size: 9px;
-  letter-spacing: 0.20em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 860px){
-  .topbar::before{ display:none; }
+  .topbar::after{ display:none; }
 }
