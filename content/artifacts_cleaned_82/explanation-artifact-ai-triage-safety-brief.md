@@ -1,37 +1,61 @@
 ---
 id: 28
-title: "Explanation Artifact: AI Triage Safety Brief"
+title: "AI Triage Safety Leadership Brief"
 category: "AI Governance, Digital Transformation, and Clinical AI Literacy"
-portfolio_role: "Supporting artifact"
+portfolio_role: "Clinical AI safety leadership brief"
 original_file: "Explanation Artifact-ChatGPT.md"
 clean_filename: "explanation-artifact-ai-triage-safety-brief.md"
+live_url: "https://datadrivenmed.github.io/ChatGPT-Triage/"
 tags:
-  - "ChatGPT"
+  - "ChatGPT Health"
   - "AI triage"
   - "clinical safety"
-  - "guardrails"
-source_length_chars: 3443
+  - "trainee safety"
+  - "LLM failure modes"
+  - "Nature Medicine"
+source_length_chars: 4918
 confidentiality_review: "Internal evidence artifact"
 publication_status: "Portfolio evidence artifact"
 ---
-# Explanation Artifact: AI Triage Safety Brief
+# AI Triage Safety Leadership Brief
 
 **Portfolio category:** AI Governance, Digital Transformation, and Clinical AI Literacy
 
-**Portfolio role:** Supporting artifact
+**Portfolio role:** Clinical AI safety leadership brief
 
-**Tags:** ChatGPT, AI triage, clinical safety, guardrails
+**Live artifact:** https://datadrivenmed.github.io/ChatGPT-Triage/
 
-**Source evidence excerpt:** ## **Explanation Artifact: AI Triage Safety Brief** | **What is this** This artifact is a long-form leadership brief, formatted as an interactive HTML document, designed to synthesize a specific 2026 *Nature Medicine* study on ChatGPT Health into actionable governance for a multi-system medical training environment. I built it to translate high-level peer-reviewed evidence into the local context of LSU Health New Orleans, where trainees rotate across disparate health systems (LCMC, Ochsner, FMOL
+**Tags:** ChatGPT Health, AI triage, clinical safety, trainee safety, LLM failure modes, Nature Medicine
+
+**Source evidence excerpt:** This static, zero-dependency HTML leadership brief translates peer-reviewed evidence on ChatGPT Health triage failures into actionable operational intelligence for UME and GME leadership, faculty, and trainees. It moves beyond summarizing the study by isolating structural LLM failure modes and mapping them to risks trainees face across a decentralized, multi-system clinical learning environment.
 
 ## Original Source Content
 
-## **Explanation Artifact: AI Triage Safety Brief**
+## What is this
 
-**What is this** This artifact is a long-form leadership brief, formatted as an interactive HTML document, designed to synthesize a specific 2026 *Nature Medicine* study on ChatGPT Health into actionable governance for a multi-system medical training environment. I built it to translate high-level peer-reviewed evidence into the local context of LSU Health New Orleans, where trainees rotate across disparate health systems (LCMC, Ochsner, FMOLHS) with conflicting AI policies. It moves beyond a simple summary by mapping four structural failure modes of Large Language Models (LLMs)—the "Inverted U" performance curve, chain-of-thought disconnect, anchoring bias, and paradoxical safeguard activation directly to faculty talking points and student safety protocols.
+This Leadership Brief is a static, zero-dependency HTML document designed for UME and GME leadership, faculty, and trainees at LSU Health. It translates a dense, peer-reviewed Nature Medicine study regarding ChatGPT Health's triage failures into actionable, role-specific operational intelligence. Rather than just summarizing the research, it isolates four structural failure modes of Large Language Models, including dangerous undertriage at clinical extremes and paradoxical suicide-crisis safeguards, and maps them directly to the risks trainees face while rotating across a multi-system network of affiliate hospitals.
 
-**Why this approach** I chose a bespoke HTML "Leadership Brief" format rather than a standard PDF or email blast because the content requires a specific pedagogical hierarchy: an "at-a-glance" data table for quick executive review, followed by deep-dive sections that use academic framing to build institutional authority. I deliberately structured the brief around "structural properties" of LLMs rather than the specific OpenAI product to ensure the guidance remains relevant as trainees encounter AI embedded in different EHRs across affiliate sites. While I used AI to assist in the initial synthesis of the *Nature Medicine* findings and to structure the risk-mitigation tables, I had to manually override the AI's tendency toward "generic safety warnings" to insert specific clinical failure cases—like the asthma exacerbation and DKA undertriage—that provide the "visceral" evidence needed to change faculty behavior in the clinic.
+## Why this approach
 
-**What would break** The most immediate fragility is the "governance vacuum" between the medical school and its affiliate health systems; if Ochsner or LCMC unilaterally approves a triage tool that contradicts this brief's warnings, the trainee is caught in a high-stakes compliance conflict. Technically, the document is a static snapshot of a March 2026 study; if OpenAI or a competitor releases a "v2" that claims to fix anchoring bias or "inverted U" performance, the brief's authority will erode among tech-optimist faculty unless it is manually version-controlled. Furthermore, the "Recommended Actions" rely on a manual feedback loop (clerkship directors sharing a link) that lacks any institutional enforcement or tracking, meaning the safety standards are elective rather than mandatory.
+I chose a lightweight HTML format to ensure frictionless distribution among busy program directors and student affairs teams without requiring them to navigate paywalls, PDFs, or LMS portals. I deliberately framed the analysis around the structural properties of large language models rather than just criticizing one specific OpenAI product, ensuring the guidance remains durable as trainees encounter different AI tools embedded in various EHR environments at partner sites such as Ochsner or LCMC. While an AI could summarize the raw data from the study, it required irreducible human judgment to translate abstract statistics, such as an odds ratio of 11.7 for anchoring bias, into visceral clinical warnings about how easily a resident might be led to undertriage diabetic ketoacidosis.
 
-**What I learned** I started with the assumption that the bottleneck to AI safety was lack of evidence, but I discovered that the real problem is "Chain-of-Thought" trust: the dangerous human tendency to believe an AI's recommendation because its *explanation* sounds clinically sound. Seeing the data on how a single dismissive family comment shifted AI recommendations twelve-fold forced me to realize that "AI Literacy" isn't about teaching code—it's about teaching trainees to recognize their own anchoring biases being amplified by the machine. If I were to rebuild this, I would include a "version expiration" date in the header to acknowledge the breakneck speed of model updates, and I would front-load the "Site-Specific Expectations" section, as the variability between hospital policies is a greater daily risk to students than the technical failures of any single model.
+## What would break
+
+The most critical vulnerability of this framework is its reliance on elective behavioral guardrails within a decentralized clinical environment. Because LSU Health does not control the IT procurement at its affiliate hospitals, if a site natively integrates a flawed AI triage tool directly into a trainee's required workflow, these policy warnings could be overridden by the friction of daily clinical operations. As a static artifact tied to a specific March 2026 study, it is also susceptible to contextual rot. If a vendor releases an update claiming to have solved these specific hallucinations, the document's authority may erode among faculty, even though the underlying structural vulnerabilities of the models remain unresolved.
+
+## What I learned
+
+I initially assumed the primary danger of clinical AI was straightforward factual inaccuracy, but synthesizing this data revealed that the true threat is chain-of-thought betrayal, where a model correctly identifies a life-threatening clinical sign but still confidently recommends outpatient care. Seeing the data on how a single dismissive comment from a family member in a prompt could shift an AI's medical recommendation twelve-fold profoundly changed my perspective on clinical risk. It cemented my understanding that effective AI literacy in graduate medical education is not about teaching the mechanics of neural networks. It is about training clinicians to recognize when their own human cognitive biases are being invisibly mirrored and amplified by the machine.
+
+## Strategic positioning
+
+This artifact belongs with the OpenEvidence, UpToDate Expert AI, Thalamus Cortex, MedAI, and AI tool-vetting artifacts because it is not merely a technology review. It is a governance translation product. The brief shows how clinical AI evidence can be converted into operational guidance for a medical school that trains learners across multiple affiliate hospitals, each with different procurement pathways, EHR environments, local workflows, and AI risk postures.
+
+## Leadership competencies demonstrated
+
+- Clinical AI risk translation for UME and GME audiences.
+- Evidence synthesis from peer-reviewed clinical AI safety research.
+- Multi-system governance awareness across affiliate hospital environments.
+- Role-specific communication for program directors, student affairs teams, faculty, and trainees.
+- Ability to convert abstract model-performance statistics into concrete clinical learning environment warnings.
+- Recognition of contextual rot, vendor-update claims, and limitations of static educational artifacts.
