@@ -1739,22 +1739,27 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 /* =========================================================
    NAVIGATION DISCOVERY EXPERIMENT
-   styles_option_B_hero_tip
+   styles_option_C_floating_badge
    ========================================================= */
-/* Option B: Hero-only tip line (desktop only)
+/* Option C: Floating “Use tabs” badge in the top-right (desktop only)
    No HTML changes required (uses a pseudo-element). */
-.hero-lead-dark::after{
-  content: "Tip: Use the tabs at the top to explore Profile, Capabilities, Case Studies, and Library.";
-  display: block;
-  margin-top: 14px;
-  color: rgba(250,249,244,0.72);
+.topbar{
+  position: sticky; /* keep existing */
+}
+
+.topbar::before{
+  content: "Use tabs ↑";
+  position: absolute;
+  right: var(--gutter);
+  top: 18px;
+  color: rgba(136,152,176,0.75);
   font-family: var(--mono);
   font-size: 9px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  text-wrap: balance;
+  pointer-events: none;
 }
 
 @media (max-width: 860px){
-  .hero-lead-dark::after{ display:none; }
+  .topbar::before{ display:none; }
 }
