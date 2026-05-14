@@ -68,6 +68,8 @@ const CASE_DETAILS = {
   },
 };
 
+const IMPORTANT_FULL_EVIDENCE_IDS = new Set(["ai-01", "gme-01", "fac-01"]);
+
 function fallbackCaseDetail(a) {
   return {
     approach: [
@@ -225,7 +227,7 @@ function SourceEvidenceSnapshot({ artifact }) {
     return (
       <div>
         <p style={{ color: "var(--muted)" }}>
-          The detailed evidence could not be displayed inline. Use the full record link above if needed.
+          The detailed evidence could not be displayed inline.
         </p>
       </div>
     );
@@ -260,6 +262,9 @@ function ArtifactDetail({ artifact, onClose }) {
   const related = (detail.related || [])
     .map(id => window.ARTIFACTS.find(a => a.id === id))
     .filter(Boolean);
+  const showFullEvidenceRecord = Boolean(
+    artifact.fullArtifactUrl && (artifact.billTable || IMPORTANT_FULL_EVIDENCE_IDS.has(artifact.id))
+  );
 
   const liveButtonStyle = {
     background: "linear-gradient(135deg, #d8b76a, #b8985a)",
@@ -300,7 +305,7 @@ function ArtifactDetail({ artifact, onClose }) {
           <div className="cs-cat">{cap ? cap.title : artifact.category}</div>
           <h1 className="cs-title">{artifact.title}</h1>
           <p className="cs-summary">{artifact.summary}</p>
-          {(artifact.liveUrl || artifact.fullArtifactUrl) && (
+          {(artifact.liveUrl || showFullEvidenceRecord) && (
             <div className="detail-actions">
               {artifact.liveUrl && (
                 <a className="btn" style={liveButtonStyle} href={artifact.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -308,12 +313,16 @@ function ArtifactDetail({ artifact, onClose }) {
                   {artifact.liveLabel || "View live project"} <window.ArrowRight size={14} />
                 </a>
               )}
-              {artifact.fullArtifactUrl && (
+              {showFullEvidenceRecord && (
                 <a className="btn secondary" href={artifact.fullArtifactUrl} target="_blank" rel="noopener noreferrer">
                   Open full evidence record <window.ArrowRight size={14} />
                 </a>
               )}
-              <span className="detail-note">This view includes the key evidence directly. Use the full record only if you want to review the longer supporting text.</span>
+              <span className="detail-note">
+                {showFullEvidenceRecord
+                  ? "This view includes the key evidence directly. Use the full record only if you want to review the longer supporting text."
+                  : "This view includes the key evidence directly so reviewers can understand the artifact without opening another page."}
+              </span>
             </div>
           )}
 
