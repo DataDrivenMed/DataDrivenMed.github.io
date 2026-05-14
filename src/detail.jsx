@@ -123,8 +123,6 @@ function extractSection(text, headingRegex) {
 
 function extractSourceEvidence(raw, artifact) {
   const withoutYaml = stripFrontMatter(raw);
-  const sourceTitle = cleanEvidenceLine((withoutYaml.match(/^#\s+(.+)$/m) || [null, artifact.title])[1]);
-  const sourceRole = cleanEvidenceLine((withoutYaml.match(/\*\*Portfolio role:\*\*\s*(.+)$/m) || [null, artifact.role])[1]);
   const body = withoutYaml.split(/## Original Source Content/i)[1] || withoutYaml;
 
   const priorityBlocks = [
@@ -153,11 +151,7 @@ function extractSourceEvidence(raw, artifact) {
     bullets.push(cleaned.length > 340 ? cleaned.slice(0, 337).trim() + "..." : cleaned);
   });
 
-  return {
-    sourceTitle,
-    sourceRole,
-    bullets: bullets.slice(0, 7),
-  };
+  return { bullets: bullets.slice(0, 7) };
 }
 
 function LegislativeBillsTable({ artifact, compact = false }) {
@@ -202,7 +196,7 @@ function SourceEvidenceSnapshot({ artifact }) {
     setState({ status: "loading", evidence: null });
     fetch(url)
       .then((res) => {
-        if (!res.ok) throw new Error("Could not load source evidence");
+        if (!res.ok) throw new Error("Could not load evidence");
         return res.text();
       })
       .then((raw) => {
@@ -217,14 +211,14 @@ function SourceEvidenceSnapshot({ artifact }) {
   }, [artifact.id, artifact.sourceFile, artifact.cleanFile]);
 
   if (state.status === "loading") {
-    return <p style={{ color: "var(--muted)" }}>Loading source evidence from the artifact record...</p>;
+    return <p style={{ color: "var(--muted)" }}>Loading evidence details...</p>;
   }
 
   if (state.status === "error" || state.status === "missing") {
     return (
       <div>
         <p style={{ color: "var(--muted)" }}>
-          The detailed source artifact could not be displayed inline. Use the source link above to open the full evidence record.
+          The detailed evidence could not be displayed inline. Use the full record link above if needed.
         </p>
       </div>
     );
@@ -232,22 +226,13 @@ function SourceEvidenceSnapshot({ artifact }) {
 
   const evidence = state.evidence;
   if (!evidence || !evidence.bullets || evidence.bullets.length === 0) {
-    return <p style={{ color: "var(--muted)" }}>No structured source excerpt was available for this artifact.</p>;
+    return <p style={{ color: "var(--muted)" }}>No structured excerpt was available for this artifact.</p>;
   }
 
   return (
-    <div>
-      <div style={{ marginBottom: 14 }}>
-        <div style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--muted-2)", marginBottom: 6 }}>
-          Source artifact
-        </div>
-        <p style={{ color: "var(--ink-2)", fontWeight: 600 }}>{evidence.sourceTitle}</p>
-        <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>{evidence.sourceRole}</p>
-      </div>
-      <ul>
-        {evidence.bullets.map((b, i) => <li key={i}>{b}</li>)}
-      </ul>
-    </div>
+    <ul>
+      {evidence.bullets.map((b, i) => <li key={i}>{b}</li>)}
+    </ul>
   );
 }
 
@@ -318,10 +303,10 @@ function ArtifactDetail({ artifact, onClose }) {
               )}
               {artifact.fullArtifactUrl && (
                 <a className="btn secondary" href={artifact.fullArtifactUrl} target="_blank" rel="noopener noreferrer">
-                  Open full source evidence <window.ArrowRight size={14} />
+                  Open full evidence record <window.ArrowRight size={14} />
                 </a>
               )}
-              <span className="detail-note">This view now includes the source evidence snapshot directly. Use the source link only if you want the full underlying record.</span>
+              <span className="detail-note">This view includes the key evidence directly. Use the full record only if you want to review the longer supporting text.</span>
             </div>
           )}
 
@@ -333,10 +318,6 @@ function ArtifactDetail({ artifact, onClose }) {
             <div className="item">
               <div className="lbl">Audience</div>
               <div className="v">{artifact.audience.slice(0, 3).join(" · ")}</div>
-            </div>
-            <div className="item">
-              <div className="lbl">Source</div>
-              <div className="v" style={{ fontFamily: "var(--mono)", fontSize: 12.5 }}>{artifact.sourceFile}</div>
             </div>
             <div className="item">
               <div className="lbl">Status</div>
@@ -377,7 +358,7 @@ function ArtifactDetail({ artifact, onClose }) {
               <section className="cs-section" id="sec-evidence">
                 <h2>Evidence snapshot</h2>
                 <p style={{ color: "var(--muted)", marginBottom: 16 }}>
-                  Selected source details from the underlying artifact record, shown here so reviewers can understand the evidence without opening another page.
+                  Selected evidence from the underlying artifact record, shown here so reviewers can understand the work without opening another page.
                 </p>
                 <SourceEvidenceSnapshot artifact={artifact} />
               </section>
