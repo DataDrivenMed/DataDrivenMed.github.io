@@ -49,23 +49,10 @@ function HomePage({ openArtifact }) {
                 <em>center transformation.</em>
               </h1>
               <p className="hero-lead-dark">
-                Academic medical centers do not struggle from lack of effort; they struggle from
-    fragmented leverage. I build the institutional infrastructure that holds it
-  together: accreditation systems that convert compliance into competitive
-  advantage, analytics architectures that give executive leadership real decision
-  power, AI governance frameworks that position institutions ahead of policy, and
-  GME workforce systems that protect institutional flexibility across complex
-  multi-system environments.
+                Academic medical centers don't fail from lack of effort. They fail because the leverage is scattered. My work is building the infrastructure that holds it together: accreditation systems that turn compliance into competitive advantage, analytics that give leadership real decision power, AI governance frameworks that get institutions ahead of policy, and GME workforce systems that protect flexibility across complex multi-system environments.
               </p>
               <p className="hero-lead-dark hero-lead-secondary">
-  I operate at the intersection of systems thinking and analytical execution. In
-  complex, multi-stakeholder environments, I start with a wide-angle lens, mapping
-  context, feedback loops, and second-order consequences before execution begins.
-  By grounding work in systems thinking, I ensure strategy and analytics inform
-  each other; neither drives blindly without the other. Once the system is
-  designed, I deploy rigorous analytical frameworks to ensure every deliverable,
-  timeline, and metric serves the overarching vision. Execution without systems is
-  merely efficiency. I deliver efficiency with impact.
+ n high-stakes, multi-stakeholder environments, I start wide. Context, feedback loops, second-order consequences — all of that gets mapped before execution begins. That discipline is what keeps strategy and analytics from drifting apart. Once the architecture is clear, I work precisely: every deliverable, timeline, and metric has to earn its place. Execution without systems thinking is just motion. I try to do something harder than that.
 </p>
               <div className="hero-actions" style={{ marginTop: 36 }}>
                 <window.Link to="/library" className="btn gold">
