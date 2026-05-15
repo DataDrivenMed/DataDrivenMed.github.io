@@ -52,7 +52,7 @@ function HomePage({ openArtifact }) {
                 Academic medical centers don't fail from lack of effort. They fail because the leverage is scattered. My work is building the infrastructure that holds it together: accreditation systems that turn compliance into competitive advantage, analytics that give leadership real decision power, AI governance frameworks that get institutions ahead of policy, and GME workforce systems that protect flexibility across complex multi-system environments.
               </p>
               <p className="hero-lead-dark hero-lead-secondary">
- n high-stakes, multi-stakeholder environments, I start wide. Context, feedback loops, second-order consequences — all of that gets mapped before execution begins. That discipline is what keeps strategy and analytics from drifting apart. Once the architecture is clear, I work precisely: every deliverable, timeline, and metric has to earn its place. Execution without systems thinking is just motion. I try to do something harder than that.
+ In high-stakes, multi-stakeholder environments, I start wide. Context, feedback loops, second-order consequences - all of that gets mapped before execution begins. That discipline is what keeps strategy and analytics from drifting apart. Once the architecture is clear, I work precisely: every deliverable, timeline, and metric has to earn its place. Execution without systems thinking is just motion. I try to do something harder than that.
 </p>
               <div className="hero-actions" style={{ marginTop: 36 }}>
                 <window.Link to="/library" className="btn gold">
