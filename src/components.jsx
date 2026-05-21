@@ -1,6 +1,10 @@
 /* global window, React */
 // =============================================================
-// components.jsx v23 — Dark Academic Executive
+// components.jsx v24 — Dark Academic Executive
+// Changes from v23:
+//   FIX 3: "Framework" nav link added to TopBar (desktop + mobile drawer)
+//   FIX 4: AuthorStamp component added — paste at top of sub-pages
+//           to re-attach orphaned artifacts to their author
 // =============================================================
 const { useState, useEffect, useMemo, useRef } = React;
 
@@ -103,6 +107,8 @@ function TopBar({ route }) {
           <Link to="/capabilities" className={isActive("/capabilities")}>Capabilities</Link>
           <Link to="/case-studies" className={isActive("/case-studies")}>Case Studies</Link>
           <Link to="/library"      className={isActive("/library")}>Library</Link>
+          {/* FIX 3: Framework nav link — desktop */}
+          <Link to="/framework"    className={isActive("/framework")}>Framework</Link>
           <Link to="/ask"          className="cta">Ask the Portfolio</Link>
         </nav>
         <button
@@ -118,6 +124,8 @@ function TopBar({ route }) {
         <Link to="/capabilities" className={isActive("/capabilities")}>Capabilities</Link>
         <Link to="/case-studies" className={isActive("/case-studies")}>Case Studies</Link>
         <Link to="/library"      className={isActive("/library")}>Evidence Library</Link>
+        {/* FIX 3: Framework nav link — mobile drawer */}
+        <Link to="/framework"    className={isActive("/framework")}>AI Evaluation Framework</Link>
         <Link to="/ask"          className="cta">Ask the Portfolio</Link>
       </nav>
     </header>
@@ -167,6 +175,8 @@ function Footer() {
               <li><Link to="/capabilities">Capability areas</Link></li>
               <li><Link to="/case-studies">Case studies</Link></li>
               <li><Link to="/library">Evidence library</Link></li>
+              {/* FIX 3: Framework in footer nav */}
+              <li><Link to="/framework">AI Evaluation Framework</Link></li>
             </ul>
           </div>
           <div>
@@ -241,7 +251,6 @@ function ArtifactCard({ a, onOpen }) {
 
 // ---------- Featured cover SVG ----------
 function FeaturedCover({ index }) {
-  // Dark academic palettes — navy, charcoal, slate
   const palettes = [
     ["#0d1117", "#151c28"],
     ["#151c28", "#1c2538"],
@@ -254,16 +263,13 @@ function FeaturedCover({ index }) {
       <svg width="100%" height="100%" viewBox="0 0 400 100"
            preserveAspectRatio="xMidYMid slice"
            style={{ position: "absolute", inset: 0 }}>
-        {/* Diagonal rules */}
         {Array.from({ length: 8 }).map((_, i) => (
           <line key={i}
             x1={-80 + i * 64} y1={0}
             x2={80 + i * 64}  y2={100}
             stroke="rgba(184,152,90,0.08)" strokeWidth="1" />
         ))}
-        {/* Gold horizontal rule */}
         <line x1="0" y1="98" x2="400" y2="98" stroke="rgba(184,152,90,0.25)" strokeWidth="1" />
-        {/* Faint serif numeral */}
         <text x="16" y="86"
               fontFamily="Newsreader, serif" fontSize="48"
               fill="rgba(184,152,90,0.12)" fontStyle="italic"
@@ -293,8 +299,59 @@ function FeaturedCard({ a, index, onOpen }) {
   );
 }
 
+// =============================================================
+// FIX 4: AUTHOR STAMP
+// A reusable component for sub-pages outside this React app
+// (OpenEvidence/, Rural-Health-Strategic-Intelligence/, etc.)
+// 
+// HOW TO USE ON A SUB-PAGE:
+// Those pages are plain HTML, not React. So this component
+// shows you the exact HTML + CSS to paste at the top of each
+// sub-page's <body>. See the DEPLOY guide for the snippets.
+//
+// Within this React app, AuthorStamp can be used on any page:
+//   <AuthorStamp type="Evaluation Report" title="OpenEvidence" />
+// =============================================================
+function AuthorStamp({ type = "Portfolio", title = "DataDrivenMed" }) {
+  return (
+    <div style={{
+      background: "var(--dark-1)",
+      borderBottom: "1px solid rgba(184,152,90,0.15)",
+      padding: "10px 0",
+    }}>
+      <div className="container" style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "8px 16px",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <Link to="/" style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.12em", color: "var(--gold)", textDecoration: "none", textTransform: "uppercase" }}>
+            DataDrivenMed
+          </Link>
+          <span style={{ width: 1, height: 16, background: "rgba(255,255,255,0.12)" }} />
+          <div>
+            <div style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--dark-muted)", fontFamily: "var(--mono)" }}>{type}</div>
+            <div style={{ fontSize: 12, color: "rgba(232,224,210,0.7)" }}>{title}</div>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <span style={{ fontSize: 12, color: "var(--dark-muted)" }}>
+            By <span style={{ color: "rgba(232,224,210,0.75)", fontWeight: 500 }}>Ram Paragi</span> · LSU Health New Orleans
+          </span>
+          <Link to="/" className="btn outline" style={{ fontSize: 11, padding: "4px 12px" }}>
+            Portfolio →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 Object.assign(window, {
   useRoute, go, Link, TopBar, Footer,
   ArrowRight, ArrowLeft, SearchIcon, SendIcon,
   ArtifactCard, FeaturedCard, FeaturedCover,
+  AuthorStamp,  // FIX 4: new export
 });
