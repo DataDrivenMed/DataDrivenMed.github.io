@@ -29,7 +29,6 @@ function HomePage({ openArtifact }) {
     .filter(Boolean);
   const featured3 = flagship.slice(0, 3);
   const artifactCount = window.ARTIFACTS.length;
-  const syntheticCount = window.ARTIFACTS.filter(a => (a.statusLabels || []).some(s => s.key === "synthetic")).length;
 
   const heroStats = [
     { num: "70+",                      lbl: "Residency & fellowship programs with more than 1,000 FTEs" },
@@ -59,56 +58,6 @@ function HomePage({ openArtifact }) {
               <p className="hero-lead-dark hero-lead-secondary">
                 The through-line is not generic AI adoption. It is institutional operating infrastructure: governed decisions, evidence-linked strategy, cross-system risk reduction, and tools that make complex academic medicine work easier to inspect, compare, and sustain.
               </p>
-
-              {/* ── FIX 2: BRAND BLOCK ── */}
-              {/* Explains what DataDrivenMed is and links the three publishing platforms */}
-              <div style={{
-                borderLeft: "2px solid var(--gold)",
-                paddingLeft: 18,
-                margin: "28px 0 24px",
-              }}>
-                <p style={{
-                  fontSize: 13,
-                  lineHeight: 1.7,
-                  color: "rgba(232,224,210,0.72)",
-                  margin: "0 0 12px",
-                }}>
-                  <span style={{ color: "var(--paper-2)", fontWeight: 500 }}>DataDrivenMed</span> is a public research and analytics practice — publishing tools, clinical AI evaluations, and institutional strategy frameworks for academic medicine. It is the external expression of 18 years of operational work inside an LCME-accredited medical school.
-                </p>
-                <div className="truth-mini-grid">
-                  <span><b>{artifactCount}</b> indexed portfolio artifacts</span>
-                  <span><b>{syntheticCount}</b> public synthetic-data demos</span>
-                  <span><b>12</b> capability domains</span>
-                  <span><b>Status labels</b> separate drafts, demos, internal evidence, and live artifacts</span>
-                </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 20px" }}>
-                  <a
-                    href="https://datadrivenmed.github.io"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", letterSpacing: "0.03em" }}
-                  >
-                    GitHub · Tools &amp; evaluations ↗
-                  </a>
-                  <a
-                    href="https://swimed.substack.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", letterSpacing: "0.03em" }}
-                  >
-                    Substack · SwiMed essays ↗
-                  </a>
-                  <a
-                    href="https://medai-lexicon.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", letterSpacing: "0.03em" }}
-                  >
-                    Interactive MedAI Lexicon ↗
-                  </a>
-                </div>
-              </div>
-              {/* ── END FIX 2 ── */}
 
               <div className="hero-actions" style={{ marginTop: 36 }}>
                 <window.Link to="/library" className="btn gold">
@@ -195,9 +144,8 @@ function HomePage({ openArtifact }) {
             <div className="read-guide-copy">
               <h2>Start with scope, judgment, and evidence.</h2>
               <p>
-                This portfolio is organized for senior reviewers who need to understand scope,
-                judgment, and evidence quickly. It is not a document archive. It is a mapped
-                record of work across accreditation systems, GME finance, institutional analytics,
+                This portfolio is organized to understand scope, judgment, and evidence quickly.
+                It is a mapped record of work across accreditation systems, GME finance, institutional analytics,
                 AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy
                 translation, and research strategy.
               </p>
