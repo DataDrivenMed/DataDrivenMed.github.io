@@ -309,8 +309,8 @@ function HomePage({ openArtifact }) {
         </div>
       </div>
 
-      {/* ── FIX 1: OFFER BLOCK — DARK ── */}
-      {/* Tells every visitor what you are available for and how to reach you */}
+      {/* ── FIX 1: EXTERNAL ENGAGEMENT — DARK ── */}
+      {/* Framed as scholarly/consulting footprint, not an availability signal */}
       <div style={{
         background: "var(--dark-1)",
         borderTop: "1px solid rgba(184,152,90,0.18)",
@@ -318,11 +318,16 @@ function HomePage({ openArtifact }) {
       }}>
         <div className="container">
           <div style={{ marginBottom: 10, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--mono)" }}>
-            § Available for
+            § External Engagement
           </div>
-          <h2 style={{ color: "var(--paper-2)", marginBottom: 36, fontSize: "clamp(1.4rem, 3vw, 2rem)" }}>
-            Senior leadership roles and advisory engagements<br />in academic medicine strategy.
+          <h2 style={{ color: "var(--paper-2)", marginBottom: 16, fontSize: "clamp(1.4rem, 3vw, 2rem)" }}>
+            Extending the work<br />beyond the institution.
           </h2>
+          <p style={{ fontSize: 14, color: "var(--dark-muted)", lineHeight: 1.7, maxWidth: "58ch", marginBottom: 40 }}>
+            The frameworks, evaluations, and analytics in this portfolio are designed to
+            be durable beyond a single institutional context. Peer AMC leaders, conference
+            organizers, and scholarly collaborators are welcome to engage directly.
+          </p>
 
           <div style={{
             display: "grid",
@@ -332,26 +337,26 @@ function HomePage({ openArtifact }) {
           }}>
             <div>
               <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper-2)", marginBottom: 6 }}>
-                Senior academic medicine leadership
+                Institutional strategy consulting
               </div>
               <div style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.66 }}>
-                Associate Dean, AVP, or VP-level roles in institutional strategy, accreditation, and AI governance at research-intensive medical schools and academic health centers.
+                Peer AMC leaders working through accreditation transitions, AI governance buildouts, or GME policy complexity can engage directly. The work in this portfolio is available as a reference framework.
               </div>
             </div>
             <div>
               <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper-2)", marginBottom: 6 }}>
-                Advisory engagements
+                External advisory and peer collaboration
               </div>
               <div style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.66 }}>
-                Clinical AI governance, LCME accreditation strategy, GME policy, and multi-affiliate health system navigation — for academic health centers at transition points.
+                Open to collaborating with academic health center leadership on shared challenges: LCME strategy, clinical AI governance, multi-affiliate GME, and data-driven institutional decision-making.
               </div>
             </div>
             <div>
               <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper-2)", marginBottom: 6 }}>
-                Thought leadership and speaking
+                Speaking and scholarly engagement
               </div>
               <div style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.66 }}>
-                AI literacy in medical education, clinical AI evaluation frameworks, data-driven institutional strategy, and the future operating model of academic medicine.
+                Available for conference presentations, panel participation, and scholarly collaboration on AI literacy in medical education, clinical AI evaluation, and AMC institutional strategy.
               </div>
             </div>
           </div>
@@ -362,7 +367,7 @@ function HomePage({ openArtifact }) {
               className="btn gold"
               style={{ textDecoration: "none" }}
             >
-              Get in touch <window.ArrowRight size={13} />
+              Contact <window.ArrowRight size={13} />
             </a>
             <window.Link to="/framework" className="btn outline">
               Evaluation framework <window.ArrowRight size={13} />
