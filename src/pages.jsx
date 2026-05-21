@@ -187,6 +187,44 @@ function HomePage({ openArtifact }) {
         </div>
       </div>
 
+      {/* ── HOW TO READ THIS PORTFOLIO ── */}
+      <div className="read-guide-section">
+        <div className="container">
+          <div className="read-guide-inner">
+            <div className="read-guide-label">§ How To Read This Portfolio</div>
+            <div className="read-guide-copy">
+              <h2>Start with scope, judgment, and evidence.</h2>
+              <p>
+                This portfolio is organized for senior reviewers who need to understand scope,
+                judgment, and evidence quickly. It is not a document archive. It is a mapped
+                record of work across accreditation systems, GME finance, institutional analytics,
+                AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy
+                translation, and research strategy.
+              </p>
+              <p>
+                The artifacts document recurring academic medicine problems: accreditation systems,
+                decision-support analytics, GME finance, multi-affiliate coordination, AI governance,
+                research strategy, and policy translation.
+              </p>
+              <div className="read-guide-grid">
+                <div>
+                  <strong>First read</strong>
+                  <span>Open the flagship case studies to see the strongest evidence signals.</span>
+                </div>
+                <div>
+                  <strong>Then compare</strong>
+                  <span>Use the capability map to see how the work groups across domains.</span>
+                </div>
+                <div>
+                  <strong>Then verify</strong>
+                  <span>Search the evidence library and use status labels to separate drafts, demos, internal records, and live artifacts.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* ── LEADERSHIP READOUT — LIGHT ── */}
       <div className="readout-section">
         <div className="container">
