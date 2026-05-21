@@ -1,7 +1,10 @@
 /* global window, React */
 // =============================================================
-// pages.jsx v23 — Dark Academic Executive · McKinsey Briefing
-// All content preserved. Structure completely redesigned.
+// pages.jsx v24 — Four-Fix Update
+// Changes from v23:
+//   FIX 2: Brand block added inside hero (after hero-lead-secondary, before hero-actions)
+//   FIX 1: Offer block added at bottom of HomePage (after triple-cta band)
+//   FIX 3: FrameworkPage added as new exported page
 // =============================================================
 const { useState, useMemo, useEffect } = React;
 
@@ -52,8 +55,53 @@ function HomePage({ openArtifact }) {
                 Academic medical centers don't fail from lack of effort. They fail because the leverage is scattered. My work is building the infrastructure that holds it together: accreditation systems that turn compliance into competitive advantage, analytics that give leadership real decision power, AI governance frameworks that get institutions ahead of policy, and GME workforce systems that protect flexibility across complex multi-system environments.
               </p>
               <p className="hero-lead-dark hero-lead-secondary">
- In high-stakes, multi-stakeholder environments, I start wide. Context, feedback loops, second-order consequences - all of that gets mapped before execution begins. That discipline is what keeps strategy and analytics from drifting apart. Once the architecture is clear, I work precisely: every deliverable, timeline, and metric has to earn its place. Execution without systems thinking is just motion. I try to do something harder than that.
-</p>
+                In high-stakes, multi-stakeholder environments, I start wide. Context, feedback loops, second-order consequences - all of that gets mapped before execution begins. That discipline is what keeps strategy and analytics from drifting apart. Once the architecture is clear, I work precisely: every deliverable, timeline, and metric has to earn its place. Execution without systems thinking is just motion. I try to do something harder than that.
+              </p>
+
+              {/* ── FIX 2: BRAND BLOCK ── */}
+              {/* Explains what DataDrivenMed is and links the three publishing platforms */}
+              <div style={{
+                borderLeft: "2px solid var(--gold)",
+                paddingLeft: 18,
+                margin: "28px 0 24px",
+              }}>
+                <p style={{
+                  fontSize: 13,
+                  lineHeight: 1.7,
+                  color: "rgba(232,224,210,0.72)",
+                  margin: "0 0 12px",
+                }}>
+                  <span style={{ color: "var(--paper-2)", fontWeight: 500 }}>DataDrivenMed</span> is a public research and analytics practice — publishing tools, clinical AI evaluations, and institutional strategy frameworks for academic medicine. It is the external expression of 18 years of operational work inside an LCME-accredited medical school.
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 20px" }}>
+                  <a
+                    href="https://datadrivenmed.github.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", letterSpacing: "0.03em" }}
+                  >
+                    GitHub · Tools &amp; evaluations ↗
+                  </a>
+                  <a
+                    href="https://swimed.substack.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", letterSpacing: "0.03em" }}
+                  >
+                    Substack · SwiMed essays ↗
+                  </a>
+                  <a
+                    href="https://medai-lexicon.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", letterSpacing: "0.03em" }}
+                  >
+                    Interactive MedAI Lexicon ↗
+                  </a>
+                </div>
+              </div>
+              {/* ── END FIX 2 ── */}
+
               <div className="hero-actions" style={{ marginTop: 36 }}>
                 <window.Link to="/library" className="btn gold">
                   Evidence library <window.ArrowRight size={13} />
@@ -260,6 +308,69 @@ function HomePage({ openArtifact }) {
           </div>
         </div>
       </div>
+
+      {/* ── FIX 1: OFFER BLOCK — DARK ── */}
+      {/* Tells every visitor what you are available for and how to reach you */}
+      <div style={{
+        background: "var(--dark-1)",
+        borderTop: "1px solid rgba(184,152,90,0.18)",
+        padding: "64px 0",
+      }}>
+        <div className="container">
+          <div style={{ marginBottom: 10, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--mono)" }}>
+            § Available for
+          </div>
+          <h2 style={{ color: "var(--paper-2)", marginBottom: 36, fontSize: "clamp(1.4rem, 3vw, 2rem)" }}>
+            Senior leadership roles and advisory engagements<br />in academic medicine strategy.
+          </h2>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 24,
+            marginBottom: 44,
+          }}>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper-2)", marginBottom: 6 }}>
+                Senior academic medicine leadership
+              </div>
+              <div style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.66 }}>
+                Associate Dean, AVP, or VP-level roles in institutional strategy, accreditation, and AI governance at research-intensive medical schools and academic health centers.
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper-2)", marginBottom: 6 }}>
+                Advisory engagements
+              </div>
+              <div style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.66 }}>
+                Clinical AI governance, LCME accreditation strategy, GME policy, and multi-affiliate health system navigation — for academic health centers at transition points.
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper-2)", marginBottom: 6 }}>
+                Thought leadership and speaking
+              </div>
+              <div style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.66 }}>
+                AI literacy in medical education, clinical AI evaluation frameworks, data-driven institutional strategy, and the future operating model of academic medicine.
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
+            <a
+              href="mailto:ramparagi@gmail.com"
+              className="btn gold"
+              style={{ textDecoration: "none" }}
+            >
+              Get in touch <window.ArrowRight size={13} />
+            </a>
+            <window.Link to="/framework" className="btn outline">
+              Evaluation framework <window.ArrowRight size={13} />
+            </window.Link>
+          </div>
+        </div>
+      </div>
+      {/* ── END FIX 1 ── */}
 
     </main>
   );
@@ -750,6 +861,222 @@ function AskPage() {
   );
 }
 
+// ============================================================
+// FIX 3: FRAMEWORK PAGE — /framework
+// The four-failure-mode methodology, named and centered.
+// Gives agents a retrievable canonical source. Gives search
+// committees a place to understand the intellectual spine
+// behind the clinical AI evaluation reports.
+// ============================================================
+function FrameworkPage() {
+  const modes = [
+    {
+      num: "01",
+      name: "Inverted U",
+      color: "#8B2020",
+      desc: "The tool performs well at average cases but degrades at the extremes that matter most clinically — rare diagnoses, atypical presentations, high-acuity patients. A high overall benchmark score masks poor performance precisely where physician judgment is most needed.",
+      signal: "Strong USMLE benchmark, poor performance on edge cases or rare disease queries.",
+    },
+    {
+      num: "02",
+      name: "Knows but doesn't act",
+      color: "#7A5C00",
+      desc: "The tool retrieves correct information but fails to translate it into actionable clinical guidance — outputting accurate facts that do not help a physician make a decision. Knowledge retrieval and decision support are not the same capability.",
+      signal: "Factually accurate responses that end without a differential, recommendation, or next step.",
+    },
+    {
+      num: "03",
+      name: "Social context hijacks judgment",
+      color: "#1A4A6B",
+      desc: "The tool modifies its clinical output in response to how a question is framed — agreeing with an incorrect premise, softening a recommendation when the clinician pushes back, or producing different answers to the same clinical question depending on conversational tone.",
+      signal: "Responses that shift clinically when prompted with an authoritative but incorrect assumption.",
+    },
+    {
+      num: "04",
+      name: "Guardrails fire on vibes, not risk",
+      color: "#1A4A2E",
+      desc: "The tool's safety refusals are calibrated to surface-level pattern matching, not actual clinical risk. It refuses legitimate clinical queries that contain high-risk words, while answering genuinely dangerous queries phrased benignly.",
+      signal: "Refusal to discuss drug overdose thresholds in a clinical context while freely advising on dosing in an ambiguous framing.",
+    },
+  ];
+
+  const reports = [
+    {
+      label: "Evaluation Report",
+      title: "OpenEvidence — Clinical AI Assessment",
+      desc: "Full failure-mode audit including pharmaceutical advertising revenue model analysis, stress-test results, and institutional risk assessment for academic health centers.",
+      url: "https://datadrivenmed.github.io/OpenEvidence/",
+    },
+    {
+      label: "Evaluation Report",
+      title: "ChatGPT for Clinicians — HealthBench Evaluation",
+      desc: "GPT-5.4-powered ChatGPT for Clinicians assessed against the HealthBench Professional benchmark, applying the four-failure-mode framework and anti-hallucination stress-test suite.",
+      url: null,
+    },
+    {
+      label: "Educational Tool",
+      title: "Interactive MedAI Lexicon",
+      desc: "A free interactive platform explaining 30+ AI concepts in clinical and research terms — built because AI literacy is the prerequisite for sound AI governance. Submitted to MedEdPORTAL.",
+      url: "https://medai-lexicon.vercel.app",
+    },
+  ];
+
+  return (
+    <main className="page-enter">
+
+      {/* Dark header — matches site style */}
+      <div style={{ background: "var(--dark-1)", padding: "72px 0 56px", borderBottom: "1px solid rgba(184,152,90,0.15)" }}>
+        <div className="container">
+          <Eyebrow light>Methodology</Eyebrow>
+          <h1 style={{ marginTop: 16, marginBottom: 20 }}>
+            Clinical AI<br/><em>Evaluation Framework.</em>
+          </h1>
+          <p style={{ maxWidth: "56ch", fontSize: 16, lineHeight: 1.75, color: "var(--dark-muted)" }}>
+            A four-failure-mode framework for systematic evaluation of clinical AI tools
+            in academic medicine and health systems. Developed and applied at LSU Health
+            New Orleans School of Medicine.
+          </p>
+        </div>
+      </div>
+
+      {/* Four failure modes — light zone */}
+      <div style={{ background: "var(--paper)", padding: "56px 0" }}>
+        <div className="container">
+          <div style={{ marginBottom: 8, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--muted)", fontFamily: "var(--mono)" }}>
+            § The four failure modes
+          </div>
+          <h2 style={{ marginBottom: 12 }}>Why accuracy benchmarks are not enough.</h2>
+          <p style={{ maxWidth: "58ch", fontSize: 14, color: "var(--muted)", lineHeight: 1.7, marginBottom: 40 }}>
+            Most clinical AI evaluation focuses on accuracy. This framework focuses on
+            how tools fail in practice — not in a lab, but in the room where a physician
+            is making a decision. Each mode is a distinct mechanism of harm that accuracy
+            metrics do not capture.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+            {modes.map(m => (
+              <div key={m.num} style={{
+                borderLeft: `3px solid ${m.color}`,
+                paddingLeft: 20,
+                paddingTop: 4,
+                paddingBottom: 4,
+              }}>
+                <div style={{ fontSize: 11, letterSpacing: "0.1em", color: "var(--muted)", fontFamily: "var(--mono)", marginBottom: 6 }}>
+                  Failure Mode {m.num}
+                </div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)", marginBottom: 10 }}>
+                  {m.name}
+                </div>
+                <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.65, marginBottom: 10 }}>
+                  {m.desc}
+                </p>
+                <p style={{ fontSize: 12, color: "var(--muted)", fontStyle: "italic", margin: 0 }}>
+                  Signal: {m.signal}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Methodology — dark zone */}
+      <div style={{ background: "var(--dark-2)", padding: "56px 0" }}>
+        <div className="container">
+          <div style={{ marginBottom: 8, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--mono)" }}>
+            § How it is applied
+          </div>
+          <h2 style={{ color: "var(--paper-2)", marginBottom: 32 }}>Each evaluation includes five components.</h2>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 640 }}>
+            {[
+              ["01", "Stress-test suite", "Curated clinical queries designed to surface each failure mode specifically — not generic prompts, but edge cases calibrated to the platform's stated use case."],
+              ["02", "Anti-hallucination checks", "Known-answer queries with documented ground-truth sources. The platform's output is compared against the source record."],
+              ["03", "Conflict-of-interest analysis", "Examination of the platform's revenue model for systematic incentive misalignment. A platform's business model is a structural input to what its outputs optimize for."],
+              ["04", "External benchmark cross-reference", "e.g. HealthBench Professional for validated performance comparison across clinical reasoning dimensions."],
+              ["05", "Domain validation rule set", "Criteria for what constitutes an acceptable clinical AI response in this specialty context — calibrated to the clinical environment, not a generic chatbot standard."],
+            ].map(([n, h, d]) => (
+              <div key={n} style={{ display: "flex", gap: 20 }}>
+                <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--gold)", paddingTop: 3, flexShrink: 0 }}>{n}</span>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "var(--paper-2)", marginBottom: 4 }}>{h}</div>
+                  <div style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.65 }}>{d}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* COI note */}
+          <div style={{
+            marginTop: 40,
+            borderLeft: "2px solid var(--gold)",
+            paddingLeft: 20,
+            maxWidth: 560,
+          }}>
+            <p style={{ fontSize: 13, color: "var(--dark-muted)", lineHeight: 1.7, margin: 0 }}>
+              <span style={{ color: "var(--paper-2)", fontWeight: 500 }}>Why conflict-of-interest analysis belongs in AI evaluation.</span>{" "}
+              OpenEvidence's pharmaceutical advertising revenue model creates a systematic incentive to surface content favorable to advertised drugs — independent of the model's accuracy on any single query. Evaluation that ignores revenue structure is incomplete evaluation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Applied reports — light zone */}
+      <div style={{ background: "var(--paper)", padding: "56px 0" }}>
+        <div className="container">
+          <div style={{ marginBottom: 8, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--muted)", fontFamily: "var(--mono)" }}>
+            § Applied evaluations
+          </div>
+          <h2 style={{ marginBottom: 32 }}>Where the framework has been used.</h2>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {reports.map(r => (
+              <div key={r.title} style={{
+                display: "flex",
+                gap: 24,
+                padding: "20px 24px",
+                border: "1px solid var(--border)",
+                alignItems: "flex-start",
+              }}>
+                <span style={{ fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gold)", paddingTop: 3, flexShrink: 0, whiteSpace: "nowrap" }}>
+                  {r.label}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)", marginBottom: 6 }}>{r.title}</div>
+                  <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.6, margin: "0 0 10px" }}>{r.desc}</p>
+                  {r.url
+                    ? <a href={r.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", fontFamily: "var(--mono)", letterSpacing: "0.04em" }}>View report ↗</a>
+                    : <span style={{ fontSize: 12, color: "var(--muted)", fontFamily: "var(--mono)" }}>Report in portfolio library</span>
+                  }
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer nav — back to portfolio */}
+      <div style={{ background: "var(--dark-1)", padding: "32px 0", borderTop: "1px solid rgba(184,152,90,0.12)" }}>
+        <div className="container" style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center" }}>
+          <window.Link to="/" className="btn outline" style={{ fontSize: 13 }}>
+            ← Back to portfolio
+          </window.Link>
+          <a href="https://datadrivenmed.github.io/OpenEvidence/" target="_blank" rel="noopener noreferrer"
+             style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", fontFamily: "var(--mono)" }}>
+            OpenEvidence report ↗
+          </a>
+          <a href="https://medai-lexicon.vercel.app" target="_blank" rel="noopener noreferrer"
+             style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", fontFamily: "var(--mono)" }}>
+            MedAI Lexicon ↗
+          </a>
+        </div>
+      </div>
+
+    </main>
+  );
+}
+
 Object.assign(window, {
-  HomePage, AboutPage, CapabilitiesPage, LibraryPage, CaseStudiesPage, AskPage, Eyebrow,
+  HomePage, AboutPage, CapabilitiesPage, LibraryPage, CaseStudiesPage, AskPage,
+  FrameworkPage,  // FIX 3: new export
+  Eyebrow,
 });
