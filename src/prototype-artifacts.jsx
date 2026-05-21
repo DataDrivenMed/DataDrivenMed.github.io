@@ -66,4 +66,7 @@
 
   window.ALL_SKILLS = [...new Set(window.ARTIFACTS.flatMap((a) => a.skills || []))].sort();
   window.ALL_AUDIENCES = [...new Set(window.ARTIFACTS.flatMap((a) => a.audience || []))].sort();
+  if (typeof window.applyEvidenceStatusMetadata === "function") {
+    window.applyEvidenceStatusMetadata(window.ARTIFACTS);
+  }
 })();

@@ -121,7 +121,7 @@ function CareerGovernancePage() {
   const strategicWork = [
     "GME contracts and negotiations",
     "GME policy, financing, workforce strategy, CMS cost reports, DGME and IME interpretation",
-    "Admissions management platform transformation and vendor scoping",
+    "Admissions management platform vendor scoping and data systems",
     "NIH research portfolio clustering and growth strategy",
     "Huron / LSU A&M research strategic growth data support",
     "FDA RFI response on AI-enabled real-time clinical trials",

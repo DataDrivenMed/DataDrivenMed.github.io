@@ -21,6 +21,8 @@ function App() {
   else if (base.startsWith("/library")) page = <window.LibraryPage openArtifact={setActiveArt} />;
   else if (base.startsWith("/case-studies")) page = <window.CaseStudiesPage openArtifact={setActiveArt} />;
   else if (base.startsWith("/ask")) page = <window.AskPage />;
+  else if (base.startsWith("/truth-layer")) page = <window.TruthLayerPage />;
+  else if (base.startsWith("/claims-evidence")) page = <window.ClaimsEvidencePage />;
   else if (base.startsWith("/framework")) page = <window.FrameworkPage />;  // FIX 3
   else page = <window.HomePage openArtifact={setActiveArt} />;
   return (

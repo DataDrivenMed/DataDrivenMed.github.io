@@ -81,4 +81,7 @@
       liveLabel: "Open evaluation report"
     });
   }
+  if (typeof window.applyEvidenceStatusMetadata === "function") {
+    window.applyEvidenceStatusMetadata(artifacts);
+  }
 })();

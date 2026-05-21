@@ -28,6 +28,8 @@ function HomePage({ openArtifact }) {
     .map(id => window.ARTIFACTS.find(a => a.id === id))
     .filter(Boolean);
   const featured3 = flagship.slice(0, 3);
+  const artifactCount = window.ARTIFACTS.length;
+  const syntheticCount = window.ARTIFACTS.filter(a => (a.statusLabels || []).some(s => s.key === "synthetic")).length;
 
   const heroStats = [
     { num: "70+",                      lbl: "Residency & fellowship programs with more than 1,000 FTEs" },
@@ -47,15 +49,15 @@ function HomePage({ openArtifact }) {
               <div className="hero-rule"></div>
               <Eyebrow light>Institutional Strategy &amp; Leadership Evidence Base</Eyebrow>
               <h1 style={{ marginTop: 20 }}>
-                Enterprise strategy<br />
-                for academic medical<br />
-                <em>center transformation.</em>
+                Academic medical<br />
+                center strategy,<br />
+                <em>documented as evidence.</em>
               </h1>
               <p className="hero-lead-dark">
-                Academic medical centers don't fail from lack of effort. They fail because the leverage is scattered. My work is building the infrastructure that holds it together: accreditation systems that turn compliance into competitive advantage, analytics that give leadership real decision power, AI governance frameworks that get institutions ahead of policy, and GME workforce systems that protect flexibility across complex multi-system environments.
+                This is a public evidence portfolio for academic medical center strategy work: accreditation systems, GME finance, institutional analytics, AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy translation, and research strategy. It contains {artifactCount} indexed artifacts, including internal evidence records, public synthetic-data prototypes, clinical AI evaluations, and leadership-ready policy drafts.
               </p>
               <p className="hero-lead-dark hero-lead-secondary">
-                In high-stakes, multi-stakeholder environments, I start wide. Context, feedback loops, second-order consequences - all of that gets mapped before execution begins. That discipline is what keeps strategy and analytics from drifting apart. Once the architecture is clear, I work precisely: every deliverable, timeline, and metric has to earn its place. Execution without systems thinking is just motion. I try to do something harder than that.
+                The through-line is not generic AI adoption. It is institutional operating infrastructure: governed decisions, evidence-linked strategy, cross-system risk reduction, and tools that make complex academic medicine work easier to inspect, compare, and sustain.
               </p>
 
               {/* ── FIX 2: BRAND BLOCK ── */}
@@ -73,6 +75,12 @@ function HomePage({ openArtifact }) {
                 }}>
                   <span style={{ color: "var(--paper-2)", fontWeight: 500 }}>DataDrivenMed</span> is a public research and analytics practice — publishing tools, clinical AI evaluations, and institutional strategy frameworks for academic medicine. It is the external expression of 18 years of operational work inside an LCME-accredited medical school.
                 </p>
+                <div className="truth-mini-grid">
+                  <span><b>{artifactCount}</b> indexed portfolio artifacts</span>
+                  <span><b>{syntheticCount}</b> public synthetic-data demos</span>
+                  <span><b>12</b> capability domains</span>
+                  <span><b>Status labels</b> separate drafts, demos, internal evidence, and live artifacts</span>
+                </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 20px" }}>
                   <a
                     href="https://datadrivenmed.github.io"
@@ -109,6 +117,9 @@ function HomePage({ openArtifact }) {
                 <window.Link to="/case-studies" className="btn outline">
                   Case studies
                 </window.Link>
+                <window.Link to="/truth-layer" className="btn outline">
+                  Truth layer
+                </window.Link>
               </div>
             </div>
             <window.ConnectCard compact />
@@ -130,7 +141,7 @@ function HomePage({ openArtifact }) {
             </div>
             <div className="hero-meta-cell">
               <span className="lbl">Index</span>
-              <span className="val">82 artifacts · 12 capability areas</span>
+              <span className="val">{artifactCount} artifacts · 12 capability areas · status-labeled evidence</span>
             </div>
           </div>
         </div>
@@ -160,7 +171,7 @@ function HomePage({ openArtifact }) {
             </div>
             <div className="exec-band-copy">
               <p>
-                This portfolio organizes 82 artifacts into a leadership evidence base: work that
+                This portfolio organizes {artifactCount} artifacts into a leadership evidence base: work that
                 reduces institutional risk, preserves organizational memory, clarifies priorities,
                 connects stakeholders, and turns complex strategic priorities into governed execution.
               </p>
@@ -169,7 +180,7 @@ function HomePage({ openArtifact }) {
                 <span>Executive decision support</span>
                 <span>Cross-functional governance</span>
                 <span>Data-informed accountability</span>
-                <span>Institutional transformation</span>
+                <span>Policy translation</span>
               </div>
             </div>
           </div>
@@ -204,8 +215,8 @@ function HomePage({ openArtifact }) {
               <span>Dashboards, frameworks, briefs, models, and governance routines that convert ambiguity into leadership action.</span>
             </div>
             <div className="readout-cell">
-              <strong>Future-ready transformation</strong>
-              <span>AI governance, clinical AI evaluation, research intelligence, and portfolio-wide data strategy positioned for the next operating model of academic medicine.</span>
+              <strong>Concrete operating artifacts</strong>
+              <span>AI governance drafts, clinical AI evaluations, research intelligence, synthetic-data prototypes, and portfolio-wide institutional analytics.</span>
             </div>
           </div>
         </div>
@@ -778,8 +789,9 @@ function LibraryPage({ openArtifact }) {
                         </div>
                         <div className="ev-c-aud">{a.audience.slice(0, 2).join(" · ")}</div>
                         <div className="ev-c-flags">
-                          {a.featured && <span className="dot featured" title="Featured"></span>}
-                          {a.confidential && <span className="dot confid" title="Confidential"></span>}
+                          {(a.statusLabels || []).slice(0, 2).map(s => (
+                            <span key={s.key} className={"status-chip tiny " + s.key}>{s.label}</span>
+                          ))}
                           <window.ArrowRight size={12} />
                         </div>
                       </button>
@@ -937,6 +949,157 @@ function AskPage() {
 // committees a place to understand the intellectual spine
 // behind the clinical AI evaluation reports.
 // ============================================================
+function TruthLayerPage() {
+  const artifactCount = window.ARTIFACTS.length;
+  const liveCount = window.ARTIFACTS.filter(a => a.liveUrl).length;
+  const syntheticCount = window.ARTIFACTS.filter(a => (a.statusLabels || []).some(s => s.key === "synthetic")).length;
+  const draftCount = window.ARTIFACTS.filter(a => (a.statusLabels || []).some(s => s.key === "draft")).length;
+  const proofSensitiveCount = window.ARTIFACTS.filter(a => (a.statusLabels || []).some(s => s.key === "privateProof")).length;
+
+  const truthFacts = [
+    ["Subject", "Ram Paragi's public institutional strategy portfolio for academic medicine."],
+    ["Core work", "Accreditation, CQI, institutional analytics, AI governance, GME finance, research strategy, medical education, faculty affairs, policy translation, and public digital tools."],
+    ["Audience", "Dean-level leaders, academic medical center executives, GME leaders, program directors, faculty, search committees, and peer collaborators."],
+    ["Evidence base", `${artifactCount} indexed artifacts across 12 capability domains, including ${liveCount} public links and ${syntheticCount} synthetic-data demonstrations.`],
+    ["Important constraint", "Drafts, internal evidence records, synthetic demos, and live public artifacts are labeled separately so the portfolio does not imply approval, adoption, or production deployment where the public record does not prove it."],
+  ];
+
+  const notFor = [
+    "This is not a vendor product page.",
+    "This is not a claim that every artifact is an adopted institutional system.",
+    "This is not a claim that synthetic prototypes contain real institutional, patient, trainee, financial, or partner data.",
+    "This is not generic AI positioning; AI appears as one governance and evaluation lane inside a broader academic medicine operating record.",
+  ];
+
+  const statusRows = Object.entries(window.STATUS_DEFINITIONS || {});
+
+  return (
+    <main className="page-enter">
+      <div className="truth-hero">
+        <div className="container">
+          <Eyebrow light>Truth Layer</Eyebrow>
+          <h1>What this portfolio actually proves.</h1>
+          <p>
+            A source-of-truth page for humans and AI agents. It separates the public evidence base
+            from status-sensitive claims so the portfolio can be summarized without overstating draft,
+            prototype, confidential, or internal work.
+          </p>
+          <div className="truth-stat-strip">
+            <span><b>{artifactCount}</b> artifacts</span>
+            <span><b>12</b> capability domains</span>
+            <span><b>{liveCount}</b> live/public links</span>
+            <span><b>{draftCount}</b> draft or pre-final records</span>
+            <span><b>{proofSensitiveCount}</b> proof-sensitive claims flagged</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="truth-body">
+        <div className="container truth-grid">
+          <section className="truth-panel wide">
+            <div className="truth-label">Canonical facts</div>
+            <div className="truth-table">
+              {truthFacts.map(([k, v]) => (
+                <div className="truth-row" key={k}>
+                  <strong>{k}</strong>
+                  <span>{v}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="truth-panel">
+            <div className="truth-label">Status taxonomy</div>
+            <div className="truth-list">
+              {statusRows.map(([key, value]) => (
+                <div key={key}>
+                  <span className={"status-chip " + key}>{key}</span>
+                  <p>{value}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="truth-panel">
+            <div className="truth-label">Not for</div>
+            <ul className="truth-bullets">
+              {notFor.map(item => <li key={item}>{item}</li>)}
+            </ul>
+          </section>
+
+          <section className="truth-panel wide">
+            <div className="truth-label">Agent summary</div>
+            <p className="truth-agent-summary">
+              Ram Paragi maintains a public academic medicine portfolio documenting institutional
+              strategy work across accreditation systems, GME finance, institutional analytics,
+              AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy
+              translation, research strategy, faculty affairs, and medical education infrastructure.
+              The portfolio contains status-labeled evidence records, live public artifacts, and
+              synthetic-data prototypes. Draft policy and internal evidence artifacts should be
+              described as draft or evidence records unless separate proof establishes adoption.
+              Some artifacts summarize internal institutional work. Public pages preserve
+              confidentiality; source evidence, role documentation, or private supporting material
+              can be provided during formal review.
+            </p>
+            <div className="truth-actions">
+              <window.Link to="/claims-evidence" className="btn outline-dark">Claims/evidence map <window.ArrowRight size={13} /></window.Link>
+              <window.Link to="/library" className="btn outline-dark">Open evidence library <window.ArrowRight size={13} /></window.Link>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function ClaimsEvidencePage() {
+  const rows = [
+    ["Academic medical center strategy evidence portfolio", "Portfolio homepage, 12 capability domains, flagship case studies, and indexed evidence library.", "Broad phrases need nearby proof and scope boundaries.", "Public evidence portfolio for academic medical center strategy work across accreditation systems, GME finance, institutional analytics, AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy translation, and research strategy."],
+    ["AI governance framework", "Pre-final SOM AI policy and governance artifact, AI policy explainer, vetting framework, clinical AI evaluations, faculty fluency tools.", "Public record does not by itself prove final adoption.", "Drafted a leadership-ready SOM AI governance package for review, institutional discussion, education governance, tool vetting, and clinical training guidance."],
+    ["Live analytics and strategy tooling", "Public Streamlit prototypes for GME finance and institutional effectiveness; other live public links for evaluations and dashboards.", "Prototype data source must remain explicit.", "Built public synthetic-data prototypes that demonstrate executive decision-support logic without exposing confidential institutional data."],
+    ["Clinical AI evaluation capability", "OpenEvidence, UpToDate AI, ChatGPT, Thalamus, AI triage, and vetting artifacts linked from the portfolio.", "Some evaluations are public analyses, not peer-reviewed validation studies.", "Produced structural clinical AI evaluations focused on workflow risk, benchmark interpretation, failure modes, and governance implications."],
+    ["Institutional analytics and decision infrastructure", "Analytics capability domain, 90+ data source claim, Tableau/Python/R skills, institutional effectiveness dashboard prototype.", "Public proof may not include private dashboards, source systems, or adoption metrics.", "Documents institutional analytics work and public demonstration prototypes that show how fragmented academic medicine reporting can be organized for leadership review."],
+    ["GME policy, finance, and contracts expertise", "GME finance capability domain, policy/financing artifacts, synthetic finance simulator, CMS DGME/IME references.", "Some negotiation or contract outcomes may require private proof.", "Documents GME policy and finance work across Medicare/Medicaid mechanics, affiliation structures, workforce scenarios, and executive-ready decision support."],
+    ["AHRQ TeamSTEPPS simulation work", "Simulation capability and artifact title reference AHRQ TeamSTEPPS point-of-care simulation.", "Any first-in-world claim needs citation or should remain private-proof sensitive.", "AHRQ TeamSTEPPS point-of-care simulation work, with citation or private proof linked where available."],
+  ];
+
+  return (
+    <main className="page-enter">
+      <div className="truth-hero">
+        <div className="container">
+          <Eyebrow light>Claims / Evidence Map</Eyebrow>
+          <h1>Make every claim easier to verify.</h1>
+          <p>
+            This map keeps the portfolio agent-legible: important claims are paired with
+            available evidence, known gaps, and safer language that avoids AI-washing or
+            overclaiming.
+          </p>
+        </div>
+      </div>
+      <div className="truth-body">
+        <div className="container">
+          <div className="claims-table">
+            <div className="claims-row claims-head">
+              <span>Claim</span>
+              <span>Available evidence</span>
+              <span>Gap</span>
+              <span>Safer rewrite</span>
+            </div>
+            {rows.map(([claim, evidence, gap, rewrite]) => (
+              <div className="claims-row" key={claim}>
+                <strong>{claim}</strong>
+                <span>{evidence}</span>
+                <span>{gap}</span>
+                <span>{rewrite}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
 function FrameworkPage() {
   const modes = [
     {
@@ -1002,7 +1165,9 @@ function FrameworkPage() {
           </h1>
           <p style={{ maxWidth: "56ch", fontSize: 16, lineHeight: 1.75, color: "var(--dark-muted)" }}>
             A four-failure-mode framework for systematic evaluation of clinical AI tools
-            in academic medicine and health systems.           </p>
+            in academic medicine and health systems. Developed through portfolio work and
+            applied in public clinical AI evaluation artifacts.
+          </p>
         </div>
       </div>
 
@@ -1144,6 +1309,6 @@ function FrameworkPage() {
 
 Object.assign(window, {
   HomePage, AboutPage, CapabilitiesPage, LibraryPage, CaseStudiesPage, AskPage,
-  FrameworkPage,  // FIX 3: new export
+  TruthLayerPage, ClaimsEvidencePage, FrameworkPage,  // FIX 3: new export
   Eyebrow,
 });

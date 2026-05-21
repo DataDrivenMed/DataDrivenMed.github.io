@@ -175,6 +175,8 @@ function Footer() {
               <li><Link to="/capabilities">Capability areas</Link></li>
               <li><Link to="/case-studies">Case studies</Link></li>
               <li><Link to="/library">Evidence library</Link></li>
+              <li><Link to="/truth-layer">Truth layer</Link></li>
+              <li><Link to="/claims-evidence">Claims/evidence map</Link></li>
               {/* FIX 3: Framework in footer nav */}
               <li><Link to="/framework">AI Evaluation Framework</Link></li>
             </ul>
@@ -204,7 +206,7 @@ function Footer() {
         </div>
         <div className="footer-base">
           <span>© 2026 · Ram Paragi · LSU Health New Orleans School of Medicine</span>
-          <span>82 artifacts · 12 capability domains</span>
+          <span>{window.ARTIFACTS.length} artifacts · 12 capability domains · status-labeled evidence</span>
         </div>
       </div>
     </footer>
@@ -214,6 +216,7 @@ function Footer() {
 // ---------- Artifact card ----------
 function ArtifactCard({ a, onOpen }) {
   const cap = window.CAPABILITIES.find(c => c.id === a.category);
+  const statusLabels = (a.statusLabels || []).slice(0, 3);
   return (
     <article className="card" onClick={() => onOpen(a)}>
       <div className="top">
@@ -224,6 +227,11 @@ function ArtifactCard({ a, onOpen }) {
         </span>
       </div>
       <h3>{a.title}</h3>
+      {statusLabels.length > 0 && (
+        <div className="status-row">
+          {statusLabels.map(s => <span key={s.key} className={"status-chip " + s.key}>{s.label}</span>)}
+        </div>
+      )}
       <p className="summary">{a.summary}</p>
       <div className="strat"><b>Strategic value · </b>{a.strategic}</div>
       <div className="tags">{a.tags.slice(0, 4).map(t => <span key={t} className="tag">{t}</span>)}</div>
@@ -284,11 +292,17 @@ function FeaturedCover({ index }) {
 // ---------- Featured case card ----------
 function FeaturedCard({ a, index, onOpen }) {
   const cap = window.CAPABILITIES.find(c => c.id === a.category);
+  const statusLabels = (a.statusLabels || []).slice(0, 2);
   return (
     <article className="feat" onClick={() => onOpen(a)}>
       <FeaturedCover index={index} />
       <div className="feat-body">
         <h3>{a.title}</h3>
+        {statusLabels.length > 0 && (
+          <div className="status-row compact">
+            {statusLabels.map(s => <span key={s.key} className={"status-chip " + s.key}>{s.label}</span>)}
+          </div>
+        )}
         <p className="feat-sum">{a.summary}</p>
         <div className="feat-meta">
           <span>{cap ? cap.title : a.category}</span>

@@ -1,6 +1,8 @@
-# Claude Dark Executive Redesign Test Package
+# Historical Redesign Test Package
 
-This package uses the final working Step 20 portfolio site as the base and overlays Claude's darker executive visual redesign files.
+This file is retained as historical implementation context. The current repository source-of-truth is `README.md`, which documents the public portfolio purpose, evidence boundaries, status taxonomy, and local testing workflow.
+
+The original package used the final working Step 20 portfolio site as the base and overlaid Claude's darker executive visual redesign files.
 
 Preserved from the working site:
 - all 82 artifact content files

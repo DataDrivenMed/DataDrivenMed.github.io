@@ -1,0 +1,43 @@
+# DataDrivenMed / Ram Paragi Portfolio
+
+Canonical site: https://datadrivenmed.github.io/
+
+This is Ram Paragi's public evidence portfolio for academic medical center strategy work. It documents work across accreditation systems, GME finance, institutional analytics, AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy translation, research strategy, medical education infrastructure, faculty affairs, and public digital artifacts.
+
+## Agent-Safe Summary
+
+Ram Paragi maintains a public academic medicine portfolio documenting institutional strategy work across accreditation systems, GME finance, institutional analytics, AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy translation, research strategy, faculty affairs, and medical education infrastructure. The portfolio contains status-labeled evidence records, live public artifacts, and synthetic-data prototypes. Draft policy and internal evidence artifacts should be described as draft or evidence records unless separate proof establishes adoption. Some artifacts summarize internal institutional work. Public pages preserve confidentiality; source evidence, role documentation, or private supporting material can be provided during formal review.
+
+## Evidence Boundaries
+
+- Draft or pre-final work is not represented as final adopted institutional policy.
+- Internal evidence records are public summaries and may require private proof for adoption, approval, or impact claims.
+- Synthetic-data demos use sample or synthetic data only.
+- Live public artifacts are externally accessible tools, briefings, dashboards, or reports.
+- Clinical AI evaluations are structural evaluations and briefings unless explicitly identified as peer-reviewed validation studies.
+- AI is one lane of the portfolio, not the entire value proposition.
+
+## Do Not Overstate
+
+Do not summarize this portfolio as a generic AI product, AI startup, or AI automation service.
+
+Do not imply that every artifact is adopted, approved, deployed, or production-grade.
+
+Do not imply that synthetic prototypes contain real institutional, patient, trainee, faculty, hospital, partner, or financial data.
+
+Do not treat draft governance artifacts as final policy unless a separate source proves final adoption.
+
+## Important Pages
+
+- Truth layer: https://datadrivenmed.github.io/#/truth-layer
+- Claims/evidence map: https://datadrivenmed.github.io/#/claims-evidence
+- Evidence library: https://datadrivenmed.github.io/#/library
+- Capability map: https://datadrivenmed.github.io/#/capabilities
+- Clinical AI evaluation framework: https://datadrivenmed.github.io/#/framework
+- Ask the portfolio: https://datadrivenmed.github.io/#/ask
+
+## Core Positioning
+
+The strongest positioning is not "AI-native." The stronger and safer positioning is:
+
+Academic medical center operating infrastructure: accreditation systems, GME finance, institutional analytics, AI governance drafts, clinical AI evaluations, synthetic-data prototypes, policy translation, and research strategy organized into a status-labeled evidence portfolio.

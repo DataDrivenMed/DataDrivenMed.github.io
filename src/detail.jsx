@@ -262,6 +262,7 @@ function ArtifactDetail({ artifact, onClose }) {
   const related = (detail.related || [])
     .map(id => window.ARTIFACTS.find(a => a.id === id))
     .filter(Boolean);
+  const statusLabels = artifact.statusLabels || [];
   const showFullEvidenceRecord = Boolean(
     artifact.fullArtifactUrl && (artifact.billTable || IMPORTANT_FULL_EVIDENCE_IDS.has(artifact.id))
   );
@@ -338,8 +339,13 @@ function ArtifactDetail({ artifact, onClose }) {
             <div className="item">
               <div className="lbl">Status</div>
               <div className="v">
-                {artifact.featured ? "Featured · " : ""}
-                {artifact.confidential ? "Confidential" : "Open review"}
+                {artifact.evidenceStrength || (artifact.confidential ? "Public summary; source proof may be private" : "Portfolio evidence record")}
+              </div>
+            </div>
+            <div className="item">
+              <div className="lbl">Evidence labels</div>
+              <div className="v status-row">
+                {statusLabels.map(s => <span key={s.key} className={"status-chip " + s.key}>{s.label}</span>)}
               </div>
             </div>
           </div>

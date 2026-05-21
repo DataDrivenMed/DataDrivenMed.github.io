@@ -10,7 +10,7 @@ function PatchedTopBar({ route }) {
   const navItems = [
     { to: "/", label: "Home", mobileLabel: "Home", desc: "Return to the executive portfolio landing page." },
     { to: "/about", label: "Profile", mobileLabel: "Executive Profile", desc: "Leadership narrative, academic role, and institutional scope." },
-    { to: "/career-governance", label: "Career & Governance", mobileLabel: "Career & Governance", desc: "Promotion evidence, governance work, and leadership architecture." },
+    { to: "/career-governance", label: "Career", mobileLabel: "Career & Governance", desc: "Promotion evidence, governance work, and leadership architecture." },
     { to: "/capabilities", label: "Capabilities", mobileLabel: "Capabilities", desc: "Twelve domains of enterprise capability and strategic value." },
     { to: "/case-studies", label: "Case Studies", mobileLabel: "Case Studies", desc: "Selected institutional projects and executive-use examples." },
     { to: "/library", label: "Library", mobileLabel: "Evidence Library", desc: "Documented artifacts, dashboards, frameworks, and proof points." },
@@ -170,6 +170,8 @@ function PatchedFooter() {
               <li><window.Link to="/capabilities">Capability areas</window.Link></li>
               <li><window.Link to="/case-studies">Case studies</window.Link></li>
               <li><window.Link to="/library">Evidence library</window.Link></li>
+              <li><window.Link to="/truth-layer">Truth layer</window.Link></li>
+              <li><window.Link to="/claims-evidence">Claims/evidence map</window.Link></li>
               <li><window.Link to="/framework">AI Evaluation Framework</window.Link></li>
             </ul>
           </div>
@@ -194,7 +196,7 @@ function PatchedFooter() {
         </div>
         <div className="footer-base">
           <span>© 2026 · Ram Paragi · LSU Health New Orleans School of Medicine</span>
-          <span>82 artifacts · 12 capability domains</span>
+          <span>{window.ARTIFACTS.length} artifacts · 12 capability domains · status-labeled evidence</span>
         </div>
       </div>
     </footer>

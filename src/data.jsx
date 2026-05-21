@@ -50,7 +50,7 @@ const CAPABILITIES = [
     id: "admissions-ume",
     num: "07",
     title: "Admissions, Student Affairs & Medical Education",
-    short: "AMP/ZAP technology transformation, predictive admissions analytics, and longitudinal UME outcomes.",
+    short: "AMP/ZAP vendor scoping, admissions data systems, predictive admissions analytics, and longitudinal UME outcomes.",
     skills: ["Vendor scoping", "Predictive admissions", "USMLE / NBME analytics", "AAMC GQ", "LCME compliance"],
   },
   {
@@ -71,7 +71,7 @@ const CAPABILITIES = [
     id: "simulation-quality",
     num: "10",
     title: "Simulation, Patient Safety & Clinical Quality",
-    short: "World-first AHRQ TeamSTEPPS POC simulation, multi-hospital quality networks, and trainee report cards.",
+    short: "AHRQ TeamSTEPPS point-of-care simulation work, multi-hospital quality networks, and trainee report cards.",
     skills: ["AHRQ TeamSTEPPS", "HEDIS", "Mock OR design", "Quality measures", "Debriefing"],
   },
   {
@@ -520,9 +520,9 @@ const ARTIFACTS = [
     true),
 
 
-  ART("pol-03", "Federal and State Rural Health Transformation Strategic Response",
+  ART("pol-03", "Federal and State Rural Health Policy Strategic Response",
     "policy-rural", "Flagship case study",
-    "Proactive strategic response to multiple federal and state rural health transformation policy scopes. Identified Louisiana opportunity through proactive policy monitoring rather than reactive scrambling after passage.",
+    "Proactive strategic response to multiple federal and state rural health policy scopes. Identified Louisiana opportunity through proactive policy monitoring rather than reactive scrambling after passage.",
     ["Federal policy", "Strategic positioning", "Rural health"],
     ["Senior leadership", "Government affairs"],
     "Demonstrates a proactive, rather than reactive, federal-policy posture.",
@@ -646,7 +646,7 @@ const ARTIFACTS = [
     "Program Lead for an AHRQ TeamSTEPPS & Patient Safety initiative at LSU Health Sciences Center - surgical teamwork training, mobile mock OR design, and structured debriefing as a point-of-care simulation modality.",
     ["AHRQ TeamSTEPPS", "Mock OR design", "Debriefing"],
     ["Patient safety", "External"],
-    "Distinctive 'world-first' artifact carrying narrative weight in interview settings.",
+    "Distinctive AHRQ TeamSTEPPS point-of-care simulation artifact carrying narrative weight in interview settings.",
     "AHRQ first in the world.md",
     ["AHRQ", "TeamSTEPPS", "Mock OR"],
     true),
@@ -1039,6 +1039,55 @@ ARTIFACTS.forEach(a => {
   a.liveLabel = live ? live.label : null;
 });
 
+const STATUS_DEFINITIONS = {
+  featured: "Selected as a first-read artifact for senior reviewers.",
+  confidential: "Public summary only; source material may contain internal or confidential context.",
+  internal: "Internal evidence record summarized for public portfolio review.",
+  draft: "Draft or pre-final work; not represented as final institutional policy.",
+  live: "Public live artifact or externally accessible project.",
+  synthetic: "Demonstration uses sample or synthetic data only.",
+  evaluation: "Public or portfolio-based evaluation/briefing artifact.",
+  privateProof: "Private proof may be needed for adoption, approval, or impact claims."
+};
+
+function evidenceStatusForArtifact(a) {
+  const hay = [
+    a.id, a.title, a.role, a.summary, a.strategic,
+    ...(a.skills || []), ...(a.tags || [])
+  ].join(" ").toLowerCase();
+  const labels = [];
+  const add = (key, label) => {
+    if (!labels.some(item => item.key === key)) labels.push({ key, label });
+  };
+
+  if (a.featured) add("featured", "Featured");
+  if (a.confidential) add("confidential", "Confidential");
+  if (a.liveUrl) add("live", "Live public artifact");
+  if (/synthetic|sample data|demonstration prototype/.test(hay)) add("synthetic", "Synthetic data demo");
+  if (/pre-final|draft|for review|leadership-ready draft/.test(hay)) add("draft", "Draft / pre-final");
+  if (/evaluation|briefing|review|assessment|analysis|vetting/.test(hay)) add("evaluation", "Evaluation / briefing");
+  if (!a.liveUrl && !/synthetic/.test(hay)) add("internal", "Internal evidence record");
+  if (/adopted|approved|secured|successful|world-first|first in the world|full acgme/.test(hay)) add("privateProof", "Proof-sensitive claim");
+
+  return labels;
+}
+
+function applyEvidenceStatusMetadata(artifacts = ARTIFACTS) {
+  artifacts.forEach(a => {
+    a.statusLabels = evidenceStatusForArtifact(a);
+    a.statusSummary = a.statusLabels.map(s => s.label).join(" | ");
+    a.evidenceStrength = a.statusLabels.some(s => s.key === "live")
+      ? "Public artifact available"
+      : a.statusLabels.some(s => s.key === "draft")
+        ? "Draft evidence; adoption not implied"
+        : a.statusLabels.some(s => s.key === "confidential")
+          ? "Public summary; source proof may be private"
+          : "Portfolio evidence record";
+  });
+}
+
+applyEvidenceStatusMetadata();
+
 // Hero / About stats
 const HERO_STATS = [
   { num: "70+",  lbl: "Residency & fellowship programs with more than 1000 FTEs (Medicare/ Medicaid GME policy & regulations, three major healthcare systems across the state)" },
@@ -1071,4 +1120,5 @@ const ALL_AUDIENCES = (() => {
 Object.assign(window, {
   CAPABILITIES, ARTIFACTS, FLAGSHIP_IDS, HERO_STATS,
   AUDIENCES, ALL_SKILLS, ALL_AUDIENCES,
+  STATUS_DEFINITIONS, applyEvidenceStatusMetadata,
 });
