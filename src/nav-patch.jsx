@@ -1,6 +1,7 @@
 /* global window, document, React */
 // Adds Career & Governance to the existing navigation without changing older page components.
 // Premium executive mobile drawer for tablet and phone navigation.
+// v2: Framework link added to desktop nav, mobile drawer, and footer.
 
 function PatchedTopBar({ route }) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -12,7 +13,8 @@ function PatchedTopBar({ route }) {
     { to: "/career-governance", label: "Career & Governance", mobileLabel: "Career & Governance", desc: "Promotion evidence, governance work, and leadership architecture." },
     { to: "/capabilities", label: "Capabilities", mobileLabel: "Capabilities", desc: "Twelve domains of enterprise capability and strategic value." },
     { to: "/case-studies", label: "Case Studies", mobileLabel: "Case Studies", desc: "Selected institutional projects and executive-use examples." },
-    { to: "/library", label: "Library", mobileLabel: "Evidence Library", desc: "Documented artifacts, dashboards, frameworks, and proof points." }
+    { to: "/library", label: "Library", mobileLabel: "Evidence Library", desc: "Documented artifacts, dashboards, frameworks, and proof points." },
+    { to: "/framework", label: "Framework", mobileLabel: "AI Evaluation Framework", desc: "Four-failure-mode methodology for evaluating clinical AI tools." },
   ];
 
   React.useEffect(() => { setDrawerOpen(false); }, [route]);
@@ -168,6 +170,7 @@ function PatchedFooter() {
               <li><window.Link to="/capabilities">Capability areas</window.Link></li>
               <li><window.Link to="/case-studies">Case studies</window.Link></li>
               <li><window.Link to="/library">Evidence library</window.Link></li>
+              <li><window.Link to="/framework">AI Evaluation Framework</window.Link></li>
             </ul>
           </div>
           <div>
