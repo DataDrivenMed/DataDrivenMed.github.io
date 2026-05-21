@@ -1002,9 +1002,7 @@ function FrameworkPage() {
           </h1>
           <p style={{ maxWidth: "56ch", fontSize: 16, lineHeight: 1.75, color: "var(--dark-muted)" }}>
             A four-failure-mode framework for systematic evaluation of clinical AI tools
-            in academic medicine and health systems. Developed and applied at LSU Health
-            New Orleans School of Medicine.
-          </p>
+            in academic medicine and health systems.           </p>
         </div>
       </div>
 
