@@ -1,21 +1,18 @@
 /* global window, React, ReactDOM */
 // =============================================================
 // app.jsx - root router + mount
+// v24: FIX 3 — added /framework route for FrameworkPage
 // =============================================================
 const { useState: useStateA, useEffect: useEffectA } = React;
-
 function App() {
   const route = window.useRoute();
   const [activeArt, setActiveArt] = useStateA(null);
-
   // Expose for cross-detail navigation
   useEffectA(() => {
     window.__openArtifact = setActiveArt;
   }, []);
-
   // Strip query/anchor portion for top-level page match
   const base = route.split("?")[0].split("#")[0];
-
   let page;
   if (base === "/" || base === "") page = <window.HomePage openArtifact={setActiveArt} />;
   else if (base.startsWith("/about")) page = <window.AboutPage />;
@@ -24,8 +21,8 @@ function App() {
   else if (base.startsWith("/library")) page = <window.LibraryPage openArtifact={setActiveArt} />;
   else if (base.startsWith("/case-studies")) page = <window.CaseStudiesPage openArtifact={setActiveArt} />;
   else if (base.startsWith("/ask")) page = <window.AskPage />;
+  else if (base.startsWith("/framework")) page = <window.FrameworkPage />;  // FIX 3
   else page = <window.HomePage openArtifact={setActiveArt} />;
-
   return (
     <div className="shell">
       <window.TopBar route={base} />
@@ -35,6 +32,5 @@ function App() {
     </div>
   );
 }
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
