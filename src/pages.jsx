@@ -257,6 +257,49 @@ function HomePage({ openArtifact }) {
             {featured3.map((a, i) => (
               <window.FeaturedCard key={a.id} a={a} index={i} onOpen={openArtifact} />
             ))}
+
+            {/* ── FRAMEWORK CARD — same grid, same visual weight as featured artifacts ── */}
+            <article
+              className="feat"
+              onClick={() => { window.location.hash = "/framework"; }}
+              style={{ cursor: "pointer" }}
+            >
+              <div className="feat-cover" style={{ background: "#0d1117" }}>
+                <svg width="100%" height="100%" viewBox="0 0 400 100"
+                     preserveAspectRatio="xMidYMid slice"
+                     style={{ position: "absolute", inset: 0 }}>
+                  {Array.from({ length: 8 }).map((_, idx) => (
+                    <line key={idx}
+                      x1={-80 + idx * 64} y1={0}
+                      x2={80 + idx * 64}  y2={100}
+                      stroke="rgba(184,152,90,0.08)" strokeWidth="1" />
+                  ))}
+                  <line x1="0" y1="98" x2="400" y2="98" stroke="rgba(184,152,90,0.25)" strokeWidth="1" />
+                  {[0,1,2,3].map(idx => (
+                    <line key={idx}
+                      x1={24 + idx * 20} y1={30}
+                      x2={24 + idx * 20} y2={72}
+                      stroke="rgba(184,152,90,0.30)" strokeWidth="2" />
+                  ))}
+                  <text x="16" y="86"
+                        fontFamily="Newsreader, serif" fontSize="48"
+                        fill="rgba(184,152,90,0.12)" fontStyle="italic"
+                        letterSpacing="-2">FM</text>
+                </svg>
+              </div>
+              <div className="feat-body">
+                <h3>Clinical AI Evaluation Framework</h3>
+                <p className="feat-sum">
+                  A four-failure-mode methodology for evaluating clinical AI tools — applied in the OpenEvidence and ChatGPT for Clinicians assessments.
+                </p>
+                <div className="feat-meta">
+                  <span>AI Governance · Methodology</span>
+                  <span className="read">Open framework <window.ArrowRight size={11} /></span>
+                </div>
+              </div>
+            </article>
+            {/* ── END FRAMEWORK CARD ── */}
+
           </div>
 
           <div style={{ marginTop: 20, textAlign: "right" }}>
@@ -448,7 +491,6 @@ function AboutPage() {
                   ["Strategic planning at scale", "Executive briefings, institutional planning architecture, and matrixed alignment across the School of Medicine, health systems, and LSU Health Sciences Center."],
                   ["Regulatory and policy synthesis", "Working fluency in LCME, ACGME, AAMC, NIH, FDA, AHRQ, CMS, AAU, Medicare/Medicaid GME policy, and Louisiana legislative context."],
                   ["Quantitative leadership", "Predictive models, executive dashboards, K-means / PCA / Bayesian / regression frameworks, and longitudinal analytics built for decision support."],
-                  ["AI governance", "SOM AI governance suite spanning a pre-final policy draft, compliance audit, tool vetting, faculty fluency, teaching guides, clinical AI evaluation, and leadership briefings."],
                   ["Workforce finance", "70+ residency and fellowship programs with more than 1000 FTEs · Medicare/Medicaid GME policy and regulations · three major healthcare systems across the state."],
                   ["Institutional culture", "Faculty Affairs evaluation infrastructure across 25+ departments and centers, including mentoring, climate, and development portfolio evaluation."],
                   ["Public-sector positioning", "FDA RFI-grade clinical trials response · NCI AI Innovation Program contribution · multiple federal and state policy scopes analyzed for strategic alignment."],
@@ -459,6 +501,28 @@ function AboutPage() {
                     <div className="d">{d}</div>
                   </div>
                 ))}
+
+                {/* AI governance — custom item with framework link */}
+                <div className="item" key="AI governance">
+                  <div className="h">AI governance</div>
+                  <div className="d">
+                    SOM AI governance suite spanning a pre-final policy draft, compliance audit, tool vetting, faculty fluency, teaching guides, clinical AI evaluation, and leadership briefings.
+                    <span style={{ display: "block", marginTop: 8 }}>
+                      <window.Link
+                        to="/framework"
+                        style={{
+                          fontSize: 12,
+                          color: "var(--gold, #B8985A)",
+                          textDecoration: "none",
+                          fontFamily: "var(--mono)",
+                          letterSpacing: "0.04em",
+                        }}
+                      >
+                        Applied evaluation methodology: four-failure-mode framework →
+                      </window.Link>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
