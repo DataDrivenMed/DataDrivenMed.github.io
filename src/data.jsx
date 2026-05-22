@@ -252,6 +252,15 @@ const ARTIFACTS = [
     ["NCI", "Cancer", "AI Innovation"],
     true),
 
+  ART("ai-14", "The Ambient Scribe Field Guide",
+    "ai-governance", "Supporting artifact",
+    "Long-form, zero-dependency HTML field guide for medical school leadership, CMIOs, and GME program directors. Dissects the full 9-step technical pipeline of AI ambient scribes—from audio capture and speaker diarization to LLM note generation and EHR write-back—categorizes the vendor landscape (Nuance, Abridge, Suki, Freed), and maps specific clinical failure modes including silent omissions and negation errors. Includes a strict governance checklist and UME/GME policy framework for institutions regulating these tools.",
+    ["AI governance", "Clinical documentation", "EHR integration", "Vendor analysis", "GME policy"],
+    ["CMIOs", "Program directors", "Medical school leadership"],
+    "Demonstrates clinical and operational depth that pure policy work cannot: identifies medicolegal liability exposure from consumer API wrappers with no EHR audit trail, and centers the educational risk—that for medical students, writing a SOAP note is cognitive scaffold, not clerical work.",
+    "Explanation Artifact: The Ambient Scribe Field Guide",
+    ["Ambient scribe", "Clinical AI", "Documentation AI", "GME", "EHR", "AI governance"]),
+
   // ---------- 04 Analytics ----------
   ART("an-01", "Data Analysis, Predictive Modeling & Institutional Research Portfolio",
     "analytics", "Flagship capability artifact",
@@ -1017,6 +1026,7 @@ const LIVE_ARTIFACT_LINKS = {
   "ai-08": { url: "https://datadrivenmed.github.io/ChatGPT-for-Clinicians/", label: "View live project" },
   "ai-10": { url: "https://datadrivenmed.github.io/OpenEvidence/", label: "View live project" },
   "ai-11": { url: "https://datadrivenmed.github.io/Vetting-AI-Tools/", label: "View live project" },
+  "ai-14": { url: "https://datadrivenmed.github.io/The-Ambient-Scribe/", label: "View live project" },
   "sim-04": { url: "https://www.lsuhsc.edu/admin/vcaf/mcip.aspx", label: "View live project" },
   "an-04": { url: "https://public.tableau.com/app/profile/ramparagi/vizzes", label: "View live project" },
   "an-05": { url: "https://datadrivenmed.github.io/hwc-analytics/", label: "View live project" },
