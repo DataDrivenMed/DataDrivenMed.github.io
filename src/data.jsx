@@ -261,6 +261,24 @@ const ARTIFACTS = [
     "Explanation Artifact: The Ambient Scribe Field Guide",
     ["Ambient scribe", "Clinical AI", "Documentation AI", "GME", "EHR", "AI governance"]),
 
+  ART("ai-15", "SwimAI Lexicon",
+    "ai-governance", "External AI literacy artifact",
+    "AI literacy platform purpose-built for competitive swimming coaches, performance staff, and swim families. Covers six modules—Race Lab, Tool Vetting, Athlete Data governance, In Practice workflows, and domain-specific AI critique—translating abstract AI concepts into the decision contexts of sports performance. Deployed on Vercel; built by Ram Parigi, linked to the Chlorinated Chronicles ecosystem.",
+    ["AI literacy", "Domain translation", "Tool vetting", "Athlete data governance", "Curriculum architecture"],
+    ["Swim coaches", "Performance staff", "Sports administrators"],
+    "Demonstrates that the core AI governance competency—translating abstract AI capability into domain-specific decision frameworks and safety boundaries—transfers across fields. The same architecture that produced the MedAI Lexicon produced this: different audience, identical disciplinary rigor.",
+    "chlorinated chronicles.md",
+    ["SwimAI", "AI literacy", "Sports AI", "Chlorinated Chronicles", "Coaching"]),
+
+  ART("ai-16", "AI-ID Teaching Studio",
+    "ai-governance", "Faculty-facing educational prototype",
+    "Synthetic, faculty-controlled educational studio for infectious disease reasoning, antimicrobial stewardship, diagnostic uncertainty, and safe AI critique. Built entirely by Ram Parigi as a zero-dependency static site (HTML/CSS/JS only, no npm, no framework) deployable from GitHub to Vercel with no build pipeline. Features hash-based routing across ten distinct views including a faculty dashboard, case builder, student dashboard, governance framework, and AI alignment module. All AI outputs are deterministic mock teaching artifacts stored in seed data—not live API calls—making every case faculty-reviewable, reproducible, and safe for controlled classroom use. Primary safety boundary: synthetic educational prototype only, not for clinical use.",
+    ["Infectious disease education", "Clinical reasoning", "Antimicrobial stewardship", "Diagnostic uncertainty", "Safe AI critique", "Faculty governance"],
+    ["Faculty", "Medical educators", "Clinical faculty"],
+    "Solves the hardest problem in AI-augmented medical education: how to let faculty safely expose students to AI recommendations without creating a clinical liability. By making all AI outputs static and deterministic, faculty can design cases where they already know exactly what the AI will say—and teach students to critique it. This is AI governance operationalized at the point of instruction.",
+    "Explanation Artifact: AI-ID Teaching Studio",
+    ["AI teaching", "Infectious disease", "Clinical reasoning", "Faculty control", "Antimicrobial stewardship", "Diagnostic uncertainty"]),
+
   // ---------- 04 Analytics ----------
   ART("an-01", "Data Analysis, Predictive Modeling & Institutional Research Portfolio",
     "analytics", "Flagship capability artifact",
@@ -1027,6 +1045,8 @@ const LIVE_ARTIFACT_LINKS = {
   "ai-10": { url: "https://datadrivenmed.github.io/OpenEvidence/", label: "View live project" },
   "ai-11": { url: "https://datadrivenmed.github.io/Vetting-AI-Tools/", label: "View live project" },
   "ai-14": { url: "https://datadrivenmed.github.io/The-Ambient-Scribe/", label: "View live project" },
+  "ai-15": { url: "https://swimai-lexicon.vercel.app/", label: "View live project" },
+  "ai-16": { url: "https://ai-id-teaching.vercel.app/", label: "View live project" },
   "sim-04": { url: "https://www.lsuhsc.edu/admin/vcaf/mcip.aspx", label: "View live project" },
   "an-04": { url: "https://public.tableau.com/app/profile/ramparagi/vizzes", label: "View live project" },
   "an-05": { url: "https://datadrivenmed.github.io/hwc-analytics/", label: "View live project" },
