@@ -35,7 +35,7 @@
       "Implementation risk",
       "Institutional intelligence"
     ],
-    featured: false,
+    featured: true,
     confidential: false,
     cleanFile: null,
     fullArtifactUrl: null,
@@ -43,20 +43,25 @@
     liveLabel: "View policy stress test"
   };
 
-  if (Array.isArray(window.ARTIFACTS) && !window.ARTIFACTS.some(a => a.id === artifact.id)) {
-    window.ARTIFACTS.push(artifact);
-  }
+  const registerArtifact = () => {
+    if (!Array.isArray(window.ARTIFACTS)) return false;
 
-  if (typeof window.applyEvidenceStatusMetadata === "function") {
-    window.applyEvidenceStatusMetadata(window.ARTIFACTS);
-  }
+    const existingIndex = window.ARTIFACTS.findIndex(a => a.id === artifact.id);
+    if (existingIndex >= 0) {
+      window.ARTIFACTS[existingIndex] = { ...window.ARTIFACTS[existingIndex], ...artifact };
+    } else {
+      window.ARTIFACTS.push(artifact);
+    }
 
-  if (Array.isArray(window.HERO_STATS) && Array.isArray(window.ARTIFACTS)) {
-    const portfolioStat = window.HERO_STATS.find(s => String(s.lbl || "").includes("Artifacts in capability portfolio"));
-    if (portfolioStat) portfolioStat.num = String(window.ARTIFACTS.length);
-  }
+    if (typeof window.applyEvidenceStatusMetadata === "function") {
+      window.applyEvidenceStatusMetadata(window.ARTIFACTS);
+    }
 
-  if (Array.isArray(window.ARTIFACTS)) {
+    if (Array.isArray(window.HERO_STATS)) {
+      const portfolioStat = window.HERO_STATS.find(s => String(s.lbl || "").includes("Artifacts in capability portfolio"));
+      if (portfolioStat) portfolioStat.num = String(window.ARTIFACTS.length);
+    }
+
     const skills = new Set();
     const audiences = new Set();
     window.ARTIFACTS.forEach(a => {
@@ -65,12 +70,13 @@
     });
     window.ALL_SKILLS = [...skills].sort();
     window.ALL_AUDIENCES = [...audiences].sort();
-  }
+    return true;
+  };
 
   const replaceStaticCountText = () => {
     if (!document.body || !Array.isArray(window.ARTIFACTS)) return;
     const count = window.ARTIFACTS.length;
-    const countWord = count === 84 ? "Eighty-four" : String(count);
+    const countWord = count === 84 ? "Eighty-four" : count === 85 ? "Eighty-five" : String(count);
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -79,12 +85,23 @@
       node.nodeValue = node.nodeValue
         .replace(/Eighty-two artifacts/g, `${countWord} artifacts`)
         .replace(/Eighty-three artifacts/g, `${countWord} artifacts`)
+        .replace(/Eighty-four artifacts/g, `${countWord} artifacts`)
         .replace(/82 artifacts/g, `${count} artifacts`)
-        .replace(/83 artifacts/g, `${count} artifacts`);
+        .replace(/83 artifacts/g, `${count} artifacts`)
+        .replace(/84 artifacts/g, `${count} artifacts`);
     });
   };
 
-  window.addEventListener("load", replaceStaticCountText);
-  const observer = new MutationObserver(replaceStaticCountText);
+  const run = () => {
+    registerArtifact();
+    replaceStaticCountText();
+  };
+
+  run();
+  window.addEventListener("DOMContentLoaded", run);
+  window.addEventListener("load", run);
+  window.addEventListener("hashchange", run);
+
+  const observer = new MutationObserver(run);
   observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
