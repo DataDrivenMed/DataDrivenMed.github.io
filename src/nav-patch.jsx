@@ -1,7 +1,45 @@
 /* global window, document, React */
 // Adds Career & Governance to the existing navigation without changing older page components.
 // Premium executive mobile drawer for tablet and phone navigation.
-// v2: Framework link added to desktop nav, mobile drawer, and footer.
+// v3: Adds GenAI atlas artifact injection as a late-loaded safety patch.
+
+(function ensureGenAIAtlasArtifact() {
+  if (!Array.isArray(window.ARTIFACTS)) return;
+  if (window.ARTIFACTS.some((a) => a.id === "ai-17")) return;
+
+  const artifact = {
+    id: "ai-17",
+    title: "Generative AI Use-Case Atlas for Academic Health Sciences",
+    category: "ai-governance",
+    role: "Live public institutional AI governance and faculty education artifact",
+    summary: "Interactive web-based atlas organizing more than 60 generative AI use cases for academic health sciences faculty and staff across teaching, clinical care, research and NCI readiness, administration, operations, and partner-governed health-system workflows.",
+    skills: ["AI governance", "Faculty AI literacy", "Academic medicine strategy", "Clinical AI risk classification", "NCI readiness", "Research strategy", "Partner-governed implementation", "Interactive web artifact", "Next.js", "React", "Tailwind CSS", "Vercel deployment"],
+    audience: ["Faculty", "Staff", "Dean", "Research leadership", "Program directors", "Clinical partners", "AI governance committees", "NCI planning teams"],
+    strategic: "Demonstrates the ability to translate generative AI from a broad technology trend into a practical institutional decision-support framework for academic medicine. The artifact connects AI literacy, teaching, clinical partner governance, biomedical research, NCI readiness, operational decision-making, model evaluation, and data-sensitivity controls into one navigable product.",
+    sourceFile: "generative-ai-use-case-atlas-academic-health-sciences.md",
+    cleanFile: "generative-ai-use-case-atlas-academic-health-sciences.md",
+    tags: ["Generative AI", "AI governance", "Academic health sciences", "NCI readiness", "Clinical partner governance", "Faculty development", "Research strategy", "Vercel"],
+    featured: true,
+    confidential: false,
+    liveUrl: "https://genai-healthcare-usecase-atlas.vercel.app/",
+    liveLabel: "Launch atlas",
+    fullArtifactUrl: "artifact.html?file=generative-ai-use-case-atlas-academic-health-sciences.md&id=ai-17"
+  };
+
+  window.ARTIFACTS.push(artifact);
+  if (Array.isArray(window.FLAGSHIP_IDS) && !window.FLAGSHIP_IDS.includes("ai-17")) {
+    window.FLAGSHIP_IDS.push("ai-17");
+  }
+  if (typeof window.applyEvidenceStatusMetadata === "function") {
+    window.applyEvidenceStatusMetadata(window.ARTIFACTS);
+  }
+  if (Array.isArray(window.HERO_STATS)) {
+    const artifactStat = window.HERO_STATS.find((s) => /Artifacts in capability portfolio/i.test(s.lbl || ""));
+    if (artifactStat) artifactStat.num = String(window.ARTIFACTS.length);
+  }
+  window.ALL_SKILLS = [...new Set(window.ARTIFACTS.flatMap((a) => a.skills || []))].sort();
+  window.ALL_AUDIENCES = [...new Set(window.ARTIFACTS.flatMap((a) => a.audience || []))].sort();
+})();
 
 function PatchedTopBar({ route }) {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
