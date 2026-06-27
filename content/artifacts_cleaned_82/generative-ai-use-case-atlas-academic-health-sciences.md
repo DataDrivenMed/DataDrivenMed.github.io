@@ -4,7 +4,7 @@
 
 Live public artifact. Faculty and staff education artifact. AI governance and implementation planning resource. Non-PHI public demonstration.
 
-Live artifact: https://genai-healthcare-usecase-atlas.vercel.app/
+**Launch live atlas:** [Open the Generative AI Use-Case Atlas](https://genai-healthcare-usecase-atlas.vercel.app/)
 
 ## Summary
 
