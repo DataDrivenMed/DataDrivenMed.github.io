@@ -42,8 +42,8 @@
     ],
     strategic:
       "Demonstrates the ability to translate generative AI from a broad technology trend into a practical institutional decision-support framework for academic medicine. The artifact connects AI literacy, teaching, clinical partner governance, biomedical research, NCI readiness, operational decision-making, model evaluation, and data-sensitivity controls into one navigable product. It is especially relevant for an academic health sciences center that trains learners and conducts research across partner hospital systems rather than directly owning hospitals.",
-    sourceFile: "generative-ai-use-case-atlas-academic-health-sciences.md",
-    cleanFile: "generative-ai-use-case-atlas-academic-health-sciences.md",
+    sourceFile: "generative-ai-use-case-atlas-academic-health-sciences-live.md",
+    cleanFile: "generative-ai-use-case-atlas-academic-health-sciences-live.md",
     tags: [
       "Generative AI",
       "AI governance",
@@ -59,10 +59,13 @@
     liveUrl: "https://genai-healthcare-usecase-atlas.vercel.app/",
     liveLabel: "Launch atlas",
     fullArtifactUrl:
-      "artifact.html?file=generative-ai-use-case-atlas-academic-health-sciences.md&id=ai-17"
+      "artifact.html?file=generative-ai-use-case-atlas-academic-health-sciences-live.md&id=ai-17"
   };
 
-  if (!window.ARTIFACTS.some((existing) => existing.id === atlasArtifact.id)) {
+  const existing = window.ARTIFACTS.find((item) => item.id === atlasArtifact.id);
+  if (existing) {
+    Object.assign(existing, atlasArtifact);
+  } else {
     window.ARTIFACTS.push(atlasArtifact);
   }
 
