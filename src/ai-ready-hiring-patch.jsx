@@ -24,27 +24,36 @@
       id: "ai-18",
       title: "AI-Aware Hiring Guide for Academic Medical Centers",
       category: "ai-governance",
-      role: "Interactive workforce governance artifact · Academic medical center staff hiring · 2026",
-      summary: "Generative AI has made it trivially easy to produce polished cover letters and rehearsed interview answers, which means the tools most hiring managers rely on no longer distinguish strong candidates from weak ones. This project addresses that gap with a structured hiring framework built specifically for non-faculty staff at academic medical centers, where errors in judgment carry real regulatory and operational consequences.",
-      skills: ["AI-aware hiring", "Workforce strategy", "Structured interviews", "AI governance", "Staff retention", "Academic medical center operations"],
+      role: "Featured interactive workforce governance artifact · Academic medical center staff hiring · 2026",
+      summary: "Interactive hiring guide for non-faculty staff recruitment in academic medical centers. Generative AI has made it trivially easy to produce polished cover letters and rehearsed interview answers, which means traditional screening tools no longer reliably distinguish strong candidates from weak ones. This artifact gives hiring managers a structured process for testing judgment, communication, verification behavior, and responsible AI use in real time.",
+      skills: ["AI-aware hiring", "Workforce strategy", "Structured interviews", "AI governance", "Staff retention", "Academic medical center operations", "Responsible AI use", "Hiring manager enablement"],
       audience: ["Dean", "Senior leadership", "HR leaders", "Department administrators", "Search committees"],
-      strategic: "The deliverable is a fully interactive single-page HTML tool with no backend and no dependencies. It walks hiring managers through application review, phone screening, a 45-minute structured interview framework, role-specific scenario builders with built-in constraint changes, a live AI artifact review exercise, and a scoring rubric with automatic recommendations. The guide covers administrative, research administration, clinical support, and finance roles and integrates responsible-use guidance for frontier AI tools including Claude, Microsoft Copilot, ChatGPT, and Grok. Its design philosophy distinguishes between AI as a thinking accelerator, which is what institutions want to hire, and AI as a thinking replacement, which creates institutional risk. Every question, scenario, and scoring criterion is built to surface that difference in real time, not on paper.",
+      strategic: "The deliverable is a fully interactive single-page HTML tool with no backend and no dependencies. It walks hiring managers through application review, phone screening, a 45-minute structured interview framework, role-specific scenario builders with built-in constraint changes, a live AI artifact review exercise, scoring rubrics, interviewer notes, implementation checklists, and AI-aware onboarding. The guide covers administrative, research administration, clinical support, and finance roles and integrates responsible-use guidance for frontier AI tools including Claude, Microsoft Copilot, ChatGPT, and Grok. Its design philosophy distinguishes between AI as a thinking accelerator, which is what institutions want to hire, and AI as a thinking replacement, which creates institutional risk.",
       sourceFile: "AI-Aware Hiring Guide for Academic Medical Centers",
-      tags: ["AI hiring", "Academic medical centers", "Staff recruitment", "Structured interview", "AI governance", "Retention"],
-      featured: false,
+      tags: ["AI hiring", "Academic medical centers", "Staff recruitment", "Structured interview", "AI governance", "Retention", "Interactive guide"],
+      featured: true,
       confidential: false,
       cleanFile: null,
       fullArtifactUrl: null,
       liveUrl: "https://datadrivenmed.github.io/AI-Aware-Hiring-Guide/",
-      liveLabel: "View live guide"
+      liveLabel: "Launch interactive guide"
     }
   ];
 
   if (Array.isArray(window.ARTIFACTS)) {
     artifacts.forEach(artifact => {
-      if (!window.ARTIFACTS.some(a => a.id === artifact.id)) {
+      const existing = window.ARTIFACTS.find(a => a.id === artifact.id);
+      if (existing) {
+        Object.assign(existing, artifact);
+      } else {
         window.ARTIFACTS.push(artifact);
       }
+    });
+  }
+
+  if (Array.isArray(window.FLAGSHIP_IDS)) {
+    ["ai-18", "ai-19"].forEach(id => {
+      if (!window.FLAGSHIP_IDS.includes(id)) window.FLAGSHIP_IDS.push(id);
     });
   }
 
@@ -73,24 +82,14 @@
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(node => {
-      if (node.nodeValue && node.nodeValue.includes("Eighty-two artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/Eighty-two artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
-      }
-      if (node.nodeValue && node.nodeValue.includes("Eighty-three artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/Eighty-three artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
-      }
-      if (node.nodeValue && node.nodeValue.includes("Eighty-four artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/Eighty-four artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
-      }
-      if (node.nodeValue && node.nodeValue.includes("82 artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/82 artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
-      }
-      if (node.nodeValue && node.nodeValue.includes("83 artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/83 artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
-      }
-      if (node.nodeValue && node.nodeValue.includes("84 artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/84 artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
-      }
+      if (!node.nodeValue) return;
+      node.nodeValue = node.nodeValue
+        .replace(/Eighty-two artifacts/g, String(window.ARTIFACTS.length) + " artifacts")
+        .replace(/Eighty-three artifacts/g, String(window.ARTIFACTS.length) + " artifacts")
+        .replace(/Eighty-four artifacts/g, String(window.ARTIFACTS.length) + " artifacts")
+        .replace(/82 artifacts/g, String(window.ARTIFACTS.length) + " artifacts")
+        .replace(/83 artifacts/g, String(window.ARTIFACTS.length) + " artifacts")
+        .replace(/84 artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
     });
   };
 
