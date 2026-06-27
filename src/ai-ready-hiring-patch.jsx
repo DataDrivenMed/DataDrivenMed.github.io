@@ -3,14 +3,14 @@
 (function () {
   const artifacts = [
     {
-      id: "ai-17",
+      id: "ai-19",
       title: "AI-Ready Hiring Framework for CME and Academic Operations",
       category: "ai-governance",
       role: "Project Lead · LSU Health New Orleans, Office of Medical Education · 2026",
       summary: "Structured interview screening protocol for CME Coordinator recruitment in an AI-augmented hiring environment. The framework responds to the collapse of cover letter screening as a reliable competency signal by shifting evaluation toward live judgment, verification behavior, communication quality, compliance escalation, and responsible AI use.",
       skills: ["AI governance", "Hiring protocol design", "CME operations", "ACCME judgment", "AI literacy assessment", "Staff recruitment"],
       audience: ["Dean", "CME leadership", "Academic operations", "Hiring committees", "Search committees"],
-      strategic: "Shows AI governance translated into a practical staff hiring system: not AI detection, but structured evaluation of judgment, verification habits, privacy awareness, faculty communication, and compliance instinct in real time.",
+      strategic: "Shows AI governance translated into a practical staff hiring system: not AI detection, but structured evaluation of judgment, verification habits, privacy awareness, faculty communication, and compliance instinct in real time. This artifact remains the CME-specific hiring framework, distinct from the broader academic medical center staff hiring guide.",
       sourceFile: "AI-Ready Hiring Guide for CME and Academic Operations",
       tags: ["AI hiring", "CME", "Academic operations", "ACCME", "Staff recruitment", "AI literacy"],
       featured: false,
@@ -18,7 +18,7 @@
       cleanFile: null,
       fullArtifactUrl: null,
       liveUrl: "ai-ready-hiring-guide-cme-academic-operations.html",
-      liveLabel: "View full guide"
+      liveLabel: "View CME guide"
     },
     {
       id: "ai-18",
@@ -74,16 +74,22 @@
     while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(node => {
       if (node.nodeValue && node.nodeValue.includes("Eighty-two artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/Eighty-two artifacts/g, "Eighty-four artifacts");
+        node.nodeValue = node.nodeValue.replace(/Eighty-two artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
       }
       if (node.nodeValue && node.nodeValue.includes("Eighty-three artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/Eighty-three artifacts/g, "Eighty-four artifacts");
+        node.nodeValue = node.nodeValue.replace(/Eighty-three artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
+      }
+      if (node.nodeValue && node.nodeValue.includes("Eighty-four artifacts")) {
+        node.nodeValue = node.nodeValue.replace(/Eighty-four artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
       }
       if (node.nodeValue && node.nodeValue.includes("82 artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/82 artifacts/g, "84 artifacts");
+        node.nodeValue = node.nodeValue.replace(/82 artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
       }
       if (node.nodeValue && node.nodeValue.includes("83 artifacts")) {
-        node.nodeValue = node.nodeValue.replace(/83 artifacts/g, "84 artifacts");
+        node.nodeValue = node.nodeValue.replace(/83 artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
+      }
+      if (node.nodeValue && node.nodeValue.includes("84 artifacts")) {
+        node.nodeValue = node.nodeValue.replace(/84 artifacts/g, String(window.ARTIFACTS.length) + " artifacts");
       }
     });
   };
