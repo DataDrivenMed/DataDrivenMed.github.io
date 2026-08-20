@@ -1,5 +1,6 @@
 (function () {
   function upsert(a) {
+    if (!Array.isArray(window.ARTIFACTS)) return;
     var i = window.ARTIFACTS.findIndex(function (x) { return x && x.id === a.id; });
     if (i >= 0) window.ARTIFACTS[i] = Object.assign({}, window.ARTIFACTS[i], a);
     else window.ARTIFACTS.push(a);
@@ -62,15 +63,110 @@
         liveUrl: 'https://datadrivenmed.github.io/resources/ai-health-professions-safe-use/',
         liveLabel: 'Launch resource',
         fullArtifactUrl: 'artifact.html?file=ai-health-professions-safe-use-resource.md&id=ai-20'
+      },
+      {
+        id: 'ai-21',
+        title: 'LLM Faculty Brief',
+        category: 'ai-governance',
+        role: 'Live public faculty AI literacy and governance education artifact',
+        summary: 'Faculty-facing brief that translates large language models into practical academic health sciences guidance for teaching, scholarship, advising, administrative work, safe experimentation, privacy boundaries, and human review.',
+        skills: ['AI governance', 'Large language models', 'Faculty AI literacy', 'Responsible AI use', 'Academic medicine strategy', 'Education governance'],
+        audience: ['Faculty', 'Staff', 'Educators', 'Program directors', 'Researchers', 'AI governance committees'],
+        strategic: 'Demonstrates the ability to translate large language models into institutional language faculty and staff can use. The artifact supports shared AI vocabulary, safe adoption, and governance-aware experimentation across academic health sciences settings.',
+        sourceFile: 'llm-faculty-brief-resource.md',
+        cleanFile: 'llm-faculty-brief-resource.md',
+        tags: ['LLM', 'Faculty brief', 'AI literacy', 'Responsible AI', 'Academic health sciences', 'AI governance'],
+        featured: true,
+        confidential: false,
+        liveUrl: 'https://datadrivenmed.github.io/LLM-Faculty-Brief/',
+        liveLabel: 'Launch resource',
+        fullArtifactUrl: 'artifact.html?file=llm-faculty-brief-resource.md&id=ai-21'
+      },
+      {
+        id: 'ai-22',
+        title: 'LLM Technical Brief',
+        category: 'ai-governance',
+        role: 'Live public technical AI literacy and governance artifact',
+        summary: 'Technical brief for academic health sciences faculty and staff explaining core large-language-model concepts, failure modes, evaluation needs, data-sensitivity boundaries, and implementation-aware governance considerations.',
+        skills: ['AI governance', 'Technical AI literacy', 'Large language models', 'Model evaluation', 'Risk communication', 'Implementation planning'],
+        audience: ['Faculty', 'Staff', 'Researchers', 'Technical staff', 'Administrators', 'AI governance committees'],
+        strategic: 'Demonstrates the ability to bridge technical AI concepts and institutional decision-making. The artifact supports shared understanding among faculty users, technical staff, compliance stakeholders, and governance committees.',
+        sourceFile: 'llm-technical-brief-resource.md',
+        cleanFile: 'llm-technical-brief-resource.md',
+        tags: ['LLM', 'Technical brief', 'AI literacy', 'Model evaluation', 'AI governance', 'Risk communication'],
+        featured: false,
+        confidential: false,
+        liveUrl: 'https://datadrivenmed.github.io/LLM-Technical-Brief/',
+        liveLabel: 'Launch resource',
+        fullArtifactUrl: 'artifact.html?file=llm-technical-brief-resource.md&id=ai-22'
+      },
+      {
+        id: 'ai-23',
+        title: 'Agentic EHR Field Guide',
+        category: 'ai-governance',
+        role: 'Live public clinical AI governance and EHR-readiness field guide',
+        summary: 'Governance and education field guide focused on agentic AI in EHR-adjacent environments, including autonomy, permissions, documentation, patient communication, billing, auditability, human review, and health-system partner approval boundaries.',
+        skills: ['AI governance', 'Agentic EHR', 'Clinical AI governance', 'Patient safety', 'Workflow risk', 'Human review', 'Partner governance'],
+        audience: ['Faculty', 'Staff', 'Clinical leaders', 'Program directors', 'Informatics', 'Compliance', 'AI governance committees', 'Clinical partners'],
+        strategic: 'Demonstrates the ability to classify EHR-connected agentic AI as a high-governance domain. The artifact clarifies what can be prepared internally and what requires partner health-system approval, privacy review, security review, clinical validation, and auditability.',
+        sourceFile: 'agentic-ehr-field-guide-resource.md',
+        cleanFile: 'agentic-ehr-field-guide-resource.md',
+        tags: ['Agentic EHR', 'Clinical AI', 'Patient safety', 'Partner governance', 'Workflow risk', 'AI governance'],
+        featured: true,
+        confidential: false,
+        liveUrl: 'https://datadrivenmed.github.io/agentic-ehr-field-guide/',
+        liveLabel: 'Launch resource',
+        fullArtifactUrl: 'artifact.html?file=agentic-ehr-field-guide-resource.md&id=ai-23'
+      },
+      {
+        id: 'ai-08',
+        title: 'ChatGPT for Clinicians',
+        category: 'ai-governance',
+        role: 'Live public clinician AI literacy and safety education artifact',
+        summary: 'Education artifact helping clinicians, faculty, and trainees understand appropriate and inappropriate uses of general-purpose conversational AI in healthcare-adjacent contexts, with emphasis on role boundaries, patient safety, uncertainty, and human review.',
+        skills: ['AI governance', 'ChatGPT', 'Clinical AI literacy', 'Patient safety', 'Clinician education', 'Risk communication', 'Human review'],
+        audience: ['Clinicians', 'Faculty', 'Residents', 'Fellows', 'Students', 'Medical educators', 'GME', 'AI governance committees'],
+        strategic: 'Demonstrates the ability to convert public concern about general-purpose AI in medicine into a structured educational and governance resource for clinicians and faculty. The artifact makes safe-use boundaries visible without implying clinical deployment approval.',
+        sourceFile: 'chatgpt-for-clinicians-resource.md',
+        cleanFile: 'chatgpt-for-clinicians-resource.md',
+        tags: ['ChatGPT', 'Clinicians', 'Clinical AI literacy', 'Patient safety', 'AI governance', 'Human review'],
+        featured: true,
+        confidential: false,
+        liveUrl: 'https://datadrivenmed.github.io/ChatGPT-for-Clinicians/',
+        liveLabel: 'Launch resource',
+        fullArtifactUrl: 'artifact.html?file=chatgpt-for-clinicians-resource.md&id=ai-08'
+      },
+      {
+        id: 'ai-24',
+        title: 'Enterprise AI',
+        category: 'ai-governance',
+        role: 'Live public enterprise AI strategy and institutional governance artifact',
+        summary: 'Strategy and governance artifact framing AI adoption as an enterprise operating model problem rather than a collection of disconnected tools. Covers governance, prioritization, data sensitivity, risk classification, workforce readiness, implementation boundaries, and evaluation.',
+        skills: ['AI governance', 'Enterprise AI', 'Digital transformation', 'Operating model design', 'Institutional strategy', 'Risk management', 'Implementation planning'],
+        audience: ['Dean', 'Senior leadership', 'Faculty', 'Staff', 'Administrators', 'Research leadership', 'AI governance committees'],
+        strategic: 'Demonstrates the ability to connect AI literacy, institutional governance, operational strategy, and digital transformation. The artifact supports senior-level conversations about moving from scattered AI experimentation toward an enterprise AI operating model.',
+        sourceFile: 'enterprise-ai-resource.md',
+        cleanFile: 'enterprise-ai-resource.md',
+        tags: ['Enterprise AI', 'Digital transformation', 'Operating model', 'AI governance', 'Institutional strategy'],
+        featured: true,
+        confidential: false,
+        liveUrl: 'https://datadrivenmed.github.io/Enterprise-AI/',
+        liveLabel: 'Launch resource',
+        fullArtifactUrl: 'artifact.html?file=enterprise-ai-resource.md&id=ai-24'
       }
     ];
 
     items.forEach(upsert);
 
     window.FLAGSHIP_IDS = Array.isArray(window.FLAGSHIP_IDS) ? window.FLAGSHIP_IDS : [];
-    ['ai-18', 'ai-19'].forEach(function (id) {
+    ['ai-18', 'ai-19', 'ai-21', 'ai-23', 'ai-08', 'ai-24'].forEach(function (id) {
       if (window.FLAGSHIP_IDS.indexOf(id) < 0) window.FLAGSHIP_IDS.push(id);
     });
+
+    if (Array.isArray(window.HERO_STATS)) {
+      var stat = window.HERO_STATS.find(function (s) { return /Artifacts in capability portfolio/i.test(s.lbl || ''); });
+      if (stat) stat.num = String(window.ARTIFACTS.length);
+    }
 
     if (typeof window.applyEvidenceStatusMetadata === 'function') {
       window.applyEvidenceStatusMetadata(window.ARTIFACTS);
@@ -91,7 +187,7 @@
     var attempts = 0;
     var timer = setInterval(function () {
       attempts += 1;
-      if (addArtifacts() || attempts > 100) clearInterval(timer);
+      if (addArtifacts() || attempts > 120) clearInterval(timer);
     }, 50);
   }
 })();
