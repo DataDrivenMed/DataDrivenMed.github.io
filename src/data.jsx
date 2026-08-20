@@ -279,6 +279,16 @@ const ARTIFACTS = [
     "Explanation Artifact: AI-ID Teaching Studio",
     ["AI teaching", "Infectious disease", "Clinical reasoning", "Faculty control", "Antimicrobial stewardship", "Diagnostic uncertainty"]),
 
+    ART("ai-25", "Prompt Injection in Healthcare",
+    "ai-governance", "Live public institutional AI governance and faculty education artifact",
+    "Public-facing AI safety resource for academic health sciences faculty and staff focused on prompt injection risk in healthcare settings. Explains attack patterns, clinical and administrative risk scenarios, safe-use controls, and practical mitigation guidance for responsible AI adoption.",
+    ["AI governance", "AI safety", "Prompt injection risk", "Healthcare cybersecurity awareness", "Faculty AI literacy", "Clinical AI governance", "Interactive web resource"],
+    ["Faculty", "Staff", "Researchers", "Clinical educators", "Program directors", "AI governance committees"],
+    "Demonstrates the ability to translate a technical AI safety issue into a practical healthcare governance resource for academic health sciences environments. The artifact supports faculty and staff education, institutional risk awareness, and safer evaluation of generative AI tools in clinical, educational, and operational settings.",
+    "prompt-injection-healthcare-ai-safety-resource.md",
+    ["Prompt injection", "AI governance", "AI safety", "Healthcare AI", "Faculty development", "Cybersecurity awareness"],
+    true),
+
   // ---------- 04 Analytics ----------
   ART("an-01", "Data Analysis, Predictive Modeling & Institutional Research Portfolio",
     "analytics", "Flagship capability artifact",
@@ -943,6 +953,7 @@ const FLAGSHIP_IDS = [
   "res-01",       // NIH research clustering and growth strategy
   "adm-01",       // Admissions platform transformation
   "ai-12",        // FDA RFI response on AI-enabled clinical trials
+    "ai-25",        // Prompt Injection in Healthcare
   "pol-01",       // Cross-institutional consulting and health policy analytics
   "sim-01",       // AHRQ TeamSTEPPS point-of-care simulation
   "pol-08",       // Rural health transformation strategic response
@@ -1034,11 +1045,13 @@ const CLEANED_ARTIFACT_FILES_BY_SOURCE = {
   "chlorinated chronicles - Copy.md": "the-chlorinated-chronicles-duplicate-copy.md",
   "chlorinated chronicles.md": "the-chlorinated-chronicles-swimming-science-thought-leadership.md",
   "grants.md": "grants-and-contracts-original-detailed-source.md",
+    "prompt-injection-healthcare-ai-safety-resource.md": "prompt-injection-healthcare-ai-safety-resource.md",
   "nsf-epscor.md": "nsf-epscor-crest-institutional-analytics-support.md"
 };
 
 const LIVE_ARTIFACT_LINKS = {
   "ai-03": { url: "https://datadrivenmed.github.io/Thalamus/", label: "View live project" },
+    "ai-25": { url: "https://datadrivenmed.github.io/resources/prompt-injection-healthcare/", label: "Launch resource" },
   "ai-04": { url: "https://datadrivenmed.github.io/UpToDateAI/", label: "View live project" },
   "ai-05": { url: "https://medai-lexicon.vercel.app/", label: "View live project" },
   "ai-08": { url: "https://datadrivenmed.github.io/ChatGPT-for-Clinicians/", label: "View live project" },
