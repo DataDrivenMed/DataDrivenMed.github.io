@@ -27,7 +27,8 @@
     ["src/premium-evidence-expanded.js", false],
     ["src/premium-evidence-final.js", false],
     ["src/premium-evidence-scholarship.js", false],
-    ["src/premium-evidence-career-depth.js", false]
+    ["src/premium-evidence-career-depth.js", false],
+    ["src/premium-evidence-preservation.js", false]
   ];
 
   var premiumUI = [
@@ -65,7 +66,7 @@
 
   async function loadOne(item) {
     var path = item[0], needsBabel = item[1];
-    var response = await fetch(path + "?premium_runtime=4", { cache: "no-store" });
+    var response = await fetch(path + "?premium_runtime=5", { cache: "no-store" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
     var source = await response.text();
     executeSource(path, source, needsBabel);
@@ -112,7 +113,10 @@
         "ev-oral-equip-2013",
         "ev-mec-report-2014",
         "ev-credential-mbbs",
-        "ev-award-paper-distinction-2011"
+        "ev-award-paper-distinction-2011",
+        "ev-cqi-policy",
+        "ev-medstudent-research-eval",
+        "ev-serf-collaboration"
       ];
       var loadedIds = window.ARTIFACTS.map(function(a){ return a && a.id; });
       var missingIds = requiredIds.filter(function(id){ return loadedIds.indexOf(id) < 0; });
