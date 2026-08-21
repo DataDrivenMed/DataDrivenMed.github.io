@@ -34,6 +34,7 @@
   var premiumUI = [
     ["src/premium-pages.jsx", true],
     ["src/premium-library-depth.jsx", true],
+    ["src/premium-caso-executive.jsx", true],
     ["src/detail.jsx", true],
     ["src/app.jsx", true]
   ];
@@ -67,7 +68,7 @@
 
   async function loadOne(item) {
     var path = item[0], needsBabel = item[1];
-    var response = await fetch(path + "?premium_runtime=6", { cache: "no-store" });
+    var response = await fetch(path + "?premium_runtime=7", { cache: "no-store" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
     var source = await response.text();
     executeSource(path, source, needsBabel);
