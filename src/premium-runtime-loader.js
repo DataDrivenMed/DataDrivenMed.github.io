@@ -25,7 +25,9 @@
   var premiumEvidence = [
     ["src/premium-evidence.js", false],
     ["src/premium-evidence-expanded.js", false],
-    ["src/premium-evidence-final.js", false]
+    ["src/premium-evidence-final.js", false],
+    ["src/premium-evidence-scholarship.js", false],
+    ["src/premium-evidence-career-depth.js", false]
   ];
 
   var premiumUI = [
@@ -57,15 +59,13 @@
         sourceType: "script"
       }).code;
     }
-    // Indirect eval executes in the global realm. Existing source files publish
-    // portfolio globals to window, matching the current site's architecture.
     (0, eval)(code + "\n//# sourceURL=" + path);
     status.loaded.push(path);
   }
 
   async function loadOne(item) {
     var path = item[0], needsBabel = item[1];
-    var response = await fetch(path + "?premium_runtime=3", { cache: "no-store" });
+    var response = await fetch(path + "?premium_runtime=4", { cache: "no-store" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
     var source = await response.text();
     executeSource(path, source, needsBabel);
@@ -95,25 +95,39 @@
         throw new Error("Premium evidence did not increase the artifact register. Baseline=" + status.baselineCount + ", premium=" + status.premiumCount);
       }
 
+      var requiredIds = [
+        "ev-strat-closure-2014-2019",
+        "ev-acgme-predictive",
+        "ev-sacscoc",
+        "ev-equip-creation",
+        "ev-umcno-academic-advisory",
+        "ev-lifecycle-data-architecture",
+        "ev-healthworks",
+        "ev-watermark",
+        "ev-india-moe-host",
+        "ev-pan-oncology",
+        "ev-mcip-governance",
+        "ev-gme-lcmc-partner",
+        "ev-pub-surgery-team-training-2009",
+        "ev-oral-equip-2013",
+        "ev-mec-report-2014",
+        "ev-credential-mbbs",
+        "ev-award-paper-distinction-2011"
+      ];
+      var loadedIds = window.ARTIFACTS.map(function(a){ return a && a.id; });
+      var missingIds = requiredIds.filter(function(id){ return loadedIds.indexOf(id) < 0; });
+      if (missingIds.length) {
+        throw new Error("Premium preservation sentinels missing: " + missingIds.join(", "));
+      }
+
       window.PREMIUM_RUNTIME_SENTINEL = {
         ok: true,
         baseline: status.baselineCount,
         total: status.premiumCount,
         added: status.premiumCount - status.baselineCount,
-        requiredIds: [
-          "ev-strat-closure-2014-2019",
-          "ev-acgme-predictive",
-          "ev-sacscoc",
-          "ev-equip-creation",
-          "ev-umcno-academic-advisory",
-          "ev-lifecycle-data-architecture",
-          "ev-healthworks",
-          "ev-watermark",
-          "ev-india-moe-host",
-          "ev-pan-oncology",
-          "ev-mcip-governance",
-          "ev-gme-lcmc-partner"
-        ]
+        requiredIds: requiredIds,
+        preservationMode: true,
+        noDeletionPolicy: true
       };
       updateStatus("premium-evidence-ready");
 
