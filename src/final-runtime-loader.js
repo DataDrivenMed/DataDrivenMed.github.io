@@ -31,7 +31,8 @@
 
   var contentLayer = [
     ["src/final-content.jsx", true],
-    ["src/final-refinements.jsx", true]
+    ["src/final-refinements.jsx", true],
+    ["src/final-copy-cleanup.jsx", true]
   ];
   var appLayer = [["src/detail.jsx", true], ["src/app.jsx", true]];
 
@@ -55,7 +56,7 @@
 
   async function load(item) {
     var path = item[0], babel = item[1];
-    var response = await fetch(path + "?final_candidate=3", { cache: "no-store" });
+    var response = await fetch(path + "?final_candidate=4", { cache: "no-store" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
     execute(path, await response.text(), babel);
   }
