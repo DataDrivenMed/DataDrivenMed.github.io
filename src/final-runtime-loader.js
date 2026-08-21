@@ -29,11 +29,8 @@
     ["src/final-evidence-preservation.js", false]
   ];
 
-  var finalUI = [
-    ["src/final-content.jsx", true],
-    ["src/detail.jsx", true],
-    ["src/app.jsx", true]
-  ];
+  var contentLayer = [["src/final-content.jsx", true]];
+  var appLayer = [["src/detail.jsx", true], ["src/app.jsx", true]];
 
   var status = { phase: "starting", loaded: [], errors: [], baselineCount: 0, totalCount: 0 };
   window.FINAL_CANDIDATE_STATUS = status;
@@ -55,7 +52,7 @@
 
   async function load(item) {
     var path = item[0], babel = item[1];
-    var response = await fetch(path + "?final_candidate=1", { cache: "no-store" });
+    var response = await fetch(path + "?final_candidate=2", { cache: "no-store" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
     execute(path, await response.text(), babel);
   }
@@ -79,8 +76,17 @@
       if (status.totalCount <= status.baselineCount) throw new Error("Expanded evidence register did not load.");
 
       signal("loading-final-content");
-      await loadSeries(finalUI);
-      signal("ready");
+      await loadSeries(contentLayer);
+      if (!Array.isArray(window.FINAL_EXECUTIVE_CASES) || window.FINAL_EXECUTIVE_CASES.length !== 18) {
+        throw new Error("Final executive case architecture did not load 18 cases.");
+      }
+
+      if (!window.FINAL_AUDIT_ONLY) {
+        await loadSeries(appLayer);
+        signal("ready");
+      } else {
+        signal("audit-ready");
+      }
       window.dispatchEvent(new CustomEvent("final-candidate-ready", { detail: status }));
     } catch (err) {
       status.errors.push(String(err && err.stack ? err.stack : err));
@@ -91,6 +97,7 @@
         el.style.display = "block";
         el.textContent = String(err && err.message ? err.message : err);
       }
+      window.dispatchEvent(new CustomEvent("final-candidate-failed", { detail: status }));
     }
   }
 
