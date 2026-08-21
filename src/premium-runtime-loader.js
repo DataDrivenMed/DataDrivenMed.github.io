@@ -1,0 +1,140 @@
+/* Premium deterministic runtime loader — review branch only.
+   Loads the existing portfolio stack first, then premium evidence layers,
+   then premium UI, eliminating Babel/plain-script race conditions. */
+(function () {
+  "use strict";
+
+  var baseline = [
+    ["src/data.jsx", true],
+    ["src/ai-ready-hiring-patch.jsx", true],
+    ["src/ai-triage-artifact-patch.jsx", true],
+    ["src/prototype-artifacts.jsx", true],
+    ["src/genai-atlas-patch.jsx", true],
+    ["src/rht-stress-test-patch.jsx", true],
+    ["src/ai-architecture-guide-patch.jsx", true],
+    ["src/amc-guide-direct.js", false],
+    ["src/ai-resources-final.js", false],
+    ["src/components.jsx", true],
+    ["src/nav-patch.jsx", true],
+    ["src/pages.jsx", true],
+    ["src/ai-library-rescue.jsx", true],
+    ["src/career-governance.jsx", true],
+    ["src/consultation-patch.jsx", true]
+  ];
+
+  var premiumEvidence = [
+    ["src/premium-evidence.js", false],
+    ["src/premium-evidence-expanded.js", false],
+    ["src/premium-evidence-final.js", false]
+  ];
+
+  var premiumUI = [
+    ["src/premium-pages.jsx", true],
+    ["src/detail.jsx", true],
+    ["src/app.jsx", true]
+  ];
+
+  var status = {
+    phase: "starting",
+    loaded: [],
+    errors: [],
+    baselineCount: null,
+    premiumCount: null
+  };
+  window.PREMIUM_RUNTIME_STATUS = status;
+
+  function updateStatus(phase) {
+    status.phase = phase;
+    window.dispatchEvent(new CustomEvent("premium-runtime-status", { detail: status }));
+  }
+
+  function executeSource(path, source, needsBabel) {
+    var code = source;
+    if (needsBabel) {
+      if (!window.Babel) throw new Error("Babel is unavailable while loading " + path);
+      code = window.Babel.transform(source, {
+        presets: ["env", "react"],
+        sourceType: "script"
+      }).code;
+    }
+    // Indirect eval executes in the global realm. Existing source files publish
+    // portfolio globals to window, matching the current site's architecture.
+    (0, eval)(code + "\n//# sourceURL=" + path);
+    status.loaded.push(path);
+  }
+
+  async function loadOne(item) {
+    var path = item[0], needsBabel = item[1];
+    var response = await fetch(path + "?premium_runtime=3", { cache: "no-store" });
+    if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
+    var source = await response.text();
+    executeSource(path, source, needsBabel);
+  }
+
+  async function loadSeries(series) {
+    for (var i = 0; i < series.length; i++) await loadOne(series[i]);
+  }
+
+  async function boot() {
+    try {
+      updateStatus("loading-baseline");
+      await loadSeries(baseline);
+
+      if (!Array.isArray(window.ARTIFACTS)) {
+        throw new Error("Baseline completed but window.ARTIFACTS was not created.");
+      }
+      status.baselineCount = window.ARTIFACTS.length;
+      window.PREMIUM_BASELINE_RECORD_COUNT = status.baselineCount;
+      updateStatus("baseline-ready");
+
+      await loadSeries(premiumEvidence);
+      status.premiumCount = window.ARTIFACTS.length;
+      window.PREMIUM_EVIDENCE_COUNT = status.premiumCount;
+
+      if (status.premiumCount <= status.baselineCount) {
+        throw new Error("Premium evidence did not increase the artifact register. Baseline=" + status.baselineCount + ", premium=" + status.premiumCount);
+      }
+
+      window.PREMIUM_RUNTIME_SENTINEL = {
+        ok: true,
+        baseline: status.baselineCount,
+        total: status.premiumCount,
+        added: status.premiumCount - status.baselineCount,
+        requiredIds: [
+          "ev-strat-closure-2014-2019",
+          "ev-acgme-predictive",
+          "ev-sacscoc",
+          "ev-equip-creation",
+          "ev-umcno-academic-advisory",
+          "ev-lifecycle-data-architecture",
+          "ev-healthworks",
+          "ev-watermark",
+          "ev-india-moe-host",
+          "ev-pan-oncology",
+          "ev-mcip-governance",
+          "ev-gme-lcmc-partner"
+        ]
+      };
+      updateStatus("premium-evidence-ready");
+
+      if (!window.PREMIUM_AUDIT_ONLY) {
+        await loadSeries(premiumUI);
+        updateStatus("app-mounted");
+      } else {
+        updateStatus("audit-ready");
+      }
+
+      window.dispatchEvent(new CustomEvent("premium-runtime-ready", { detail: window.PREMIUM_RUNTIME_SENTINEL }));
+    } catch (err) {
+      status.errors.push(String(err && err.stack ? err.stack : err));
+      updateStatus("failed");
+      window.PREMIUM_RUNTIME_SENTINEL = { ok: false, error: String(err) };
+      window.dispatchEvent(new CustomEvent("premium-runtime-failed", { detail: status }));
+      var target = document.getElementById("premium-runtime-error");
+      if (target) target.textContent = String(err && err.message ? err.message : err);
+      console.error("Premium runtime failed", err);
+    }
+  }
+
+  boot();
+})();
