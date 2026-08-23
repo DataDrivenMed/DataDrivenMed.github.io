@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portfolio Library Architecture Audit</title>
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#191919;--muted:#6c6962;--paper:#f5f1e9;--card:#fffdf8;--line:#d8d0c3;--dark:#17202a;--gold:#b8945a;--warn:#8b5b1c;--bad:#9a3636;--good:#276348}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Geist,system-ui,sans-serif}.wrap{max-width:1280px;margin:auto;padding:42px 22px 80px}h1,h2,h3{font-family:Newsreader,serif;font-weight:500}h1{font-size:clamp(2.4rem,5vw,4.8rem);line-height:.98;margin:10px 0 16px}.eyebrow{font:11px JetBrains Mono,monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--gold)}.lede{max-width:82ch;color:var(--muted);line-height:1.65}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}.stat{background:var(--dark);color:white;padding:20px;border:1px solid rgba(255,255,255,.08)}.stat b{display:block;font:500 28px Newsreader,serif;color:#fff}.stat span{font-size:12px;color:#c8c2b6}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:22px 0}.toolbar input,.toolbar select,.toolbar button{font:12px Geist,sans-serif;border:1px solid var(--line);background:var(--card);padding:10px 12px;color:var(--ink)}.toolbar input{min-width:280px;flex:1}.toolbar button{cursor:pointer}.note{border:1px solid var(--line);background:var(--card);padding:16px 18px;margin:18px 0;font-size:13px;line-height:1.6;color:var(--muted)}.note strong{color:var(--ink)}.section{margin:36px 0}.cap{background:var(--card);border:1px solid var(--line);margin:14px 0}.cap summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;justify-content:space-between;gap:16px;align-items:center}.cap summary::-webkit-details-marker{display:none}.cap-title{font-weight:600}.cap-count{font:11px JetBrains Mono,monospace;color:var(--muted)}.rows{border-top:1px solid var(--line)}.row{display:grid;grid-template-columns:58px minmax(280px,1.8fr) minmax(180px,.8fr) minmax(160px,.7fr);gap:12px;padding:11px 16px;border-bottom:1px solid #ebe5db;align-items:start;font-size:12px}.row:last-child{border-bottom:0}.code{font:10px JetBrains Mono,monospace;color:var(--muted)}.title{font-weight:500}.meta{color:var(--muted);line-height:1.45}.flag{display:inline-block;margin:2px 4px 2px 0;padding:3px 6px;border:1px solid var(--line);font:9px JetBrains Mono,monospace;text-transform:uppercase;letter-spacing:.04em}.flag.exact{border-color:#d8a0a0;color:var(--bad)}.flag.overlap{border-color:#d3b17b;color:var(--warn)}.flag.move{border-color:#9bb8aa;color:var(--good)}.dup-group{background:var(--card);border:1px solid var(--line);padding:14px 16px;margin:10px 0}.dup-group h3{font-size:18px;margin:0 0 8px}.dup-group ul{margin:0;padding-left:18px;font-size:12px;line-height:1.6}.arch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.arch{background:var(--card);border:1px solid var(--line);padding:14px 16px}.arch b{display:block;margin-bottom:5px}.arch span{font-size:12px;color:var(--muted);line-height:1.5}.small{font-size:11px;color:var(--muted)}@media(max-width:850px){.stats{grid-template-columns:1fr 1fr}.row{grid-template-columns:46px 1fr}.row .meta:nth-child(3),.row .meta:nth-child(4){grid-column:2}.arch-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="eyebrow">Private review utility · not linked from portfolio</div>
+<h1>Library architecture audit.</h1>
+<p class="lede">This page reads the exact evidence array used by the live portfolio and lists every artifact under its current capability. It also identifies exact duplicate titles, possible title overlaps, and records that may fit better in a different or newly created capability. No portfolio records are changed here.</p>
+<div id="status" class="note">Loading the live portfolio evidence register…</div>
+<div id="app"></div>
+</div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script>
+window.FINAL_AUDIT_ONLY=true;
+(function(){
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const stop=new Set('the a an and or of for to in on with by from at into across through amp artifact explanation analysis report project program study framework support supporting strategic strategy development evaluation initiative initiatives institutional school medicine medical health'.split(' '));
+function normTitle(s){return String(s||'').toLowerCase().replace(/^explanation artifact[:\-]?\s*/,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function tokens(s){return new Set(normTitle(s).split(/\s+/).filter(x=>x.length>2&&!stop.has(x)))}
+function jacc(a,b){const A=tokens(a),B=tokens(b);if(!A.size||!B.size)return 0;let i=0;A.forEach(x=>{if(B.has(x))i++});return i/(A.size+B.size-i)}
+function suggested(a){const t=[a.title,a.summary,a.role].join(' ').toLowerCase();
+ if(/watermark|faculty success|digital measures|facilit|space requirement|relocation|property|procurement|vendor risk|technology due diligence|infrastructure planning/.test(t)) return 'NEW · Enterprise Operations, Technology & Facilities';
+ if(/umcno academic advisory|academic advisory committee|hospital enterprise|academic health-system|teaching hospital|public-private hospital transition/.test(t)) return 'NEW · Academic Health-System Strategy & Partnerships';
+ if(/wisewoman|adapt-pol|no\/aids|office of women|covid-19|epidemiolog|population health|primary care access after natural disaster/.test(t)) return 'NEW · Public Health & Population Health';
+ if(/india ministry|study in india|iit madras|international academic partnership|international opportunity/.test(t)) return 'NEW · International Partnerships & External Engagement';
+ return ''}
+function build(){
+ const arts=(window.ARTIFACTS||[]).filter(Boolean); const caps=(window.CAPABILITIES||[]);
+ const capMap=new Map(caps.map(c=>[c.id,c]));
+ const exactMap=new Map(); arts.forEach(a=>{const k=normTitle(a.title);if(!exactMap.has(k))exactMap.set(k,[]);exactMap.get(k).push(a)});
+ const exact=[...exactMap.values()].filter(g=>g.length>1);
+ const exactIds=new Set(exact.flat().map(a=>a.id));
+ const overlaps=[]; for(let i=0;i<arts.length;i++)for(let j=i+1;j<arts.length;j++){if(arts[i].category!==arts[j].category)continue;if(normTitle(arts[i].title)===normTitle(arts[j].title))continue;const s=jacc(arts[i].title,arts[j].title);if(s>=.62)overlaps.push([arts[i],arts[j],s])}
+ const overlapIds=new Set(overlaps.flatMap(x=>[x[0].id,x[1].id]));
+ const moved=arts.filter(a=>suggested(a));
+ const counts=new Map(); caps.forEach(c=>counts.set(c.id,arts.filter(a=>a.category===c.id).length));
+ document.getElementById('status').innerHTML='<strong>Loaded successfully.</strong> This is the current live runtime, not a manually reconstructed list.';
+ let h='<div class="stats"><div class="stat"><b>'+arts.length+'</b><span>total runtime artifacts</span></div><div class="stat"><b>'+caps.length+'</b><span>current capabilities</span></div><div class="stat"><b>'+exact.length+'</b><span>exact duplicate-title groups</span></div><div class="stat"><b>'+overlaps.length+'</b><span>possible title-overlap pairs</span></div></div>';
+ h+='<div class="note"><strong>Important distinction:</strong> capability should answer <em>what professional domain does this demonstrate?</em> Evidence type should answer <em>what kind of proof is this?</em> Publications, presentations, grants, credentials and service should generally be filters/types rather than forcing otherwise unrelated work into one capability.</div>';
+ h+='<div class="toolbar"><input id="q" placeholder="Search artifact title…"><select id="capFilter"><option value="all">All current capabilities</option>'+caps.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.num+' · '+c.title)+' · '+counts.get(c.id)+'</option>').join('')+'</select><select id="issueFilter"><option value="all">All records</option><option value="exact">Exact duplicate-title records</option><option value="overlap">Possible overlap records</option><option value="move">Potential move/new-capability records</option></select><button id="copyBtn">Copy grouped title list</button><button id="csvBtn">Download CSV</button></div>';
+ h+='<section class="section"><div class="eyebrow">Current architecture</div><h2>Every artifact, grouped by current capability</h2><div id="caps">';
+ caps.forEach(c=>{const list=arts.filter(a=>a.category===c.id).sort((a,b)=>String(a.title).localeCompare(String(b.title)));h+='<details class="cap" open data-cap="'+esc(c.id)+'"><summary><span class="cap-title">'+esc(c.num+' · '+c.title)+'</span><span class="cap-count">'+list.length+' records</span></summary><div class="rows">';list.forEach((a,i)=>{const sug=suggested(a);h+='<div class="row artifact" data-title="'+esc(a.title.toLowerCase())+'" data-cap="'+esc(c.id)+'" data-exact="'+(exactIds.has(a.id)?'1':'0')+'" data-overlap="'+(overlapIds.has(a.id)?'1':'0')+'" data-move="'+(sug?'1':'0')+'"><div class="code">'+esc(c.num+'.'+String(i+1).padStart(2,'0'))+'</div><div><div class="title">'+esc(a.title)+'</div><div class="small">ID: '+esc(a.id)+'</div></div><div class="meta">'+esc(a.role||'')+'</div><div class="meta">'+(exactIds.has(a.id)?'<span class="flag exact">exact-title duplicate</span>':'')+(overlapIds.has(a.id)?'<span class="flag overlap">review overlap</span>':'')+(sug?'<span class="flag move">'+esc(sug)+'</span>':'')+'</div></div>'});h+='</div></details>'});h+='</div></section>';
+ h+='<section class="section"><div class="eyebrow">Duplicate review</div><h2>Exact duplicate titles</h2>'+(exact.length?exact.map(g=>'<div class="dup-group"><h3>'+esc(g[0].title)+'</h3><ul>'+g.map(a=>'<li><strong>'+esc(a.id)+'</strong> · '+esc((capMap.get(a.category)||{}).title||a.category)+'</li>').join('')+'</ul></div>').join(''):'<div class="note">No exact duplicate titles.</div>')+'</section>';
+ h+='<section class="section"><div class="eyebrow">Overlap review</div><h2>Potentially overlapping titles</h2><p class="lede">These are automated title-similarity candidates only. They are <strong>not</strong> recommendations to delete. Parent/child records may legitimately coexist.</p>'+(overlaps.length?overlaps.sort((x,y)=>y[2]-x[2]).map(x=>'<div class="dup-group"><h3>'+esc(x[0].title)+'</h3><ul><li>'+esc(x[0].id)+'</li><li>'+esc(x[1].title)+' · '+esc(x[1].id)+'</li><li>Title similarity: '+Math.round(x[2]*100)+'%</li></ul></div>').join(''):'<div class="note">No high-similarity title pairs found.</div>')+'</section>';
+ const proposal=[
+ ['01','Institutional Strategy & Effectiveness','Strategic planning, implementation, performance, enterprise decision support.'],
+ ['02','Accreditation, CQI & Governance','LCME, ACGME, ACCME, institutional accreditation support, readiness, corrective action.'],
+ ['03','Data Governance, Analytics & Decision Intelligence','Longitudinal architecture, dashboards, predictive analytics, surveys, executive reporting.'],
+ ['04','Academic Health-System Strategy & Partnerships','Teaching-hospital governance, enterprise partnerships, clinical integration, joint institutional strategy.'],
+ ['05','GME Finance, Contracts & Workforce','DGME/IME, Medicaid, caps, cost reports, affiliations, GME policy and workforce.'],
+ ['06','Medical Education, Admissions & Learner Outcomes','Admissions, UME, Student Affairs, assessment, match, educational outcomes.'],
+ ['07','Faculty Affairs & Organizational Culture','Faculty lifecycle, development, compensation/equity, climate, promotion and culture.'],
+ ['08','Research Strategy, Grants & Cancer/NCI','Research growth, NIH intelligence, grants, Cancer Center/NCI readiness.'],
+ ['09','AI Governance & Digital Transformation','AI policy, responsible adoption, tool evaluation, education, implementation governance.'],
+ ['10','Public Policy, Rural Health & Workforce','Louisiana workforce, legislation, rural health, state commissions, Medicaid policy.'],
+ ['11','Public Health & Population Health','Early public-health work, epidemiology, prevention, population-health analytics and disaster-access work.'],
+ ['12','Simulation, Patient Safety & Clinical Quality','Simulation science, QI, patient safety, debriefing, clinical-quality measurement.'],
+ ['13','Enterprise Operations, Technology & Facilities','Vendor due diligence, procurement, facilities, space, relocation and operational infrastructure.'],
+ ['14','International Partnerships & External Engagement','Government-to-university engagement, international academic/research partnerships.'],
+ ['15','Sports Science & Performance Scholarship','Swimming science, performance analytics, anti-doping and external sports scholarship.']
+ ];
+ h+='<section class="section"><div class="eyebrow">Recommended architecture for discussion</div><h2>Possible capability model after cleanup</h2><div class="note"><strong>My current recommendation:</strong> retire “Recognition, Publications, Presentations & Service” as a capability. Keep those records, but classify them by their substantive domain and expose <strong>Scholarship / Presentation / Service / Credential / Grant</strong> as evidence-type filters. This prevents scholarship from being detached from the capability it actually proves.</div><div class="arch-grid">'+proposal.map(x=>'<div class="arch"><b>'+x[0]+' · '+esc(x[1])+'</b><span>'+esc(x[2])+'</span></div>').join('')+'</div></section>';
+ h+='<section class="section"><div class="eyebrow">Potential reassignment</div><h2>Records worth reviewing for a new capability</h2>'+(moved.length?moved.sort((a,b)=>suggested(a).localeCompare(suggested(b))||a.title.localeCompare(b.title)).map(a=>'<div class="dup-group"><h3>'+esc(a.title)+'</h3><ul><li>Current: '+esc((capMap.get(a.category)||{}).title||a.category)+'</li><li>Review for: <strong>'+esc(suggested(a))+'</strong></li><li>ID: '+esc(a.id)+'</li></ul></div>').join(''):'<div class="note">No heuristic move candidates.</div>')+'</section>';
+ document.getElementById('app').innerHTML=h;
+ const apply=()=>{const q=document.getElementById('q').value.toLowerCase().trim(),cf=document.getElementById('capFilter').value,iss=document.getElementById('issueFilter').value;document.querySelectorAll('.artifact').forEach(el=>{let ok=(!q||el.dataset.title.includes(q))&&(cf==='all'||el.dataset.cap===cf);if(iss!=='all')ok=ok&&el.dataset[iss]==='1';el.style.display=ok?'grid':'none'});document.querySelectorAll('.cap').forEach(d=>{const any=[...d.querySelectorAll('.artifact')].some(x=>x.style.display!=='none');d.style.display=any?'block':'none'})};['q','capFilter','issueFilter'].forEach(id=>document.getElementById(id).addEventListener(id==='q'?'input':'change',apply));
+ document.getElementById('copyBtn').onclick=async()=>{let txt='';caps.forEach(c=>{txt+='\n'+c.num+' · '+c.title+' ('+counts.get(c.id)+')\n';arts.filter(a=>a.category===c.id).sort((a,b)=>a.title.localeCompare(b.title)).forEach(a=>txt+='- '+a.title+' ['+a.id+']\n')});await navigator.clipboard.writeText(txt.trim());document.getElementById('copyBtn').textContent='Copied';setTimeout(()=>document.getElementById('copyBtn').textContent='Copy grouped title list',1400)};
+ document.getElementById('csvBtn').onclick=()=>{const rows=[['id','title','current_capability','current_capability_id','role','exact_title_duplicate','possible_title_overlap','suggested_review']];arts.forEach(a=>rows.push([a.id,a.title,(capMap.get(a.category)||{}).title||a.category,a.category,a.role||'',exactIds.has(a.id)?'yes':'no',overlapIds.has(a.id)?'yes':'no',suggested(a)]));const csv=rows.map(r=>r.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')).join('\n');const blob=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(blob),ln=document.createElement('a');ln.href=u;ln.download='portfolio-library-architecture-audit.csv';ln.click();URL.revokeObjectURL(u)};
+}
+window.addEventListener('final-candidate-ready',build);window.addEventListener('final-candidate-failed',()=>{document.getElementById('status').innerHTML='<strong>Runtime failed.</strong> The audit could not load the live evidence array.'});
+})();
+</script>
+<script src="src/final-runtime-loader.js?v=library-architecture-audit-1"></script>
+</body></html>
