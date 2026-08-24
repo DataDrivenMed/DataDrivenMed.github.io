@@ -41,7 +41,7 @@
   ];
   var appLayer = [["src/detail.jsx", true], ["src/app.jsx", true]];
 
-  var status = { phase: "starting", loaded: [], errors: [], baselineCount: 0, totalCount: 0 };
+  var status = { phase: "starting", loaded: [], errors: [], retries: 0, baselineCount: 0, totalCount: 0 };
   window.FINAL_CANDIDATE_STATUS = status;
 
   function signal(phase) {
@@ -59,15 +59,53 @@
     status.loaded.push(path);
   }
 
-  async function fetchSource(item) {
+  function wait(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+  }
+
+  async function fetchSource(item, attempt) {
     var path = item[0], babel = item[1];
-    var response = await fetch(path + "?final_candidate=13", { cache: "force-cache" });
-    if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
+    attempt = attempt || 1;
+    var response;
+    try {
+      response = await fetch(path + "?final_candidate=14", {
+        cache: attempt === 1 ? "force-cache" : "reload"
+      });
+    } catch (networkError) {
+      if (attempt < 4) {
+        status.retries += 1;
+        await wait(300 * Math.pow(2, attempt - 1));
+        return fetchSource(item, attempt + 1);
+      }
+      throw networkError;
+    }
+    if (!response.ok) {
+      if ((response.status === 429 || response.status >= 500) && attempt < 4) {
+        status.retries += 1;
+        await wait(300 * Math.pow(2, attempt - 1));
+        return fetchSource(item, attempt + 1);
+      }
+      throw new Error(path + " returned HTTP " + response.status + " after " + attempt + " attempt" + (attempt === 1 ? "" : "s"));
+    }
     return { path: path, babel: babel, source: await response.text() };
   }
 
-  function fetchSeries(items) {
-    return Promise.all(items.map(fetchSource));
+  async function fetchWithLimit(items, limit) {
+    var sources = new Array(items.length);
+    var nextIndex = 0;
+
+    async function worker() {
+      while (nextIndex < items.length) {
+        var index = nextIndex++;
+        sources[index] = await fetchSource(items[index]);
+      }
+    }
+
+    var workers = [];
+    var workerCount = Math.min(limit, items.length);
+    for (var i = 0; i < workerCount; i++) workers.push(worker());
+    await Promise.all(workers);
+    return sources;
   }
 
   function executeSeries(sources) {
@@ -79,14 +117,19 @@
 
   async function boot() {
     try {
-      // Download every source concurrently, then execute each dependency group
-      // in its original order. The versioned URL permits safe browser caching.
-      var sourceGroups = await Promise.all([
-        fetchSeries(originalStack),
-        fetchSeries(evidenceLayers),
-        fetchSeries(contentLayer),
-        fetchSeries(appLayer)
-      ]);
+      // Bound concurrency so GitHub Pages is not flooded with 31 simultaneous
+      // requests. Execute dependency groups in their original order.
+      var allItems = originalStack.concat(evidenceLayers, contentLayer, appLayer);
+      var allSources = await fetchWithLimit(allItems, 6);
+      var firstBreak = originalStack.length;
+      var secondBreak = firstBreak + evidenceLayers.length;
+      var thirdBreak = secondBreak + contentLayer.length;
+      var sourceGroups = [
+        allSources.slice(0, firstBreak),
+        allSources.slice(firstBreak, secondBreak),
+        allSources.slice(secondBreak, thirdBreak),
+        allSources.slice(thirdBreak)
+      ];
 
       signal("loading-current-site");
       executeSeries(sourceGroups[0]);
