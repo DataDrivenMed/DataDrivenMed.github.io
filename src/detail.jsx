@@ -273,7 +273,7 @@ function ArtifactDetail({ artifact, onClose }) {
     .filter(Boolean);
   const statusLabels = artifact.statusLabels || [];
   const showFullEvidenceRecord = Boolean(
-    artifact.fullArtifactUrl && (artifact.billTable || IMPORTANT_FULL_EVIDENCE_IDS.has(artifact.id))
+    artifact.fullArtifactUrl && (artifact.publicDocument || artifact.billTable || IMPORTANT_FULL_EVIDENCE_IDS.has(artifact.id))
   );
 
   const liveButtonStyle = {
@@ -325,13 +325,13 @@ function ArtifactDetail({ artifact, onClose }) {
               )}
               {showFullEvidenceRecord && (
                 <a className="btn secondary" href={artifact.fullArtifactUrl} target="_blank" rel="noopener noreferrer">
-                  Open full evidence record <window.ArrowRight size={14} />
+                  {artifact.fullArtifactLabel || "Open full evidence record"} <window.ArrowRight size={14} />
                 </a>
               )}
               <span className="detail-note">
-                {showFullEvidenceRecord
+                {artifact.fullArtifactNote || (showFullEvidenceRecord
                   ? "This view includes the key evidence directly. Use the full record only if you want to review the longer supporting text."
-                  : "This view includes the key evidence directly so reviewers can understand the artifact without opening another page."}
+                  : "This view includes the key evidence directly so reviewers can understand the artifact without opening another page.")}
               </span>
             </div>
           )}

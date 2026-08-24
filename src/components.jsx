@@ -247,9 +247,9 @@ function ArtifactCard({ a, onOpen }) {
           </a>
         )}
         {a.fullArtifactUrl && (
-          <a className="artifact-link evidence" href={a.fullArtifactUrl}
+          <a className="artifact-link evidence" href={a.fullArtifactUrl} target={a.publicDocument ? "_blank" : undefined} rel={a.publicDocument ? "noopener noreferrer" : undefined}
              onClick={e => e.stopPropagation()}>
-            Evidence page
+            {a.fullArtifactShortLabel || "Evidence page"}
           </a>
         )}
       </div>

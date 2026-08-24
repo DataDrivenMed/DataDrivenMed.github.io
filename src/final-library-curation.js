@@ -549,6 +549,65 @@
     "ev-faculty-workforce": "fac-02"
   };
 
+  if (!byId("ev-ai-ume-gme-competency-map")) {
+    artifacts.push({
+      id: "ev-ai-ume-gme-competency-map",
+      title: "UME to GME AI Competency and Integration Map",
+      category: "ai-governance",
+      role: "Leadership-circulated proposed curriculum framework",
+      summary: "Designed a three-phase framework for developing responsible AI competency from MS1 through PGY2. The model protects AI-independent clinical reasoning during the preclinical years, introduces structured adversarial calibration during clinical training, and advances to supervised AI integration in residency. It was shared for review and consideration with the Dean and the Associate Deans responsible for Graduate Medical Education and Student Affairs.",
+      strategic: "Extends the MedAI learning system from terminology and faculty teaching support into a longitudinal curriculum architecture with observable behaviors, required evidence, assessment methods, progression gates, faculty oversight, safety controls, and proposed LCME and ACGME alignment. The framework is presented as a leadership-circulated proposal, not as an approved or implemented institutional curriculum.",
+      skills: [
+        "AI curriculum design",
+        "UME-GME integration",
+        "Competency-based education",
+        "Clinical reasoning protection",
+        "AI safety",
+        "Assessment design",
+        "LCME and ACGME alignment"
+      ],
+      audience: [
+        "Dean",
+        "Associate Dean for GME",
+        "Associate Dean for Student Affairs",
+        "Medical education leadership",
+        "Curriculum committees",
+        "Program directors"
+      ],
+      tags: [
+        "Curriculum/Model Development",
+        "UME",
+        "GME",
+        "AI competency",
+        "Never-skilling",
+        "Adversarial calibration",
+        "Clinical AI governance"
+      ],
+      featured: true,
+      confidential: false,
+      sourceFile: null,
+      cleanFile: null,
+      fullArtifactUrl: "/artifacts/ume-gme-ai-competency-map.pdf",
+      fullArtifactLabel: "View framework PDF",
+      fullArtifactShortLabel: "View PDF",
+      fullArtifactNote: "The linked seven-page PDF is the complete proposed framework. It was circulated to medical school leadership for review and is not presented as formally approved, adopted, or implemented.",
+      publicDocument: true,
+      evidenceStatus: "Leadership-circulated proposed framework",
+      evidenceType: "projects",
+      evidenceLevel: "distinct-curriculum-framework",
+      premiumEvidence: true,
+      normalizedRecord: true,
+      entries: [
+        "Phase 1, MS1-MS2: an AI-independent baseline protecting foundational clinical reasoning, with AI-restricted assessment and calibrated self-assessment progression gates.",
+        "Phase 2, MS3-MS4: adversarial calibration using independent reasoning traces, source verification, error detection, AI-assisted documentation review, and supervised safety audits.",
+        "Phase 3, PGY1-PGY2: supervised clinical integration using disclosure statements, override documentation, escalation protocols, medication-safety controls, and participation in AI governance.",
+        "Each milestone specifies a clinical context, observable behavior, required artifact, assessment method, oversight level, risk controls, and proposed accreditation alignment.",
+        "Circulated for review and consideration to the Dean, Associate Dean for Graduate Medical Education, and Associate Dean for Student Affairs. No claim of formal approval or implementation is made."
+      ],
+      entriesIntro: "The framework is organized as a developmental sequence rather than a collection of stand-alone AI lessons."
+    });
+  }
+
   var medaiLexicon = byId("ai-05");
   if (medaiLexicon) {
     Object.assign(medaiLexicon, {

@@ -126,6 +126,7 @@
     const signatureArtifact = artifactById(signature.artifactId);
     const medaiLexicon = artifactById('ai-05');
     const medaiTeachingGuide = artifactById('ai-06');
+    const medaiCompetencyMap = artifactById('ev-ai-ume-gme-competency-map');
 
     const filtered = useMemo(() => all.filter(a => {
       if (depth !== 'all' && recordType(a) !== depth) return false;
@@ -212,6 +213,13 @@
                   <h3>MedAI Teaching Guide</h3>
                   <p>Twenty-nine concepts across five curriculum categories, with dual-lens definitions, why-to-teach guidance and practical teaching approaches.</p>
                   {medaiTeachingGuide && <button type="button" onClick={() => openArtifact(medaiTeachingGuide)}>Open teaching guide record →</button>}
+                </div>
+                <div className="medai-resource-card medai-resource-card-wide">
+                  <span>Leadership-circulated proposed curriculum</span>
+                  <h3>UME to GME AI Competency Map</h3>
+                  <p>A three-phase progression from AI-independent clinical reasoning to adversarial calibration and supervised clinical integration, with measurable milestones, safety controls and proposed accreditation alignment.</p>
+                  {medaiCompetencyMap && <button type="button" onClick={() => openArtifact(medaiCompetencyMap)}>Open curriculum artifact →</button>}
+                  {medaiCompetencyMap && medaiCompetencyMap.fullArtifactUrl && <a href={medaiCompetencyMap.fullArtifactUrl} target="_blank" rel="noopener noreferrer">View framework PDF ↗</a>}
                 </div>
               </div>
               <div className="medai-external-evidence">
