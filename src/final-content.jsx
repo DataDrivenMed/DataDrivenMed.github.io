@@ -48,7 +48,7 @@
     "ev-mec", "ev-healthworks", "ev-ldh-primary-care", "ev-lsbme-workforce", "ev-quality-forum", "ev-rural-predictive", "ev-ahec-lasearch", "ev-la-med-ed-workforce",
     "fac-01", "fac-02", "ev-faculty-lifecycle", "ev-faculty-salary", "ev-faculty-workforce", "ev-teaching-assessment",
     "sim-01", "ev-equip-creation", "ev-em-multiroom", "ev-cals-evaluation-framework", "ev-gnochc-dashboard", "ev-acs-aei",
-    "ai-01", "ev-ai-student-policy", "ev-ai-gme-policy", "ev-ai-cross-school", "ev-ai-system", "ev-pan-oncology", "ev-cancer-ai-governance", "ev-ai-hiring-amc", "ev-ai-architecture-faculty",
+    "ai-01", "ev-ai-student-policy", "ev-ai-gme-policy", "ev-ai-cross-school", "ev-ai-system", "ev-pan-oncology", "ev-cancer-ai-governance", "ai-amc-guide", "ev-ai-architecture-faculty",
     "ev-watermark", "ev-cals-space", "ev-clinical-relocation", "ev-program-space-tabulation",
     "ev-india-moe-host", "ev-study-in-india", "ev-asca-ai"
   ]);
@@ -198,7 +198,7 @@
       ],
       approach: "Use-case definition → data/risk classification → governance requirements → validation → human oversight → education → monitoring and accountability.",
       outcome: "Established a portfolio of practical governance infrastructure that helps academic leaders distinguish responsible adoption from unsupported deployment.",
-      evidence: ["ai-01", "ev-ai-student-policy", "ev-ai-gme-policy", "ev-ai-cross-school", "ev-ai-system", "ev-cancer-ai-governance", "ev-ai-hiring-amc", "ev-ai-architecture-faculty"]
+      evidence: ["ai-01", "ev-ai-student-policy", "ev-ai-gme-policy", "ev-ai-cross-school", "ev-ai-system", "ev-cancer-ai-governance", "ai-amc-guide", "ev-ai-architecture-faculty"]
     },
     {
       num: "10",

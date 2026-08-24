@@ -26,7 +26,8 @@
     ["src/final-evidence-granular.js", false],
     ["src/final-evidence-scholarship.js", false],
     ["src/final-evidence-career-depth.js", false],
-    ["src/final-evidence-preservation.js", false]
+    ["src/final-evidence-preservation.js", false],
+    ["src/final-evidence-normalization.js", false]
   ];
 
   var contentLayer = [
