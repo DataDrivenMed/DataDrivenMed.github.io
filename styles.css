@@ -2237,7 +2237,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 .medai-resource-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -2248,7 +2248,6 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 }
 
 .medai-resource-card-wide {
-  grid-column: 1 / -1;
   border-color: rgba(15, 104, 104, 0.42);
 }
 
