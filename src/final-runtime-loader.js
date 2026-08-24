@@ -59,39 +59,55 @@
     status.loaded.push(path);
   }
 
-  async function load(item) {
+  async function fetchSource(item) {
     var path = item[0], babel = item[1];
-    var response = await fetch(path + "?final_candidate=12", { cache: "no-store" });
+    var response = await fetch(path + "?final_candidate=13", { cache: "force-cache" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
-    execute(path, await response.text(), babel);
+    return { path: path, babel: babel, source: await response.text() };
   }
 
-  async function loadSeries(items) {
-    for (var i = 0; i < items.length; i++) await load(items[i]);
+  function fetchSeries(items) {
+    return Promise.all(items.map(fetchSource));
+  }
+
+  function executeSeries(sources) {
+    for (var i = 0; i < sources.length; i++) {
+      var item = sources[i];
+      execute(item.path, item.source, item.babel);
+    }
   }
 
   async function boot() {
     try {
+      // Download every source concurrently, then execute each dependency group
+      // in its original order. The versioned URL permits safe browser caching.
+      var sourceGroups = await Promise.all([
+        fetchSeries(originalStack),
+        fetchSeries(evidenceLayers),
+        fetchSeries(contentLayer),
+        fetchSeries(appLayer)
+      ]);
+
       signal("loading-current-site");
-      await loadSeries(originalStack);
+      executeSeries(sourceGroups[0]);
       if (!Array.isArray(window.ARTIFACTS)) throw new Error("Current portfolio did not create ARTIFACTS.");
       status.baselineCount = window.ARTIFACTS.length;
       window.FINAL_BASELINE_RECORD_COUNT = status.baselineCount;
 
       signal("loading-expanded-evidence");
-      await loadSeries(evidenceLayers);
+      executeSeries(sourceGroups[1]);
       status.totalCount = window.ARTIFACTS.length;
       window.FINAL_EVIDENCE_COUNT = status.totalCount;
       if (status.totalCount <= status.baselineCount) throw new Error("Expanded evidence register did not load.");
 
       signal("loading-final-content");
-      await loadSeries(contentLayer);
+      executeSeries(sourceGroups[2]);
       if (!Array.isArray(window.FINAL_EXECUTIVE_CASES) || window.FINAL_EXECUTIVE_CASES.length !== 18) {
         throw new Error("Final executive case architecture did not load 18 cases.");
       }
 
       if (!window.FINAL_AUDIT_ONLY) {
-        await loadSeries(appLayer);
+        executeSeries(sourceGroups[3]);
         signal("ready");
       } else {
         signal("audit-ready");
