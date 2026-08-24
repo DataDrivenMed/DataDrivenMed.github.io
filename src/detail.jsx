@@ -28,6 +28,25 @@ const CASE_DETAILS = {
     competencies: ["Regulatory synthesis", "Executive communication", "Cross-functional convening", "Faculty literacy program design", "Institutional risk framing"],
     related: ["ai-04", "ai-07", "ai-09", "ai-12"],
   },
+  "ev-ai-ume-gme-competency-map": {
+    problem: "Medical schools need a developmental approach to AI education that protects foundational clinical reasoning before trainees begin relying on AI-supported workflows. A collection of terminology lessons or a general-use policy does not establish when learners may use AI, what they must demonstrate first, or how progression should be assessed across UME and GME.",
+    role: "Framework designer and author. Developed the three-phase curriculum architecture, measurable milestones, required evidence, assessment methods, supervision expectations, safety controls, progression gates, and proposed accreditation alignment. Circulated the framework to the Dean and the Associate Deans responsible for Graduate Medical Education and Student Affairs for review and consideration.",
+    approach: [
+      "Sequence AI learning developmentally: protect independent reasoning first, train error detection second, and introduce supervised clinical integration only after defined progression gates.",
+      "Translate each competency into observable behavior, a required artifact, an assessment method, an oversight level, and explicit risk controls.",
+      "Connect the curriculum with clinical safety, learner development, institutional AI governance, and proposed LCME and ACGME alignment."
+    ],
+    execution: [
+      "Designed an AI-independent baseline for MS1-MS2 with protected reasoning exercises, AI-restricted assessments, and calibrated self-assessment.",
+      "Designed an adversarial-calibration phase for MS3-MS4 using independent reasoning traces, source verification, error detection, documentation review, and supervised safety audits.",
+      "Designed a supervised-integration phase for PGY1-PGY2 using disclosure statements, override documentation, escalation protocols, medication-safety controls, and governance participation.",
+      "Shared the proposed framework with the Dean, Associate Dean for Graduate Medical Education, and Associate Dean for Student Affairs. No response, endorsement, formal approval, adoption, or implementation is claimed."
+    ],
+    tools: ["Competency-based medical education", "AI-independent assessment", "Adversarial calibration", "Clinical AI safety", "Progression gates", "LCME and ACGME mapping"],
+    value: "Extends the MedAI learning system from terminology and teaching support into a longitudinal curriculum model that leadership can evaluate, revise, pilot, and validate before any institutional adoption.",
+    competencies: ["AI curriculum design", "UME-GME integration", "Assessment architecture", "Clinical reasoning protection", "AI safety and governance"],
+    related: ["ai-01", "ai-05", "ai-06", "ev-ai-gme-policy"]
+  },
   "gme-01": {
     problem: "Seventy-plus residency and fellowship programs at LSU SOM are distributed across three competing health systems - Ochsner, LCMC, and University Medical Center. The funding architecture sits on top of CMS DGME, IME, IRIS, and a web of CEAs and MOUs that none of those systems alone are positioned to manage. Without a coordinating institutional document, every contract cycle is renegotiated from scratch.",
     role: "Author and steward of the institutional GME Policy Statement. Coordinator across SOM, GME office, three health systems, and CMS Medicare cost reporting cycles. Negotiator on CEA / MOU language.",
