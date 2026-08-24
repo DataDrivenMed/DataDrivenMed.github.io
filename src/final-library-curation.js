@@ -549,6 +549,45 @@
     "ev-faculty-workforce": "fac-02"
   };
 
+  var medaiLexicon = byId("ai-05");
+  if (medaiLexicon) {
+    Object.assign(medaiLexicon, {
+      liveUrl: "https://datadrivenmed.github.io/MedAI--Lexicon/",
+      liveLabel: "Launch MedAI Lexicon",
+      featured: true,
+      externalSelection: [
+        {
+          institution: "Yale School of Medicine",
+          context: "Educational Technology & Innovation newsletter, January 2026",
+          url: "https://yppsweb2.its.yale.edu/yalemessage/pages/ad2862/22202630518/"
+        },
+        {
+          institution: "University of North Dakota School of Medicine & Health Sciences",
+          context: "Teaching & Learning Resource Repository",
+          url: "https://med.und.edu/education-training/learning-innovation/repository.html"
+        }
+      ]
+    });
+  }
+
+  var medaiTeachingGuide = byId("ai-06");
+  if (medaiTeachingGuide) {
+    Object.assign(medaiTeachingGuide, {
+      featured: true,
+      relatedLiveUrl: "https://datadrivenmed.github.io/MedAI--Lexicon/",
+      relatedLiveLabel: "Open the MedAI learning system"
+    });
+  }
+
+  var panOncology = byId("ev-pan-oncology");
+  if (panOncology) {
+    Object.assign(panOncology, {
+      liveUrl: "https://tumor-boards.vercel.app/",
+      liveLabel: "Launch Pan-Oncology prototype",
+      featured: true
+    });
+  }
+
   if (Array.isArray(window.FLAGSHIP_IDS)) {
     window.FLAGSHIP_IDS = unique(window.FLAGSHIP_IDS
       .map(function (id) { return replacementIdMap[id] || id; })
