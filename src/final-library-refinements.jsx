@@ -10,6 +10,7 @@
       artifactId: 'execstrat-01',
       question: 'How can a medical school turn a strategic plan into a measurable institutional operating cycle?',
       operating: 'Environmental and institutional evidence, stakeholder interpretation, priority architecture, KPI design, implementation governance, annual monitoring and CQI feedback.',
+      evidence: 'One operating cycle links planning, implementation, leadership review, annual monitoring and CQI.',
       proof: 'Planning · implementation · annual monitoring · CQI'
     },
     {
@@ -19,6 +20,7 @@
       artifactId: 'ev-acgme-predictive',
       question: 'How can accreditation vulnerability be identified early enough for leadership to intervene before formal review?',
       operating: 'Longitudinal program, survey, citation and outcome evidence is translated into risk signals, likely citation domains and targeted corrective action.',
+      evidence: 'Predictive surveillance converts historical accreditation signals into likely citation domains and targeted corrective action.',
       proof: 'Longitudinal evidence · risk surveillance · targeted intervention'
     },
     {
@@ -28,6 +30,7 @@
       artifactId: 'ev-lifecycle-data-architecture',
       question: 'How can leaders understand the full medical-education lifecycle instead of relying on disconnected annual reports?',
       operating: 'Governed data architecture connects admissions, UME, learner outcomes, match, GME, physician practice and workforce outcomes across cohorts.',
+      evidence: 'A lifecycle architecture connects admissions decisions with education, match, residency, practice and workforce outcomes.',
       proof: 'Admissions · education · match · GME · practice · workforce'
     },
     {
@@ -37,6 +40,7 @@
       artifactId: 'gme-09',
       question: 'How can complex GME financing and affiliation assumptions be translated into decision-ready scenarios?',
       operating: 'Payment assumptions, trainee movement, cap position, affiliation structures and workforce implications are modeled in an interactive executive decision tool.',
+      evidence: 'An interactive simulator turns cap position, trainee movement and payment assumptions into affiliation and workforce scenarios.',
       proof: 'GME finance · scenario modeling · affiliation strategy'
     },
     {
@@ -46,6 +50,7 @@
       artifactId: 'ai-01',
       question: 'How can an academic health sciences institution pair responsible AI governance with practical faculty and learner education?',
       operating: 'School-level policy and governance are connected with a public learning system that builds shared vocabulary, educator support, self-assessment and applied AI fluency.',
+      evidence: 'A School-level governance framework is paired with public resources for shared vocabulary, educator use and applied AI fluency.',
       proof: 'Policy · governance · Lexicon · teaching support · external selection',
       special: 'medai'
     },
@@ -56,6 +61,7 @@
       artifactId: 'ev-pan-oncology',
       question: 'What would a governed multi-agent tumor-board research prototype require before clinical validation?',
       operating: 'Structured case intake, provenance-aware evidence review, specialist agents, an independent Clinical Red Team, abstention, human attestation and an audit trace.',
+      evidence: 'The prototype separates governed AI architecture from clinical validation through provenance, independent challenge, abstention and human attestation.',
       proof: 'Provenance · red-team review · abstention · human oversight'
     },
     {
@@ -65,6 +71,7 @@
       artifactId: 'pol-12',
       question: 'How can federal rural-health policy be translated into state implementation choices and an institutional partnership strategy?',
       operating: 'Federal policy, Medicaid exposure, workforce, rural access, technology, hospital sustainability and LSU-LDH implementation roles are assessed together.',
+      evidence: 'A policy stress test links federal reform with Louisiana Medicaid exposure, workforce, rural access and institutional partnership choices.',
       proof: 'Federal policy · Louisiana strategy · implementation readiness'
     }
   ];
@@ -167,7 +174,7 @@
           <p>A guided entry point for reviewers who want to understand the strongest work before opening the complete evidence register.</p>
         </div>
 
-        <div className="signature-dossier-shell">
+        <div className={'signature-dossier-shell'+(signature.special === 'medai' ? ' medai-expanded' : '')}>
           <div className="signature-dossier-rail" role="tablist" aria-label="Selected signature work">
             <div className="signature-dossier-rail-label">Signature evidence</div>
             {SIGNATURES.map(item => <button
@@ -188,7 +195,7 @@
               <div><span>Institutional question</span><p>{signature.question}</p></div>
               <div><span>Role</span><p>{signatureArtifact ? signatureArtifact.role : ''}</p></div>
               <div><span>Operating model</span><p>{signature.operating}</p></div>
-              <div><span>Evidence</span><p>{signatureArtifact ? signatureArtifact.strategic || signatureArtifact.summary : ''}</p></div>
+              <div><span>Evidence</span><p>{signature.evidence}</p></div>
             </div>
 
             {signature.special === 'medai' && <div className="medai-dossier">
@@ -225,9 +232,18 @@
             </div>
           </article>
         </div>
+
+        <button
+          type="button"
+          className="signature-register-cue"
+          onClick={() => document.getElementById('complete-evidence-register')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+        >
+          <span>Beyond the signature work</span>
+          <strong>Browse the complete evidence register: {all.length} records across {window.CAPABILITIES.length} capabilities ↓</strong>
+        </button>
       </div></section>
 
-      <div className="lib-body"><div className="container">
+      <div className="lib-body" id="complete-evidence-register"><div className="container">
         <div className="complete-register-heading"><div><span>Complete evidence register</span><h2>All {all.length} records.</h2></div><p>The signature dossiers are a guided entry point. The complete record below remains the source register.</p></div>
         <div className="library-filter-guide">
           <span>ⓘ</span>

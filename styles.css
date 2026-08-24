@@ -1995,7 +1995,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 .signature-library-section {
   background: var(--dark-2);
   color: var(--paper-2);
-  padding: 48px 0 58px;
+  padding: 34px 0 36px;
   border-bottom: 1px solid var(--dark-line);
 }
 
@@ -2004,7 +2004,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
   gap: clamp(36px, 6vw, 88px);
   align-items: end;
-  margin-bottom: 26px;
+  margin-bottom: 18px;
 }
 
 .signature-library-intro span,
@@ -2036,8 +2036,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 .signature-dossier-shell {
   display: grid;
-  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.55fr);
-  min-height: 680px;
+  grid-template-columns: minmax(270px, 0.88fr) minmax(0, 1.45fr);
   border: 1px solid rgba(184, 152, 90, 0.42);
   background: var(--dark);
 }
@@ -2048,7 +2047,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 }
 
 .signature-dossier-rail-label {
-  min-height: 68px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   padding: 0 24px;
@@ -2062,7 +2061,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 .signature-dossier-rail button {
   width: 100%;
-  min-height: 80px;
+  min-height: 61px;
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr);
   align-items: center;
@@ -2071,7 +2070,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   border-bottom: 1px solid rgba(184, 152, 90, 0.22);
   background: transparent;
   color: var(--paper-2);
-  padding: 14px 22px;
+  padding: 9px 19px;
   text-align: left;
   transition: background 160ms ease, color 160ms ease;
 }
@@ -2087,7 +2086,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 .signature-dossier-rail button > span {
   font-family: var(--serif);
-  font-size: 27px;
+  font-size: 23px;
   color: var(--gold);
   line-height: 1;
   border-right: 1px solid rgba(184, 152, 90, 0.45);
@@ -2100,7 +2099,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 .signature-dossier-rail button strong {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 15.5px;
   line-height: 1.2;
   font-weight: 400;
 }
@@ -2108,7 +2107,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 .signature-dossier-panel {
   background: var(--paper-2);
   color: var(--ink);
-  padding: clamp(28px, 4vw, 54px);
+  padding: clamp(22px, 3vw, 34px);
   min-width: 0;
 }
 
@@ -2118,29 +2117,29 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--teal);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .signature-dossier-panel > h2 {
   font-family: var(--serif);
-  font-size: clamp(30px, 4.1vw, 50px);
+  font-size: clamp(27px, 3vw, 40px);
   line-height: 1.04;
   letter-spacing: -0.04em;
   font-weight: 400;
   max-width: 18ch;
-  padding-bottom: 18px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--gold);
 }
 
 .signature-dossier-fields {
-  margin-top: 16px;
+  margin-top: 9px;
 }
 
 .signature-dossier-fields > div {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 24px;
-  padding: 15px 0;
+  grid-template-columns: 142px minmax(0, 1fr);
+  gap: 18px;
+  padding: 9px 0;
   border-bottom: 1px solid var(--line-2);
 }
 
@@ -2159,18 +2158,18 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 
 .signature-dossier-fields p {
   color: var(--ink-2);
-  font-size: 12px;
-  line-height: 1.67;
+  font-size: 11.5px;
+  line-height: 1.5;
 }
 
 .signature-proof-line {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 142px minmax(0, 1fr);
+  gap: 18px;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 12px;
   border: 1px solid var(--line);
-  padding: 12px 15px;
+  padding: 9px 12px;
 }
 
 .signature-proof-line strong {
@@ -2183,14 +2182,14 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .signature-dossier-actions button,
 .signature-dossier-actions a,
 .medai-resource-card a,
 .medai-resource-card button {
-  min-height: 36px;
+  min-height: 33px;
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--ink);
@@ -2216,18 +2215,18 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
 }
 
 .medai-dossier {
-  margin-top: 20px;
+  margin-top: 13px;
   border: 1px solid var(--line);
   background: #f1efe7;
-  padding: 17px;
+  padding: 13px;
 }
 
 .medai-dossier-heading {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 142px minmax(0, 1fr);
+  gap: 18px;
   align-items: start;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .medai-dossier-heading p {
@@ -2366,14 +2365,51 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   background: rgba(184, 152, 90, 0.1);
 }
 
+.signature-register-cue {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(190px, 0.38fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border: 1px solid rgba(184, 152, 90, 0.42);
+  background: #101722;
+  color: var(--paper-2);
+  text-align: left;
+}
+
+.signature-register-cue span {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.signature-register-cue strong {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.signature-register-cue:hover strong {
+  color: var(--gold);
+}
+
+#complete-evidence-register {
+  scroll-margin-top: 76px;
+}
+
 @media (max-width: 980px) {
   .signature-dossier-shell {
-    grid-template-columns: 210px minmax(0, 1fr);
+    grid-template-columns: 230px minmax(0, 1fr);
   }
   .signature-dossier-fields > div,
   .signature-proof-line,
   .medai-dossier-heading {
-    grid-template-columns: 130px minmax(0, 1fr);
+    grid-template-columns: 118px minmax(0, 1fr);
   }
   .signature-dossier-rail button {
     grid-template-columns: 34px minmax(0, 1fr);
@@ -2407,7 +2443,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
     border-right: 1px solid rgba(184, 152, 90, 0.22);
   }
   .signature-dossier-panel {
-    padding: 25px 18px;
+    padding: 22px 18px;
   }
   .signature-dossier-fields > div,
   .signature-proof-line,
@@ -2421,6 +2457,10 @@ h1, h2, h3, h4 { margin: 0; font-weight: 400; }
   }
   .medai-resource-card p {
     min-height: 0;
+  }
+  .signature-register-cue {
+    grid-template-columns: 1fr;
+    gap: 5px;
   }
 }
 
