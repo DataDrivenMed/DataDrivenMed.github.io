@@ -245,6 +245,15 @@ function SourceEvidenceSnapshot({ artifact }) {
   );
 }
 
+function GroupedEvidenceList({ artifact }) {
+  if (!Array.isArray(artifact.entries) || artifact.entries.length === 0) return null;
+  return (
+    <ul>
+      {artifact.entries.map((entry, index) => <li key={artifact.id + "-entry-" + index}>{entry}</li>)}
+    </ul>
+  );
+}
+
 // ---------- Detail overlay ----------
 function ArtifactDetail({ artifact, onClose }) {
   useEffectD(() => {
@@ -356,7 +365,7 @@ function ArtifactDetail({ artifact, onClose }) {
             <div className="cs-toc">
               <span className="tlbl">On this page</span>
               <a href="#sec-summary">Executive summary</a>
-              <a href="#sec-evidence">Evidence snapshot</a>
+              <a href="#sec-evidence">{artifact.entries ? "Included record" : "Evidence snapshot"}</a>
               <a href="#sec-approach">Strategic approach</a>
               <a href="#sec-execution">Execution</a>
               <a href="#sec-tools">Tools &amp; frameworks</a>
@@ -378,11 +387,22 @@ function ArtifactDetail({ artifact, onClose }) {
               </section>
 
               <section className="cs-section" id="sec-evidence">
-                <h2>Evidence snapshot</h2>
-                <p style={{ color: "var(--muted)", marginBottom: 16 }}>
-                  Selected evidence from the underlying artifact record, shown here so reviewers can understand the work without opening another page.
-                </p>
-                <SourceEvidenceSnapshot artifact={artifact} />
+                <h2>{artifact.entries ? "Included record" : "Evidence snapshot"}</h2>
+                {artifact.entries ? (
+                  <>
+                    <p style={{ color: "var(--muted)", marginBottom: 16 }}>
+                      {artifact.entriesIntro || "The entries below are consolidated within this artifact so the library remains concise while preserving the underlying record."}
+                    </p>
+                    <GroupedEvidenceList artifact={artifact} />
+                  </>
+                ) : (
+                  <>
+                    <p style={{ color: "var(--muted)", marginBottom: 16 }}>
+                      Selected evidence from the underlying artifact record, shown here so reviewers can understand the work without opening another page.
+                    </p>
+                    <SourceEvidenceSnapshot artifact={artifact} />
+                  </>
+                )}
               </section>
 
               <section className="cs-section" id="sec-approach">

@@ -3,6 +3,7 @@
   const { useMemo, useState } = React;
 
   function recordType(a) {
+    if (a.evidenceType) return a.evidenceType;
     const id = String(a.id || '');
     const t = [a.title, a.role, a.summary].join(' ').toLowerCase();
     if (/^ev-(pub|poster|oral|reviewer|mec-report)-/.test(id) || /publication|poster presentation|oral presentation|manuscript reviewer/.test(t)) return 'scholarship';

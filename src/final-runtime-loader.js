@@ -27,7 +27,8 @@
     ["src/final-evidence-scholarship.js", false],
     ["src/final-evidence-career-depth.js", false],
     ["src/final-evidence-preservation.js", false],
-    ["src/final-evidence-normalization.js", false]
+    ["src/final-evidence-normalization.js", false],
+    ["src/final-library-curation.js", false]
   ];
 
   var contentLayer = [
@@ -60,7 +61,7 @@
 
   async function load(item) {
     var path = item[0], babel = item[1];
-    var response = await fetch(path + "?final_candidate=8", { cache: "no-store" });
+    var response = await fetch(path + "?final_candidate=9", { cache: "no-store" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
     execute(path, await response.text(), babel);
   }
