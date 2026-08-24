@@ -60,7 +60,7 @@
 
   async function load(item) {
     var path = item[0], babel = item[1];
-    var response = await fetch(path + "?final_candidate=7", { cache: "no-store" });
+    var response = await fetch(path + "?final_candidate=8", { cache: "no-store" });
     if (!response.ok) throw new Error(path + " returned HTTP " + response.status);
     execute(path, await response.text(), babel);
   }

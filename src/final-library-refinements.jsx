@@ -34,7 +34,7 @@
   function LibraryPage({ openArtifact }) {
     const initial = useMemo(() => {
       const p = new URLSearchParams(window.location.hash.split('?')[1] || '');
-      return { cat: p.get('cat') || 'all', featured: p.get('featured') === '1', depth: p.get('cat') ? 'all' : 'projects' };
+      return { cat: p.get('cat') || 'all', featured: p.get('featured') === '1', depth: 'all' };
     }, []);
     const [cat, setCat] = useState(initial.cat);
     const [aud, setAud] = useState('all');
@@ -77,18 +77,18 @@
       return { d, a };
     }, [all.length]);
 
-    const reset = () => { setCat('all'); setAud('all'); setFeatured(false); setConfid(false); setQ(''); setDepth('projects'); };
+    const reset = () => { setCat('all'); setAud('all'); setFeatured(false); setConfid(false); setQ(''); setDepth('all'); };
 
     return <main className="page-enter">
       <div className="lib-dark-header"><div className="container">
         <div className="eyebrow" style={{color:'var(--gold)'}}><span className="dot" style={{background:'var(--gold)'}}></span>Evidence Library · {all.length} records indexed</div>
         <h1>The evidence<br/>library.</h1>
-        <p>A comprehensive career evidence register across twelve capability areas. Start with projects and initiatives, then use the filters to explore governance, scholarship, funded work, credentials, public tools, or the complete record.</p>
+        <p>A comprehensive career evidence register across twelve capability areas. The complete record is shown by default; use the filters to focus on projects, governance, scholarship, funded work, credentials, or public tools.</p>
       </div></div>
       <div className="lib-body"><div className="container">
         <div style={{display:'flex',gap:12,alignItems:'flex-start',padding:'14px 16px',marginBottom:18,border:'1px solid var(--line)',background:'var(--paper-2)'}}>
           <span style={{color:'var(--gold)',fontFamily:'var(--mono)',fontSize:12,lineHeight:1.5}}>ⓘ</span>
-          <div style={{fontSize:12,lineHeight:1.6,color:'var(--muted)'}}><strong style={{color:'var(--ink)'}}>Use the filters to explore the depth of the record.</strong> The default view shows projects and initiatives. Select <strong>Complete record</strong> for everything, or narrow by evidence type, capability, or audience group.</div>
+          <div style={{fontSize:12,lineHeight:1.6,color:'var(--muted)'}}><strong style={{color:'var(--ink)'}}>Use the filters to explore the depth of the record.</strong> The default view shows the <strong>Complete record</strong>. Narrow it by evidence type, capability, or audience group.</div>
         </div>
         <div className="ev-search"><window.SearchIcon size={17}/><input placeholder="Search — strategic planning, LCME, GME caps, Healthworks, NIH, AI governance, facilities…" value={q} onChange={e => {setQ(e.target.value); if(e.target.value) setDepth('all');}}/>{q && <button className="ev-clear" onClick={()=>setQ('')}>×</button>}</div>
         <div className="ev-toolbar"><div className="ev-tools-left">
@@ -105,7 +105,7 @@
           <select className="ev-select" value={aud} onChange={e=>setAud(e.target.value)} aria-label="Audience group"><option value="all">All audience groups</option>{GROUPS.map(g => <option key={g[0]} value={g[0]}>{g[1]} · {counts.a[g[0]]}</option>)}</select>
           <button className={'ev-flag '+(featured?'active':'')} onClick={()=>setFeatured(!featured)}><span className="dot featured"></span> Featured</button>
           <button className={'ev-flag '+(confid?'active':'')} onClick={()=>setConfid(!confid)}><span className="dot confid"></span> Confidential</button>
-          {(cat!=='all'||aud!=='all'||featured||confid||q||depth!=='projects') && <button className="ev-reset" onClick={reset}>Reset</button>}
+          {(cat!=='all'||aud!=='all'||featured||confid||q||depth!=='all') && <button className="ev-reset" onClick={reset}>Reset</button>}
         </div><div className="ev-tools-right"><span className="ev-count">{filtered.length} / {all.length}</span><div className="ev-view"><button className={view==='index'?'active':''} onClick={()=>setView('index')}>Index</button><button className={view==='cards'?'active':''} onClick={()=>setView('cards')}>Cards</button></div></div></div>
         {filtered.length===0 ? <div className="empty" style={{marginTop:48}}>No evidence records match these filters. Try resetting or broadening the search.</div> : view==='cards' ? <div className="lib-grid">{filtered.map(a=><window.ArtifactCard key={a.id} a={a} onOpen={openArtifact}/>)}</div> : <div className="ev-index">
           <div className="ev-row ev-head"><div className="ev-c-code">Code</div><div className="ev-c-title">Title</div><div className="ev-c-skills">Skills Demonstrated</div><div className="ev-c-aud">Audience</div><div className="ev-c-flags">Status</div></div>

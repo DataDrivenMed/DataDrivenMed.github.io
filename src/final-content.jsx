@@ -450,59 +450,6 @@
             <div className="exec-pills"><span>Institutional effectiveness</span><span>Executive decision support</span><span>Cross-functional governance</span><span>Continuous readiness</span><span>Strategy implementation</span></div>
           </div>
         </div></div></div>
-
-        <div className="read-guide-section"><div className="container"><div className="read-guide-inner">
-          <div className="read-guide-label">§ How To Read This Portfolio</div>
-          <div className="read-guide-copy">
-            <h2>Start with the cases. Then inspect the evidence.</h2>
-            <p>The 18 executive cases synthesize the strongest leadership patterns. The Evidence Library preserves the deeper record—projects, governance, scholarship, grants, presentations, credentials, and public tools—without forcing every detail onto the first screen.</p>
-            <div className="read-guide-grid">
-              <div><strong>First read</strong><span>Use Executive Case Studies to understand scope, judgment, and institutional operating capacity.</span></div>
-              <div><strong>Then compare</strong><span>Use the Capability Map to see how the work spans twelve domains of academic health sciences leadership.</span></div>
-              <div><strong>Then go deep</strong><span>The Library opens in Portfolio Overview mode. Use the Evidence Depth filter to reveal the complete underlying record.</span></div>
-            </div>
-          </div>
-        </div></div></div>
-
-        <div className="readout-section"><div className="container">
-          <div className="readout-header"><div className="readout-h-label">§ Senior Leadership Readout</div><div className="readout-h-content"><h2>Breadth matters because institutional problems rarely stay inside one office.</h2><p>The portfolio connects accreditation, strategy, analytics, finance, medical education, research, workforce, policy, technology, faculty affairs, and health-system relationships into a single evidence-based leadership practice.</p></div></div>
-          <div className="readout-cells">
-            <div className="readout-cell"><strong>Institutional strategy lifecycle</strong><span>Plan closure, environmental evidence, stakeholder architecture, KPI development, implementation monitoring, and CQI linkage.</span></div>
-            <div className="readout-cell"><strong>Continuous accreditation readiness</strong><span>LCME, ACGME, ACCME, institutional accreditation data support, predictive risk surveillance, and corrective-action intelligence.</span></div>
-            <div className="readout-cell"><strong>Academic health-system fluency</strong><span>GME finance, contracts, teaching sites, CMS/Medicaid, CLER, hospital governance, and multi-affiliate partnership strategy.</span></div>
-            <div className="readout-cell"><strong>Future-focused governance</strong><span>Research growth, NCI readiness, enterprise technology due diligence, responsible AI policy, and governed clinical-AI prototypes.</span></div>
-          </div>
-        </div></div>
-
-        <div className="cap-arch-section"><div className="container"><div className="cap-arch-inner">
-          <div><div className="cap-arch-label">§ Capability Architecture</div></div>
-          <div className="cap-arch-content"><h2>Twelve domains of academic health sciences capability.</h2><p>The visual taxonomy remains the same, but the evidence underneath it is now substantially deeper—preserving executive overview records and granular proof in the same system.</p><window.Link to="/capabilities" className="btn outline-dark">Open full capability map <window.ArrowRight size={13} /></window.Link><img src="capability-map-home.png" alt="Twelve domains of enterprise capability." className="cap-arch-img" /></div>
-        </div></div></div>
-
-        <div className="cases-section"><div className="container">
-          <div className="cases-header"><div className="cases-h-label">§ Selected Executive Cases</div><div className="cases-h-content"><h2>Decision-level stories, each traceable to granular evidence.</h2><p>The first three cases show the core operating model: strategic planning and institutional effectiveness, accreditation and continuous readiness, and enterprise data governance across the learner lifecycle.</p></div></div>
-          <div className="featured-grid">
-            {EXECUTIVE_CASES.slice(0, 3).map(c => <div key={c.num} onClick={() => { window.location.hash = "/case-studies"; }} style={{ cursor: "pointer" }}><CaseCard c={c} openArtifact={openArtifact} compact /></div>)}
-            <article className="feat" onClick={() => { window.location.hash = "/case-studies"; }} style={{ cursor: "pointer" }}>
-              <div className="feat-cover" style={{ background: "var(--dark-2)", minHeight: 72, display: "flex", alignItems: "flex-end", padding: "14px 16px" }}><span style={{ fontFamily: "var(--mono)", color: "var(--gold)", fontSize: 11, letterSpacing: ".12em" }}>COMPLETE SET</span></div>
-              <div className="feat-body"><h3>18 Executive Case Studies</h3><p className="feat-sum">From strategy and accreditation through GME finance, health-system integration, AI governance, public policy, faculty affairs, international partnerships, and simulation science.</p><div className="feat-meta"><span>Comprehensive executive synthesis</span><span className="read">View all <window.ArrowRight size={11} /></span></div></div>
-            </article>
-          </div>
-          <div style={{ marginTop: 20, textAlign: "right" }}><window.Link to="/case-studies" className="quiet-link">All 18 executive case studies <window.ArrowRight size={12} /></window.Link></div>
-        </div></div>
-
-        <div className="cta-band"><div className="container" style={{ padding: 0 }}><div className="triple-cta">
-          <div className="cta-cell"><span className="num">§ 03 · Case Studies</span><h3>Understand the executive story.</h3><p>Eighteen structured cases show the institutional challenge, role, work performed, operating approach, decision or outcome supported, and underlying evidence.</p><window.Link to="/case-studies" className="btn gold">View case studies <window.ArrowRight size={13} /></window.Link></div>
-          <div className="cta-cell"><span className="num">§ 04 · Evidence Library</span><h3>Then inspect the complete record.</h3><p>The Library begins with a curated Portfolio Overview. Use the Evidence Depth filter to reveal granular projects, governance, scholarship, grants, credentials, and public tools.</p><window.Link to="/library" className="btn outline">Open library <window.ArrowRight size={13} /></window.Link></div>
-          <div className="cta-cell"><span className="num">§ 05 · Career & Governance</span><h3>See the full operating footprint.</h3><p>Career chronology, committees, state service, international engagement, funded roles, scholarship, public-health foundations, and institutional governance.</p><window.Link to="/career-governance" className="btn warm">Open career record <window.ArrowRight size={13} /></window.Link></div>
-        </div></div></div>
-
-        <div style={{ background: "var(--dark-1)", borderTop: "1px solid rgba(184,152,90,0.18)", padding: "64px 0" }}><div className="container">
-          <div style={{ marginBottom: 10, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "var(--mono)" }}>§ External Perspective</div>
-          <h2 style={{ color: "var(--paper-2)", marginBottom: 16, fontSize: "clamp(1.4rem, 3vw, 2rem)" }}>Academic health sciences leadership<br/>shaped by an unusual performance background.</h2>
-          <p style={{ fontSize: 14, color: "var(--dark-muted)", lineHeight: 1.7, maxWidth: "70ch", marginBottom: 30 }}>Before the institutional strategy work, Ram competed internationally in swimming and represented India, captained the Karnataka State Swim Team for seven years, and later extended that performance background into swimming science, analytics, anti-doping service, and public scholarship. It remains a secondary but distinctive part of the broader leadership profile.</p>
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}><window.Link to="/career-governance" className="btn outline">Career &amp; governance <window.ArrowRight size={13} /></window.Link><a href="https://swimed.substack.com/" target="_blank" rel="noreferrer" className="btn outline" style={{ textDecoration: "none" }}>Swimming scholarship <window.ArrowRight size={13} /></a></div>
-        </div></div>
       </main>
     );
   }
