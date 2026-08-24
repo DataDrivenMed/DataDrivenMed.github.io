@@ -588,6 +588,56 @@
     });
   }
 
+  if (!byId("swim-04")) {
+    artifacts.push({
+      id: "swim-04",
+      title: "BAC Elite Swim Center Institutional Intelligence Prototype",
+      category: "swimming-science",
+      role: "Concept designer and prototype developer",
+      summary: "Designed a live institutional-intelligence concept prototype for the operating context of Basavanagudi Aquatic Centre in Bengaluru, a nonprofit aquatic institution founded in 1986 that reports training more than 500 swimmers regularly. The prototype reframes the center as an interconnected performance and operating system rather than a collection of isolated race times or reports.",
+      strategic: "Shows how athlete development, coaching, sports science, competition, program participation, facility capacity, and organizational operations could be organized within a shared decision-support architecture. The work demonstrates system-level sports analytics and prototype design; it does not imply BAC adoption, commissioned development, production use, or validated athlete prediction.",
+      skills: [
+        "Institutional intelligence",
+        "Sports analytics",
+        "Athlete-development systems",
+        "Decision-support design",
+        "AI prototyping",
+        "Performance operations"
+      ],
+      audience: [
+        "Swimming leadership",
+        "Coaches and performance staff",
+        "Sports science teams",
+        "Aquatic center administrators"
+      ],
+      tags: [
+        "Basavanagudi Aquatic Centre",
+        "BAC",
+        "Swimming intelligence",
+        "Institutional analytics",
+        "International swimming",
+        "Live prototype"
+      ],
+      entries: [
+        "Institutional model connecting athlete development, coaching, sports science, competition, programs, and operations within one leadership view.",
+        "Focus on longitudinal athlete pathways, program-level indicators, capacity visibility, and performance patterns rather than one-time race analysis.",
+        "Concept for converting a long-established aquatic institution's accumulated operational and coaching knowledge into structured decision support.",
+        "Evidence boundary: independent conceptual prototype designed for BAC's institutional context; not represented as commissioned, adopted, deployed, or performance validated."
+      ],
+      entriesIntro: "The prototype is presented as a system-design artifact with an explicit boundary between demonstrated architecture and institutional implementation.",
+      sourceFile: null,
+      liveUrl: "https://bac-intelligence.ai.studio/",
+      liveLabel: "Launch BAC Intelligence prototype",
+      evidenceType: "public",
+      evidenceStatus: "Live public conceptual prototype and portfolio evidence record",
+      evidenceLevel: "public-concept-prototype",
+      featured: true,
+      confidential: false,
+      premiumEvidence: true,
+      normalizedRecord: true
+    });
+  }
+
   if (Array.isArray(window.FLAGSHIP_IDS)) {
     window.FLAGSHIP_IDS = unique(window.FLAGSHIP_IDS
       .map(function (id) { return replacementIdMap[id] || id; })
