@@ -32,4 +32,4 @@ HumanSim extends a long-standing simulation, assessment, and medical-education p
 
 ## Live artifact
 
-https://mechanism-atlas.vercel.app/
+[Launch HumanSim](https://mechanism-atlas.vercel.app/)
