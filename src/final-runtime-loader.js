@@ -53,9 +53,17 @@
 
   function execute(path, source, babel) {
     var code = source;
+    // Keep the existing detail UI unchanged while allowing selected artifacts
+    // to supply their own evidence-specific approach/execution content.
+    if (path === "src/detail.jsx") {
+      code = code.replace(
+        "const detail = CASE_DETAILS[artifact.id] || fallbackCaseDetail(artifact);",
+        "const detail = artifact.detailData || CASE_DETAILS[artifact.id] || fallbackCaseDetail(artifact);"
+      );
+    }
     if (babel) {
       if (!window.Babel) throw new Error("Babel unavailable while loading " + path);
-      code = window.Babel.transform(source, { presets: ["env", "react"], sourceType: "script" }).code;
+      code = window.Babel.transform(code, { presets: ["env", "react"], sourceType: "script" }).code;
     }
     (0, eval)(code + "\n//# sourceURL=" + path);
     status.loaded.push(path);
