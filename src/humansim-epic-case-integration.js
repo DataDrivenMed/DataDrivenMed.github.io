@@ -5,15 +5,19 @@
   "use strict";
   if (!Array.isArray(window.FINAL_EXECUTIVE_CASES)) return;
 
-  function addEvidence(caseNum, artifactId) {
+  function addEvidence(caseNum, artifactId, first) {
     var c = window.FINAL_EXECUTIVE_CASES.find(function (item) { return item && item.num === caseNum; });
     if (!c) return;
     c.evidence = Array.isArray(c.evidence) ? c.evidence : [];
-    if (c.evidence.indexOf(artifactId) < 0) c.evidence.push(artifactId);
+    c.evidence = c.evidence.filter(function (id) { return id !== artifactId; });
+    if (first) c.evidence.unshift(artifactId);
+    else c.evidence.push(artifactId);
   }
 
-  addEvidence("09", "ai-epic-chatgpt");
-  addEvidence("18", "ev-humansim");
+  addEvidence("09", "ai-epic-chatgpt", false);
+  // HumanSim is intentionally first in Case 18 so the current digital-learning
+  // evolution is immediately visible while preserving the historical evidence.
+  addEvidence("18", "ev-humansim", true);
 
   var aiCase = window.FINAL_EXECUTIVE_CASES.find(function (item) { return item && item.num === "09"; });
   if (aiCase && Array.isArray(aiCase.actions)) {
@@ -25,6 +29,9 @@
   if (simCase && Array.isArray(simCase.actions)) {
     var simAction = "Extended the simulation and evaluation trajectory into HumanSim, a public formative digital-human learning prototype connecting patient state, foundational sciences, interventions, compensation, and clinical response.";
     if (simCase.actions.indexOf(simAction) < 0) simCase.actions.push(simAction);
+  }
+  if (simCase) {
+    simCase.outcome = "Built a sustained evaluation portfolio connecting simulation education with patient safety, teamwork, disaster preparedness, quality improvement, scholarly dissemination, and a current public digital-human learning prototype focused on connected medical reasoning.";
   }
 
   var BaseCareerGovernancePage = window.CareerGovernancePage;
