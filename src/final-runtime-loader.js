@@ -100,7 +100,7 @@
     attempt = attempt || 1;
     var response;
     try {
-      response = await fetch(path + "?final_candidate=18", {
+      response = await fetch(path + "?final_candidate=19", {
         cache: attempt === 1 ? "force-cache" : "reload"
       });
     } catch (networkError) {
