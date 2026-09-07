@@ -29,6 +29,15 @@
       fullArtifactLabel: "Open portfolio evidence record",
       fullArtifactNote: "HumanSim is presented here as a public formative prototype. The evidence record explains the educational problem, product architecture, design logic, and current validation boundary before reviewers launch the live application.",
       evidenceStrength: "Public formative prototype · clinical validation not claimed",
+      entriesIntro: "The record below explains why HumanSim belongs in the portfolio and the boundaries of what the current public prototype demonstrates.",
+      entries: [
+        "Problem addressed — Medical students often encounter anatomy, physiology, biochemistry, pathology, pharmacology, diagnostics, and clinical medicine as separate bodies of knowledge. HumanSim is designed to make those relationships visible from one patient state rather than as disconnected modules.",
+        "Product model — Patient → investigate or intervene → observe → WHY → mechanism → comparison → time → connected medicine → replay, with anatomy used as the spatial anchor rather than the curriculum itself.",
+        "Connected-learning architecture — The same medical concept can be traversed from molecule to patient or from patient back to molecule, with patient context changing which relationships are emphasized.",
+        "Scientific workflow — Reference normal, disease disturbance, compensatory physiology, intervention, and response over time are kept distinct so learners can understand not only what changed but why.",
+        "Implementation — The public build integrates BodyParts3D anatomy, the HumanOS patient-state engine, a full-screen mechanism workspace, concept resolution, and progressive Core, Deep, Clinical, and Board learning depths.",
+        "Evidence boundary — HumanSim is a formative educational prototype. It is not presented as a validated clinical decision-support system, a validated all-specialty physiology simulator, or an institutionally adopted curriculum platform."
+      ],
       detailData: {
         approach: [
           "Anchor learning in one patient state rather than separate specialty or discipline modules, so anatomy, physiology, pathology, pharmacology, diagnostics, and clinical consequences can be traversed as one connected system.",
@@ -69,6 +78,15 @@
       fullArtifactLabel: "Open portfolio evidence record",
       fullArtifactNote: "This record explains the institutional question, analysis frame, and evidence boundary. The live briefing provides the complete clinician-facing explanation.",
       evidenceStrength: "Public clinician-facing analysis · no local deployment claimed",
+      entriesIntro: "The briefing is included as evidence of clinical-AI translation and governance analysis, not as evidence of local deployment or endorsement.",
+      entries: [
+        "Institutional question — What does authorized ChatGPT for Healthcare connectivity to Epic actually mean for clinicians beyond the headline that an AI system can access chart information?",
+        "Analysis frame — Authorization, data access, HIPAA and business associate agreement boundaries, plausible clinical uses, failure modes, clinician accountability, and local health-system approval are treated as separate but connected questions.",
+        "Distributed-practice relevance — Academic medical faculty may practice and teach across separately governed health systems whose EHR configurations, approved AI tools, and permitted workflows differ.",
+        "Clinical governance point — Technical connectivity does not itself establish clinical appropriateness, workflow validation, security approval, or permission to use the capability in a specific health system.",
+        "Communication product — An approximately eight-minute clinician-facing explanation translates a fast-moving AI/EHR development into practical questions for clinical faculty and health-system leaders.",
+        "Evidence boundary — The briefing does not claim that ChatGPT for Healthcare is approved, deployed, endorsed, or available at LSU Health or any LSU clinical partner."
+      ],
       detailData: {
         approach: [
           "Start with the actual technical and governance question—what authorized data an AI system can access and under whose controls—rather than reducing the announcement to the phrase 'AI can read the chart.'",
