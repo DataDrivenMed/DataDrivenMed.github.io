@@ -39,6 +39,7 @@
     ["src/final-refinements.jsx", true],
     ["src/final-copy-cleanup.jsx", true],
     ["src/final-home-refinements.jsx", true],
+    ["src/humansim-signature-pages.jsx", true],
     ["src/final-library-refinements.jsx", true]
   ];
   var appLayer = [["src/detail.jsx", true], ["src/app.jsx", true]];
@@ -53,6 +54,7 @@
 
   function execute(path, source, babel) {
     var code = source;
+
     // Keep the existing detail UI unchanged while allowing selected artifacts
     // to supply their own evidence-specific approach/execution content.
     if (path === "src/detail.jsx") {
@@ -61,6 +63,26 @@
         "const detail = artifact.detailData || CASE_DETAILS[artifact.id] || fallbackCaseDetail(artifact);"
       );
     }
+
+    // Preserve the Executive Profile layout while adding digital medical-
+    // learning system design to the existing AI/digital capability narrative.
+    if (path === "src/final-content.jsx") {
+      code = code.replace(
+        '["AI & digital governance", "Student and GME policy, cross-school consultation, tool vetting, enterprise implementation frameworks, clinical AI evaluation, and System-level governance participation."]',
+        '["AI & digital governance", "Student and GME policy, cross-school consultation, tool vetting, enterprise implementation frameworks, clinical AI evaluation, AI-supported medical-learning system design, and System-level governance participation."]'
+      );
+    }
+
+    // Elevate HumanSim into the existing signature-evidence component without
+    // changing the component structure or styling.
+    if (path === "src/final-library-refinements.jsx") {
+      code = code.replace(
+        "      proof: 'Federal policy · Louisiana strategy · implementation readiness'\n    }\n  ];",
+        "      proof: 'Federal policy · Louisiana strategy · implementation readiness'\n    },\n    {\n      key: 'humansim',\n      num: '08',\n      label: 'Connected Medical Learning',\n      artifactId: 'ev-humansim',\n      question: 'How can medical students learn foundational and clinical medicine as one connected system rather than as separate disciplines?',\n      operating: 'One patient-anchored model connects anatomy, physiology, biochemistry, molecular biology, pathology, pharmacology, diagnostics, compensation, interventions and clinical response across biological scales and time.',\n      evidence: 'A live formative digital-human prototype lets learners enter through a patient, intervention or medical concept and traverse the connected mechanism from patient to molecule or molecule back to patient.',\n      proof: 'Patient state · connected mechanisms · compensation · interventions · visual learning · live prototype'\n    }\n  ];"
+      );
+      code = code.replace("Seven institutional dossiers.", "Eight institutional dossiers.");
+    }
+
     if (babel) {
       if (!window.Babel) throw new Error("Babel unavailable while loading " + path);
       code = window.Babel.transform(code, { presets: ["env", "react"], sourceType: "script" }).code;
@@ -78,7 +100,7 @@
     attempt = attempt || 1;
     var response;
     try {
-      response = await fetch(path + "?final_candidate=17", {
+      response = await fetch(path + "?final_candidate=18", {
         cache: attempt === 1 ? "force-cache" : "reload"
       });
     } catch (networkError) {
