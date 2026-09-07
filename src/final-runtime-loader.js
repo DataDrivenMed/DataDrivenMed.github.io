@@ -12,6 +12,7 @@
     ["src/ai-architecture-guide-patch.jsx", true],
     ["src/amc-guide-direct.js", false],
     ["src/ai-resources-final.js", false],
+    ["src/humansim-epic-artifacts.js", false],
     ["src/components.jsx", true],
     ["src/nav-patch.jsx", true],
     ["src/pages.jsx", true],
@@ -33,6 +34,7 @@
 
   var contentLayer = [
     ["src/final-content.jsx", true],
+    ["src/humansim-epic-case-integration.js", false],
     ["src/final-accuracy-cleanup.js", false],
     ["src/final-refinements.jsx", true],
     ["src/final-copy-cleanup.jsx", true],
@@ -68,7 +70,7 @@
     attempt = attempt || 1;
     var response;
     try {
-      response = await fetch(path + "?final_candidate=16", {
+      response = await fetch(path + "?final_candidate=17", {
         cache: attempt === 1 ? "force-cache" : "reload"
       });
     } catch (networkError) {
@@ -117,7 +119,7 @@
 
   async function boot() {
     try {
-      // Bound concurrency so GitHub Pages is not flooded with 31 simultaneous
+      // Bound concurrency so GitHub Pages is not flooded with simultaneous
       // requests. Execute dependency groups in their original order.
       var allItems = originalStack.concat(evidenceLayers, contentLayer, appLayer);
       var allSources = await fetchWithLimit(allItems, 6);
