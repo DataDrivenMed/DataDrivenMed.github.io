@@ -22,8 +22,8 @@
           }}>
             <div className="container" style={{
               display: "grid",
-              gridTemplateColumns: "minmax(220px,.72fr) minmax(0,1.28fr)",
-              gap: 42,
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: 30,
               alignItems: "center"
             }}>
               <div>
