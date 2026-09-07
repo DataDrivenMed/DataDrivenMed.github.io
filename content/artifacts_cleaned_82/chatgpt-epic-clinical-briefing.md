@@ -31,4 +31,4 @@ The briefing demonstrates the ability to convert a rapidly moving clinical AI de
 
 ## Live artifact
 
-https://datadrivenmed.github.io/resources/epic-chatgpt/
+[Read the live clinical briefing](https://datadrivenmed.github.io/resources/epic-chatgpt/)
