@@ -1,0 +1,59 @@
+/* Final granular evidence additions + runtime diagnostics — premium review branch only. */
+(function () {
+  if (!Array.isArray(window.ARTIFACTS)) return;
+
+  function upsert(a) {
+    var i = window.ARTIFACTS.findIndex(function (x) { return x && x.id === a.id; });
+    if (i >= 0) window.ARTIFACTS[i] = Object.assign({}, window.ARTIFACTS[i], a);
+    else window.ARTIFACTS.push(a);
+  }
+  function R(id, title, category, role, summary, skills, audience, strategic) {
+    return {
+      id: id, title: title, category: category, role: role, summary: summary,
+      skills: skills || [], audience: audience || [], strategic: strategic || summary,
+      sourceFile: null, tags: skills || [], featured: false, confidential: false,
+      evidenceStatus: "CV / career record / sanitized public evidence",
+      premiumEvidence: true, normalizedRecord: true
+    };
+  }
+
+  [
+    R("ev-la-hospital-enterprise-finance", "Louisiana Hospital Enterprise Financing Analysis", "gme-finance", "Health-system finance analysis", "Examined hospital financial data, cost structures, reimbursement mechanisms, government funding, private-payer reimbursement, grants, philanthropic sources, and GME funding allocations to support School of Medicine leadership decision-making in a changing Louisiana hospital environment.", ["Hospital finance", "GME funding", "Reimbursement", "Health-system strategy"], ["School leadership", "Finance"], "Makes the broader hospital-enterprise finance work independently discoverable rather than burying it inside GME finance."),
+    R("ev-state-gme-medicaid-dsh", "State GME Medicaid & DSH Reporting Support", "gme-finance", "State financing analytics", "Analyzed state Medicaid GME funding, Disproportionate Share Hospital expenditures, LSU hospital Medicaid funding, and related physician-workforce measures for Louisiana health-department leadership reporting and presentations.", ["Medicaid", "DSH", "GME finance", "State reporting"], ["LDH/DHH leadership", "LSU leadership"], "Separates Medicaid and DSH reporting from generic hospital-finance analysis."),
+    R("ev-ppp-hospital-transition", "Louisiana Public-Private Hospital Transition & GME Continuity Support", "gme-finance", "Policy, finance and education continuity analysis", "Supported analysis of Louisiana's public-private hospital transition, including clinical educational affiliation agreements, Medicare GME FTE caps, CMS implications, accreditation considerations, and continuity of resident and fellow education.", ["Public-private partnerships", "GME", "Affiliation agreements", "CMS", "Education continuity"], ["LSU leadership", "GME", "Contracts", "Hospital partners"], "Shows systems-level management of educational continuity during structural health-system change."),
+    R("ev-lake-charles-lppf", "Lake Charles Family Medicine LPPF & GME Financing Analysis", "gme-finance", "GME finance and regional strategy", "Provided policy and financial analysis for the Lake Charles Family Medicine Residency involving Louisiana Local Provider Participation Fund dynamics, Medicaid financing, hospital competitive positioning, and GME training implications.", ["LPPF", "Medicaid", "Family Medicine", "GME finance", "Regional strategy"], ["GME leadership", "Regional stakeholders"], "Preserves a distinct regional GME-finance engagement from broader statewide financing work."),
+    R("ev-la-med-ed-workforce", "Louisiana Medical Education & Physician Workforce Analysis", "policy-rural", "Statewide medical-education and workforce analysis", "Developed a Louisiana medical-education and physician-workforce analysis covering enrollment, residency match outcomes, physician-to-population ratios, specialty and geographic distribution, demographic and utilization trends, and future workforce needs.", ["Medical education", "Physician workforce", "Statewide planning", "Workforce forecasting"], ["Louisiana Healthcare Quality Forum", "School leadership", "Policy stakeholders"], "Makes the comprehensive statewide medical-education/workforce analysis distinct from the presentation-specific Quality Forum record."),
+    R("ev-peds-workforce-report", "Pediatric Physician Workforce Reporting for Program Leadership", "policy-rural", "Specialty workforce reporting", "Compiled pediatric physician-workforce reporting for Department of Pediatrics program leadership, including provider distribution, specialty mix, service gaps, and implications for curriculum, recruitment, and strategic planning.", ["Pediatrics", "Workforce", "Specialty distribution", "Program planning"], ["Pediatrics program leadership"], "Preserves the leadership-facing pediatric workforce report separately from the broader pediatric workforce analysis."),
+    R("ev-state-specialty-graduate-trends", "Physician Specialty Workforce & Graduate Specialty-Choice Analysis", "policy-rural", "Specialty workforce analytics", "Analyzed Louisiana physician specialty distribution, geographic placement, and trends in specialty choice among new graduates to support clinical-affairs and workforce planning.", ["Specialty workforce", "Graduate outcomes", "Geographic distribution", "Clinical affairs"], ["Vice Chancellor for Clinical Affairs", "School leadership"], "Connects graduate specialty choice with statewide specialty workforce planning."),
+    R("ev-medical-advisory-board", "Illinois Medical Advisory Board Data Support", "analytics", "Public-health data support", "Supported the Illinois Department of Public Health Medical Advisory Board through dissemination and interpretation of state demographic, health-risk, and program data.", ["Public health", "Advisory board", "Demographic data", "Health-risk data"], ["Illinois Medical Advisory Board"], "Makes the formal advisory-board support visible within the early public-health foundation."),
+    R("ev-wisewoman-program-development", "Illinois WISEWOMAN Program Development & Prevention Operations", "analytics", "Program-development support", "Contributed to prevention-program development, medical updates, CPT coding, pharmaceutical-assistance initiatives, prevention coordination, and IRB support within the Illinois WISEWOMAN program.", ["Program development", "CPT coding", "Pharmaceutical assistance", "IRB", "Prevention"], ["Illinois Department of Public Health"], "Adds the operational and program-development dimension of the WISEWOMAN work beyond data analysis."),
+    R("ev-cals-evaluation-framework", "CALS Evaluation Framework & Longitudinal Training Impact", "simulation-quality", "Simulation evaluation architecture", "Designed and implemented evaluation frameworks for the Center for Advanced Learning and Simulation covering educational outcomes, clinical performance improvement, operational efficiency, utilization, learner performance, skill acquisition, and longitudinal training impact.", ["CALS", "Program evaluation", "Simulation", "Longitudinal outcomes", "Operational efficiency"], ["Simulation leadership", "School leadership"], "Makes the ongoing simulation-center evaluation architecture distinct from individual simulation studies and grants."),
+    R("ev-research-office-integration", "Research Enterprise Data Integration Across Sponsored Projects, Contracts, Accounting & Clinical Trials", "research-strategy", "Research-enterprise analytics integration", "Supported research strategy by connecting institutional analytics with Sponsored Projects, Contracts, Accounting, Clinical Trials, LSU Healthcare Network, Cancer Center, LCMC Health, and related stakeholders.", ["Research enterprise", "Sponsored Projects", "Contracts", "Clinical trials", "Data integration"], ["Research leadership", "Administrative offices", "Clinical partners"], "Shows research strategy as an enterprise operating system rather than a collection of grant analyses."),
+    R("ev-dean-staff-governance", "Dean's Staff & Administrative Committee Governance", "executive-strategy", "School-level governance participation", "Served on the School of Medicine Dean's Staff and Administrative Committee, contributing institutional evidence, accreditation, strategy, CQI, and decision-support perspectives across major school priorities.", ["Governance", "Dean's Office", "Strategic planning", "CQI", "Executive decision support"], ["Dean", "Senior school leadership"], "Makes sustained school-level governance participation independently discoverable."),
+    R("ev-cme-committee", "Advisory Committee on Continuing Medical Education", "accreditation-cqi", "Longstanding CME governance service", "Served on the School of Medicine Advisory Committee on Continuing Medical Education, contributing analytics, CQI, planning, and institutional integration perspectives to CME governance.", ["CME governance", "ACCME", "CQI", "Planning"], ["CME leadership", "Faculty"], "Separates formal CME governance service from the analytics and ACCME records."),
+    R("ev-lcme-steering", "LCME Accreditation Steering Committee & Quality Improvement and Accreditation Team", "accreditation-cqi", "Accreditation governance service", "Served on the School of Medicine LCME Accreditation Steering Committee and Quality Improvement and Accreditation Team, supporting evidence development, CQI, readiness, and institutional accountability.", ["LCME", "Accreditation governance", "CQI", "Readiness"], ["LCME leadership", "Dean's Office"], "Makes formal LCME governance participation visible alongside the operational evidence work."),
+    R("ev-strategy-workgroups", "School of Medicine Strategic Planning Advisory & Mission Workgroups", "executive-strategy", "Strategic-planning governance", "Participated in the Strategic Planning Advisory Committee and Clinical, Research, and Education workgroups while owning the broader planning process architecture, evidence development, and implementation framework.", ["Strategic planning", "Clinical strategy", "Research strategy", "Education strategy", "Governance"], ["Dean", "Strategic planning leadership", "Mission workgroups"], "Shows the governance structure through which the 2025–2030 planning process operated."),
+    R("ev-mcip-informatics-team", "MCIP Informatics Team Governance", "simulation-quality", "Statewide quality-program informatics governance", "Served on the MCIP Informatics Team supporting data architecture, reporting, data quality, regulatory alignment, and incentive-measure implementation within the Louisiana Managed Care Incentive Program.", ["MCIP", "Informatics", "Data governance", "Medicaid", "Quality measures"], ["LSUHSC", "LDH", "Louisiana Quality Network"], "Makes formal MCIP informatics governance distinct from the broader program-development record.")
+  ].forEach(upsert);
+
+  var required = [
+    "ev-strat-closure-2014-2019", "ev-lcme-dci-selfstudy", "ev-acgme-predictive", "ev-acgme-cler-umcno",
+    "ev-accme", "ev-sacscoc", "ev-cphe", "ev-equip-creation", "ev-umcno-academic-advisory",
+    "ev-lifecycle-data-architecture", "ev-watermark", "ev-cals-space", "ev-india-moe-host", "ev-study-in-india",
+    "ev-em-multiroom", "ev-pan-oncology", "ev-federal-ai-nci", "ev-asca-ai", "ev-healthworks",
+    "ev-ldh-primary-care", "ev-mec", "ev-mcip-governance", "ev-idph-womens-health", "ev-longitudinal-education-db",
+    "ev-la-hospital-enterprise-finance", "ev-state-gme-medicaid-dsh", "ev-ppp-hospital-transition"
+  ];
+  var ids = window.ARTIFACTS.map(function (a) { return a && a.id; });
+  var missing = required.filter(function (id) { return ids.indexOf(id) < 0; });
+  window.PREMIUM_RUNTIME_DIAGNOSTICS = {
+    totalRecords: window.ARTIFACTS.length,
+    baselineRecords: 97,
+    addedRecords: Math.max(0, window.ARTIFACTS.length - 97),
+    requiredSentinels: required.length,
+    missingSentinels: missing,
+    passed: window.ARTIFACTS.length > 97 && missing.length === 0,
+    version: "premium-v2-2026-08-21"
+  };
+  window.PREMIUM_EVIDENCE_COUNT = window.ARTIFACTS.length;
+})();
