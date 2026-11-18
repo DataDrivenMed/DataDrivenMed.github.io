@@ -1,7 +1,7 @@
 ---
 id: ev-ent-ai-guardrails-2027
 title: "Healthcare AI: Risks, Rules and Guardrails (working title)"
-category: "ai-governance"
+category: "AI Governance & Digital Transformation"
 portfolio_role: "Planned ENT Didactic Day presenter"
 publication_status: "Planned presentation; January 12, 2027"
 ---

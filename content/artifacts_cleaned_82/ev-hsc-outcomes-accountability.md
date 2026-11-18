@@ -1,7 +1,7 @@
 ---
 id: ev-hsc-outcomes-accountability
 title: "HSC-Wide Outcomes & Accountability Framework: Academic Affairs Consultation"
-category: "analytics"
+category: "Analytics, Dashboards & Decision Intelligence"
 portfolio_role: "Advisor to HSC Academic Affairs"
 publication_status: "Consultation provided; framework development proposed"
 ---

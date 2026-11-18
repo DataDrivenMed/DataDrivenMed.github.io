@@ -1,7 +1,7 @@
 ---
 id: ev-faculty-ai-practical-2027
 title: "Developing AI Capable Faculty: Practical Skills"
-category: "faculty-affairs"
+category: "Faculty Affairs & Institutional Culture"
 portfolio_role: "Planned faculty-development presenter"
 publication_status: "Planned session; January 21, 2027 tentative"
 ---

@@ -1,7 +1,7 @@
 ---
 id: ev-gme-core-ai-talk
 title: "State of Artificial Intelligence: Impact + Integrity + Guardrails"
-category: "ai-governance"
+category: "AI Governance & Digital Transformation"
 portfolio_role: "Presenter, LSU Health New Orleans School of Medicine GME CORE"
 publication_status: "Delivered presentation; date not specified"
 ---

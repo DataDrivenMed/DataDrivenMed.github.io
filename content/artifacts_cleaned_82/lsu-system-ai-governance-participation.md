@@ -1,7 +1,7 @@
 ---
 id: ev-ai-system
 title: "LSU System AI Governance Participation"
-category: "ai-governance"
+category: "AI Governance & Digital Transformation"
 portfolio_role: "Member / campus participant"
 publication_status: "Ongoing governance service"
 ---
