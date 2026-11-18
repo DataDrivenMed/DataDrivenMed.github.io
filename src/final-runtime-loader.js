@@ -38,6 +38,7 @@
     ["src/final-accuracy-cleanup.js", false],
     ["src/hospital-fair-share-artifact.js", false],
     ["src/cms-clinical-ai-roadmap-artifact.js", false],
+    ["src/current-governance-education-outcomes.js", false],
     ["src/final-refinements.jsx", true],
     ["src/final-copy-cleanup.jsx", true],
     ["src/final-home-refinements.jsx", true],
@@ -102,7 +103,7 @@
     attempt = attempt || 1;
     var response;
     try {
-      response = await fetch(path + "?final_candidate=cms-clinical-ai-roadmap-2026-11-18", {
+      response = await fetch(path + "?final_candidate=governance-education-outcomes-2026-11-18", {
         cache: attempt === 1 ? "force-cache" : "reload"
       });
     } catch (networkError) {

@@ -30,8 +30,8 @@
     strategic: "Extends the India collaboration pipeline beyond a single institutional partnership and supports systematic international opportunity development."
   });
   patchArtifact("ev-ai-system", {
-    summary: "Nominated by LSUHSC New Orleans CIO leadership to participate in a cross-campus, cross-functional LSU System AI governance effort addressing institutional audit and governance needs.",
-    strategic: "Adds enterprise-scale governance experience across campuses and functions."
+    summary: "Participates in cross-campus LSU System AI governance work as an LSU Health New Orleans representative, bringing an academic medicine perspective informed by accreditation, institutional effectiveness, medical education, and responsible AI use.",
+    strategic: "Ongoing governance service. Internal supporting documentation retained privately."
   });
   patchArtifact("ev-cancer-ai-governance", {
     summary: "Supported Cancer Center AI governance around existing and planned initiatives, including governance structure, data provenance, consent and secondary-use considerations, model validation, human oversight, bias review, and alignment with broader institutional governance.",
@@ -422,6 +422,7 @@
                 <p className="hero-lead-dark hero-lead-secondary">
                   The through-line is institutional operating capacity: connect fragmented evidence, clarify risk and priorities, align stakeholders, build measurable systems, and turn complex academic-health-sciences questions into governed execution.
                 </p>
+                <p className="hero-lead-dark hero-lead-secondary"><strong>Current focus:</strong> Responsible AI governance, practical AI education, and HSC-wide outcomes and accountability design. <window.Link to="/library?cat=ai-governance">AI governance and education</window.Link> · <window.Link to="/library?cat=analytics">Outcomes and accountability</window.Link></p>
                 <div className="hero-actions" style={{ marginTop: 36 }}>
                   <window.Link to="/case-studies" className="btn gold">Executive case studies <window.ArrowRight size={13} /></window.Link>
                   <window.Link to="/library" className="btn outline">Evidence library</window.Link>

@@ -77,3 +77,11 @@ Do not imply formal authority, staff supervision, contract-signing authority, re
 Do not imply that synthetic prototypes contain real institutional, patient, trainee, faculty, hospital, partner, or financial data.
 
 Do not treat draft governance artifacts as final policy unless a separate source proves final adoption.
+
+## Current governance, education and accountability work
+
+Delivered: State of Artificial Intelligence: Impact + Integrity + Guardrails, for School of Medicine GME CORE (Council on Resident Education), a quarterly forum alongside GMEC. Date not specified.
+Planned: Developing AI Capable Faculty: Practical Skills, Faculty Development Series; January 21, 2027, 4-5 p.m. Central is tentative; virtual Zoom planned; CME credit not confirmed.
+Planned: ENT Didactic Day healthcare AI risks/rules/guardrails talk, January 12, 2027, New Orleans; working title pending confirmation.
+Consultation provided: HSC-wide outcomes/accountability architecture for Academic Affairs; metrics, SOM crosswalk, federal applicability and implementation remain proposed or undefined.
+LSU System AI Governance Participation: Member / campus participant. Ongoing governance service. Internal supporting documentation retained privately. No internal source document is published.
