@@ -197,7 +197,9 @@
             }
             .selected-live-footer{
               display:flex;
-              justify-content:flex-end;
+              justify-content:space-between;
+              flex-wrap:wrap;
+              gap:14px;
               margin-top:16px;
             }
             .selected-live-footer a{
@@ -264,6 +266,7 @@
             </div>
 
             <div className="selected-live-footer">
+              <a href="https://datadrivenmed.github.io/resources/hospital-fair-share-2026/" target="_blank" rel="noopener noreferrer">Hospital Fair Share Explorer <window.ArrowRight size={12} /></a>
               <a href="#/library">More work in the Evidence Library <window.ArrowRight size={12} /></a>
             </div>
           </div>
