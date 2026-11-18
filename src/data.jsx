@@ -1094,6 +1094,7 @@ const STATUS_DEFINITIONS = {
 };
 
 function evidenceStatusForArtifact(a) {
+  if (Array.isArray(a.statusOverride)) return a.statusOverride;
   const hay = [
     a.id, a.title, a.role, a.summary, a.strategic,
     ...(a.skills || []), ...(a.tags || [])
@@ -1126,6 +1127,7 @@ function applyEvidenceStatusMetadata(artifacts = ARTIFACTS) {
         : a.statusLabels.some(s => s.key === "confidential")
           ? "Public summary; source proof may be private"
           : "Portfolio evidence record";
+    if (a.evidenceStrengthOverride) a.evidenceStrength = a.evidenceStrengthOverride;
   });
 }
 

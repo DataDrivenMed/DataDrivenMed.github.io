@@ -103,7 +103,7 @@
     attempt = attempt || 1;
     var response;
     try {
-      response = await fetch(path + "?final_candidate=governance-education-outcomes-2026-11-18-v2", {
+      response = await fetch(path + "?final_candidate=governance-education-outcomes-2026-11-18-v3", {
         cache: attempt === 1 ? "force-cache" : "reload"
       });
     } catch (networkError) {

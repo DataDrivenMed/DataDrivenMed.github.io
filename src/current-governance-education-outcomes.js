@@ -406,7 +406,7 @@
     }
   }
 ];
- records.forEach(function(item){var i=window.ARTIFACTS.findIndex(function(a){return a&&a.id===item.id;});if(i>=0)window.ARTIFACTS[i]=item;else window.ARTIFACTS.push(item);});
+ records.forEach(function(item){item.statusOverride=item.statusLabels;item.evidenceStrengthOverride=item.evidenceStrength;var i=window.ARTIFACTS.findIndex(function(a){return a&&a.id===item.id;});if(i>=0)window.ARTIFACTS[i]=item;else window.ARTIFACTS.push(item);});
  function cap(id,short,skills){var c=(window.CAPABILITIES||[]).find(function(x){return x.id===id;});if(c){c.short=short;c.skills=Array.from(new Set(skills.concat(c.skills||[])));}}
  cap("ai-governance","School-level AI policy development, cross-campus LSU System governance participation, and delivered or planned AI education for program leadership, faculty and clinical departments.",["AI policy development","Cross-campus governance","GME AI education","Clinical AI guardrails","Faculty AI literacy"]);
  cap("faculty-affairs","Evaluation infrastructure, mentoring, climate and institutional culture work, with a planned practical faculty AI capability-development session.",["Faculty AI capability development","Evaluation infrastructure","Mentoring evaluation","Climate analytics","Responsible AI"]);
