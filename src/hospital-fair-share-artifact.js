@@ -20,7 +20,7 @@
     confidential: false,
     evidenceType: "public",
     publicDocument: true,
-    liveUrl: "https://datadrivenmed.github.io/resources/hospital-fair-share-2026/",
+    liveUrl: "https://datadrivenmed.github.io/hospital-fair-share-2026.html",
     liveLabel: "Launch Hospital Fair Share Explorer",
     fullArtifactUrl: "artifact.html?file=" + file + "&id=ev-hospital-fair-share-2026",
     fullArtifactLabel: "Read methods and portfolio evidence",

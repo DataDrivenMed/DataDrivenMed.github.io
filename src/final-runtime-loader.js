@@ -101,7 +101,7 @@
     attempt = attempt || 1;
     var response;
     try {
-      response = await fetch(path + "?final_candidate=hospital-fair-share-2026-11-18", {
+      response = await fetch(path + "?final_candidate=hospital-fair-share-2026-11-18-root-link", {
         cache: attempt === 1 ? "force-cache" : "reload"
       });
     } catch (networkError) {

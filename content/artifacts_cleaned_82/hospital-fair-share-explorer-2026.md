@@ -20,7 +20,7 @@ tags:
 
 ## Live artifact
 
-[Launch Hospital Fair Share Explorer](https://datadrivenmed.github.io/resources/hospital-fair-share-2026/)
+[Launch Hospital Fair Share Explorer](https://datadrivenmed.github.io/hospital-fair-share-2026.html)
 
 [Browse the portfolio evidence library](https://datadrivenmed.github.io/#/library?cat=analytics)
 

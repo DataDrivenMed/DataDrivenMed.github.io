@@ -266,7 +266,7 @@
             </div>
 
             <div className="selected-live-footer">
-              <a href="https://datadrivenmed.github.io/resources/hospital-fair-share-2026/" target="_blank" rel="noopener noreferrer">Hospital Fair Share Explorer <window.ArrowRight size={12} /></a>
+              <a href="https://datadrivenmed.github.io/hospital-fair-share-2026.html" target="_blank" rel="noopener noreferrer">Hospital Fair Share Explorer <window.ArrowRight size={12} /></a>
               <a href="#/library">More work in the Evidence Library <window.ArrowRight size={12} /></a>
             </div>
           </div>
