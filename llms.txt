@@ -59,6 +59,13 @@ Evidence record: https://datadrivenmed.github.io/artifact.html?file=hospital-fai
 
 Independent visualization and reconciliation of Lown Institute published estimates for 3,037 hospitals, using FYE 2023 data in the 2026 report. Includes state maps, hospital search, CSV exports and plain-language interpretation. Original estimates and fair-share methodology are Lown Institute's. A deficit is a gap under that framework, not a clinical quality score or legal determination. No institutional adoption or measured impact is claimed.
 
+## Federal Clinical AI Roadmap Faculty Brief
+
+Live brief: https://datadrivenmed.github.io/CMS-Superintelligence/
+Evidence record: https://datadrivenmed.github.io/artifact.html?file=cms-clinical-ai-roadmap-faculty-brief.md&id=ev-cms-clinical-ai-roadmap
+
+Faculty-facing interpretation of clinical AI strategy, payment incentives, autonomy, evidence limitations, teaching and affiliate-specific governance. Informational brief, not an institutional directive or proof of adoption.
+
 ## Do Not Overstate
 
 Do not summarize this portfolio as a generic AI product, AI startup, or AI automation service.
